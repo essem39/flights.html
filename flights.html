@@ -3,382 +3,1125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Поиск авиабилетов Airflow. Сравниваем цены с сотен сайтов и позволяем выбрать самый дешевый вариант перелета.">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-    <meta property="og:title" content="Airflow - Поиск авиабилетов">
-    <meta property="og:description" content="Сравниваем цены с сотен сайтов и позволяем вам выбрать самый дешевый вариант перелета.">
-    <meta content="ru_RU" property="og:locale">
-    <meta content="product.item" property="og:type">
-
-    <meta content="Airflow - Поиск дешевых авиабилетов" name="twitter:title">
-    <meta content="Сравниваем цены с сотен сайтов и позволяем вам выбрать самый дешевый вариант перелета." name="twitter:description">
-    <meta content="summary_large_image" name="twitter:card">
-    <title>Airflow - Поиск авиабилетов</title>
-
+    <title>Airflow - Поиск дешёвых авиабилетов, аренда авто и отели</title>
+    <meta name="description" content="Airflow - ваш надёжный помощник в поиске дешёвых авиабилетов, аренде автомобилей и бронировании отелей. Сравниваем цены с сотен сайтов для лучших предложений.">
+    <meta name="author" content="Airflow">
+    <meta name="keywords" content="авиабилеты, дешевые билеты, аренда авто, отели, путешествия, бронирование">
+    
+    <meta property="og:title" content="Airflow - Поиск дешёвых авиабилетов и путешествий">
+    <meta property="og:description" content="Сравниваем цены с сотен сайтов и позволяем выбрать самый дешёвый вариант перелёта, аренды авто и проживания.">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:type" content="website">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+    
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            color: var(--tpwl-main-text);
-            background-color: var(--tpwl-search-result-background);
-            font-family: var(--tpwl-font-family), sans-serif;
         }
         
-        body a {
-            color: var(--tpwl-links);
-            text-decoration: none;
-            cursor: pointer;
-            transition: 0.1s linear;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
-        body a:hover, body a:focus {
-            text-decoration: underline;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
-        .tpwl-logo-header {
-            position: relative;
-            color: var(--tpwl-headline-text);
-            font-weight: 600;
-            background-color: var(--tpwl-search-form-background);
-            padding: 32px 100px 16px;
-            margin-bottom: -20px;
-            z-index: 101;
-            background-size: cover;
-            background-repeat: no-repeat;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        }
-        
-        .tpwl-logo-header h1 {
-            font-size: 48px;
-            margin: 0;
-        }
-        
-        .tpwl-search-header {
-            padding: 24px 100px;
-            background-color: var(--tpwl-search-form-background);
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 100;
-            transition: all 0.3s linear;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        }
-        
-        .tpwl-logo__wrapper {
-            margin-bottom: 140px;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .tpwl-logo__logo {
-            width: 40px;
-            height: 40px;
-            background: no-repeat url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/></svg>');
-        }
-        
-        .tpwl-search__wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .tpwl__content {
-            flex: 1 0 auto;
-            max-width: 1240px;
-            min-width: 976px;
-        }
-        
-        .tpwl-main {
-            background-color: var(--tpwl-search-result-background);
-        }
-        
-        .tpwl-tickets__wrapper #tpwl-tickets:not(:empty) {
-            margin-bottom: 32px;
-        }
-        
-        .tpwl-tickets__wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0px 100px;
-        }
-        
-        .tpwl-widgets__wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 56px 100px;
-            margin-bottom: 32px;
-        }
-        
-        .tpwl-widgets__wrapper h3 {
-            text-align: center;
-            font-size: 36px;
-            margin: 0px;
-            margin-bottom: 32px;
-        }
-        
-        .tpwl-widget-weedles {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .tpwl-widget-weedle {
-            display: flex;
-            justify-content: center;
-        }
-        
-        .tpwl-footer__wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 56px 100px;
-            text-align: center;
-            font-size: 16px;
-            font-weight: 600;
-            background-color: var(--tpwl-search-result-background);
-        }
-        
-        .tpwl-footer__copyright {
-            margin-bottom: 12px;
-        }
-        
-        .tpwl-footer__links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        /* Navigation Styles */
-        .nav-bar {
-            background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 1rem 0;
-            margin-bottom: 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid #e5e7eb;
         }
         
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            height: 80px;
+            padding: 0 20px;
         }
         
-        .nav-logo {
+        .logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #1e40af;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease;
         }
         
-        .nav-links {
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-icon {
+            font-size: 40px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .logo-text {
             display: flex;
-            gap: 2rem;
+            flex-direction: column;
+        }
+        
+        .logo-title {
+            font-size: 28px;
+            font-weight: 900;
+            color: #1e40af;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-subtitle {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 8px;
+            list-style: none;
         }
         
         .nav-link {
-            color: #374151;
+            padding: 12px 24px;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            transition: all 0.2s;
+            color: #374151;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
         }
         
-        .nav-link:hover {
-            background-color: #f3f4f6;
+        .nav-link:hover, .nav-link.active {
+            color: #2563eb;
+            background: #eff6ff;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 32px;
+            height: 4px;
+            background: #2563eb;
+            border-radius: 2px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        .mobile-nav-link {
+            display: block;
+            padding: 16px 20px;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 600;
+            border-bottom: 1px solid #f3f4f6;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-link:hover, .mobile-nav-link.active {
+            color: #2563eb;
+            background: #eff6ff;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 50%, #312e81 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+        }
+        
+        .hero-bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: white;
+            filter: blur(40px);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .hero-bg-circle:nth-child(1) {
+            top: 80px;
+            left: 80px;
+            width: 300px;
+            height: 300px;
+        }
+        
+        .hero-bg-circle:nth-child(2) {
+            top: 160px;
+            right: 80px;
+            width: 300px;
+            height: 300px;
+            animation-delay: 1s;
+        }
+        
+        .hero-bg-circle:nth-child(3) {
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            animation-delay: 2s;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.2; transform: scale(1.1); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        .hero-gradient-text {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: #bfdbfe;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            min-width: 200px;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background: white;
             color: #1e40af;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
-        .nav-link.active {
-            background-color: #1e40af;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: #f8fafc;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #1e40af;
+            transform: translateY(-2px);
+        }
+        
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            font-size: 14px;
+            color: #bfdbfe;
+        }
+        
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: #f8fafc;
+            padding: 60px 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #2563eb;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid #f3f4f6;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+        
+        .service-icon.flights {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
             color: white;
         }
-
-        @media (max-width: 389px) {
-            .tpwl-footer__wrapper {
-                padding: 56px 16px;
+        
+        .service-icon.cars {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+        
+        .service-icon.hotels {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #111827;
+        }
+        
+        .service-description {
+            font-size: 1.125rem;
+            color: #6b7280;
+            margin-bottom: 24px;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+        
+        .service-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: #6b7280;
+        }
+        
+        .service-feature::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .service-btn {
+            width: 100%;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .service-btn.flights {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .service-btn.cars {
+            background: #059669;
+            color: white;
+        }
+        
+        .service-btn.hotels {
+            background: #7c3aed;
+            color: white;
+        }
+        
+        .service-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #111827;
+        }
+        
+        .feature-description {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #2563eb 0%, #3730a3 100%);
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 24px;
+        }
+        
+        .cta-subtitle {
+            font-size: 1.25rem;
+            color: #bfdbfe;
+            margin-bottom: 32px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #111827;
+            color: white;
+            padding: 60px 20px 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: white;
+        }
+        
+        .footer-section p {
+            color: #d1d5db;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #d1d5db;
+            font-size: 14px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            color: #9ca3af;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: center;
             }
-            .tpwl__content {
-                max-width: unset;
-                min-width: unset;
+            
+            .hero-features {
+                justify-content: center;
             }
-            .tpwl-footer__copyright {
-                margin-bottom: 20px;
+            
+            .cta-buttons {
+                flex-direction: row;
+                justify-content: center;
             }
-            .tpwl-footer__links {
-                display: block;
-            }
-            .tpwl-footer__links a {
-                display: block;
-                margin-bottom: 16px;
-            }
-            .tpwl-footer__links a:last-child {
-                margin-bottom: 0px;
+            
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
             }
         }
-
-        @media (max-width: 1175px) {
-            .tpwl-logo-header {
-                position: static;
-                padding: 32px 16px 6px;
-                margin-bottom: 0px;
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
             }
-            .tpwl-logo-header h1 {
-                font-size: 36px;
-                max-width: 512px;
-            }
-            .tpwl__content {
-                max-width: unset;
-                min-width: unset;
-            }
-            .tpwl-search__wrapper {
+            
+            .mobile-menu-btn {
                 display: block;
             }
-            .tpwl-search-header {
-                padding: 24px 16px 24px;
-                position: static;
+            
+            .hero-content {
+                padding: 60px 20px;
             }
-            .tpwl-logo__wrapper {
-                margin-bottom: 120px;
+            
+            .section-title {
+                font-size: 2rem;
             }
-            .tpwl-tickets__wrapper {
-                padding: 0px 16px;
+            
+            .cta-title {
+                font-size: 2rem;
             }
-            .tpwl-widgets__wrapper {
-                padding: 56px 16px;
-            }
-            .tpwl-widgets__wrapper h3 {
-                font-size: 32px;
-            }
-            .tpwl-widgets__wrapper .tpwl__content {
-                flex: 1 0 100%;
-            }
-            .tpwl-widget-weedles {
+            
+            .services-grid {
                 grid-template-columns: 1fr;
             }
-            .tpwl-footer__wrapper {
-                padding: 56px 16px;
-            }
-            .tpwl-footer__wrapper .tpwl__content {
-                flex: 1 1 auto;
-            }
             
-            .nav-links {
-                flex-direction: column;
-                gap: 0.5rem;
+            .features-grid {
+                grid-template-columns: 1fr;
             }
-            
+        }
+        
+        @media (max-width: 480px) {
             .nav-container {
-                flex-direction: column;
-                gap: 1rem;
+                padding: 0 16px;
+            }
+            
+            .container {
+                padding: 0 16px;
+            }
+            
+            .hero-content {
+                padding: 40px 16px;
+            }
+            
+            .services {
+                padding: 60px 16px;
+            }
+            
+            .features {
+                padding: 60px 16px;
+            }
+            
+            .cta {
+                padding: 60px 16px;
+            }
+            
+            .footer {
+                padding: 40px 16px 20px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <div class="nav-bar">
+    <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                ✈️ Airflow
-            </div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">Главная</a>
-                <a href="flights.html" class="nav-link active">Авиабилеты</a>
-                <a href="cars.html" class="nav-link">Аренда Авто</a>
-                <a href="hotels.html" class="nav-link">Отели</a>
+            <a href="#" class="logo">
+                <div class="logo-icon">✈️</div>
+                <div class="logo-text">
+                    <div class="logo-title">Airflow</div>
+                    <div class="logo-subtitle">Путешествия мечты</div>
+                </div>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active">Главная</a></li>
+                <li><a href="flights.html" class="nav-link">Авиабилеты</a></li>
+                <li><a href="cars.html" class="nav-link">Аренда авто</a></li>
+                <li><a href="hotels.html" class="nav-link">Отели</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#" class="mobile-nav-link active">Главная</a>
+            <a href="flights.html" class="mobile-nav-link">Авиабилеты</a>
+            <a href="cars.html" class="mobile-nav-link">Аренда авто</a>
+            <a href="hotels.html" class="mobile-nav-link">Отели</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-pattern">
+            <div class="hero-bg-circle"></div>
+            <div class="hero-bg-circle"></div>
+            <div class="hero-bg-circle"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    ⭐ Более 10 миллионов довольных клиентов
+                </div>
+                
+                <h1 class="hero-title">
+                    Путешествуйте<br>
+                    <span class="hero-gradient-text">умнее и дешевле</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Сравниваем цены с 1000+ сайтов, чтобы найти лучшие предложения по авиабилетам, отелям и аренде авто
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="flights.html" class="btn btn-primary">
+                        ✈️ Найти авиабилеты →
+                    </a>
+                    <a href="cars.html" class="btn btn-secondary">
+                        🚗 Арендовать авто
+                    </a>
+                </div>
+
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        ✓ Без скрытых комиссий
+                    </div>
+                    <div class="hero-feature">
+                        ✓ Мгновенное бронирование
+                    </div>
+                    <div class="hero-feature">
+                        ✓ Поддержка 24/7
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Aviasales White Label Content -->
-    <div class="tpwl-logo-header">
-        <div class="tpwl__content">
-            <div class="tpwl-logo__wrapper">
-                <div class="tpwl-logo__logo"></div>
-                <h1>Airflow - Поиск дешёвых авиабилетов</h1>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">10M+</span>
+                    <div class="stat-label">Довольных клиентов</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1000+</span>
+                    <div class="stat-label">Партнерских сайтов</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">200+</span>
+                    <div class="stat-label">Стран мира</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <div class="stat-label">Поддержка клиентов</div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="tpwl-search-header">
-        <div class="tpwl-search__wrapper">
-            <div class="tpwl__content">
-                <p style="text-align: center; font-size: 24px; margin: 20px 0;">
-                    Ваше путешествие начинается здесь
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Все для вашего путешествия</h2>
+                <p class="section-subtitle">
+                    Комплексные решения для планирования идеального отпуска
                 </p>
             </div>
-        </div>
-    </div>
+            
+            <div class="services-grid">
+                <a href="flights.html" class="service-card">
+                    <div class="service-icon flights">✈️</div>
+                    <h3 class="service-title">Авиабилеты</h3>
+                    <p class="service-description">
+                        Поиск и сравнение цен на авиабилеты от 500+ авиакомпаний
+                    </p>
+                    <ul class="service-features">
+                        <li class="service-feature">White Label метапоиск</li>
+                        <li class="service-feature">Лучшие цены гарантированы</li>
+                        <li class="service-feature">Мгновенное бронирование</li>
+                    </ul>
+                    <div class="service-btn flights">
+                        Найти билеты →
+                    </div>
+                </a>
 
-    <div class="tpwl-main">
-        <div class="tpwl-tickets__wrapper">
-            <div class="tpwl__content">
-                <div id="tpwl-tickets"></div>
+                <a href="cars.html" class="service-card">
+                    <div class="service-icon cars">🚗</div>
+                    <h3 class="service-title">Аренда авто</h3>
+                    <p class="service-description">
+                        Удобная аренда автомобилей в 180+ странах мира
+                    </p>
+                    <ul class="service-features">
+                        <li class="service-feature">Партнерство с Localrent.com</li>
+                        <li class="service-feature">Все классы автомобилей</li>
+                        <li class="service-feature">Страхование включено</li>
+                    </ul>
+                    <div class="service-btn cars">
+                        Арендовать авто →
+                    </div>
+                </a>
+
+                <a href="hotels.html" class="service-card">
+                    <div class="service-icon hotels">🏨</div>
+                    <h3 class="service-title">Отели</h3>
+                    <p class="service-description">
+                        Бронирование отелей и размещения по всему миру
+                    </p>
+                    <ul class="service-features">
+                        <li class="service-feature">⏰ Скоро - интеграция с Expedia</li>
+                        <li class="service-feature">Миллионы вариантов размещения</li>
+                        <li class="service-feature">Реальные отзывы гостей</li>
+                    </ul>
+                    <div class="service-btn hotels">
+                        Скоро доступно →
+                    </div>
+                </a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="tpwl-widgets__wrapper">
-        <div class="tpwl__content">
-            <h3>Популярные направления перелётов</h3>
-            <div class="tpwl-widget-weedles">
-                <div class="tpwl-widget-weedle">
-                    <div id="tpwl-widget-weedle-1"></div>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Почему выбирают Airflow</h2>
+                <p class="section-subtitle">
+                    Мы делаем путешествия доступными и удобными для каждого
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">Умный поиск</h3>
+                    <p class="feature-description">
+                        Наш алгоритм сравнивает миллионы предложений за секунды, находя лучшие цены для вас
+                    </p>
                 </div>
-                <div class="tpwl-widget-weedle">
-                    <div id="tpwl-widget-weedle-2"></div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3 class="feature-title">Глобальное покрытие</h3>
+                    <p class="feature-description">
+                        Путешествуйте в любую точку мира с нашей сетью из 1000+ партнеров в 200+ странах
+                    </p>
                 </div>
-                <div class="tpwl-widget-weedle">
-                    <div id="tpwl-widget-weedle-3"></div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">Безопасность</h3>
+                    <p class="feature-description">
+                        Защищенные платежи, проверенные партнеры и круглосуточная поддержка для вашего спокойствия
+                    </p>
                 </div>
-                <div class="tpwl-widget-weedle">
-                    <div id="tpwl-widget-weedle-4"></div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3 class="feature-title">Лучшие цены</h3>
+                    <p class="feature-description">
+                        Гарантируем лучшие цены на рынке или вернем разницу в течение 24 часов
+                    </p>
                 </div>
-                <div class="tpwl-widget-weedle">
-                    <div id="tpwl-widget-weedle-5"></div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">Миллионы клиентов</h3>
+                    <p class="feature-description">
+                        Более 10 миллионов путешественников доверяют нам планирование своих поездок
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3 class="feature-title">Поддержка 24/7</h3>
+                    <p class="feature-description">
+                        Наша команда экспертов готова помочь вам в любое время дня и ночи
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="tpwl-footer__wrapper">
-        <div class="tpwl__content">
-            <div class="tpwl-footer__copyright">
-                Airflow © 2008−2024
-            </div>
-            <div class="tpwl-footer__links">
-                <a href="#">Условия обслуживания</a>
-                <a href="#">Политика конфиденциальности</a>
-                <a href="#">Политика cookie</a>
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title">Готовы начать свое путешествие?</h2>
+            <p class="cta-subtitle">
+                Присоединяйтесь к миллионам путешественников, которые экономят с Airflow
+            </p>
+            <div class="cta-buttons">
+                <a href="flights.html" class="btn btn-primary">
+                    ✈️ Найти авиабилеты
+                </a>
+                <a href="cars.html" class="btn btn-secondary">
+                    🚗 Арендовать авто
+                </a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Cookie Notice -->
-    <div style="position: fixed; bottom: 20px; right: 20px; background-color: rgba(0,0,0,0.8); color: white; padding: 10px 15px; border-radius: 5px; font-size: 14px; z-index: 1000; max-width: 300px;">
-        Мы используем cookie, чтобы запоминать вашу историю поиска и выбранные фильтры. 
-        Продолжая пользоваться сайтом, вы соглашаетесь на их использование.
-        <div style="margin-top: 10px;">
-            <button onclick="this.parentElement.parentElement.style.display='none'" style="background-color: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin-right: 10px; cursor: pointer;">
-                Принять
-            </button>
-            <a href="#" style="color: #ccc; font-size: 12px;">Политика cookie</a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <span style="font-size: 32px;">✈️</span>
+                        <div>
+                            <h3 style="margin: 0; font-size: 24px;">Airflow</h3>
+                            <p style="margin: 0; font-size: 12px; color: #9ca3af;">Путешествия мечты</p>
+                        </div>
+                    </div>
+                    <p>
+                        Мы помогаем найти лучшие предложения по авиабилетам, аренде авто и бронированию отелей. 
+                        Сравниваем цены с сотен сайтов для вашего удобства.
+                    </p>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            📧 support@airflow.travel
+                        </div>
+                        <div class="contact-item">
+                            📞 +7 (800) 123-45-67
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Наши сервисы</h3>
+                    <ul class="footer-links">
+                        <li><a href="flights.html">Авиабилеты</a></li>
+                        <li><a href="cars.html">Аренда авто</a></li>
+                        <li><a href="hotels.html">Отели</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Правовая информация</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                        <li><a href="#">Пользовательское соглашение</a></li>
+                        <li><a href="#">Политика cookie</a></li>
+                        <li><a href="#">Отказ от ответственности</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2008−2024 Airflow. Все права защищены.</p>
+                <p>📍 Москва, Россия</p>
+            </div>
         </div>
-    </div>
+    </footer>
 
-    <!-- Aviasales Widget Script -->
-    <script async src="//tpwgt.com/content?trs=477768&shmarker=144185&locale=ru&country=20&city=217391&powered_by=false&campaign_id=87&promo_id=2466" charset="utf-8"></script>
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = 'white';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+
+        // Animate stats on scroll
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const finalValue = target.textContent;
+                        const numericValue = parseInt(finalValue.replace(/\D/g, ''));
+                        const suffix = finalValue.replace(/[\d]/g, '');
+                        
+                        let current = 0;
+                        const increment = numericValue / 50;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= numericValue) {
+                                current = numericValue;
+                                clearInterval(timer);
+                            }
+                            target.textContent = Math.floor(current) + suffix;
+                        }, 30);
+                        
+                        observer.unobserve(target);
+                    }
+                });
+            });
+            
+            stats.forEach(stat => observer.observe(stat));
+        }
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            animateStats();
+        });
+    </script>
 </body>
 </html>
