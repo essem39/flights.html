@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airflow - Поиск дешёвых авиабилетов</title>
-    <meta name="description" content="Поиск дешёвых авиабилетов с Airflow. Сравниваем цены с сотен сайтов и позволяем вам выбрать самый дешевый вариант перелета.">
+    <title>AirFlow Travel - Поиск Авиабилетов | Дешевые Перелеты</title>
+    <meta name="description" content="Ищите дешевые авиабилеты по всему миру с AirFlow Travel. Сравнение цен от сотен авиакомпаний. Бронируйте выгодно и быстро!">
     <meta name="author" content="Airflow">
-    <meta name="keywords" content="поиск авиабилетов, дешёвые билеты, авиабилеты, бронирование, путешествия">
+    <meta name="keywords" content="авиабилеты, дешевые билеты, поиск рейсов, бронирование перелетов, AirFlow Travel">
     
     <meta property="og:title" content="Airflow - Поиск дешёвых авиабилетов">
     <meta property="og:description" content="Сравниваем цены с сотен сайтов и позволяем вам выбрать самый дешевый вариант перелета.">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:type" content="website">
-    
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
     
     <style>
+        /* CSS, предоставленный вами в теле файла */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; margin: 0; }
         body {
@@ -25,6 +26,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            background-color: #f8fafc; /* Установим легкий фон для тела */
         }
         .page-wrapper { flex: 1 0 auto; display: flex; flex-direction: column; }
         .main-content { flex: 1; }
@@ -74,7 +76,7 @@
         
         .widget-container { 
             background: white; border-radius: 20px; 
-            padding: 30px 20px 20px; /* Уменьшен нижний отступ */
+            padding: 30px 20px 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
             text-align: center; max-width: 800px; margin: 0 auto; 
         }
@@ -83,14 +85,18 @@
         .widget-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; color: #1f2937; }
         .widget-description { margin-bottom: 16px; font-size: 1rem; color: #6b7280; }
         
-        #tpwl-search { 
-            width: 100%; max-width: 700px; 
-            margin: 10px 0 0; /* Убран большой нижний отступ */
+        /* Стили для Iframe */
+        .flights-search-container {
+            width: 100%;
+            max-width: 700px; /* Ограничиваем ширину поиска */
+            margin: 10px auto 0;
         }
-        
-        /* Дополнительный блок под поиском */
-        .widget-extra-content {
-            margin-top: 20px; /* Небольшой отступ от поиска */
+
+        .flights-search-container iframe {
+            width: 100%; 
+            min-height: 480px; /* Минимальная высота для удобства */
+            border: none;
+            display: block;
         }
 
         /* Popular Destinations Section */
@@ -220,20 +226,16 @@
                         <p class="widget-description">Сравниваем цены с сотен сайтов и позволяем выбрать лучший вариант</p>
                         
                         <div class="widget-wrapper">
-                            <div id="tpwl-search"></div>
-                            
-                            <div class="widget-extra-content">
-                                <h3 style="margin-bottom: 20px; color: #1f2937;">Популярные направления</h3>
-                                <div id="tpwl-widget-weedles" class="tpwl-widget-weedles">
-                                    <div class="tpwl-widget-weedle" data-destination="IST" is="weedle"></div>
-                                    <div class="tpwl-widget-weedle" data-destination="DXB" is="weedle"></div>
-                                    <div class="tpwl-widget-weedle" data-destination="MOW" is="weedle"></div>
-                                    <div class="tpwl-widget-weedle" data-destination="LAS" is="weedle"></div>
-                                    <div class="tpwl-widget-weedle" data-destination="NYC" is="weedle"></div>
-                                    <div class="tpwl-widget-weedle" data-destination="LON" is="weedle"></div>
-                                </div>
+                            <div class="flights-search-container">
+                                <iframe src="https://search.airflowtravel.net/" 
+                                        width="100%" 
+                                        height="600" 
+                                        frameborder="0" 
+                                        scrolling="no" 
+                                        allowfullscreen>
+                                </iframe>
                             </div>
-                        </div>
+                            </div>
                     </div>
                 </div>
             </section>
@@ -242,11 +244,11 @@
                 <div class="container">
                     <div class="section-header">
                         <h2 class="section-title">Популярные направления перелётов</h2>
-                        <p class="section-subtitle">Вдохновитесь идеями для следующего путешествия</p>
+                        <p class="section-subtitle">Вдохновитесь идеями для следующего путешествия (Без фиксированной даты)</p>
                     </div>
                     
                     <div class="destinations-grid">
-                        <a href="#" target="_blank" class="destination-card">
+                        <a href="https://search.airflowtravel.net/?origin_iata=MOW&destination_iata=LED" target="_blank" class="destination-card">
                             <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
                                 <div class="destination-overlay">
                                     <div class="destination-name">Москва — Санкт-Петербург</div>
@@ -265,7 +267,7 @@
                             </div>
                         </a>
                         
-                        <a href="#" target="_blank" class="destination-card">
+                        <a href="https://search.airflowtravel.net/?origin_iata=MOW&destination_iata=AER" target="_blank" class="destination-card">
                             <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
                                 <div class="destination-overlay">
                                     <div class="destination-name">Москва — Сочи</div>
@@ -284,7 +286,7 @@
                             </div>
                         </a>
                         
-                        <a href="#" target="_blank" class="destination-card">
+                        <a href="https://search.airflowtravel.net/?origin_iata=MOW&destination_iata=IST" target="_blank" class="destination-card">
                             <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
                                 <div class="destination-overlay">
                                     <div class="destination-name">Москва — Стамбул</div>
@@ -303,7 +305,7 @@
                             </div>
                         </a>
                         
-                        <a href="#" target="_blank" class="destination-card">
+                        <a href="https://search.airflowtravel.net/?origin_iata=MOW&destination_iata=DXB" target="_blank" class="destination-card">
                             <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
                                 <div class="destination-overlay">
                                     <div class="destination-name">Москва — Дубай</div>
@@ -322,7 +324,7 @@
                             </div>
                         </a>
                         
-                        <a href="#" target="_blank" class="destination-card">
+                        <a href="https://search.airflowtravel.net/?origin_iata=MOW&destination_iata=CDG" target="_blank" class="destination-card">
                             <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
                                 <div class="destination-overlay">
                                     <div class="destination-name">Москва — Париж</div>
@@ -341,7 +343,7 @@
                             </div>
                         </a>
                         
-                        <a href="#" target="_blank" class="destination-card">
+                        <a href="https://search.airflowtravel.net/?origin_iata=MOW&destination_iata=JFK" target="_blank" class="destination-card">
                             <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1544085311-11a028465b03?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
                                 <div class="destination-overlay">
                                     <div class="destination-name">Москва — Нью-Йорк</div>
@@ -429,21 +431,6 @@
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('active');
         }
-    </script>
-
-    <script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
-        (function () {
-            var script = document.createElement("script");
-            script.async = 1;
-            script.type = "module";
-            script.src = "https://tpwgt.com/wl_web/main.js?wl_id=1368";
-            document.head.appendChild(script);
-
-            window.TPWL_CONFIGURATION = {
-                ...window.TPWL_CONFIGURATION,
-                resultsURL: "https://search.airflowtravel.net"
-            };
-        })();
     </script>
 </body>
 </html>
