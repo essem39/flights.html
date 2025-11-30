@@ -12,7 +12,6 @@
     <meta property="og:description" content="Сравниваем цены с сотен сайтов и позволяем вам выбрать самый дешевый вариант перелета.">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:type" content="website">
-    <meta content="product.item" property="og:type">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
     
@@ -38,7 +37,7 @@
         }
         
         .page-wrapper {
-            flex: 1 0 auto; /* Важно для растягивания контента */
+            flex: 1 0 auto;
             display: flex;
             flex-direction: column;
         }
@@ -191,7 +190,6 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">');
             opacity: 0.3;
         }
         
@@ -323,72 +321,6 @@
             justify-content: center;
         }
         
-        /* Временная заглушка для виджета */
-        .flights-search-widget {
-            width: 100%;
-            max-width: 700px;
-            padding: 20px;
-            border: 2px dashed #3b82f6;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        
-        .search-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-        
-        @media (max-width: 640px) {
-            .search-form {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .form-group {
-            margin-bottom: 16px;
-        }
-        
-        .form-label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 6px;
-            text-align: left;
-            color: #1f2937;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.2s ease;
-        }
-        
-        .form-control:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-            outline: none;
-        }
-        
-        .search-btn {
-            grid-column: 1 / -1;
-            background: #3b82f6;
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .search-btn:hover {
-            background: #1d4ed8;
-        }
-        
         .widget-icon {
             font-size: 60px;
             margin-bottom: 20px;
@@ -406,6 +338,26 @@
             margin-bottom: 24px;
             font-size: 1rem;
             color: #6b7280;
+        }
+        
+        /* Стили для Travelpayouts виджета */
+        #tpwl-search {
+            width: 100%;
+            max-width: 700px;
+            margin: 20px 0;
+        }
+        
+        .tpwl-widget-weedles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .tpwl-widget-weedle {
+            min-height: 150px;
+            border-radius: 8px;
+            overflow: hidden;
         }
         
         /* Popular Destinations Section */
@@ -513,7 +465,7 @@
         }
         
         .benefit-card {
-            text-align: center;
+            text-center;
             padding: 32px 20px;
             border-radius: 16px;
             background: white;
@@ -555,8 +507,8 @@
             background: #1f2937;
             color: white;
             padding: 60px 20px 20px;
-            margin-top: auto; /* Важно для позиционирования футера внизу */
-            flex-shrink: 0; /* Запрещает футеру сжиматься */
+            margin-top: auto;
+            flex-shrink: 0;
         }
         
         .footer-content {
@@ -659,6 +611,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
+            text-decoration: none;
         }
         
         .accept-btn {
@@ -713,6 +666,10 @@
             .destinations-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .tpwl-widget-weedles {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 480px) {
@@ -728,38 +685,33 @@
         }
     </style>
 </head>
+
 <body>
     <div class="page-wrapper">
         <header class="navbar">
             <div class="nav-container container">
                 <a href="#" class="logo">
-                    <div class="logo-icon">
-                        ✈️
-                    </div>
+                    <div class="logo-icon">✈️</div>
                     <div class="logo-text">
-                        <div class="logo-title">
-                            Airflow
-                        </div>
-                        <div class="logo-subtitle">
-                            Путешествия мечты
-                        </div>
+                        <div class="logo-title">Airflow</div>
+                        <div class="logo-subtitle">Путешествия мечты</div>
                     </div>
                 </a>
                 <nav>
                     <ul class="nav-menu">
-                        <li><a href="#" class="nav-link">Главная</a></li>
-                        <li><a href="#" class="nav-link active">Авиабилеты</a></li>
-                        <li><a href="#" class="nav-link">Аренда авто</a></li>
-                        <li><a href="#" class="nav-link">Отели</a></li>
+                        <li><a href="index.html" class="nav-link">Главная</a></li>
+                        <li><a href="flights.html" class="nav-link active">Авиабилеты</a></li>
+                        <li><a href="cars.html" class="nav-link">Аренда авто</a></li>
+                        <li><a href="hotels.html" class="nav-link">Отели</a></li>
                     </ul>
                 </nav>
-                <button class="mobile-menu-btn">☰</button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
             </div>
-            <div class="mobile-menu">
-                <a href="#" class="mobile-nav-link">Главная</a>
-                <a href="#" class="mobile-nav-link active">Авиабилеты</a>
-                <a href="#" class="mobile-nav-link">Аренда авто</a>
-                <a href="#" class="mobile-nav-link">Отели</a>
+            <div class="mobile-menu" id="mobile-menu">
+                <a href="index.html" class="mobile-nav-link">Главная</a>
+                <a href="flights.html" class="mobile-nav-link active">Авиабилеты</a>
+                <a href="cars.html" class="mobile-nav-link">Аренда авто</a>
+                <a href="hotels.html" class="mobile-nav-link">Отели</a>
             </div>
         </header>
 
@@ -778,43 +730,24 @@
                 <div class="container">
                     <div class="features-grid">
                         <div class="feature-card">
-                            <div class="feature-icon">
-                                🔄
-                            </div>
+                            <div class="feature-icon">🔄</div>
                             <h3 class="feature-title">Сравнение цен</h3>
-                            <p class="feature-description">
-                                Сравниваем цены с сотен сайтов
-                            </p>
+                            <p class="feature-description">Сравниваем цены с сотен сайтов</p>
                         </div>
-                        
                         <div class="feature-card">
-                            <div class="feature-icon">
-                                💰
-                            </div>
+                            <div class="feature-icon">💰</div>
                             <h3 class="feature-title">Экономия до 60%</h3>
-                            <p class="feature-description">
-                                Находим самые выгодные предложения
-                            </p>
+                            <p class="feature-description">Находим самые выгодные предложения</p>
                         </div>
-                        
                         <div class="feature-card">
-                            <div class="feature-icon">
-                                🔍
-                            </div>
+                            <div class="feature-icon">🔍</div>
                             <h3 class="feature-title">Умный поиск</h3>
-                            <p class="feature-description">
-                                Все направления и авиакомпании
-                            </p>
+                            <p class="feature-description">Все направления и авиакомпании</p>
                         </div>
-                        
                         <div class="feature-card">
-                            <div class="feature-icon">
-                                ⚡
-                            </div>
+                            <div class="feature-icon">⚡</div>
                             <h3 class="feature-title">Быстрая покупка</h3>
-                            <p class="feature-description">
-                                Без скрытых комиссий и сборов
-                            </p>
+                            <p class="feature-description">Без скрытых комиссий и сборов</p>
                         </div>
                     </div>
                 </div>
@@ -824,9 +757,7 @@
                 <div class="container">
                     <div class="section-header">
                         <h2 class="section-title">Найдите идеальный рейс</h2>
-                        <p class="section-subtitle">
-                            Просто укажите направление и даты поездки
-                        </p>
+                        <p class="section-subtitle">Просто укажите направление и даты поездки</p>
                     </div>
                     
                     <div class="widget-container">
@@ -837,33 +768,21 @@
                         </p>
                         
                         <div class="widget-wrapper">
-                            <!-- Здесь будет ваш виджет поиска авиабилетов. Пока он не активирован, 
-                            показываем форму-заглушку. Когда получите скрипт для виджета, замените
-                            этот блок на тег script с вашим виджетом. -->
-                            <div class="flights-search-widget">
-                                <form class="search-form">
-                                    <div class="form-group">
-                                        <label class="form-label">Откуда</label>
-                                        <input type="text" class="form-control" placeholder="Город отправления">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Куда</label>
-                                        <input type="text" class="form-control" placeholder="Город назначения">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Дата вылета</label>
-                                        <input type="date" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Дата возвращения</label>
-                                        <input type="date" class="form-control">
-                                    </div>
-                                    <button type="button" class="search-btn">Найти билеты</button>
-                                </form>
+                            <!-- Travelpayouts Widget -->
+                            <div id="tpwl-search"></div>
+                            
+                            <!-- Popular Destinations Widget -->
+                            <div style="margin-top: 40px;">
+                                <h3 style="margin-bottom: 20px; color: #1f2937;">Популярные направления перелётов</h3>
+                                <div id="tpwl-widget-weedles" class="tpwl-widget-weedles">
+                                    <div class="tpwl-widget-weedle" data-destination="IST" is="weedle"></div>
+                                    <div class="tpwl-widget-weedle" data-destination="DXB" is="weedle"></div>
+                                    <div class="tpwl-widget-weedle" data-destination="MOW" is="weedle"></div>
+                                    <div class="tpwl-widget-weedle" data-destination="LAS" is="weedle"></div>
+                                    <div class="tpwl-widget-weedle" data-destination="NYC" is="weedle"></div>
+                                    <div class="tpwl-widget-weedle" data-destination="LON" is="weedle"></div>
+                                </div>
                             </div>
-                            <!-- Когда получите активированный скрипт, замените блок выше на что-то вроде:
-                            <script async src="https://search.airflowtravel.net/flights"utf-8"></script>
-                            -->
                         </div>
                     </div>
                 </div>
@@ -873,9 +792,7 @@
                 <div class="container">
                     <div class="section-header">
                         <h2 class="section-title">Популярные направления перелётов</h2>
-                        <p class="section-subtitle">
-                            Вдохновитесь идеями для вашего следующего путешествия
-                        </p>
+                        <p class="section-subtitle">Вдохновитесь идеями для вашего следующего путешествия</p>
                     </div>
                     
                     <div class="destinations-grid">
@@ -1004,63 +921,39 @@
                     
                     <div class="benefits-grid">
                         <div class="benefit-card">
-                            <div class="benefit-icon">
-                                🔎
-                            </div>
+                            <div class="benefit-icon">🔎</div>
                             <h3 class="benefit-title">Все рейсы</h3>
-                            <p class="benefit-description">
-                                Тысячи предложений от сотен авиакомпаний в одном месте
-                            </p>
+                            <p class="benefit-description">Тысячи предложений от сотен авиакомпаний в одном месте</p>
                         </div>
                         
                         <div class="benefit-card">
-                            <div class="benefit-icon">
-                                💸
-                            </div>
+                            <div class="benefit-icon">💸</div>
                             <h3 class="benefit-title">Без комиссий</h3>
-                            <p class="benefit-description">
-                                Вы не платите никаких дополнительных сборов или наценок
-                            </p>
+                            <p class="benefit-description">Вы не платите никаких дополнительных сборов или наценок</p>
                         </div>
                         
                         <div class="benefit-card">
-                            <div class="benefit-icon">
-                                🛡️
-                            </div>
+                            <div class="benefit-icon">🛡️</div>
                             <h3 class="benefit-title">Безопасность</h3>
-                            <p class="benefit-description">
-                                Все платежи защищены современными протоколами безопасности
-                            </p>
+                            <p class="benefit-description">Все платежи защищены современными протоколами безопасности</p>
                         </div>
                         
                         <div class="benefit-card">
-                            <div class="benefit-icon">
-                                📊
-                            </div>
+                            <div class="benefit-icon">📊</div>
                             <h3 class="benefit-title">Прогноз цен</h3>
-                            <p class="benefit-description">
-                                Умный алгоритм предсказывает изменения стоимости билетов
-                            </p>
+                            <p class="benefit-description">Умный алгоритм предсказывает изменения стоимости билетов</p>
                         </div>
                         
                         <div class="benefit-card">
-                            <div class="benefit-icon">
-                                📱
-                            </div>
+                            <div class="benefit-icon">📱</div>
                             <h3 class="benefit-title">Мобильная версия</h3>
-                            <p class="benefit-description">
-                                Удобный поиск и покупка билетов с любого устройства
-                            </p>
+                            <p class="benefit-description">Удобный поиск и покупка билетов с любого устройства</p>
                         </div>
                         
                         <div class="benefit-card">
-                            <div class="benefit-icon">
-                                🌍
-                            </div>
+                            <div class="benefit-icon">🌍</div>
                             <h3 class="benefit-title">Мировое покрытие</h3>
-                            <p class="benefit-description">
-                                Билеты во все страны мира с самыми выгодными ценами
-                            </p>
+                            <p class="benefit-description">Билеты во все страны мира с самыми выгодными ценами</p>
                         </div>
                     </div>
                 </div>
@@ -1073,16 +966,10 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="logo">
-                        <div class="logo-icon">
-                            ✈️
-                        </div>
+                        <div class="logo-icon">✈️</div>
                         <div class="logo-text">
-                            <div class="logo-title">
-                                Airflow
-                            </div>
-                            <div class="logo-subtitle">
-                                Путешествия мечты
-                            </div>
+                            <div class="logo-title">Airflow</div>
+                            <div class="logo-subtitle">Путешествия мечты</div>
                         </div>
                     </div>
                     <p>
@@ -1090,7 +977,6 @@
                         Сравниваем цены с сотен сайтов для вашего удобства.
                     </p>
                 </div>
-
                 <div class="footer-section">
                     <h3>Наши сервисы</h3>
                     <ul class="footer-links">
@@ -1099,7 +985,6 @@
                         <li><a href="#">Отели</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-section">
                     <h3>Правовая информация</h3>
                     <ul class="footer-links">
@@ -1110,7 +995,6 @@
                     </ul>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>© 2008−2025 Airflow. Все права защищены. 📍 Москва, Россия</p>
             </div>
@@ -1124,18 +1008,118 @@
                 Продолжая пользоваться сайтом, вы соглашаетесь на их использование.
             </div>
             <div class="cookie-buttons">
-                <button class="cookie-btn accept-btn" onclick="document.getElementById('cookie-notice').style.display='none';">Принять</button>
+                <button class="cookie-btn accept-btn" onclick="hideCookieNotice()">Принять</button>
                 <a href="#" class="cookie-btn policy-btn">Политика cookie</a>
             </div>
         </div>
     </div>
 
-    <!-- Место для вашего скрипта cookie политики -->
+    <!-- Travelpayouts Widget Scripts -->
+    <script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
+        (function () {
+            var script = document.createElement("script");
+            script.async = 1;
+            script.type = "module";
+            script.src = "https://tpwgt.com/wl_web/main.js?wl_id=1368";
+            document.head.appendChild(script);
+            window.TPWL_CONFIGURATION = {
+                ...window.TPWL_CONFIGURATION,
+                resultsURL: "https://search.airflowtravel.net"
+            };
+        })();
+    </script>
+
+    <!-- Popular Destinations Widget Script -->
     <script>
-        // Простой скрипт для обработки мобильного меню
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            document.querySelector('.mobile-menu').classList.toggle('active');
+        (function () {
+            // Wait for TPWL_EXTRA to be available
+            function initWeedles() {
+                if (typeof TPWL_EXTRA === 'undefined') {
+                    setTimeout(initWeedles, 500);
+                    return;
+                }
+                
+                const container = document.getElementById('tpwl-widget-weedles');
+                if (!container) return;
+                
+                const weedleElements = container.querySelectorAll('div[is="weedle"]');
+                
+                weedleElements.forEach(element => {
+                    const destination = element.getAttribute('data-destination');
+                    const scriptElement = document.createElement('script');
+                    scriptElement.async = 1;
+                    scriptElement.src = `https://widget.travelpayouts.com/content?currency=${String(TPWL_EXTRA.currency).toLowerCase()}&trs=${TPWL_EXTRA.trs}&shmarker=${TPWL_EXTRA.marker}&destination=${destination}&target_host=${TPWL_EXTRA.domain}&locale=${TPWL_EXTRA.locale}&limit=6&powered_by=false&primary=%23${TPWL_EXTRA.link_color}&promo_id=4044&campaign_id=100`;
+                    element.appendChild(scriptElement);
+                });
+            }
+            
+            // Start initialization
+            initWeedles();
+        })();
+    </script>
+
+    <!-- Utility Scripts -->
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Hide cookie notice
+        function hideCookieNotice() {
+            document.getElementById('cookie-notice').style.display = 'none';
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
         });
     </script>
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+
+    <script>
+        // 1. Активация главного поиска (Search Form Widget)
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            // ВАЖНО: Замените [ВАШ МАРКЕР] на ваш реальный партнерский ID!
+            js.src = '//www.travelpayouts.com/widgets/e38f65420d91b32b9015949d9703359d.js?marker=[ВАШ МАРКЕР]&host=search.airflowtravel.net';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'tp-widget-search'));
+
+        // 2. Активация популярных направлений (Weedle Widgets)
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('tpwl-widget-weedles');
+            if (!container) return;
+            
+            const destinationElements = container.querySelectorAll('div[data-destination]');
+            
+            destinationElements.forEach(element => {
+                const destination = element.getAttribute('data-destination');
+                if (destination) {
+                    const scriptElement = document.createElement('script');
+                    scriptElement.async = true;
+                    // Использование виджета Popular Destinations. Замените [ВАШ МАРКЕР]
+                    scriptElement.src = `//www.travelpayouts.com/content?marker=[ВАШ МАРКЕР]&currency=RUB&destination=${destination}&target_host=search.airflowtravel.net&locale=ru&limit=6&powered_by=false&primary=%233b82f6&promo_id=4044&campaign_id=100`;
+                    element.appendChild(scriptElement);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
 </body>
 </html>
