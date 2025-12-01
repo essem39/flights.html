@@ -1,1 +1,645 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airflow - Билеты на поезда и автобусы по России и СНГ</title>
+    <meta name="description" content="Поиск и покупка билетов на поезда и автобусы. Сравниваем цены и маршруты от Unitiki (Туту.ру). Быстрое и надежное бронирование наземного транспорта.">
+    <meta name="author" content="Airflow Travel">
+    <meta name="keywords" content="билеты на поезд, автобусные билеты, жд билеты, Unitiki, Туту.ру, наземный транспорт">
+    
+    <meta property="og:title" content="Airflow - Поезда и Автобусы">
+    <meta property="og:description" content="Найдите билеты на наземный транспорт быстро и без комиссии.">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚌</text></svg>">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <style>
+        /* --- УНИФИЦИРОВАННЫЕ СТИЛИ (CSS) --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .page-wrapper { flex: 1; display: flex; flex-direction: column; }
+
+        /* --- МЕНЮ --- */
+        .navbar { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-size: 24px; font-weight: 900; color: #1e40af; display: flex; align-items: center; gap: 10px; }
+        .nav-menu { display: flex; gap: 20px; }
+        /* ИЗМЕНЕНО: Активный класс на "Поезда и Автобусы" */
+        .nav-link { font-weight: 600; color: #4b5563; padding: 8px 12px; border-radius: 6px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { background: #eff6ff; color: #2563eb; }
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 24px; cursor: pointer; }
+
+        /* --- ГЛАВНЫЙ БЛОК С ПОИСКОМ ТРАНСПОРТА (С ФОНОМ И СТЕКЛОМ) --- */
+        .search-hero-section {
+            width: 100%;
+            /* ИЗМЕНЕНО: Фон на тему Поездов/Автобусов */
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.postimg.cc/BvLbS5G1/QNJVi-O-z-EGn0xnjo8Cvd-U.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+            position: relative; 
+            z-index: 50;
+        }
+
+        .search-glass-container {
+            width: 100%;
+            max-width: 1200px;
+            /* ВАШ ПРОЗРАЧНЫЙ ФОН */
+            background: rgba(255, 255, 255, 0.15); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            margin: 0 20px;
+            z-index: 9999; 
+        }
+
+        .hero-headline {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        /* ИЗМЕНЕНО: Заголовок для Поездов/Автобусов */
+        .hero-headline h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+        .hero-headline p { font-size: 1.2rem; opacity: 0.9; }
+
+        /* --- СТИЛИ ДЛЯ ВИДЖЕТА --- */
+        .widget-wrapper {
+            width: 100%; 
+        }
+
+        /* --- БЛОК ДОПОЛНИТЕЛЬНОГО ТЕКСТА --- */
+        .intro-text-section {
+            padding: 40px 0;
+            text-align: center;
+            background: white;
+        }
+        /* ИЗМЕНЕНО: Тексты для Поездов/Автобусов */
+        .intro-text-section h2 { 
+            font-size: 1.8rem; 
+            margin-bottom: 15px;
+            color: #1e40af;
+        }
+        .intro-text-section p { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            color: #6b7280; 
+            font-size: 1.1rem;
+        }
+
+        /* --- ПРЕИМУЩЕСТВА --- */
+        .benefits-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-between;
+            gap: 30px; 
+            padding: 60px 0; 
+        }
+        .benefit-card { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            text-align: center; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            transition: 0.3s;
+            flex: 1 1 300px; 
+            border: 1px solid #e2e8f0;
+        }
+        .benefit-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        .benefit-icon { font-size: 40px; margin-bottom: 15px; color: #2563eb; }
+        .benefit-card h3 { font-size: 1.125rem; margin-bottom: 8px; color: #1f2937;}
+        .benefit-card p { font-size: 0.9rem; color: #6b7280;}
+
+        /* --- СЕКЦИЯ ОТЗЫВОВ (СЛАЙДЕР SWIPER) --- */
+        .testimonials {
+            background-color: #f8fafc; 
+            padding: 60px 0;
+        }
+        /* ИЗМЕНЕНО: Заголовок секции */
+        .testimonials .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .testimonials-slider {
+            padding: 20px 0 50px; 
+        }
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            height: 100%; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #e2e8f0;
+        }
+        .testimonial-rating {
+            margin-bottom: 15px;
+            color: #f59e0b; 
+        }
+        /* ИЗМЕНЕНО: Тексты отзывов */
+        .testimonial-text {
+            font-size: 1rem;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #2563eb;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .author-info h4 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        .author-info p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: #2563eb;
+            --swiper-navigation-size: 30px;
+        }
+        .swiper-pagination-bullet-active {
+            background: #2563eb !important;
+        }
+
+        /* --- СЕКЦИЯ МАРШРУТОВ (СЛАЙДЕР ВИДЖЕТ) --- */
+        .destinations-section { background: #f8fafc; padding: 20px 0 60px; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .destinations-section .section-header h2 { font-size: 2rem; font-weight: 800; color: #1e40af; }
+        .destinations-section .section-header p { font-size: 1rem; color: #6b7280; margin-top: 10px; }
+        .route-slider-wrapper { 
+             max-width: 100%; 
+             margin: 0 auto;
+             padding: 10px 0;
+        }
+
+        /* --- БЛОК КАРТА ТРАНСПОРТА --- */
+        .map-section {
+            padding: 60px 0;
+            background: white;
+            text-align: center;
+        }
+        .map-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%; 
+        }
+
+        /* --- БЛОК АВИАБИЛЕТОВ (ВСПОМОГАТЕЛЬНЫЙ) --- */
+        .flight-widget-section {
+            background: #e5e7eb;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .flight-widget-section h2 { margin-bottom: 20px; }
+        
+        .flight-widget-wrapper {
+            max-width: 100%; 
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- FAQ АККОРДЕОН --- */
+        .faq-section { 
+            padding: 60px 0; 
+            background: white;
+        }
+        .faq-list { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            margin-top: 30px;
+        }
+        /* ... Остальные стили для FAQ (без изменений) ... */
+        .faq-item { background: #eff6ff; margin-bottom: 15px; border-radius: 12px; border: 1px solid #dbeafe; box-shadow: 0 5px 15px rgba(0,0,0,0.03); overflow: hidden; }
+        .faq-item summary { cursor: pointer; padding: 20px 25px; font-size: 1.15rem; color: #1f2937; font-weight: 700; outline: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.5rem; color: #2563eb; transition: transform 0.3s; }
+        .faq-item[open] summary::after { content: '–'; }
+        .faq-answer { padding: 0 25px 20px; font-size: 1rem; color: #4b5563; line-height: 1.5; padding-top: 10px; }
+
+
+        /* --- ФУТЕР --- */
+        .footer { background: #1e293b; color: white; padding: 50px 20px; margin-top: auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .footer h3 { margin-bottom: 20px; color: white; }
+        .footer a { color: #94a3b8; transition: 0.3s; }
+        .footer a:hover { color: white; }
+        
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .mobile-menu-btn { display: block; }
+            .search-hero-section { min-height: 400px; padding: 60px 0; }
+            .search-glass-container { padding: 30px 20px; }
+            .hero-headline h1 { font-size: 2rem; }
+            .hero-headline p { font-size: 1rem; }
+            .benefits-grid { gap: 20px; }
+            .benefit-card { flex: 1 1 45%; }
+        }
+        @media (max-width: 480px) {
+            .benefit-card { flex: 1 1 100%; }
+        }
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            z-index: 999;
+            padding: 10px 0;
+        }
+        .mobile-menu.active { display: block; }
+        .mobile-nav-link {
+            display: block;
+            padding: 12px 20px;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .mobile-nav-link:hover, .mobile-nav-link.active {
+            color: #2563eb;
+            background: #eff6ff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+    <header class="navbar">
+        <div class="nav-container container">
+            <a href="index.html" class="logo">
+                <span style="font-size: 24px;">✈️</span> Airflow
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="flights.html" class="nav-link">Авиабилеты</a></li>
+                    <li><a href="cars.html" class="nav-link">Аренда авто</a></li>
+                    <li><a href="hotels.html" class="nav-link">Отели</a></li>
+                    <li><a href="trains-buses.html" class="nav-link active">Поезда и Автобусы</a></li> 
+                </ul>
+                <button class="mobile-menu-btn" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">☰</button>
+            </nav>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-nav-link">Главная</a>
+            <a href="flights.html" class="mobile-nav-link">Авиабилеты</a>
+            <a href="cars.html" class="mobile-nav-link">Аренда авто</a>
+            <a href="hotels.html" class="mobile-nav-link">Отели</a>
+            <a href="trains-buses.html" class="mobile-nav-link active">Поезда и Автобусы</a> 
+        </div>
+    </header>
+
+    <section class="search-hero-section">
+        <div class="search-glass-container">
+            <div class="hero-headline">
+                <h1>Билеты на Поезда и Автобусы: Быстро и Удобно</h1>
+                <p>Планируйте наземные маршруты по России, СНГ и Европе. Сравнивайте цены и покупайте билеты от Unitiki (Туту.ру).</p>
+            </div>
+            
+            <div class="widget-wrapper">
+                <script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&powered_by=true&train=true&plane=false&bus=true&defaultTab=train&fix_width=false&logo=true&menu_icon=true&promo_id=9093&campaign_id=45" charset="utf-8"></script>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro-text-section">
+        <div class="container">
+            <h2>🌍 Ваш путеводитель по наземным маршрутам</h2>
+            <p>Airflow предлагает простой доступ к покупке билетов на поезда и междугородние автобусы. Благодаря нашему партнеру Unitiki, вы всегда найдете актуальные расписания, удобные стыковки и возможность сравнить цены, чтобы выбрать самый выгодный и комфортный способ добраться до места назначения. Начните поиск сейчас!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🚂</div>
+                <h3>Билеты на поезда</h3>
+                <p>Актуальное расписание и наличие мест на поезда РЖД и других перевозчиков.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🚌</div>
+                <h3>Междугородние автобусы</h3>
+                <p>Широкий выбор автобусных маршрутов по всем направлениям.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Мгновенное бронирование</h3>
+                <p>Быстрая покупка электронного билета и его возврат при необходимости.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Что говорят наши пассажиры о наземном транспорте?</h2>
+            
+            <div class="swiper testimonials-slider">
+                <div class="swiper-wrapper">
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Бронировал билет на поезд Москва-Петербург. Удобно, что Unitiki показал все классы вагонов и дал возможность выбрать место. Очень быстро и надежно!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">Д</div>
+                                <div class="author-info">
+                                    <h4>Дмитрий</h4>
+                                    <p>Москва</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Сравнил автобусные рейсы до Казани. Unitiki нашел прямой рейс, который другие сайты не показывал. Сэкономленные время и деньги!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">Е</div>
+                                <div class="author-info">
+                                    <h4>Елена</h4>
+                                    <p>Нижний Новгород</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Очень часто езжу по СНГ. Unitiki всегда показывает самые актуальные международные автобусные маршруты, что очень выручает в планировании!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">Т</div>
+                                <div class="author-info">
+                                    <h4>Тимур</h4>
+                                    <p>Астана</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Отличный сервис. Купила билеты на поезд для всей семьи. Процесс оформления интуитивно понятный, а билеты сразу пришли на почту."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">И</div>
+                                <div class="author-info">
+                                    <h4>Ирина</h4>
+                                    <p>Екатеринбург</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Нужно было найти самый быстрый автобус из Минска в Варшаву. Виджет быстро нашел все предложения и показал время в пути. Очень полезно!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">А</div>
+                                <div class="author-info">
+                                    <h4>Алексей</h4>
+                                    <p>Минск</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Unitiki на Airflow — это гарантия. Всегда знаю, что найду здесь самый полный список рейсов и безопасную покупку. Рекомендую!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">Н</div>
+                                <div class="author-info">
+                                    <h4>Наталья</h4>
+                                    <p>Волгоград</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="swiper-pagination"></div>
+
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="destinations-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Популярные Железнодорожные и Автобусные Маршруты</h2>
+                <p>Билеты на самые востребованные направления по лучшим ценам.</p>
+            </div>
+            <div class="route-slider-wrapper">
+                <script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&currency=rub&width=100%&powered_by=true&train=true&plane=false&bus=true&promo_id=9094&campaign_id=45" charset="utf-8"></script>
+            </div>
+        </div>
+    </section>
+    
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>🗺️ Выберите Станцию или Автовокзал на Карте</h2>
+                <p>Визуальный поиск мест отправления и прибытия для вашего удобства.</p>
+            </div>
+            <div class="map-wrapper">
+                <div style="height: 400px; background: #e0f2f7; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 1.2rem; color: #1e40af; border: 2px dashed #90cdf4;">
+                    Функция поиска по карте временно недоступна для ЖД/Автобусов. Воспользуйтесь основным поисковым виджетом!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="flight-widget-section">
+        <div class="container">
+            <h2>Сравните с Авиабилетами, если хотите улететь!</h2>
+            <div class="flight-widget-wrapper">
+                <script async src="https://tpwgt.com/content?currency=rub&trs=478043&shmarker=144185&show_hotels=false&powered_by=true&locale=ru&searchUrl=search.airflowtravel.net%2Fflights&primary_override=%2332a8dd&color_button=%2332a8dd&color_icons=%2332a8dd&dark=%23262626&light=%23FFFFFF&secondary=%23FFFFFF&special=%23C4C4C4&color_focused=%2332a8dd&border_radius=0&no_labels=true&plain=true&promo_id=7879&campaign_id=100" charset="utf-8"></script>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: #1e40af;">Частые вопросы о покупке билетов на транспорт</h2>
+            </div>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Какие документы нужны для покупки билета на поезд?</summary>
+                    <p class="faq-answer">Для покупки электронного билета обычно нужен только документ, удостоверяющий личность: **паспорт гражданина РФ/СНГ** или **заграничный паспорт** (для международных рейсов). Данные пассажира должны строго соответствовать документу.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Как происходит возврат купленного билета?</summary>
+                    <p class="faq-answer">Возврат билетов Unitiki обычно осуществляется онлайн через личный кабинет или через специальную форму на сайте. Сумма возврата зависит от времени до отправления и правил конкретного перевозчика (РЖД или автобусной компании).</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Нужно ли печатать электронный билет на автобус?</summary>
+                    <p class="faq-answer">В большинстве случаев достаточно показать электронный билет (QR-код или номер) на экране мобильного телефона. Однако, некоторые региональные перевозчики могут требовать распечатанную копию. Рекомендуется проверять информацию в подтверждении бронирования.</p>
+                </details>
+                
+                <details class="faq-item">
+                    <summary>Как выбрать лучшие места в поезде или автобусе?</summary>
+                    <p class="faq-answer">Во время оформления заказа Unitiki предоставляет схему вагона или автобуса, где вы можете самостоятельно выбрать свободные места, которые вам нравятся, перед оплатой.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+    
+</div>
+
+<footer class="footer">
+    <div class="footer-grid container">
+        <div>
+            <h3>Airflow</h3>
+            <p>Ваш надежный помощник в поиске лучших предложений для путешествий.</p>
+        </div>
+        <div>
+            <h3>Разделы</h3>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="flights.html">Авиабилеты</a></li>
+                <li><a href="cars.html">Аренда авто</a></li>
+                <li><a href="hotels.html">Отели</a></li>
+                <li><a href="trains-buses.html">Поезда и Автобусы</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Контакты</h3>
+            <ul>
+                <li><a href="#">Поддержка</a></li>
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Партнерам</a></li>
+            </ul>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 40px; border-top: 1px solid #334155; padding-top: 20px; font-size: 0.85rem;">
+        &copy; 2025 Airflow Travel. Все права защищены.
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+    // Простой скрипт для переключения мобильного меню
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
+
+        // ИНИЦИАЛИЗАЦИЯ SWIPER-СЛАЙДЕРА ДЛЯ ОТЗЫВОВ
+        new Swiper('.testimonials-slider', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 40
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 50
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
