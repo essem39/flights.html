@@ -4,17 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Airflow - Бронирование отелей и гостиниц по всему миру</title>
-    <meta name="description" content="Лучший поиск и бронирование отелей. Сравнение цен на гостиницы, апартаменты и хостелы. Реальные отзывы и карта отелей.">
+    <meta name="description" content="Лучший поиск и бронирование отелей. Сравниваем цены от всех ведущих систем бронирования. Партнерство с Hotellook.">
+    <meta name="author" content="Airflow Travel">
+    <meta name="keywords" content="бронирование отелей, гостиницы, апартаменты, хостелы, Hotellook">
+    
+    <meta property="og:title" content="Airflow - Поиск и бронирование отелей">
+    <meta property="og:description" content="Найдите идеальный отель для вашего путешествия. Сравнивайте цены от ведущих компаний.">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:type" content="website">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏨</text></svg>">
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
     <style>
-        /* --- СТИЛИ (CSS) --- */
+        /* --- УНИФИЦИРОВАННЫЕ СТИЛИ (CSS) --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f8fafc;
+            background-color: #ffffff; 
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -34,10 +45,10 @@
         .nav-link:hover, .nav-link.active { background: #eff6ff; color: #2563eb; }
         .mobile-menu-btn { display: none; background: none; border: none; font-size: 24px; cursor: pointer; }
 
-        /* --- ГЛАВНЫЙ БЛОК С ПОИСКОМ ОТЕЛЕЙ (С ФОНОМ) --- */
+        /* --- ГЛАВНЫЙ БЛОК С ПОИСКОМ ОТЕЛЕЙ (С ФОНОМ И СТЕКЛОМ) --- */
         .search-hero-section {
             width: 100%;
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1920&q=80');
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -46,6 +57,9 @@
             align-items: center;
             justify-content: center;
             min-height: 500px;
+            /* ИСПРАВЛЕНИЕ Z-INDEX: поднимаем весь блок, чтобы календарь не перекрывался */
+            position: relative; 
+            z-index: 50;
         }
 
         .search-glass-container {
@@ -59,6 +73,7 @@
             padding: 40px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             margin: 0 20px;
+            z-index: 9999; /* Очень высокое значение для виджета */
         }
 
         .hero-headline {
@@ -69,6 +84,11 @@
         }
         .hero-headline h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
         .hero-headline p { font-size: 1.2rem; opacity: 0.9; }
+
+        /* --- СТИЛИ ДЛЯ ВИДЖЕТА --- */
+        .widget-wrapper {
+            width: 100%; 
+        }
 
         /* --- БЛОК ДОПОЛНИТЕЛЬНОГО ТЕКСТА --- */
         .intro-text-section {
@@ -88,8 +108,7 @@
             font-size: 1.1rem;
         }
 
-
-        /* --- ПРЕИМУЩЕСТВА (ГОРИЗОНТАЛЬНО) --- */
+        /* --- ПРЕИМУЩЕСТВА (ГОРИЗОНТАЛЬНО - 3 КАРТОЧКИ) --- */
         .benefits-grid { 
             display: flex; 
             flex-wrap: wrap; 
@@ -105,20 +124,99 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
             transition: 0.3s;
             flex: 1 1 300px; 
+            border: 1px solid #e2e8f0;
         }
-        .benefit-card:hover { transform: translateY(-5px); }
-        .benefit-icon { font-size: 40px; margin-bottom: 15px; }
+        .benefit-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        .benefit-icon { font-size: 40px; margin-bottom: 15px; color: #2563eb; }
+        .benefit-card h3 { font-size: 1.125rem; margin-bottom: 8px; color: #1f2937;}
+        .benefit-card p { font-size: 0.9rem; color: #6b7280;}
 
-        /* --- ПОПУЛЯРНЫЕ ОТЕЛИ (СЛАЙДЕР) --- */
+        /* --- СЕКЦИЯ ОТЗЫВОВ (СЛАЙДЕР SWIPER) --- */
+        .testimonials {
+            background-color: #f8fafc; 
+            padding: 60px 0;
+        }
+        .testimonials .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .testimonials-slider {
+            padding: 20px 0 50px; 
+        }
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            height: 100%; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #e2e8f0;
+        }
+        .testimonial-rating {
+            margin-bottom: 15px;
+            color: #f59e0b; 
+        }
+        .testimonial-text {
+            font-size: 1rem;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #2563eb;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .author-info h4 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        .author-info p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: #2563eb;
+            --swiper-navigation-size: 30px;
+        }
+        .swiper-pagination-bullet-active {
+            background: #2563eb !important;
+        }
+
+        /* --- ПОПУЛЯРНЫЕ ОТЕЛИ (СЛАЙДЕР ВИДЖЕТ) --- */
         .destinations-section { background: #f8fafc; padding: 20px 0 60px; }
         .section-header { text-align: center; margin-bottom: 40px; }
+        .destinations-section .section-header h2 { font-size: 2rem; font-weight: 800; color: #1e40af; }
+        .destinations-section .section-header p { font-size: 1rem; color: #6b7280; margin-top: 10px; }
         .hotel-slider-wrapper { 
              max-width: 100%; 
              margin: 0 auto;
              padding: 10px 0;
         }
 
-        /* --- БЛОК КАРТА ОТЕЛЕЙ (Скрипт 3) --- */
+        /* --- БЛОК КАРТА ОТЕЛЕЙ --- */
         .map-section {
             padding: 60px 0;
             background: white;
@@ -130,6 +228,7 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%; 
         }
 
         /* --- БЛОК АВИАБИЛЕТОВ (ВСПОМОГАТЕЛЬНЫЙ) --- */
@@ -150,52 +249,98 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* --- ОТЗЫВЫ (СЕТКА 3-в-РЯД) --- */
-        .reviews-section { background: #f8fafc; padding: 60px 0; }
-        .reviews-grid { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: space-between; 
-            gap: 30px; 
+        /* --- FAQ АККОРДЕОН --- */
+        .faq-section { 
+            padding: 60px 0; 
+            background: white;
         }
-        .review-card { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 16px; 
-            border: 1px solid #e2e8f0; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03); 
-            flex: 1 1 300px; 
-            max-width: calc(33.333% - 20px); /* 3 в ряд на больших экранах */
+        .faq-list { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            margin-top: 30px;
         }
-        .stars { color: #fbbf24; margin-bottom: 10px; }
-        .review-author { font-weight: bold; margin-top: 15px; display: flex; align-items: center; gap: 10px; }
-        .avatar { width: 40px; height: 40px; background: #eff6ff; color: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; }
+        .faq-item { 
+            background: #eff6ff; 
+            margin-bottom: 15px; 
+            border-radius: 12px; 
+            border: 1px solid #dbeafe; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            overflow: hidden;
+        }
+        .faq-item summary { 
+            cursor: pointer; 
+            padding: 20px 25px; 
+            font-size: 1.15rem; 
+            color: #1f2937; 
+            font-weight: 700;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #2563eb;
+            transition: transform 0.3s;
+        }
+        .faq-item[open] summary::after {
+            content: '–';
+        }
+        .faq-answer { 
+            padding: 0 25px 20px; 
+            font-size: 1rem; 
+            color: #4b5563; 
+            line-height: 1.5;
+            padding-top: 10px;
+        }
 
-        /* Медиа-запрос для адаптивности отзывов */
-        @media (max-width: 1024px) {
-            .review-card {
-                max-width: calc(50% - 15px); /* 2 в ряд на средних экранах */
-            }
-        }
-        @media (max-width: 768px) {
-            .review-card {
-                max-width: 100%; /* 1 в ряд на маленьких экранах */
-            }
-        }
-
-        /* --- FAQ --- */
-        .faq-section { padding: 60px 0; background: white; }
-        .faq-item { background: #f8fafc; margin-bottom: 15px; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
-        .faq-question { padding: 20px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; }
-        .faq-answer { padding: 0 20px 20px; color: #64748b; display: none; } 
-        .faq-item:hover .faq-answer { display: block; }
 
         /* --- ФУТЕР --- */
         .footer { background: #1e293b; color: white; padding: 50px 20px; margin-top: auto; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
-        .footer h3 { margin-bottom: 20px; }
+        .footer h3 { margin-bottom: 20px; color: white; }
         .footer a { color: #94a3b8; transition: 0.3s; }
         .footer a:hover { color: white; }
+        
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .mobile-menu-btn { display: block; }
+            .search-hero-section { min-height: 400px; padding: 60px 0; }
+            .search-glass-container { padding: 30px 20px; }
+            .hero-headline h1 { font-size: 2rem; }
+            .hero-headline p { font-size: 1rem; }
+            .benefits-grid { gap: 20px; }
+            .benefit-card { flex: 1 1 45%; }
+        }
+        @media (max-width: 480px) {
+            .benefit-card { flex: 1 1 100%; }
+        }
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            z-index: 999;
+            padding: 10px 0;
+        }
+        .mobile-menu.active { display: block; }
+        .mobile-nav-link {
+            display: block;
+            padding: 12px 20px;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .mobile-nav-link:hover, .mobile-nav-link.active {
+            color: #2563eb;
+            background: #eff6ff;
+        }
     </style>
 </head>
 <body>
@@ -203,7 +348,9 @@
 <div class="page-wrapper">
     <header class="navbar">
         <div class="nav-container container">
-            <a href="index.html" class="logo">🏨 Airflow</a>
+            <a href="index.html" class="logo">
+                <span style="font-size: 24px;">🏨</span> Airflow
+            </a>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="index.html" class="nav-link">Главная</a></li>
@@ -211,8 +358,14 @@
                     <li><a href="cars.html" class="nav-link">Аренда авто</a></li>
                     <li><a href="hotels.html" class="nav-link active">Отели</a></li>
                 </ul>
-                <button class="mobile-menu-btn">☰</button>
+                <button class="mobile-menu-btn" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">☰</button>
             </nav>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-nav-link">Главная</a>
+            <a href="flights.html" class="mobile-nav-link">Авиабилеты</a>
+            <a href="cars.html" class="mobile-nav-link">Аренда авто</a>
+            <a href="hotels.html" class="mobile-nav-link active">Отели</a>
         </div>
     </header>
 
@@ -223,7 +376,9 @@
                 <p>Сравните цены на миллионы отелей, апартаментов и хостелов по всему миру.</p>
             </div>
             
-            <script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&logo=false&powered_by=true&campaign_id=459&promo_id=7148" charset="utf-8"></script>
+            <div class="widget-wrapper">
+                <script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&logo=false&powered_by=true&campaign_id=459&promo_id=7148" charset="utf-8"></script>
+            </div>
         </div>
     </section>
 
@@ -254,10 +409,124 @@
         </div>
     </div>
 
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Что говорят наши путешественники?</h2>
+            
+            <div class="swiper testimonials-slider">
+                <div class="swiper-wrapper">
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Нашел идеальный бутик-отель в Стамбуле через карту Hotellook. Точно в том районе, где планировал, и цена была на 20% ниже, чем на других сайтах!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">Р</div>
+                                <div class="author-info">
+                                    <h4>Роман К.</h4>
+                                    <p>Санкт-Петербург</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Интерфейс очень понятный, сразу видно все варианты. Успешно забронировала апартаменты в Тбилиси с бесплатной отменой — это было ключевым."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">Д</div>
+                                <div class="author-info">
+                                    <h4>Дарья Л.</h4>
+                                    <p>Москва</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Очень удобно, что сразу показывает рейтинг из разных систем. Наконец-то не нужно переключаться между вкладками, чтобы найти лучшее предложение."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">А</div>
+                                <div class="author-info">
+                                    <h4>Армен Г.</h4>
+                                    <p>Ереван</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Замечательный портал! Быстро нашел хороший отель в центре Москвы по отличной цене. Виджет работает без сбоев, все интуитивно понятно."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">Т</div>
+                                <div class="author-info">
+                                    <h4>Татьяна В.</h4>
+                                    <p>Ростов-на-Дону</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Спасибо Airflow! Сэкономил приличную сумму на бронировании гостиницы в Амстердаме. Сравнительная система работает идеально."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">М</div>
+                                <div class="author-info">
+                                    <h4>Михаил П.</h4>
+                                    <p>Краснодар</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Огромный выбор вариантов. Нашёл виллу на Бали, о которой раньше даже не знал. И цена была лучшая."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">С</div>
+                                <div class="author-info">
+                                    <h4>Сергей З.</h4>
+                                    <p>Бали</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="swiper-pagination"></div>
+
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
     <section class="destinations-section">
         <div class="container">
             <div class="section-header">
                 <h2>Лучшие предложения по отелям и апартаментам</h2>
+                <p>Подборка отелей с высоким рейтингом в популярных направлениях.</p>
             </div>
             <div class="hotel-slider-wrapper">
                 <script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&star=1&rating=0&distance=30&hotelkind=Hotel%2CGuesthouse%2CCottages_and_Houses%2CVillas_and_Bungalows%2CCamping%2CHostel&number=6&powered_by=true&erid=2Vtzqv4GHE1&campaign_id=459&promo_id=7240" charset="utf-8"></script>
@@ -265,43 +534,14 @@
         </div>
     </section>
     
-    <section class="reviews-section">
+    <section class="map-section">
         <div class="container">
             <div class="section-header">
-                <h2>🗣️ Что говорят наши путешественники</h2>
-                <p>Реальные отзывы о бронировании через Airflow.</p>
+                <h2>🗺️ Ищите отели на карте</h2>
+                <p>Визуальный поиск жилья рядом с нужными объектами или районами.</p>
             </div>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Нашел шикарный отель в Дубае за половину цены! Очень благодарен за возможность сравнить все сайты."</p>
-                    <div class="review-author"><div class="avatar">А</div> Алексей К.</div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Сервис подбора отличный, особенно нравится фильтрация по рейтингу и близости к пляжу."</p>
-                    <div class="review-author"><div class="avatar">М</div> Мария П.</div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★☆</div>
-                    <p>"Быстро, удобно, всё прозрачно. Забронировал отель в Тбилиси, проблем не возникло."</p>
-                    <div class="review-author"><div class="avatar">Г</div> Георгий С.</div>
-                </div>
-                 <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Удобная система сравнения. Нашёл отель с бесплатной отменой, что очень важно для меня."</p>
-                    <div class="review-author"><div class="avatar">В</div> Виктория Л.</div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Огромный выбор вариантов. Нашёл виллу на Бали, о которой раньше даже не знал. И цена была лучшая."</p>
-                    <div class="review-author"><div class="avatar">И</div> Игорь З.</div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★☆</div>
-                    <p>"Отличный дизайн сайта, все интуитивно понятно. Сравнивал отели в Ереване, получил лучший вариант."</p>
-                    <div class="review-author"><div class="avatar">К</div> Кирилл В.</div>
-                </div>
+            <div class="map-wrapper">
+                <script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&kind=Hotel&width=100%&height=400&powered_by=true&promo_id=7241&campaign_id=459" charset="utf-8"></script>
             </div>
         </div>
     </section>
@@ -318,31 +558,28 @@
     <section class="faq-section">
         <div class="container">
             <div class="section-header">
-                <h2>Частые вопросы по бронированию</h2>
+                <h2 style="color: #1e40af;">Частые вопросы по бронированию</h2>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">Как проверить наличие номера? <span>+</span></div>
-                <div class="faq-answer">Наличие номеров автоматически обновляется в режиме реального времени. Вы видите только актуальные предложения.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Что, если мой номер отменят? <span>+</span></div>
-                <div class="faq-answer">В случае отмены бронирования партнером, мы немедленно свяжемся с вами и предложим альтернативу или полный возврат средств.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Могу ли я изменить даты? <span>+</span></div>
-                <div class="faq-answer">Условия изменения дат зависят от тарифа отеля. Информацию об этом можно найти в деталях бронирования.</div>
-            </div>
-        </div>
-    </section>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Как проверить наличие номера? <span></span></summary>
+                    <p class="faq-answer">Наличие номеров автоматически обновляется в режиме реального времени. Вы видите только актуальные предложения от всех систем бронирования.</p>
+                </details>
 
-    <section class="map-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>🗺️ Ищите отели на карте</h2>
-                <p>Визуальный поиск жилья рядом с нужными объектами или районами.</p>
-            </div>
-            <div class="map-wrapper">
-                <script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&kind=Hotel&width=1000&height=400&powered_by=true&promo_id=7241&campaign_id=459" charset="utf-8"></script>
+                <details class="faq-item">
+                    <summary>Что, если мой номер отменят? <span></span></summary>
+                    <p class="faq-answer">В случае отмены бронирования партнером, мы немедленно свяжемся с вами и предложим альтернативу или полный возврат средств. Рекомендуем выбирать тарифы с бесплатной отменой.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Могу ли я изменить даты? <span></span></summary>
+                    <p class="faq-answer">Условия изменения дат зависят от конкретного тарифа отеля, который вы выбрали. Информацию об этом можно найти в деталях бронирования, предоставленных партнером (например, Hotellook).</p>
+                </details>
+                
+                <details class="faq-item">
+                    <summary>Нужна ли предоплата? <span></span></summary>
+                    <p class="faq-answer">Многие отели предлагают опцию "Забронировать сейчас, заплатить позже". Однако некоторые специальные предложения требуют полной или частичной предоплаты.</p>
+                </details>
             </div>
         </div>
     </section>
@@ -350,7 +587,7 @@
 </div>
 
 <footer class="footer">
-    <div class="footer-grid">
+    <div class="footer-grid container">
         <div>
             <h3>Airflow</h3>
             <p>Ваш надежный помощник в поиске лучшего жилья по всему миру.</p>
@@ -373,10 +610,53 @@
             </ul>
         </div>
     </div>
-    <div style="text-align: center; margin-top: 40px; border-top: 1px solid #334155; padding-top: 20px;">
+    <div style="text-align: center; margin-top: 40px; border-top: 1px solid #334155; padding-top: 20px; font-size: 0.85rem;">
         &copy; 2025 Airflow Travel. Все права защищены.
     </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+    // Простой скрипт для переключения мобильного меню
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
+
+        // ИНИЦИАЛИЗАЦИЯ SWIPER-СЛАЙДЕРА ДЛЯ ОТЗЫВОВ
+        new Swiper('.testimonials-slider', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 40
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 50
+                }
+            }
+        });
+    });
+</script>
 </body>
 </html>
