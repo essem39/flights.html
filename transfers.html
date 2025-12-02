@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airflow - Бронирование Трансферов и Такси из Аэропорта</title>
+    <meta name="description" content="Забронируйте трансфер из аэропорта по всему миру. Фиксированная цена, встреча с табличкой, поддержка 24/7. Партнерство с Kiwitaxi.">
+    <meta name="author" content="Airflow Travel">
+    <meta name="keywords" content="трансфер, такси, аэропорт, Kiwitaxi, заказать трансфер, бронирование такси">
+    
+    <meta property="og:title" content="Airflow - Бронирование Трансферов и Такси">
+    <meta property="og:description" content="Закажите надежный и комфортный трансфер заранее. Фиксированная цена.">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <style>
+        /* --- УНИФИЦИРОВАННЫЕ СТИЛИ (CSS) --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .page-wrapper { flex: 1; display: flex; flex-direction: column; }
+
+        /* --- МЕНЮ --- */
+        .navbar { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-size: 24px; font-weight: 900; color: #1e40af; display: flex; align-items: center; gap: 10px; }
+        .nav-menu { display: flex; gap: 20px; }
+        .nav-link { font-weight: 600; color: #4b5563; padding: 8px 12px; border-radius: 6px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { background: #eff6ff; color: #2563eb; }
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 24px; cursor: pointer; }
+
+        /* --- ГЛАВНЫЙ БЛОК С ПОИСКОМ ТРАНСФЕРОВ (С ФОНОМ И СТЕКЛОМ) --- */
+        .search-hero-section {
+            width: 100%;
+            /* ИЗОБРАЖЕНИЕ ТРАНСФЕРА/ДОРОГИ */
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.postimg.cc/JhJCMX8F/1263759.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+            position: relative; 
+            z-index: 50;
+        }
+
+        .search-glass-container {
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            margin: 0 20px;
+            z-index: 9999;
+        }
+
+        .hero-headline {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero-headline h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+        .hero-headline p { font-size: 1.2rem; opacity: 0.9; }
+
+        /* --- СТИЛИ ДЛЯ ВИДЖЕТА --- */
+        .widget-wrapper {
+            width: 100%; 
+        }
+
+        /* --- БЛОК ДОПОЛНИТЕЛЬНОГО ТЕКСТА --- */
+        .intro-text-section {
+            padding: 40px 0;
+            text-align: center;
+            background: white;
+        }
+        .intro-text-section h2 { 
+            font-size: 1.8rem; 
+            margin-bottom: 15px;
+            color: #1e40af;
+        }
+        .intro-text-section p { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            color: #6b7280; 
+            font-size: 1.1rem;
+        }
+
+        /* --- ПРЕИМУЩЕСТВА (ГОРИЗОНТАЛЬНО - 3 КАРТОЧКИ) --- */
+        .benefits-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-between;
+            gap: 30px; 
+            padding: 60px 0; 
+        }
+        .benefit-card { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            text-align: center; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            transition: 0.3s;
+            flex: 1 1 300px; 
+            border: 1px solid #e2e8f0;
+        }
+        .benefit-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        .benefit-icon { font-size: 40px; margin-bottom: 15px; color: #2563eb; }
+        .benefit-card h3 { font-size: 1.125rem; margin-bottom: 8px; color: #1f2937;}
+        .benefit-card p { font-size: 0.9rem; color: #6b7280;}
+
+        /* --- СЕКЦИЯ ОТЗЫВОВ (СЛАЙДЕР SWIPER) --- */
+        .testimonials {
+            background-color: #f8fafc; 
+            padding: 60px 0;
+        }
+        .testimonials .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .testimonials-slider {
+            padding: 20px 0 50px; 
+        }
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            height: 100%; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #e2e8f0;
+        }
+        .testimonial-rating {
+            margin-bottom: 15px;
+            color: #f59e0b; 
+        }
+        .testimonial-text {
+            font-size: 1rem;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #2563eb;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .author-info h4 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        .author-info p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: #2563eb;
+            --swiper-navigation-size: 30px;
+        }
+        .swiper-pagination-bullet-active {
+            background: #2563eb !important;
+        }
+
+        /* --- ПОПУЛЯРНЫЕ МАРШРУТЫ (СЛАЙДЕР/СПИСОК ВИДЖЕТ) --- */
+        .destinations-section { background: #f8fafc; padding: 20px 0 60px; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .destinations-section .section-header h2 { font-size: 2rem; font-weight: 800; color: #1e40af; }
+        .destinations-section .section-header p { font-size: 1rem; color: #6b7280; margin-top: 10px; }
+        .hotel-slider-wrapper { 
+             max-width: 100%; 
+             margin: 0 auto;
+             padding: 10px 0;
+        }
+
+        /* --- БЛОК АВИАБИЛЕТОВ (ВСПОМОГАТЕЛЬНЫЙ) --- */
+        .flight-widget-section {
+            background: #e5e7eb;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .flight-widget-section h2 { margin-bottom: 20px; }
+        
+        .flight-widget-wrapper {
+            max-width: 100%; 
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* --- FAQ АККОРДЕОН --- */
+        .faq-section { 
+            padding: 60px 0; 
+            background: white;
+        }
+        .faq-list { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            margin-top: 30px;
+        }
+        .faq-item { 
+            background: #eff6ff; 
+            margin-bottom: 15px; 
+            border-radius: 12px; 
+            border: 1px solid #dbeafe; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            overflow: hidden;
+        }
+        .faq-item summary { 
+            cursor: pointer; 
+            padding: 20px 25px; 
+            font-size: 1.15rem; 
+            color: #1f2937; 
+            font-weight: 700;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #2563eb;
+            transition: transform 0.3s;
+        }
+        .faq-item[open] summary::after {
+            content: '–';
+        }
+        .faq-answer { 
+            padding: 0 25px 20px; 
+            font-size: 1rem; 
+            color: #4b5563; 
+            line-height: 1.5;
+            padding-top: 10px;
+        }
+
+
+        /* --- ФУТЕР --- */
+        .footer { background: #1e293b; color: white; padding: 50px 20px; margin-top: auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .footer h3 { margin-bottom: 20px; color: white; }
+        .footer a { color: #94a3b8; transition: 0.3s; }
+        .footer a:hover { color: white; }
+        
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .mobile-menu-btn { display: block; }
+            .search-hero-section { min-height: 400px; padding: 60px 0; }
+            .search-glass-container { padding: 30px 20px; }
+            .hero-headline h1 { font-size: 2rem; }
+            .hero-headline p { font-size: 1rem; }
+            .benefits-grid { gap: 20px; }
+            .benefit-card { flex: 1 1 45%; }
+        }
+        @media (max-width: 480px) {
+            .benefit-card { flex: 1 1 100%; }
+        }
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            z-index: 999;
+            padding: 10px 0;
+        }
+        .mobile-menu.active { display: block; }
+        .mobile-nav-link {
+            display: block;
+            padding: 12px 20px;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .mobile-nav-link:hover, .mobile-nav-link.active {
+            color: #2563eb;
+            background: #eff6ff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+    <header class="navbar">
+        <div class="nav-container container">
+            <a href="index.html" class="logo">
+                <span style="font-size: 24px;">🚗</span> Airflow
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="flights.html" class="nav-link">Авиабилеты</a></li>
+                    <li><a href="cars.html" class="nav-link">Аренда авто</a></li>
+                    <li><a href="hotels.html" class="nav-link">Отели</a></li>
+                    <li><a href="transfers.html" class="nav-link active">Трансферы</a></li>
+                </ul>
+                <button class="mobile-menu-btn" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">☰</button>
+            </nav>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-nav-link">Главная</a>
+            <a href="flights.html" class="mobile-nav-link">Авиабилеты</a>
+            <a href="cars.html" class="mobile-nav-link">Аренда авто</a>
+            <a href="hotels.html" class="mobile-nav-link">Отели</a>
+            <a href="transfers.html" class="mobile-nav-link active">Трансферы</a>
+        </div>
+    </header>
+
+    <section class="search-hero-section">
+        <div class="search-glass-container">
+            <div class="hero-headline">
+                <h1>Бронирование Трансферов и Такси: Удобно и Надежно</h1>
+                <p>Закажите автомобиль из аэропорта или города по фиксированной цене. Встреча с табличкой включена.</p>
+            </div>
+            
+            <div class="widget-wrapper">
+            <script async src="https://tpwgt.com/content?trs=478043&powered_by=true&shmarker=144185&language=ru&display_currency=RUB&transfer_type=any&theme=davs&hide_form_extras=false&hide_external_links=true&disable_currency_selector=true&erid=2VtzqwEUiru&campaign_id=1&promo_id=691" charset="utf-8" async></script>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro-text-section">
+        <div class="container">
+            <h2>🚕 Комфорт и безопасность с Kiwitaxi</h2>
+            <p>Airflow предлагает Вам надежные и выгодные трансферы через Kiwitaxi. Забудьте о поиске такси на месте и языковых барьерах. Водитель встретит Вас с табличкой, поможет с багажом и доставит точно по адресу. Наша цена фиксирована и не изменится, даже если Ваш рейс задержится. Начните свое путешествие без стресса!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">⏱️</div>
+                <h3>Фиксированная цена</h3>
+                <p>Стоимость трансфера известна заранее и не меняется.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🤝</div>
+                <h3>Встреча с табличкой</h3>
+                <p>Водитель встретит Вас с Вашим именем сразу после прилета.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">👶</div>
+                <h3>Детские кресла</h3>
+                <p>Возможность заказать трансфер с необходимым оборудованием для детей.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Отзывы о трансферах от наших клиентов</h2>
+            
+            <div class="swiper testimonials-slider">
+                <div class="swiper-wrapper">
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Заказывали трансфер из аэропорта в Тбилиси. Водитель ждал, помог с чемоданами, машина чистая. Очень комфортно, особенно после долгого перелета!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">Р</div>
+                                <div class="author-info">
+                                    <h4>Роман К.</h4>
+                                    <p>Стамбул - Тбилиси</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Цена была ниже, чем предлагали местные таксисты. Оформили за минуту, никаких проблем. Рекомендую всем, кто ценит свое время."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">Д</div>
+                                <div class="author-info">
+                                    <h4>Дарья Л.</h4>
+                                    <p>Москва - Сочи</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Благодарю Kiwitaxi за оперативность. Заказывали минивэн для семьи, все прошло идеально. Особенно порадовало наличие детского кресла."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">А</div>
+                                <div class="author-info">
+                                    <h4>Армен Г.</h4>
+                                    <p>Ереван</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Очень удобно, что можно забронировать такси заранее, не переживая за позднее прибытие. Водитель ждал, никаких доплат."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">Т</div>
+                                <div class="author-info">
+                                    <h4>Татьяна В.</h4>
+                                    <p>Ростов-на-Дону - Москва</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Сэкономил приличную сумму, бронируя групповой трансфер. Сервис работает четко, связь с водителем была налажена."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">М</div>
+                                <div class="author-info">
+                                    <h4>Михаил П.</h4>
+                                    <p>Краснодар - Батуми</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Огромный выбор классов авто. Нашёл идеальный вариант для деловой поездки с комфортом."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">С</div>
+                                <div class="author-info">
+                                    <h4>Сергей З.</h4>
+                                    <p>Бали</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="swiper-pagination"></div>
+
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="destinations-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Популярные направления для трансферов</h2>
+                <p>Самые востребованные маршруты такси и трансферов от Kiwitaxi.</p>
+            </div>
+            <div class="hotel-slider-wrapper">
+                <script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&widget_type=popular_routes&count=10&powered_by=true&locale=ru&erid=2VtzqwEUiru&campaign_id=1&promo_id=692" charset="utf-8" async></script>
+            </div>
+        </div>
+    </section>
+    
+    <section class="flight-widget-section">
+        <div class="container">
+            <h2>Продолжайте планировать: найдите авиабилеты</h2>
+            <div class="flight-widget-wrapper">
+                <script async src="https://tpwgt.com/content?currency=rub&trs=478043&shmarker=144185&show_hotels=false&powered_by=true&locale=ru&searchUrl=search.airflowtravel.net%2Fflights&primary_override=%2332a8dd&color_button=%2332a8dd&color_icons=%2332a8dd&dark=%23262626&light=%23FFFFFF&secondary=%23FFFFFF&special=%23C4C4C4&color_focused=%2332a8dd&border_radius=0&no_labels=true&plain=true&promo_id=7879&campaign_id=100" charset="utf-8"></script>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: #1e40af;">Частые вопросы по бронированию трансфера</h2>
+            </div>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Как я узнаю своего водителя? <span></span></summary>
+                    <p class="faq-answer">Водитель будет ожидать Вас в зоне прилета с табличкой, на которой будет указано Ваше имя и фамилия.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Что делать, если мой рейс задержится? <span></span></summary>
+                    <p class="faq-answer">Служба Kiwitaxi отслеживает рейсы. Если рейс задерживается, водитель будет ждать Вас бесплатно в течение определенного времени после фактического приземления. Не нужно ни о чем волноваться.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Цена фиксирована или может измениться? <span></span></summary>
+                    <p class="faq-answer">Цена, которую Вы видите при бронировании, является окончательной и фиксированной. Она не изменится из-за пробок или задержки рейса.</p>
+                </details>
+                
+                <details class="faq-item">
+                    <summary>Как изменить или отменить заказ? <span></span></summary>
+                    <p class="faq-answer">Изменить или отменить заказ можно через личный кабинет на сайте Kiwitaxi или по обращению в их службу поддержки. Условия отмены зависят от выбранного тарифа.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer class="footer">
+    <div class="footer-grid container">
+        <div>
+            <h3>Airflow</h3>
+            <p>Ваш надежный помощник в организации комфортных путешествий.</p>
+        </div>
+        <div>
+            <h3>Разделы</h3>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="flights.html">Авиабилеты</a></li>
+                <li><a href="cars.html">Аренда авто</a></li>
+                <li><a href="hotels.html">Отели</a></li>
+                <li><a href="transfers.html">Трансферы</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Контакты</h3>
+            <ul>
+                <li><a href="#">Поддержка</a></li>
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Партнерам</a></li>
+            </ul>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 40px; border-top: 1px solid #334155; padding-top: 20px; font-size: 0.85rem;">
+        &copy; 2025 Airflow Travel. Все права защищены.
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+    // Простой скрипт для переключения мобильного меню
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
+
+        // ИНИЦИАЛИЗАЦИЯ SWIPER-СЛАЙДЕРА ДЛЯ ОТЗЫВОВ
+        new Swiper('.testimonials-slider', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 40
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 50
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
