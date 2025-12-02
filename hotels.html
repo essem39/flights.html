@@ -304,10 +304,13 @@
         .footer a { color: #94a3b8; transition: 0.3s; }
         .footer a:hover { color: white; }
         
-      /* --- Responsive Design --- */
-    @media (max-width: 768px) {
-        .nav-menu { display: none; }
-        .mobile-menu-btn { display: block; }
+     /* --- Responsive Design (АДАПТИВНОСТЬ) --- */
+    
+    /* ИЗМЕНЕНИЕ: Было 768px, стало 1024px. Теперь на планшетах тоже будет аккуратное меню-гамбургер */
+    @media (max-width: 1024px) {
+        .nav-menu { display: none; }         /* Скрываем обычное меню */
+        .mobile-menu-btn { display: block; } /* Показываем кнопку бургер */
+        
         .search-hero-section { min-height: 400px; padding: 60px 0; }
         .search-glass-container { padding: 30px 20px; }
         .hero-headline h1 { font-size: 2rem; }
@@ -315,11 +318,12 @@
         .benefits-grid { gap: 20px; }
         .benefit-card { flex: 1 1 45%; }
     }
+
     @media (max-width: 480px) {
         .benefit-card { flex: 1 1 100%; }
     }
 
-    /* === ИСПРАВЛЕННЫЙ БЛОК ДЛЯ МОБИЛЬНОГО МЕНЮ (НАЧАЛО) === */
+    /* === ИСПРАВЛЕННЫЙ БЛОК ДЛЯ МОБИЛЬНОГО МЕНЮ (ТОТ ЖЕ, ЧТО МЫ СДЕЛАЛИ РАНЬШЕ) === */
     .mobile-menu {
         display: none;
         position: absolute;
@@ -328,33 +332,12 @@
         right: 0;
         background: white;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        
-        /* ГЛАВНОЕ ИСПРАВЛЕНИЕ: Ставим Z-Index 10000, чтобы быть ВЫШЕ виджета поиска */
-        z-index: 10000; 
-        
+        z-index: 10000; /* Высокий приоритет */
         padding: 10px 0;
         max-height: calc(100vh - 70px); 
         overflow-y: auto;              
     }
-    .mobile-menu.active { 
-        display: block; 
-    }
-    .mobile-nav-link {
-        display: block;
-        padding: 12px 20px;
-        font-weight: 600;
-        color: #374151;
-        border-bottom: 1px solid #f3f4f6;
-    }
-    .mobile-nav-link:hover, .mobile-nav-link.active {
-        color: #2563eb;
-        background: #eff6ff;
-    }
-    /* === ИСПРАВЛЕННЫЙ БЛОК ДЛЯ МОБИЛЬНОГО МЕНЮ (КОНЕЦ) === */
-
-    /* ... Дальше идет Ваш футер и остальной CSS */
-    
-    </style>
+    /* ... остальной код для mobile-menu.active и ссылок ... *
 </head>
 <body>
 
