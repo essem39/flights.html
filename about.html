@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас | Airflow Travel</title>
+    <meta name="description" content="Миссия Airflow Travel: Ваш надежный агрегатор для поиска и сравнения самых выгодных предложений авиабилетов, отелей и трансферов.">
+    <meta name="author" content="Airflow Travel">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- УНИФИЦИРОВАННЫЕ СТИЛЫ (CSS) --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f9fb;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .page-wrapper { flex: 1; display: flex; flex-direction: column; }
+
+        /* --- МЕНЮ (Стандартная Шапка) --- */
+        .navbar { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-size: 24px; font-weight: 900; color: #1e40af; display: flex; align-items: center; gap: 10px; }
+        .nav-menu { display: flex; gap: 20px; }
+        .nav-link { font-weight: 600; color: #4b5563; padding: 8px 12px; border-radius: 6px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { background: #eff6ff; color: #2563eb; }
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 24px; cursor: pointer; }
+
+        /* --- ОСНОВНОЙ КОНТЕНТ (О нас) --- */
+        .main-content {
+            flex-grow: 1;
+            padding: 80px 0;
+        }
+        .about-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .about-container h1 {
+            color: #1e40af;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 15px;
+        }
+        .about-container h2 {
+            color: #374151;
+            font-size: 1.5rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .about-container p {
+            font-size: 1rem;
+            color: #4b5563;
+            margin-bottom: 15px;
+        }
+        .icon-grid {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .icon-grid div {
+            flex: 1;
+            padding: 10px;
+        }
+        .icon-grid i {
+            font-size: 3rem;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+
+        /* --- ФУТЕР (ТЕМНЫЙ СТИЛЬ) --- */
+        .footer { background: #1e293b; color: white; padding: 50px 20px; margin-top: auto; }
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 40px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .footer h3 { 
+            margin-bottom: 20px; 
+            color: white; 
+            font-size: 1.1rem;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 10px;
+        }
+        .footer a { 
+            color: #94a3b8; 
+            transition: 0.3s; 
+            font-size: 0.95rem;
+        }
+        .footer a:hover { 
+            color: #2563eb; 
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .mobile-menu-btn { display: block; }
+            .about-container { padding: 25px; margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+    <header class="navbar">
+        <div class="nav-container container">
+            <a href="index.html" class="logo">
+                <span style="font-size: 24px;">✈️</span> Airflow
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="flights.html" class="nav-link">Авиабилеты</a></li>
+                    <li><a href="cars.html" class="nav-link">Аренда авто</a></li>
+                    <li><a href="hotels.html" class="nav-link">Отели</a></li>
+                    <li><a href="transfers.html" class="nav-link">Трансферы</a></li>
+                    <li><a href="trains.html" class="nav-link">Поезда и Автобусы</a></li>
+                </ul>
+                <button class="mobile-menu-btn" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="about-container">
+                <h1>О нас: Миссия Airflow Travel</h1>
+                
+                <p>Добро пожаловать в Airflow Travel! Мы — не просто сайт, а Ваш личный инструмент для быстрого и эффективного поиска лучших предложений для путешествий.</p>
+
+                <h2>Наши принципы</h2>
+                
+                <div class="icon-grid">
+                    <div>
+                        <i class="fas fa-search-dollar"></i>
+                        <p><strong>Сравнение цен</strong></p>
+                        <p>Ищем за Вас среди сотен авиакомпаний и агентств, чтобы Вы всегда получали самую выгодную цену.</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-layer-group"></i>
+                        <p><strong>Полный спектр услуг</strong></p>
+                        <p>От авиабилетов и отелей до аренды авто и трансферов — всё в одном месте.</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-handshake"></i>
+                        <p><strong>Прозрачность</strong></p>
+                        <p>Мы работаем как агрегатор, используя проверенные и надежные технологии (например, Travelpayouts / Aviasales), и не берем комиссий.</p>
+                    </div>
+                </div>
+
+                <h2>Как мы работаем?</h2>
+                <p>Airflow Travel использует мощные поисковые системы для сканирования тысяч предложений в режиме реального времени. Когда Вы находите подходящий вариант (будь то билет, номер в отеле или автомобиль), мы перенаправляем Вас на сайт нашего партнера (авиакомпании, отельного агрегатора или агентства) для прямого бронирования и оплаты.</p>
+                
+                <p>Мы гордимся тем, что делаем процесс планирования путешествий проще, быстрее и доступнее для Вас.</p>
+                
+                <p style="margin-top: 40px; text-align: right; font-style: italic; font-weight: 600;">Путешествуйте легко с Airflow Travel!</p>
+            </div>
+        </div>
+    </main>
+
+<footer class="footer">
+    <div class="footer-grid container">
+        
+        <div>
+            <h3>Airflow</h3>
+            <p>Ваш надежный помощник в организации комфортных путешествий по всему миру.</p>
+            <div class="social-icons" style="margin-top: 20px; display: flex; gap: 20px;">
+                <a href="#" aria-label="Facebook" style="font-size: 22px;"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram" style="font-size: 22px;"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Telegram" style="font-size: 22px;"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+
+        <div>
+            <h3>Разделы сайта</h3>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="flights.html">Авиабилеты</a></li>
+                <li><a href="cars.html">Аренда авто</a></li>
+                <li><a href="hotels.html">Отели</a></li>
+                <li><a href="transfers.html">Трансферы</a></li>
+                <li><a href="trains.html">Поезда и Автобусы</a></li>
+            </ul>
+        </div>
+        
+        <div>
+            <h3>Полезная информация</h3>
+            <ul>
+                <li style="font-weight: 700;"><a href="about.html" style="color: white;">О нас</a></li>
+                <li><a href="help.html">Помощь (FAQ)</a></li>
+                <li><a href="terms.html">Условия использования</a></li>
+                <li><a href="privacy.html">Политика конфиденциальности</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Популярные направления</h3>
+            <ul>
+                <li><a href="#">Авиабилеты в Стамбул</a></li>
+                <li><a href="#">Дешевые рейсы в Тбилиси</a></li>
+                <li><a href="#">Перелеты из Москвы в Сочи</a></li>
+                <li><a href="#">Билеты в Ереван</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px; border-top: 1px solid #334155; padding-top: 20px; font-size: 0.85rem;">
+        &copy; 2025 Airflow Travel. Все права защищены.
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        // Добавьте или уберите этот блок, если у вас есть мобильное меню
+        /*
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
+        */
+    });
+</script>
+</body>
+</html>
