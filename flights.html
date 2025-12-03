@@ -1,5 +1,832 @@
 <!DOCTYPE html>
+<html lang="ru"><!DOCTYPE html>
 <html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content="Airflow Travel: Сравнение цен на авиабилеты, отели, аренду авто и трансферы по всему миру. Ваш идеальный поиск для путешествий." />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta property="og:title" content="Airflow Travel - Сравнение цен на авиабилеты, отели, авто" />
+    <meta property="og:description" content="Найдите идеальное путешествие. Сравнивайте тысячи предложений от ведущих мировых систем." />
+    <meta content="ru" property="og:locale">
+    <meta content="website" property="og:type">
+    <title>Airflow Travel - Все для путешествий в одном месте</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <style>
+        /* ---------------------------------------------------- */
+        /* БАЗОВЫЕ СТИЛИ (ОБЩИЕ) */
+        /* ---------------------------------------------------- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* ---------------------------------------------------- */
+        /* СТИЛИ ВЕРХНЕГО МЕНЮ (НАВИГАЦИЯ) */
+        /* ---------------------------------------------------- */
+        .main-navigation {
+            background: #1e293b; 
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            height: 55px;
+        }
+
+        .nav-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 100px;
+            height: 100%;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 18px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Мобильное меню */
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 260px;
+            height: 100vh;
+            background: #1e293b;
+            z-index: 1001;
+            padding: 60px 15px 15px;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-menu-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-links a:hover, .mobile-menu-links a.active {
+            background: #334155;
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* АДАПТИВНОСТЬ МЕНЮ */
+        @media (max-width: 1175px) {
+            .nav-container { padding: 0 16px; }
+            .nav-menu { display: none; }
+            .mobile-menu-button { display: block; }
+            .mobile-menu-overlay, .mobile-menu { 
+                display: block;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 12px;
+            }
+        }
+        
+        /* ---------------------------------------------------- */
+        /* СТИЛИ КОНТЕНТА ГЛАВНОЙ СТРАНИЦЫ */
+        /* ---------------------------------------------------- */
+
+        /* HERO СЕКЦИЯ */
+        .hero-section {
+            background-color: #f0f4f8; 
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #475569;
+            margin-bottom: 30px;
+        }
+
+        /* ПОИСКОВАЯ ФОРМА (ДИНАМИЧЕСКИЕ ВКЛАДКИ) */
+        .search-form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .search-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .search-tabs button {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #64748b;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .search-tabs button.active {
+            color: #4c1d95; 
+            border-bottom: 3px solid #4c1d95;
+            margin-bottom: -1px;
+        }
+        
+        /* НОВЫЕ СТИЛИ ДЛЯ ДИНАМИЧЕСКИХ ВКЛАДОК */
+        .tab-content {
+            display: none; /* Скрывает все блоки контента по умолчанию */
+            padding-top: 20px; 
+        }
+
+        .tab-content.active {
+            display: block; /* Показывает активный блок контента */
+        }
+        /* КОНЕЦ НОВЫХ СТИЛЕЙ */
+
+        .form-fields {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-fields input, .form-fields select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .search-button {
+            background-color: #4c1d95;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-button:hover {
+            background-color: #6d28d9;
+        }
+
+        /* СЕКЦИЯ ФИЧ (ОСОБЕННОСТИ) */
+        .features-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #1e293b;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #4c1d95;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .feature-text {
+            color: #64748b;
+        }
+
+        /* СЕКЦИЯ ОТЗЫВОВ (SWIPER) */
+        .testimonials-section {
+            padding: 60px 0;
+            background: #f0f4f8;
+        }
+
+        .swiper-container {
+            padding-bottom: 50px; 
+        }
+
+        .swiper-slide {
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: auto; 
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #475569;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: #4c1d95 !important;
+        }
+        
+        .swiper-button-next, .swiper-button-prev {
+            color: #4c1d95 !important;
+        }
+
+
+        /* ---------------------------------------------------- */
+        /* СТИЛИ ФУТЕРА (ПОДВАЛА) */
+        /* ---------------------------------------------------- */
+        .footer {
+            background-color: #1e293b;
+            color: #94a3b8;
+            padding: 60px 0 20px;
+            font-size: 14px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-section {
+            width: 20%;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: white;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            transition: 0.3s;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+            text-align: center;
+            color: #94a3b8;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section { padding: 40px 0; }
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .form-fields { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; }
+            .footer-section { width: 100%; margin-right: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                Airflow
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Главная</a></li> 
+                <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+                <li><a href="hotels.html">🏨 Отели</a></li>
+                <li><a href="cars.html">🚗 Аренда авто</a></li>
+                <li><a href="transfers.html">🚕 Трансферы</a></li>
+                <li><a href="trains.html">🚆 Поезда</a></li>
+                <li><a href="help.html">❓ Помощь</a></li>
+            </ul>
+
+            <button 
+                class="mobile-menu-button" id="mobile-menu-button" aria-label="Меню">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    <nav id="mobile-menu" class="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Закрыть">×</button>
+
+        <ul class="mobile-menu-links">
+            <li><a href="index.html" class="active">Главная</a></li>
+            <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+            <li><a href="hotels.html">🏨 Отели</a></li>
+            <li><a href="cars.html">🚗 Аренда авто</a></li>
+            <li><a href="transfers.html">🚕 Трансферы</a></li>
+            <li><a href="trains.html">🚆 Поезда</a></li>
+            <li><a href="about.html">ℹ️ О нас</a></li>
+            <li><a href="help.html">❓ Помощь</a></li> 
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="hero-title">Идеальный поиск для вашего путешествия</h1>
+                <p class="hero-subtitle">Сравнивайте цены на авиабилеты, отели, авто и трансферы по всему миру.</p>
+
+                <div class="search-form-container">
+                    
+                    <div class="search-tabs" id="search-tabs">
+                        <button class="active" data-target="avia"><i class="fas fa-plane"></i> Авиабилеты</button>
+                        <button data-target="hotels"><i class="fas fa-hotel"></i> Отели</button>
+                        <button data-target="cars"><i class="fas fa-car"></i> Аренда авто</button>
+                        <button data-target="transfers"><i class="fas fa-bus"></i> Трансферы</button>
+                    </div>
+
+                    <div id="avia-content" class="tab-content active">
+                        <form>
+                            <div class="form-fields">
+                                <input type="text" placeholder="Откуда" required>
+                                <input type="text" placeholder="Куда" required>
+                                <input type="date" placeholder="Дата вылета" required>
+                                <input type="date" placeholder="Дата обратно">
+                                <select>
+                                    <option>1 пассажир</option>
+                                    <option>2 пассажира</option>
+                                </select>
+                                <select>
+                                    <option>Эконом</option>
+                                    <option>Бизнес</option>
+                                </select>
+                                <button type="submit" class="search-button" style="grid-column: span 2;">
+                                    Найти Авиабилеты
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="hotels-content" class="tab-content">
+                        <form>
+                            <div class="form-fields">
+                                <input type="text" placeholder="Город или отель" required>
+                                <input type="date" placeholder="Заезд" required>
+                                <input type="date" placeholder="Выезд" required>
+                                <select>
+                                    <option>2 взрослых</option>
+                                    <option>1 взрослый</option>
+                                </select>
+                                <button type="submit" class="search-button" style="grid-column: span 4;">
+                                    Искать Отели
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="cars-content" class="tab-content">
+                        <form>
+                            <div class="form-fields">
+                                <input type="text" placeholder="Страна, город или аэропорт" required>
+                                <input type="date" placeholder="Дата начала аренды" required>
+                                <input type="date" placeholder="Дата окончания аренды" required>
+                                <select>
+                                    <option>Место возврата: то же</option>
+                                    <option>Место возврата: другое</option>
+                                </select>
+                                <button type="submit" class="search-button" style="grid-column: span 4;">
+                                    Найти Авто
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="transfers-content" class="tab-content">
+                        <form>
+                            <div class="form-fields">
+                                <input type="text" placeholder="Откуда (Аэропорт, вокзал)" required>
+                                <input type="text" placeholder="Куда (Адрес, отель)" required>
+                                <input type="date" placeholder="Дата поездки" required>
+                                <select>
+                                    <option>1-3 пассажира</option>
+                                    <option>4-7 пассажиров</option>
+                                </select>
+                                <button type="submit" class="search-button" style="grid-column: span 4;">
+                                    Заказать Трансфер
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <h2 class="section-title">Почему выбирают Airflow Travel?</h2>
+                <div class="features-grid">
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+                        <h3 class="feature-title">Умное сравнение</h3>
+                        <p class="feature-text">Анализируем тысячи предложений в реальном времени, чтобы найти лучшую цену.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3 class="feature-title">Безопасность</h3>
+                        <p class="feature-text">Работаем только с проверенными партнерами и обеспечиваем защиту данных.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-globe-americas"></i></div>
+                        <h3 class="feature-title">Все направления</h3>
+                        <p class="feature-text">Бронирование билетов и отелей в любой точке мира, без ограничений.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                        <h3 class="feature-title">Поддержка 24/7</h3>
+                        <p class="feature-text">Наша команда готова помочь вам с любым вопросом в любое время суток.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <section class="testimonials-section">
+            <div class="container">
+                <h2 class="section-title">Что говорят наши клиенты</h2>
+                <div class="testimonials-slider swiper-container">
+                    <div class="swiper-wrapper">
+                        
+                        <div class="swiper-slide">
+                            <p class="testimonial-text">"Airflow Travel сэкономил мне много времени. Нашел лучший отель за 5 минут, который раньше искал часами!"</p>
+                            <p class="testimonial-author">— Иван К.</p>
+                        </div>
+                        
+                        <div class="swiper-slide">
+                            <p class="testimonial-text">"Благодаря сравнению цен, я купил билет на 20% дешевле, чем на сайте самой авиакомпании. Фантастика!"</p>
+                            <p class="testimonial-author">— Мария П.</p>
+                        </div>
+                        
+                        <div class="swiper-slide">
+                            <p class="testimonial-text">"Удобно, быстро и надёжно. Больше не пользуюсь другими поисковиками для аренды авто."</p>
+                            <p class="testimonial-author">— Алексей В.</p>
+                        </div>
+                        
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                
+                <div class="footer-section">
+                    <h3>О нас</h3>
+                    <ul>
+                        <li><a href="about.html">О проекте Airflow</a></li>
+                        <li><a href="help.html">Помощь и поддержка</a></li>
+                        <li><a href="terms.html">Условия использования</a></li>
+                        <li><a href="privacy.html">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Путешествия</h3>
+                    <ul>
+                        <li><a href="hotels.html">Бронирование отелей</a></li>
+                        <li><a href="cars.html">Аренда авто</a></li>
+                        <li><a href="transfers.html">Трансферы</a></li>
+                        <li><a href="trains.html">Поезда</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Популярные направления</h3>
+                    <ul>
+                        <li><a href="#">Авиабилеты в Стамбул</a></li>
+                        <li><a href="#">Отели в Тбилиси</a></li>
+                        <li><a href="#">Аренда авто в Грузии</a></li>
+                        <li><a href="#">Популярные города</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>Airflow Travel<br>Email: info@airflowtravel.net</p>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                &copy; 2025 Airflow Travel. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            /* 1. НАДЕЖНЫЙ СКРИПТ МОБИЛЬНОГО МЕНЮ */
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOverlay = document.getElementById('mobile-menu-overlay');
+            const menuClose = document.getElementById('mobile-menu-close');
+            
+            let isMenuOpen = false;
+
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.add('active');
+                    menuOverlay.classList.add('active');
+                    menuOverlay.style.display = 'block';
+                    document.body.style.overflow = 'hidden'; 
+                } else {
+                    mobileMenu.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = ''; 
+                    setTimeout(() => {
+                        if (!isMenuOpen) {
+                            menuOverlay.style.display = 'none';
+                        }
+                    }, 300);
+                }
+            }
+
+            function closeMenu() {
+                isMenuOpen = false;
+                mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = ''; 
+                setTimeout(() => {
+                    menuOverlay.style.display = 'none';
+                }, 300);
+            }
+
+            // Обработчики событий
+            if (menuButton) menuButton.addEventListener('click', toggleMenu);
+            if (menuClose) menuClose.addEventListener('click', closeMenu);
+            if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+
+            // Закрытие при клике вне меню и изменении размера экрана
+            document.addEventListener('click', function(event) {
+                if (isMenuOpen && 
+                    !mobileMenu.contains(event.target) && 
+                    !menuButton.contains(event.target)) {
+                    closeMenu();
+                }
+            });
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 1175 && isMenuOpen) {
+                    closeMenu();
+                }
+            });
+            
+            /* 2. ИНИЦИАЛИЗАЦИЯ SWIPER-СЛАЙДЕРА ДЛЯ ОТЗЫВОВ */
+            new Swiper('.testimonials-slider', {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 30,
+                observer: true, 
+                observeParents: true, 
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 30
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 30
+                    }
+                },
+                autoHeight: true, 
+                on: {
+                    init: function () {
+                        document.body.style.overflowX = 'hidden';
+                        this.update(); 
+                    },
+                    resize: function () {
+                        this.update(); 
+                    }
+                }
+            });
+            
+            /* 3. СКРИПТ ДЛЯ ДИНАМИЧЕСКОГО ПОИСКА (ВКЛАДКИ) */
+            const searchTabs = document.querySelectorAll('.search-tabs button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            searchTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 1. Убираем активный класс со всех кнопок и контента
+                    searchTabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+
+                    // 2. Добавляем активный класс к нажатой кнопке
+                    this.classList.add('active');
+
+                    // 3. Показываем соответствующий блок контента
+                    const targetId = this.getAttribute('data-target') + '-content'; // Получаем ID: avia-content, hotels-content и т.д.
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
+            
+        });
+    </script>
+</body>
+</html>
 <head>
 
     <meta charset="UTF-8">
