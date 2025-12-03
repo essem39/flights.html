@@ -303,7 +303,8 @@
         .features-grid, .classes-grid {
             display: grid;
             /* Сетка для 4 или 6 карточек: 3 колонки на больших экранах, минимум 220px */
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            /* ИЗМЕНЕНИЕ ДЛЯ 8 КАРТОЧЕК: Делаем 4 колонки (minmax(200px, 1fr)) */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
             gap: 30px;
             max-width: 1100px;
             margin: 0 auto;
@@ -756,6 +757,26 @@
                     <div class="feature-card" style="border-top-color: #e9573f;"> <div class="feature-icon" style="color: #e9573f;"><i class="fas fa-ban"></i></div>
                         <h4>Отмена без штрафов</h4>
                         <p>Бесплатная отмена бронирования за 24 часа до получения авто по многим тарифам.</p>
+                    </div>
+
+                    <div class="feature-card" style="border-top-color: #4a89dc;"> <div class="feature-icon" style="color: #4a89dc;"><i class="fas fa-star-half-stroke"></i></div>
+                        <h4>Рейтинги и отзывы</h4>
+                        <p>Проверенные оценки от реальных клиентов помогут выбрать лучшего прокатчика.</p>
+                    </div>
+
+                    <div class="feature-card" style="border-top-color: #8cc152;"> <div class="feature-icon" style="color: #8cc152;"><i class="fas fa-sliders"></i></div>
+                        <h4>Подбор по параметрам</h4>
+                        <p>Легко фильтруйте авто по типу коробки, топливу, размеру и дополнительным опциям.</p>
+                    </div>
+
+                    <div class="feature-card" style="border-top-color: #64748b;"> <div class="feature-icon" style="color: #64748b;"><i class="fas fa-hourglass-half"></i></div>
+                        <h4>Быстрое оформление</h4>
+                        <p>Процесс получения ключей занимает не более 10 минут, если все документы готовы.</p>
+                    </div>
+
+                    <div class="feature-card" style="border-top-color: #ec4899;"> <div class="feature-icon" style="color: #ec4899;"><i class="fas fa-handshake"></i></div>
+                        <h4>Прямые поставщики</h4>
+                        <p>Работаем напрямую с проверенными местными и мировыми прокатчиками, гарантируя качество.</p>
                     </div>
                     
                 </div>
