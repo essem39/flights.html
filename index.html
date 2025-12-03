@@ -292,16 +292,21 @@
         }
 
         /* ---------------------------------------------------- */
-        /* СТИЛИ КАРТОЧЕК ПРЕИМУЩЕСТВ И НАПРАВЛЕНИЙ */
+        /* СТИЛИ КАРТОЧЕК ПРЕИМУЩЕСТВ, НАПРАВЛЕНИЙ И СОВЕТОВ */
         /* ---------------------------------------------------- */
 
-        .car-features-section {
+        .car-features-section, .seo-tips-section {
             padding: 80px 20px;
             background: #f8fafc; /* Светлый фон */
         }
+        
+        .destinations-section {
+            padding: 80px 20px;
+            background: white; 
+        }
 
         /* ГЛАВНОЕ ИЗМЕНЕНИЕ ДЛЯ СИММЕТРИИ 3X2 */
-        .features-grid, .destinations-grid {
+        .features-grid, .destinations-grid, .tips-grid {
             display: grid;
             /* ФИКС: minmax(300px, 1fr) заставляет 3 столбца на ПК и 2 на планшете */
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -310,82 +315,98 @@
             margin: 0 auto;
         }
         
-        .feature-card {
+        /* Общие стили для информационных карточек */
+        .feature-card, .tip-card {
             text-align: center;
             padding: 30px 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            /* ИСПРАВЛЕНИЕ: Мягкая постоянная тень для объема */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
             background: #ffffff; /* Белый фон для карточек */
             border-top: 5px solid #4c1d95; /* Фирменный цвет по умолчанию */
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%; /* Гарантирует одинаковую высоту в ряду */
         }
         
-        .feature-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        .feature-card:hover, .tip-card:hover {
+            /* ИСПРАВЛЕНИЕ: Усиленный подъем и тень при наведении */
+            transform: translateY(-4px); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
         }
 
-        .feature-icon {
+        .feature-icon, .tip-icon {
             font-size: 3rem;
             color: #4c1d95; 
             margin-bottom: 15px;
         }
 
-        .feature-card h4 {
+        .feature-card h4, .tip-card h4 {
             font-size: 1.2rem;
             color: #1e293b;
             font-weight: 700;
             margin-bottom: 10px;
         }
         
-        .feature-card p {
+        .feature-card p, .tip-card p {
             color: #64748b;
             font-size: 0.95rem;
         }
         
-        /* Стили для карточек направлений (скопированы из cars.html) */
-        .destinations-section {
-            padding: 80px 20px;
-            background: white; 
-        }
-
+        /* Стили для карточек направлений (копия из cars.html) */
         .destination-card {
             background: #ffffff;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            /* ИСПРАВЛЕНИЕ: Мягкая постоянная тень для объема */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             color: inherit;
             display: block;
+            height: 100%; /* Гарантирует одинаковую высоту */
         }
 
         .destination-card:hover {
+            /* ИСПРАВЛЕНИЕ: Усиленный подъем и тень при наведении */
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); 
         }
 
         .destination-image {
             width: 100%;
             height: 180px;
-            background-size: cover;
+            background-size: cover; /* Ключевое свойство для фото */
             background-position: center;
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            /* УДАЛЕНЫ СВОЙСТВА ДЛЯ ЦЕНТРИРОВАНИЯ ИКОНКИ */
+            display: block; 
             font-size: 3rem;
             color: white;
             font-weight: 700;
+            /* Скругление углов, чтобы картинка не выглядела "деревянной" */
+            border-top-left-radius: 10px; 
+            border-top-right-radius: 10px;
         }
         
-        /* Цвета для 6 карточек (использованы как заглушки) */
-        .dest-istanbul { background-image: linear-gradient(135deg, #5d9cec 0%, #4a89dc 100%); }
-        .dest-dubai { background-image: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); }
-        .dest-tbilisi { background-image: linear-gradient(135deg, #8cc152 0%, #6e8b4e 100%); }
-        .dest-bangkok { background-image: linear-gradient(135deg, #e9573f 0%, #cc3333 100%); }
-        .dest-paris { background-image: linear-gradient(135deg, #a033d5 0%, #6f1fa8 100%); }
-        .dest-newyork { background-image: linear-gradient(135deg, #1abc9c 0%, #16a085 100%); }
+        /* Цвета для 6 карточек (ФИКС: Упрощенные и стабильные URL-адреса) */
+        .dest-istanbul { 
+            background-image: url('https://images.unsplash.com/photo-1541336495209-6d81745ed9d0?w=400&auto=format');
+        }
+        .dest-dubai { 
+            background-image: url('https://images.unsplash.com/photo-1574716921385-e2d6b38466e3?w=400&auto=format');
+        }
+        .dest-tbilisi { 
+            background-image: url('https://images.unsplash.com/photo-1627949397750-711090382346?w=400&auto=format');
+        }
+        .dest-bangkok { 
+            background-image: url('https://images.unsplash.com/photo-1579737976694-a15e065582f6?w=400&auto=format');
+        }
+        .dest-paris { 
+            background-image: url('https://images.unsplash.com/photo-1558963270-4357c91719b4?w=400&auto=format');
+        }
+        .dest-newyork { 
+            background-image: url('https://images.unsplash.com/photo-1549419142-b06c6426ac36?w=400&auto=format');
+        }
 
 
         .destination-info {
@@ -403,11 +424,12 @@
             font-size: 1rem;
             color: #64748b;
         }
+        
         /* ---------------------------------------------------- */
         /* СТИЛИ ОТЗЫВОВ - Слайдер Swiper */
         /* ---------------------------------------------------- */
         .testimonials-section {
-            background: #f8fafc; /* Светлый фон */
+            background: white; /* Изменил фон для контраста с SEO-секцией */
             padding: 80px 20px;
         }
 
@@ -418,14 +440,20 @@
         }
 
         .testimonial-card {
-            background: white; /* Белый фон для карточек */
+            background: #f8fafc; /* Светлый фон для карточек */
             padding: 30px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-radius: 10px; /* ИСПРАВЛЕНИЕ: Скругление углов для эффекта */
+            /* ИСПРАВЛЕНИЕ: Мягкая постоянная тень для объема */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
             border: 1px solid #e2e8f0;
             height: 100%;
             display: flex;
             flex-direction: column;
+        }
+        /* Убираем hover эффект с карточек отзывов, так как они в слайдере */
+        .testimonial-card:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
+            transform: none;
         }
 
         .stars {
@@ -706,8 +734,7 @@
                     
                     <a href="hotels.html" class="destination-card">
                         <div class="destination-image dest-istanbul">
-                             <i class="fas fa-hotel"></i>
-                        </div>
+                             </div>
                         <div class="destination-info">
                             <h3 class="destination-title">Отели в Стамбуле</h3>
                             <p class="destination-subtitle">Сравните цены на 5,000+ отелей через Hotellook.</p>
@@ -716,8 +743,7 @@
                     
                     <a href="https://search.airflowtravel.net" class="destination-card">
                         <div class="destination-image dest-dubai">
-                            <i class="fas fa-plane"></i>
-                        </div>
+                            </div>
                         <div class="destination-info">
                             <h3 class="destination-title">Авиабилеты в Дубай</h3>
                             <p class="destination-subtitle">Лучшие предложения от всех авиакомпаний.</p>
@@ -726,8 +752,7 @@
                     
                     <a href="cars.html" class="destination-card">
                         <div class="destination-image dest-tbilisi">
-                            <i class="fas fa-car-side"></i>
-                        </div>
+                            </div>
                         <div class="destination-info">
                             <h3 class="destination-title">Аренда авто в Грузии</h3>
                             <p class="destination-subtitle">Выгодный прокат через Localrent в Тбилиси и Батуми.</p>
@@ -736,8 +761,7 @@
                     
                     <a href="hotels.html" class="destination-card">
                         <div class="destination-image dest-bangkok">
-                            <i class="fas fa-hotel"></i>
-                        </div>
+                            </div>
                         <div class="destination-info">
                             <h3 class="destination-title">Отели в Бангкоке</h3>
                             <p class="destination-subtitle">Найдите идеальный вариант для отдыха в Таиланде.</p>
@@ -746,8 +770,7 @@
                     
                     <a href="https://search.airflowtravel.net" class="destination-card">
                         <div class="destination-image dest-paris">
-                            <i class="fas fa-plane"></i>
-                        </div>
+                            </div>
                         <div class="destination-info">
                             <h3 class="destination-title">Авиабилеты в Париж</h3>
                             <p class="destination-subtitle">Спецпредложения на рейсы во Францию.</p>
@@ -756,12 +779,50 @@
 
                     <a href="transfers.html" class="destination-card">
                         <div class="destination-image dest-newyork">
-                            <i class="fas fa-taxi"></i>
-                        </div>
+                            </div>
                         <div class="destination-info">
                             <h3 class="destination-title">Трансферы в Нью-Йорке</h3>
                             <p class="destination-subtitle">Удобный трансфер из аэропорта JFK.</p>
                         </div>
+                    </a>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <section class="seo-tips-section" style="background: #f8fafc;">
+            <div class="container">
+                <div class="section-title" style="color: #1e293b;">Полезные советы и гайды для путешественников</div>
+                <div class="tips-grid">
+                    
+                    <a href="#" class="tip-card" style="border-top-color: #5d9cec;"> <div class="tip-icon" style="color: #5d9cec;"><i class="fas fa-plane-departure"></i></div>
+                        <h4>Лайфхаки для перелетов</h4>
+                        <p>Как найти самые дешевые авиабилеты и сэкономить на багаже, выбирая правильный тариф.</p>
+                    </a>
+                    
+                    <a href="hotels.html" class="tip-card" style="border-top-color: #e9573f;"> <div class="tip-icon" style="color: #e9573f;"><i class="fas fa-hotel"></i></div>
+                        <h4>Выбор идеального отеля</h4>
+                        <p>Инструкция по чтению отзывов и выбору лучших районов для проживания в любом городе мира.</p>
+                    </a>
+                    
+                    <a href="cars.html" class="tip-card" style="border-top-color: #f59e0b;"> <div class="tip-icon" style="color: #f59e0b;"><i class="fas fa-road"></i></div>
+                        <h4>Секреты аренды авто</h4>
+                        <p>Полное руководство по страховке, депозитам и экономии на прокате машин через Localrent.</p>
+                    </a>
+                    
+                    <a href="#" class="tip-card" style="border-top-color: #8cc152;"> <div class="tip-icon" style="color: #8cc152;"><i class="fas fa-hand-holding-usd"></i></div>
+                        <h4>Бюджетные путешествия</h4>
+                        <p>Практические советы, как путешествовать дольше, тратя меньше денег, без ущерба качеству.</p>
+                    </a>
+
+                    <a href="trains.html" class="tip-card" style="border-top-color: #a033d5;"> <div class="tip-icon" style="color: #a033d5;"><i class="fas fa-train-subway"></i></div>
+                        <h4>Транспорт: Поезда и автобусы</h4>
+                        <p>Сравнение наземного транспорта, покупка выгодных билетов и советы по комфортным поездкам.</p>
+                    </a>
+
+                    <a href="#" class="tip-card" style="border-top-color: #1abc9c;"> <div class="tip-icon" style="color: #1abc9c;"><i class="fas fa-briefcase-medical"></i></div>
+                        <h4>Туристическая страховка</h4>
+                        <p>Все, что нужно знать о выборе медицинского полиса для выезда за границу и спокойствия в пути.</p>
                     </a>
                     
                 </div>
