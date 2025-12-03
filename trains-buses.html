@@ -14,7 +14,7 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
     <style>
         /* БАЗОВЫЕ СТИЛИ (ОБЩИЕ) */
@@ -495,6 +495,12 @@
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
+        }
+
+        /* НОВОЕ ПРАВИЛО: swiper-wrapper должен иметь автоматическую высоту, когда autoHeight: true */
+        .swiper-container, .swiper-wrapper {
+            /* Это правило уже есть в CSS Swiper, но явно его добавляем, чтобы убедиться */
+            height: auto; 
         }
 
         .testimonial-card {
@@ -1118,7 +1124,7 @@
             });
 
 
-            /* 2. ИНИЦИАЛИЗАЦИЯ SWIPER-СЛАЙДЕРА ДЛЯ ОТЗЫВОВ (С ФИКСОМ СМЕЩЕНИЯ) */
+            /* 2. ИНИЦИАЛИЗАЦИЯ SWIPER-СЛАЙДЕРА ДЛЯ ОТЗЫВОВ (С ФИКСОМ СМЕЩЕНИЯ И ВЫСОТЫ) */
             new Swiper('.testimonials-slider', {
                 loop: true,
                 slidesPerView: 1,
@@ -1147,7 +1153,7 @@
                         spaceBetween: 30
                     }
                 },
-                autoHeight: false, 
+                autoHeight: true, // ФИНАЛЬНЫЙ ФИКС: Устанавливаем автоматическую высоту
                 on: {
                     init: function () {
                         document.body.style.overflowX = 'hidden';
