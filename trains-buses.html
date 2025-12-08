@@ -7,10 +7,10 @@
 <meta content="Airflow Travel: Билеты на автобус. Сравнивайте расписание и цены от официальных партнеров Unitiki по всему миру." name="description"/>
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <meta content="Airflow Travel - Билеты на Автобус Unitiki" property="og:title"/>
-<meta content="Сравнивайте расписание, бронируйте билеты на международные и междугородние автобусы от Unitiki." property="og:description"/>
+<meta content="Сравнивайте расписание, бронируйте билеты на междугородние и международные автобусы от Unitiki." property="og:description"/>
 <meta content="ru" property="og:locale"/>
 <meta content="website" property="og:type"/>
-<title>Междугородние Билеты на Автобус</title>
+<title>Билеты на автобус: Россия и СНГ</title>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
@@ -38,7 +38,7 @@
         padding: 0 20px;
     }
 
-    /* СТИЛИ ВЕРХНЕГО МЕНЮ (НАВИГАЦИИ) */
+    /* СТИЛИ ВЕРХНЕГО МЕНЮ (НАВИГАЦИИ) - Без изменений */
     .main-navigation {
         background: #1e293b;
         padding: 0;
@@ -162,68 +162,46 @@
     .hero-section {
         background: linear-gradient(135deg, #1d4ed8 0%, #10b981 100%);
         color: white;
-        padding: 80px 20px;
+        padding: 80px 20px 40px; /* Уменьшен нижний padding */
         text-align: center;
     }
 
+    /* НОВЫЙ СТИЛЬ H1: МАКСИМАЛЬНО МАЛЕНЬКИЙ */
     .hero-content h1 {
-        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-size: clamp(1.2rem, 2.5vw, 2rem); 
         margin-bottom: 20px;
-        font-weight: 700;
-    }
-
-    .hero-content p {
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        margin-bottom: 30px; 
-        opacity: 0.9;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    /* Стили для Контактов в Hero */
-    .hero-contacts {
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 8px;
-        padding: 15px 20px;
-        margin-bottom: 30px;
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        flex-wrap: wrap;
-        max-width: 700px;
-        margin: 0 auto 30px auto;
-    }
-    
-    .hero-contacts a {
+        font-weight: 600; 
+        text-align: center;
         color: white;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transition: opacity 0.3s;
-    }
-
-    .hero-contacts a:hover {
-        opacity: 0.8;
-    }
-
-    .hero-contacts i {
-        color: #f59e0b;
-        font-size: 1.2rem;
     }
     
-    /* Стили для Виджета */
-    #train-bus-widget-container {
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 10px;
+    /* СТИЛИ ДЛЯ ОБЪЕДИНЕННОЙ КАРТОЧКИ ВИДЖЕТА И КОНТАКТОВ */
+    #bus-card-container {
+        padding: 20px 30px;
+        background: rgba(255, 255, 255, 1); /* Белый фон */
+        border-radius: 12px;
         width: 100%;
         max-width: 1000px; 
         margin: 0 auto 50px auto;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    /* H2 - ЗАГОЛОВОК КАРТОЧКИ (ФОКУС ПОЛЬЗОВАТЕЛЯ) */
+    .card-title-search {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 20px;
+    }
+    
+    /* Стили для Виджета */
+    #train-bus-widget-container {
+        padding: 0; /* Удалены старые стили, т.к. они в bus-card-container */
+        background: none;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0 auto 20px auto;
     }
 
     /* СТИЛИЗАЦИЯ ВИДЖЕТА */
@@ -242,12 +220,59 @@
         border-bottom-color: #1d4ed8 !important;
     }
     
+    /* Стили для Контактов в Hero (теперь внутри карточки) */
+    .hero-contacts {
+        background: #f1f5f9; /* Новый, более светлый фон */
+        border-radius: 8px;
+        padding: 15px 20px;
+        margin-top: 25px; /* Отступ от виджета */
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-contacts a {
+        color: #1e293b; /* Темный текст для контактов */
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: opacity 0.3s;
+    }
+
+    .hero-contacts a:hover {
+        opacity: 0.8;
+    }
+
+    .hero-contacts i {
+        color: #10b981; /* Зеленый цвет для иконок */
+        font-size: 1.2rem;
+    }
+    
+    .card-description {
+        font-size: 1rem;
+        margin-bottom: 0;
+        opacity: 0.8;
+        color: #475569;
+        max-width: 90%;
+        margin: 0 auto 20px auto;
+    }
+    
+    /* Остальные секции не менялись */
     .product-icons-section {
         padding: 60px 20px;
         background: white;
         text-align: center;
     }
-
+    /* ... (остальные стили остались прежними) */
+    
+    
     .product-icons-grid {
         display: flex;
         justify-content: center;
@@ -389,10 +414,10 @@
         line-height: 1.5;
     }
     
-    /* СТИЛИ ОТЗЫВОВ - ИСПРАВЛЕННЫЕ СТИЛИ ПОЛЬЗОВАТЕЛЯ */
+    /* СТИЛИ ОТЗЫВОВ */
     .testimonials-section {
         background: white;
-        padding: 80px 0; /* Убрал боковые паддинги, чтобы избежать наложения */
+        padding: 80px 0; 
         overflow: hidden; 
     }
 
@@ -400,14 +425,14 @@
         max-width: 1200px;
         margin: 0 auto;
         position: relative;
-        padding: 0 20px; /* Вернул паддинг для содержимого */
+        padding: 0 20px; 
     }
 
     .swiper-container, .swiper-wrapper {
         height: auto;
     }
     .swiper-wrapper {
-        align-items: stretch; /* Для одинаковой высоты карточек */
+        align-items: stretch; 
     }
 
     .testimonial-card {
@@ -496,7 +521,7 @@
         background: #10b981 !important;
     }
 
-    /* СТИЛИ ФУТЕРА (ФИНАЛЬНЫЕ: ТРИ КОЛОНКИ) */
+    /* СТИЛИ ФУТЕРА (ТРИ КОЛОНКИ) */
     .footer {
         background-color: #1e293b;
         color: #94a3b8;
@@ -515,13 +540,12 @@
         justify-content: space-between;
         flex-wrap: wrap;
         margin-bottom: 40px;
-        gap: 30px; /* Увеличил gap для разделения 3-х секций */
+        gap: 30px; 
     }
     
-    /* СКОРРЕКТИРОВАННАЯ ШИРИНА ДЛЯ ТРЕХ СТОЛБИКОВ */
     .footer-section {
         width: calc(33.333% - 20px); 
-        min-width: 250px; /* Немного увеличил минимальную ширину */
+        min-width: 250px; 
         margin-bottom: 20px;
     }
 
@@ -631,25 +655,33 @@
 <section class="hero-section">
 <div class="container">
 <div class="hero-content">
-<h1>Международные автобусные маршруты</h1>
+<h1>Автобусные билеты по России и СНГ</h1>
 
-<div class="hero-contacts">
-    <a href="tel:+88004443451">
-        <i class="fas fa-phone"></i> 8 (800) 444-34-51
-    </a>
-    <a href="mailto:help@unitiki.com">
-        <i class="fas fa-envelope"></i> help@unitiki.com
-    </a>
+<div id="bus-card-container">
+    
+    <h2 class="card-title-search">Поиск автобусных билетов</h2>
+
+    <div id="train-bus-widget-container">
+    <script async charset="utf-8" src="//tpwgt.com/content?currency=RUB&trs=478043&shmarker=144185&powered_by=false&title=%D0%91%D0%B8%D0%BB%D0%B5%D1%82%D1%8B%20%D0%BD%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%B1%D1%83%D1%81&subtitle=%D0%9F%D0%BE%D0%B8%D1%81%D0%BA%20%D0%B8%20%D0%BF%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B0%20%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD&button=%D0%9D%D0%B0%D0%B9%D1%82%D0%B8&logo=0&background_color=0174A9ff&title_color=ffffff&subtitle_color=ffffff&button_color=F9DD00&button_text_color=000000&erid=2VtzqwP1XRK&campaign_id=58&promo_id=8019"></script>
+    </div>
+
+    <p class="card-description">
+        Бронирование билетов и актуальное расписание рейсов Unitiki по России, странам СНГ и Европы.
+    </p>
+
+    <div class="hero-contacts">
+        <a href="tel:+88004443451">
+            <i class="fas fa-phone"></i> 8 (800) 444-34-51
+        </a>
+        <a href="mailto:help@unitiki.com">
+            <i class="fas fa-envelope"></i> help@unitiki.com
+        </a>
+    </div>
+
 </div>
 
-<div id="train-bus-widget-container">
-<script async charset="utf-8" src="//tpwgt.com/content?currency=RUB&trs=478043&shmarker=144185&powered_by=false&title=%D0%91%D0%B8%D0%BB%D0%B5%D1%82%D1%8B%20%D0%BD%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%B1%D1%83%D1%81&subtitle=%D0%9F%D0%BE%D0%B8%D1%81%D0%BA%20%D0%B8%20%D0%BF%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B0%20%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD&button=%D0%9D%D0%B0%D0%B9%D1%82%D0%B8&logo=0&background_color=0174A9ff&title_color=ffffff&subtitle_color=ffffff&button_color=F9DD00&button_text_color=000000&erid=2VtzqwP1XRK&campaign_id=58&promo_id=8019"></script>
 </div>
 </div>
-</div>
-<p>
-        Бронируйте билеты на междугородние и международные автобусы. Сравнивайте расписание и выбирайте самые выгодные маршруты от Unitiki.
-</p>
 </section>
 
 <section class="product-icons-section">
@@ -924,12 +956,12 @@
 </div>
 
 <div class="footer-section">
-    <h3>Служба поддержки Unitiki</h3>
-    <div class="footer-contacts">
-        <a href="tel:+88004443451">
+    <h3>Служба поддержки </h3>
+    <div class="footer-contacts" style="background: none; padding: 0; margin: 0;">
+        <a href="tel:+88004443451" style="color: white;">
             <i class="fas fa-phone"></i> 8 (800) 444-34-51
         </a>
-        <a href="mailto:help@unitiki.com">
+        <a href="mailto:help@unitiki.com" style="color: white;">
             <i class="fas fa-envelope"></i> help@unitiki.com
         </a>
         <p style="margin-top: 5px; font-size: 0.9rem; color: #64748b;">Круглосуточно</p>
@@ -958,11 +990,11 @@
             mobileMenu.classList.add('active');
             menuOverlay.classList.add('active');
             menuOverlay.style.display = 'block';
-            document.body.style.overflow = 'hidden'; /* Блокируем скролл */
+            document.body.style.overflow = 'hidden'; 
         } else {
             mobileMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
-            document.body.style.overflow = ''; /* Возвращаем скролл */
+            document.body.style.overflow = ''; 
             setTimeout(() => {
                 if (!isMenuOpen) {
                     menuOverlay.style.display = 'none';
@@ -975,7 +1007,7 @@
         isMenuOpen = false;
         mobileMenu.classList.remove('active');
         menuOverlay.classList.remove('active');
-        document.body.style.overflow = ''; /* Возвращаем скролл */
+        document.body.style.overflow = ''; 
         setTimeout(() => {
             menuOverlay.style.display = 'none';
         }, 300);
@@ -985,7 +1017,7 @@
     if (menuClose) menuClose.addEventListener('click', closeMenu);
     if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
 
-    // Код для Swiper-слайдера отзывов (ВЗЯТ ИЗ ВАШЕГО КОДА)
+    // Код для Swiper-слайдера отзывов
     document.addEventListener('DOMContentLoaded', function() {
         var swiper = new Swiper('.testimonials-slider', {
             slidesPerView: 1,
