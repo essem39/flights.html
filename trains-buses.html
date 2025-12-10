@@ -183,24 +183,24 @@
     .card-title-search {
         font-size: 1.5rem;
         font-weight: 700;
-        color: white; /* Изменено на белый для контраста */
+        color: white; 
         margin-bottom: 20px;
     }
     
-    /* Стили для Виджета (Теперь сам виджет - это наш белый контейнер) */
+    /* Стили для Виджета: УДАЛЯЕМ БЕЛУЮ ОБЕРТКУ, ТЕНЬ, СГРУГЛЕНИЕ и горизонтальный PADDING */
     #train-bus-widget-container {
-        padding: 20px 30px; /* Добавим отступы, которые были у карточки */
-        background: white; /* Белый фон */
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        max-width: 700px; /* Ограничиваем его на ПК */
+        padding: 20px 0; /* Убираем горизонтальный отступ */
+        background: none; /* Убираем белый фон */
+        border-radius: 0; /* Убираем скругление углов */
+        box-shadow: none; /* Убираем тень */
+        max-width: 700px; 
         margin: 0 auto 50px auto;
         
         /* УСИЛЕННЫЙ БЛОК ДЛЯ МОБИЛЬНОЙ АДАПТАЦИИ (Обязательно обрезать и ограничить) */
         overflow: hidden !important; 
     }
     
-    /* СТИЛИЗАЦИЯ ВИДЖЕТА */
+    /* СТИЛИЗАЦИЯ ВИДЖЕТА (Оставляем только переопределение цветов для внутреннего виджета) */
     #train-bus-widget-container .tpwgt-button {
         background-color: #10b981 !important;
         border-color: #10b981 !important;
@@ -221,9 +221,9 @@
         border-bottom-color: #1d4ed8 !important;
     }
     
-    /* Стили для Контактов (теперь они снова на градиенте) */
+    /* Стили для Контактов */
     .hero-contacts {
-        background: #1e293b; /* Более темный фон для контраста на градиенте */
+        background: #1e293b; 
         border-radius: 8px;
         padding: 15px 20px;
         margin-top: 25px; 
@@ -237,7 +237,7 @@
     }
     
     .hero-contacts a {
-        color: white; /* Изменено на белый */
+        color: white; 
         text-decoration: none;
         font-weight: 500;
         font-size: 1rem;
@@ -261,7 +261,7 @@
         font-size: 1rem;
         margin-bottom: 20px;
         opacity: 0.9;
-        color: white; /* Изменено на белый */
+        color: white; 
         max-width: 90%;
         margin-left: auto;
         margin-right: auto;
@@ -273,8 +273,6 @@
         background: white;
         text-align: center;
     }
-    
-    /* ... (стили ниже без изменений) */
     
     
     .product-icons-grid {
@@ -605,7 +603,7 @@
         text-align: center;
         color: #94a3b8;
     }
-    /* >>> СЕКЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (МЕДИА-ЗАПРОС) <<< */
+    /* >>> СЕКЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (МЕДИА-ЗАПРОСЫ) <<< */
     @media (max-width: 768px) {
         .footer-content {
             flex-direction: column;
@@ -623,9 +621,19 @@
     }
 
     @media (max-width: 480px) {
-        /* ИЗМЕНЕНИЕ ДЛЯ МОБИЛЬНЫХ: Уменьшаем боковой отступ виджета (который теперь наш контейнер) */
+        /* ИЗМЕНЕНИЕ 1: Уменьшаем внешний отступ контейнера в секции с виджетом */
+        .hero-section .container {
+            padding: 0 5px; /* Оставляем минимальный буфер 5px от края экрана */
+        }
+        
+        /* ИЗМЕНЕНИЕ 2: Убираем внутренний отступ, чтобы дать виджету максимальную ширину */
         #train-bus-widget-container {
-            padding: 20px 10px; /* Уменьшаем отступ, чтобы дать место контенту виджета */
+            padding: 20px 0 !important; 
+        }
+        
+        /* Убеждаемся, что весь контент hero-секции центрирован */
+        .hero-content {
+            text-align: center;
         }
     }
 </style>
