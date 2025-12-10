@@ -27,7 +27,8 @@
     }
 
     html, body {
-        overflow-x: hidden;
+        /* ГАРАНТИЯ ОТ ОТКРЫТИЯ ГОРИЗОНТАЛЬНОГО СКРОЛЛА НА ВСЕЙ СТРАНИЦЕ */
+        overflow-x: hidden; 
         width: 100%;
         max-width: 100%;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -162,21 +163,13 @@
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
         width: 100%;
-        /* ВАЖНО: Принудительно скрываем переполнение, если виджет вылезет за границы */
-        overflow: hidden; 
+        /* Убираем overflow: hidden; отсюда, чтобы виджет мог скроллиться внутри себя */
     }
 
     /* Адаптивный фикс для виджета внутри контейнера */
     @media (max-width: 600px) {
         #insurance-main-card {
             padding: 15px; /* Меньше паддинга на мобильных */
-        }
-        /* Фикс для адаптивности стороннего скрипта */
-        /* Принудительное ограничение ширины для всех элементов внутри */
-        #insurance-main-card :is(iframe, div, script) {
-            max-width: 100% !important;
-            min-width: 100% !important; 
-            margin: 0 auto !important; 
         }
     }
 
@@ -187,6 +180,7 @@
         color: white; 
         margin-top: 0; 
         margin-bottom: 15px;
+        text-align: center;
     }
     
     /* Стили для Виджета */
@@ -195,12 +189,13 @@
         background: none;
         border-radius: 0;
         box-shadow: none;
+        /* ЦЕНТРИРОВАНИЕ КОНТЕЙНЕРА */
         margin: 0 auto;
         max-width: 100%; 
-        /* НОВЫЕ ПРАВИЛА ДЛЯ ЦЕНТРИРОВАНИЯ И УПРАВЛЕНИЯ ПЕРЕПОЛНЕНИЕМ */
-        display: flex;
-        justify-content: center;
-        overflow: hidden; 
+        /* САМОЕ ВАЖНОЕ: РАЗРЕШАЕМ ЛОКАЛЬНЫЙ ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ */
+        overflow-x: auto; 
+        overflow-y: hidden; 
+        position: relative;
     }
 
     /* Стили для Контактов в Hero */
@@ -246,6 +241,7 @@
         color: rgba(255, 255, 255, 0.8); 
         max-width: 90%;
         margin: 15px auto 15px auto; 
+        text-align: center;
     }
     
     /* Остальные секции (без изменений) */
@@ -804,4 +800,242 @@
 <div class="swiper-slide">
 <div class="testimonial-card">
 <div class="stars">
-<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+</div>
+<p class="testimonial-text">
+«Купил полис для поездки в Таиланд. Оформление заняло 3 минуты, а цена оказалась ниже, чем напрямую у страховой компании. Очень удобно.»
+</p>
+<div class="testimonial-author">
+<div class="author-avatar">ДК</div>
+<div class="author-info">
+<h4>Дмитрий К.</h4>
+<p>Путешественник (Страховка)</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="swiper-slide">
+<div class="testimonial-card">
+<div class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</div>
+<p class="testimonial-text">
+«Отличный поиск! Нашла страховку с максимальным покрытием для Шенгена за минимальную цену. Рекомендую Airflow Travel.»
+</p>
+<div class="testimonial-author">
+<div class="author-avatar">МС</div>
+<div class="author-info">
+<h4>Мария С.</h4>
+<p>Клиент (Страховка)</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="swiper-slide">
+<div class="testimonial-card">
+<div class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</div>
+<p class="testimonial-text">
+«Пользуюсь Airflow для всех видов транспорта. Ценю удобство и то, что всегда нахожу самые выгодные предложения.»
+</p>
+<div class="testimonial-author">
+<div class="author-avatar">ОВ</div>
+<div class="author-info">
+<h4>Ольга В.</h4>
+<p>Постоянный клиент</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="swiper-slide">
+<div class="testimonial-card">
+<div class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</div>
+<p class="testimonial-text">
+«Очень подробно расписаны все условия страхования. Это помогает принять правильное решение при выборе полиса.»
+</p>
+<div class="testimonial-author">
+<div class="author-avatar">АГ</div>
+<div class="author-info">
+<h4>Артем Г.</h4>
+<p>Клиент (Страховка)</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="swiper-slide">
+<div class="testimonial-card">
+<div class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</div>
+<p class="testimonial-text">
+«Быстро и понятно. Оформление страховки для поездки в Турцию заняло всего несколько минут. Отличный сервис.»
+</p>
+<div class="testimonial-author">
+<div class="author-avatar">ЕВ</div>
+<div class="author-info">
+<h4>Елена В.</h4>
+<p>Клиент (Страховка)</p>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="swiper-pagination"></div>
+<div class="swiper-button-prev"></div>
+<div class="swiper-button-next"></div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="footer">
+<div class="footer-container">
+<div class="footer-content">
+<div class="footer-section">
+<h3>Наши Продукты</h3>
+<ul>
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a href="transfers.html">🚕 Трансферы</a></li>
+<li><a href="trains-buses.html">🚌 Автобусы</a></li>
+<li><a href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ">🚂 Ж/д билеты</a></li>
+</ul>
+</div>
+
+<div class="footer-section">
+<h3>Информация</h3>
+<ul>
+<li><a href="https://airflowtravel.net/about.html">О нас</a></li>
+<li><a href="https://airflowtravel.net/terms.html">Условия использования</a></a></li>
+<li><a href="https://airflowtravel.net/privacy.html">Политика конфиденциальности</a></li>
+</ul>
+</div>
+
+<div class="footer-section">
+    <h3>Служба поддержки Unitiki</h3>
+    <div class="footer-contacts" style="background: none; padding: 0; margin: 0;">
+        <a href="tel:+88004443451" style="color: white;">
+            <i class="fas fa-phone"></i> 8 (800) 444-34-51
+        </a>
+        <a href="mailto:help@unitiki.com" style="color: white;">
+            <i class="fas fa-envelope"></i> help@unitiki.com
+        </a>
+        <p style="margin-top: 5px; font-size: 0.9rem; color: #64748b;">Круглосуточно</p>
+    </div>
+</div>
+
+</div>
+<div class="footer-bottom">
+<p>&copy; 2025 Airflow Travel. Все права защищены.</p>
+</div>
+</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // Код для навигации
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuButton = document.getElementById('mobile-menu-button');
+    const menuOverlay = document.getElementById('mobile-menu-overlay');
+    const menuClose = document.getElementById('mobile-menu-close');
+    let isMenuOpen = false;
+
+    function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            menuOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden'; 
+        } else {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = ''; 
+            setTimeout(() => {
+                if (!isMenuOpen) {
+                    menuOverlay.style.display = 'none';
+                }
+            }, 300);
+        }
+    }
+
+    function closeMenu() {
+        isMenuOpen = false;
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = ''; 
+        setTimeout(() => {
+            menuOverlay.style.display = 'none';
+        }, 300);
+    }
+
+    if (menuButton) menuButton.addEventListener('click', toggleMenu);
+    if (menuClose) menuClose.addEventListener('click', closeMenu);
+    if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+
+    // Код для Swiper-слайдера отзывов
+    document.addEventListener('DOMContentLoaded', function() {
+        var swiper = new Swiper('.testimonials-slider', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            observer: true, 
+            observeParents: true, 
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                }
+            },
+            autoHeight: true, 
+            on: {
+                init: function () {
+                    document.body.style.overflowX = 'hidden';
+                    this.update(); 
+                },
+                resize: function () {
+                    this.update();
+                }
+            }
+        });
+
+        // Закрытие мобильного меню при клике на ссылку
+        document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+        });
+
+    });
+</script>
+</body>
+</html>
