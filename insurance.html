@@ -271,15 +271,16 @@
         overflow-y: hidden;
     }
 
-    /* УСИЛЕННЫЕ МОБИЛЬНЫЕ ИСПРАВЛЕНИЯ ДЛЯ ВИДЖЕТА */
+    /* РАДИКАЛЬНЫЕ МОБИЛЬНЫЕ ИСПРАВЛЕНИЯ ДЛЯ ВИДЖЕТА */
     @media (max-width: 768px) {
         #train-bus-widget-container {
-            min-height: 550px !important; /* Увеличиваем высоту для размещения всего контента */
+            min-height: 650px !important; /* ЗНАЧИТЕЛЬНО увеличиваем высоту */
             width: 100% !important;
             max-width: 100% !important;
             overflow: visible !important; /* Разрешаем переполнение */
-            transform: scale(0.95) !important; /* Немного уменьшаем для лучшего помещения */
+            transform: scale(0.85) !important; /* БОЛЬШЕ уменьшаем для лучшего помещения */
             transform-origin: top left !important;
+            margin-left: -10px !important; /* Компенсируем уменьшение масштаба */
         }
         
         /* ПРИНУДИТЕЛЬНЫЕ СТИЛИ ДЛЯ ВСЕХ ЭЛЕМЕНТОВ ВИДЖЕТА НА МОБИЛЬНЫХ */
@@ -289,9 +290,11 @@
         #train-bus-widget-container script + div {
             max-width: 100% !important;
             width: 100% !important;
-            min-width: 300px !important;
+            min-width: 320px !important;
             box-sizing: border-box !important;
             overflow: visible !important;
+            word-wrap: break-word !important;
+            white-space: normal !important; /* РАЗРЕШАЕМ перенос текста */
         }
         
         /* СПЕЦИАЛЬНЫЕ СТИЛИ ДЛЯ ПОЛЕЙ ВВОДА И ТЕКСТА */
@@ -301,26 +304,38 @@
         #train-bus-widget-container label,
         #train-bus-widget-container span,
         #train-bus-widget-container div {
-            font-size: 13px !important;
-            line-height: 1.2 !important;
-            padding: 8px 6px !important;
-            white-space: nowrap !important;
+            font-size: 14px !important;
+            line-height: 1.3 !important;
+            padding: 10px 8px !important;
+            white-space: normal !important; /* РАЗРЕШАЕМ перенос */
             overflow: visible !important;
-            text-overflow: ellipsis !important;
+            word-break: break-word !important;
+            hyphens: auto !important;
+        }
+        
+        /* СПЕЦИАЛЬНЫЕ СТИЛИ ДЛЯ РАДИОКНОПОК И ЧЕКБОКСОВ */
+        #train-bus-widget-container input[type="radio"] + label,
+        #train-bus-widget-container input[type="checkbox"] + label {
+            white-space: normal !important;
+            word-wrap: break-word !important;
+            max-width: 100% !important;
+            display: inline-block !important;
+            vertical-align: top !important;
         }
     }
 
     @media (max-width: 480px) {
         #train-bus-widget-container {
-            min-height: 580px !important; /* Еще больше высоты для маленьких экранов */
-            transform: scale(0.9) !important; /* Еще больше уменьшаем */
+            min-height: 700px !important; /* ЕЩЕ больше высоты для маленьких экранов */
+            transform: scale(0.8) !important; /* ЕЩЕ больше уменьшаем */
+            margin-left: -15px !important; /* Больше компенсации */
         }
         
         /* ЕЩЕ БОЛЕЕ АГРЕССИВНЫЕ СТИЛИ ДЛЯ ОЧЕНЬ МАЛЕНЬКИХ ЭКРАНОВ */
         #train-bus-widget-container *,
         #train-bus-widget-container iframe,
         #train-bus-widget-container > div {
-            min-width: 280px !important;
+            min-width: 300px !important;
         }
         
         /* УМЕНЬШАЕМ ШРИФТЫ ЕЩЕ БОЛЬШЕ */
@@ -330,8 +345,8 @@
         #train-bus-widget-container label,
         #train-bus-widget-container span,
         #train-bus-widget-container div {
-            font-size: 12px !important;
-            padding: 6px 4px !important;
+            font-size: 13px !important;
+            padding: 8px 6px !important;
         }
     }
 
@@ -1223,7 +1238,7 @@
             });
         });
 
-        // УСИЛЕННЫЙ JAVASCRIPT ДЛЯ ПРИНУДИТЕЛЬНОЙ АДАПТАЦИИ ВИДЖЕТА НА МОБИЛЬНЫХ
+        // РАДИКАЛЬНЫЙ JAVASCRIPT ДЛЯ ПРИНУДИТЕЛЬНОЙ АДАПТАЦИИ ВИДЖЕТА НА МОБИЛЬНЫХ
         function forceWidgetMobileResize() {
             const widgetContainer = document.getElementById('train-bus-widget-container');
             if (widgetContainer && window.innerWidth <= 768) {
@@ -1235,42 +1250,59 @@
                     element.style.width = '100%';
                     element.style.boxSizing = 'border-box';
                     element.style.overflow = 'visible';
+                    element.style.wordWrap = 'break-word';
+                    element.style.whiteSpace = 'normal'; // РАЗРЕШАЕМ перенос текста
                     
                     if (element.tagName === 'IFRAME' || element.tagName === 'DIV') {
-                        element.style.minWidth = '300px';
-                        element.style.transform = window.innerWidth <= 480 ? 'scale(0.9)' : 'scale(0.95)';
+                        element.style.minWidth = '320px';
+                        element.style.transform = window.innerWidth <= 480 ? 'scale(0.8)' : 'scale(0.85)';
                         element.style.transformOrigin = 'top left';
                     }
                     
                     // Специальные стили для текстовых элементов
                     if (['INPUT', 'SELECT', 'BUTTON', 'LABEL', 'SPAN'].includes(element.tagName)) {
-                        element.style.fontSize = window.innerWidth <= 480 ? '12px' : '13px';
-                        element.style.lineHeight = '1.2';
-                        element.style.padding = window.innerWidth <= 480 ? '6px 4px' : '8px 6px';
-                        element.style.whiteSpace = 'nowrap';
-                        element.style.textOverflow = 'ellipsis';
+                        element.style.fontSize = window.innerWidth <= 480 ? '13px' : '14px';
+                        element.style.lineHeight = '1.3';
+                        element.style.padding = window.innerWidth <= 480 ? '8px 6px' : '10px 8px';
+                        element.style.whiteSpace = 'normal'; // РАЗРЕШАЕМ перенос
+                        element.style.wordBreak = 'break-word';
+                        element.style.hyphens = 'auto';
+                    }
+                    
+                    // СПЕЦИАЛЬНЫЕ СТИЛИ ДЛЯ РАДИОКНОПОК И ЧЕКБОКСОВ
+                    if (element.tagName === 'LABEL' && (element.previousElementSibling?.type === 'radio' || element.previousElementSibling?.type === 'checkbox')) {
+                        element.style.whiteSpace = 'normal';
+                        element.style.wordWrap = 'break-word';
+                        element.style.maxWidth = '100%';
+                        element.style.display = 'inline-block';
+                        element.style.verticalAlign = 'top';
                     }
                 });
                 
                 // Принудительно обновляем layout
-                widgetContainer.style.minHeight = window.innerWidth <= 480 ? '580px' : '550px';
+                widgetContainer.style.minHeight = window.innerWidth <= 480 ? '700px' : '650px';
+                widgetContainer.style.marginLeft = window.innerWidth <= 480 ? '-15px' : '-10px';
                 widgetContainer.offsetHeight; // Trigger reflow
             }
         }
 
-        // Запускаем принудительную адаптацию через интервалы (больше попыток)
-        setTimeout(forceWidgetMobileResize, 500);
-        setTimeout(forceWidgetMobileResize, 1000);
-        setTimeout(forceWidgetMobileResize, 2000);
-        setTimeout(forceWidgetMobileResize, 3000);
-        setTimeout(forceWidgetMobileResize, 5000);
-        setTimeout(forceWidgetMobileResize, 7000);
+        // Запускаем принудительную адаптацию через интервалы (еще больше попыток)
+        setTimeout(forceWidgetMobileResize, 300);
+        setTimeout(forceWidgetMobileResize, 800);
+        setTimeout(forceWidgetMobileResize, 1500);
+        setTimeout(forceWidgetMobileResize, 2500);
+        setTimeout(forceWidgetMobileResize, 4000);
+        setTimeout(forceWidgetMobileResize, 6000);
+        setTimeout(forceWidgetMobileResize, 8000);
 
         // Также при изменении размера окна
         window.addEventListener('resize', forceWidgetMobileResize);
         
         // Дополнительно при загрузке страницы
         window.addEventListener('load', forceWidgetMobileResize);
+        
+        // Дополнительно при скролле (для ленивой загрузки виджетов)
+        window.addEventListener('scroll', forceWidgetMobileResize, { once: true });
     });
 </script>
 </body>
