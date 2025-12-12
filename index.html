@@ -44,16 +44,52 @@ property="og:description"/>
     }
     
     /* КЛЮЧЕВАЯ CSS-АНИМАЦИЯ: Имитация медленного "плавания" */
+    
+    /* Десктоп/Планшет Анимация (большая амплитуда) */
     @keyframes float-slow {
         0% { transform: translate(0, 0); }
         50% { transform: translate(5px, 3px); }
         100% { transform: translate(0, 0); }
     }
+    @-webkit-keyframes float-slow {
+        0% { -webkit-transform: translate(0, 0); }
+        50% { -webkit-transform: translate(5px, 3px); }
+        100% { -webkit-transform: translate(0, 0); }
+    }
+
     @keyframes float-slow-reverse {
         0% { transform: translate(0, 0); }
         50% { transform: translate(-3px, -5px); }
         100% { transform: translate(0, 0); }
     }
+    @-webkit-keyframes float-slow-reverse {
+        0% { -webkit-transform: translate(0, 0); }
+        50% { -webkit-transform: translate(-3px, -5px); }
+        100% { -webkit-transform: translate(0, 0); }
+    }
+    
+    /* НОВАЯ МОБИЛЬНАЯ АНИМАЦИЯ (МАЛАЯ АМПЛИТУДА) */
+    @keyframes float-mobile {
+        0% { transform: translate(0, 0); }
+        50% { transform: translate(2px, 1px); } /* Смещение всего на 2px */
+        100% { transform: translate(0, 0); }
+    }
+    @-webkit-keyframes float-mobile {
+        0% { -webkit-transform: translate(0, 0); }
+        50% { -webkit-transform: translate(2px, 1px); } 
+        100% { -webkit-transform: translate(0, 0); }
+    }
+    @keyframes float-mobile-reverse {
+        0% { transform: translate(0, 0); }
+        50% { transform: translate(-1px, -2px); } /* Смещение всего на 2px */
+        100% { transform: translate(0, 0); }
+    }
+    @-webkit-keyframes float-mobile-reverse {
+        0% { -webkit-transform: translate(0, 0); }
+        50% { -webkit-transform: translate(-1px, -2px); } 
+        100% { -webkit-transform: translate(0, 0); }
+    }
+
 
     /* СТИЛИ ВЕРХНЕГО МЕНЮ (НАВИГАЦИИ) */
     .main-navigation {
@@ -231,6 +267,7 @@ property="og:description"/>
         gap: 20px;
         border: 2px solid rgba(255, 255, 255, 0.5); /* Белая полупрозрачная рамка */
         position: relative; /* Для контекста анимации */
+        overflow: hidden; /* ИСПРАВЛЕНИЕ: Обрезать элементы, выходящие за рамки */
     }
 
     .dashboard-indicators {
@@ -242,32 +279,35 @@ property="og:description"/>
     
     /* УЛУЧШЕНИЕ 2: Полупрозрачность Плавающих Индикаторов (текст) */
     .indicator-item {
-        color: white; /* Меняем текст на белый, чтобы он был виден на фоне */
+        color: white; 
         font-size: 0.9rem;
         font-weight: 500;
         margin-bottom: 10px;
         display: flex;
         align-items: center;
         gap: 8px;
-        background: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый фон */
-        backdrop-filter: blur(4px); /* Добавляем эффект "замутненного стекла" для глубины */
+        background: rgba(255, 255, 255, 0.2); 
+        backdrop-filter: blur(4px); 
         padding: 8px;
         border-radius: 6px;
-        border: 1px solid rgba(255, 255, 255, 0.4); /* Тонкий белый контур */
-        /* ПЛАВАНИЕ: Имитация медленного движения */
+        border: 1px solid rgba(255, 255, 255, 0.4); 
+        /* ПЛАВАНИЕ: Десктопная анимация */
         animation: float-slow 10s ease-in-out infinite alternate;
+        -webkit-animation: float-slow 10s ease-in-out infinite alternate; 
     }
     
-    /* Дополнительные стили для разных индикаторов для разнообразия движения */
+    /* Дополнительные стили для разных индикаторов для разнообразия движения (Десктоп) */
     .dashboard-indicators:nth-child(3) .indicator-item:nth-child(2) {
         animation: float-slow-reverse 12s ease-in-out infinite alternate;
+        -webkit-animation: float-slow-reverse 12s ease-in-out infinite alternate;
     }
     .dashboard-indicators:nth-child(1) .indicator-item:nth-child(3) {
         animation: float-slow 9s ease-in-out infinite alternate;
+        -webkit-animation: float-slow 9s ease-in-out infinite alternate;
     }
 
     .indicator-item i {
-        color: #f59e0b; /* Меняем цвет иконки на яркий оранжевый/желтый */
+        color: #f59e0b; 
         font-size: 1rem;
     }
 
@@ -295,14 +335,16 @@ property="og:description"/>
         font-weight: 600;
         transition: background-color 0.3s, transform 0.2s;
         border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Видимый нижний белый контур */
-        /* НОВАЯ АНИМАЦИЯ ДЛЯ ВСЕХ ИКОНОК */
+        /* ДЕСКТОПНАЯ АНИМАЦИЯ ДЛЯ КНОПОК */
         animation: float-slow-reverse 10s ease-in-out infinite alternate;
+        -webkit-animation: float-slow-reverse 10s ease-in-out infinite alternate; 
     }
 
-    /* Смещение анимации для разнообразия */
+    /* Смещение анимации для разнообразия (Десктоп) */
     .dashboard-nav-grid .nav-item:nth-child(2),
     .dashboard-nav-grid .nav-item:nth-child(5) {
         animation: float-slow 12s ease-in-out infinite alternate;
+        -webkit-animation: float-slow 12s ease-in-out infinite alternate;
     }
 
     .dashboard-nav-grid .nav-item:hover {
@@ -315,6 +357,7 @@ property="og:description"/>
         color: #f59e0b;
     }
     
+    /* АДАПТАЦИЯ ДЛЯ ПЛАНШЕТОВ И СМАРТФОНОВ (до 768px) */
     @media (max-width: 768px) {
         .hero-dashboard {
             grid-template-columns: 1fr;
@@ -323,8 +366,35 @@ property="og:description"/>
         .dashboard-indicators {
             display: none; /* Скрываем индикаторы на мобильных */
         }
+        
+        /* ПРИМЕНЕНИЕ НОВОЙ МОБИЛЬНОЙ АНИМАЦИИ К КНОПКАМ */
+        .dashboard-nav-grid .nav-item {
+            animation: float-mobile-reverse 10s ease-in-out infinite alternate;
+            -webkit-animation: float-mobile-reverse 10s ease-in-out infinite alternate; 
+        }
+
+        .dashboard-nav-grid .nav-item:nth-child(2),
+        .dashboard-nav-grid .nav-item:nth-child(5) {
+            animation: float-mobile 12s ease-in-out infinite alternate;
+            -webkit-animation: float-mobile 12s ease-in-out infinite alternate;
+        }
     }
     
+    /* ФИНАЛЬНОЕ ИСПРАВЛЕНИЕ ДЛЯ СМАРТФОНОВ (до 600px) */
+    @media (max-width: 600px) { 
+        .dashboard-nav-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 колонки вместо 3 для удобства */
+            gap: 15px;
+            padding: 10px;
+            /* Обеспечиваем центрирование, если родительский контейнер сужается */
+            max-width: 320px; 
+            margin: 0 auto;
+        }
+        .dashboard-nav-grid .nav-item {
+            padding: 20px 10px; 
+        }
+    }
+
     /* ИСПРАВЛЕНИЕ: Отступ для счетчика статистики */
     #travel-count {
       margin-top: 20px; 
