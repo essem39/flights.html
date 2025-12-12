@@ -120,64 +120,83 @@ name="description"/>
 
     /* СТИЛИ СЕКЦИИ HERO (VIP-Lounge) */
     .vip-lounge-hero {
-        /* *** ИСПРАВЛЕНО: ПРЯМАЯ ССЫЛКА НА КАРТИНКУ VIP-ЗАЛА *** */
         background: url('https://i.postimg.cc/mDfLdpTJ/Luxury-Tech-Lounge-Entrance-2025-12-12-18-03-23-2025-12-12-18-24-53.png') no-repeat center center / cover; 
         color: white;
-        padding: 80px 20px 40px; 
+        min-height: 550px; 
+        display: flex;
+        align-items: center; 
+        justify-content: center;
         text-align: center;
+        padding: 50px 20px; 
         position: relative; 
-        z-index: 1; /* Для контента */
+        z-index: 1; 
     }
     
-    /* ДОБАВЛЕНИЕ ОВЕРЛЕЯ ДЛЯ ЧИТАЕМОСТИ */
+    /* Оверлей для читаемости */
     .vip-lounge-hero::before {
         content: "";
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0, 0, 0, 0.35); /* Полупрозрачное затемнение */
+        background: rgba(0, 0, 0, 0.35); 
         z-index: -1; 
     }
 
-    .hero-content h1 {
-        font-size: clamp(2rem, 4vw, 3rem);
-        margin-bottom: 20px;
-        font-weight: 700; 
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero-content p {
-        font-size: 1.2rem;
-        margin-bottom: 40px;
-        max-width: 800px;
-        margin: 0 auto 40px auto;
-        font-weight: 300;
+    /* ФИНАЛЬНЫЙ СТИЛЬ: "Тонкая Бумага" - ВОССТАНОВЛЕН */
+    .hero-content {
+        max-width: 700px;
+        margin: 0 auto; 
+        padding: 30px; 
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1); /* Прозрачный белый */
+        backdrop-filter: blur(2px); /* Эффект размытия фона */
+        color: white; 
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Легкая тень */
     }
     
-    /* СТИЛИ КНОПОК */
-    .cta-button {
-        display: inline-block;
-        background-color: var(--color-accent); /* Золотистый акцент */
-        color: var(--color-primary); /* Фиолетовый текст */
-        font-size: 1.1rem;
+    .hero-content h1 {
+        font-size: clamp(2rem, 5vw, 3.2rem); 
+        margin-bottom: 10px; 
         font-weight: 700;
-        padding: 12px 30px;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: background-color 0.3s, transform 0.2s;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+        color: white; 
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); 
+    } 
+
+    .hero-content p {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        margin-top: 15px; 
+        margin-bottom: 30px; /* Увеличил отступ перед кнопкой */
+        opacity: 0.9;
+        color: white;
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.7); 
     }
 
+
+    /* СТИЛЬ ПРОЗРАЧНОЙ КНОПКИ */
+    .cta-button {
+        display: inline-block;
+        background-color: transparent; 
+        color: #f59e0b; 
+        padding: 15px 40px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.2rem;
+        border: 3px solid #f59e0b; 
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px rgba(245, 158, 11, 0.5); 
+        text-transform: none; 
+    }
     .cta-button:hover {
-        background-color: #f5c400; /* Более светлый золотистый */
-        transform: translateY(-2px);
+        background-color: #f59e0b; 
+        color: #1e293b; 
+        box-shadow: none;
+        transform: none; 
     }
 
     /* СЕКЦИЯ С ПРЕИМУЩЕСТВАМИ */
     .features-section {
         padding: 80px 20px;
-        background: var(--color-light); /* Светло-серый фон */
+        background: var(--color-light); 
     }
 
     .section-title {
@@ -213,7 +232,7 @@ name="description"/>
 
     .feature-icon {
         font-size: 3.5rem;
-        color: var(--color-accent); /* Золотистый акцент */
+        color: var(--color-accent); 
         margin-bottom: 15px;
     }
 
@@ -250,7 +269,7 @@ name="description"/>
         color: var(--color-primary);
         cursor: pointer;
         position: relative;
-        list-style: none; /* Убираем стандартную стрелку */
+        list-style: none; 
         background: var(--color-light);
         transition: background 0.3s;
     }
@@ -264,7 +283,7 @@ name="description"/>
         display: none;
     }
     .faq-item summary:after {
-        content: "\25B8"; /* Символ "вправо" */
+        content: "\25B8"; 
         position: absolute;
         right: 20px;
         top: 50%;
@@ -274,7 +293,7 @@ name="description"/>
     }
     
     .faq-item[open] summary:after {
-        content: "\25BE"; /* Символ "вниз" */
+        content: "\25BE"; 
         transform: translateY(-50%);
     }
 
@@ -285,7 +304,7 @@ name="description"/>
         line-height: 1.7;
     }
     
-    /* СТИЛИ ФУТЕРА (КОПИЯ ГЛАВНОЙ) */
+    /* СТИЛИ ФУТЕРА */
     .footer {
         background-color: #1e293b;
         color: #94a3b8;
@@ -408,7 +427,7 @@ name="description"/>
         .footer-section { width: 100%; }
         .footer-section h3 { padding-top: 10px; }
         .footer-section .footer-contacts { margin-bottom: 15px; }
-        .footer-partners-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
+        .footer-partners-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; } 
         .feature-card h3 { font-size: 1.2rem; }
     }
 </style>
@@ -426,6 +445,7 @@ name="description"/>
 <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
 <li><a href="hotels.html">🏨 Отели</a></li>
 <li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a class="active" href="vip-lounge.html">👑 VIP-Залы</a></li> 
 <li><a href="transfers.html">🚕 Трансферы</a></li>
 <li><a href="trains-buses.html">🚌 Автобусы</a></li>
 </ul>
@@ -442,6 +462,7 @@ name="description"/>
 <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
 <li><a href="hotels.html">🏨 Отели</a></li>
 <li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a class="active" href="vip-lounge.html">👑 VIP-Залы</a></li> 
 <li><a href="transfers.html">🚕 Трансферы</a></li>
 <li><a href="trains-buses.html">🚌 Автобусы</a></li>
 <li><a href="about.html">ℹ️ О нас</a></li>
@@ -454,12 +475,12 @@ name="description"/>
 <section class="vip-lounge-hero">
 <div class="container">
 <div class="hero-content">
-    <h1>Доступ в VIP-залы </h1>
+    <h1>Доступ в VIP-залы</h1>
     <p>
         Начните свое путешествие в комфорте. Бронируйте доступ в бизнес-залы
         аэропортов по всему миру без лишних хлопот.
     </p>
-    <a href="#" class="cta-button" onclick="alert('Здесь будет Ваш виджет или прямая ссылка на бронирование VIP-зала'); return false;">Найти VIP-зал сейчас</a>
+    <a href="https://vip-zal.tpo.li/yyuVHaXv?erid=2VtzqwQHRu3" class="cta-button">Найти VIP-зал сейчас</a>
 </div>
 </div>
 </section>
@@ -569,19 +590,28 @@ name="description"/>
             <li><a href="cars.html">🚗 Аренда авто</a></li>
             <li><a href="transfers.html">🚕 Трансферы</a></li>
             <li><a href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ">🚂 Ж/д билеты</a></li>
+            <li><a href="help.html">❓ Центр помощи</a></li>
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="privacy.html">Политика конфиденциальности</a></li>
+            <li><a href="terms.html">Условия использования</a></li>
         </ul>
     </div>
 
     <div class="footer-section company-info-section">
-        <h3>Компания и Поддержка</h3>
-        <ul>
-            <li><a href="about.html">О нас</a></li>
-            <li><a href="terms.html">Условия использования</a></li>
-            <li><a href="privacy.html">Политика конфиденциальности</a></li>
-        </ul>
-        <div class="footer-contacts" style="margin-top: 15px;">
-            <a href="mailto:support@airflowtravel.net" style="color: white;">
-                <i class="fas fa-envelope"></i> support@airflowtravel.net
+        <h3>Контакты</h3>
+        
+        <div class="footer-contacts" style="margin-bottom: 25px;">
+            <p style="margin-bottom: 8px; color: white; font-weight: 600;">24/7 Клиентская поддержка:</p>
+            <a href="tel:+74957750004" style="color: white; display: block; margin-bottom: 5px; text-decoration: none;">
+                <i class="fas fa-phone" style="color: #10b981;"></i> +7 495 775-00-04
+            </a>
+            <a href="tel:88007003360" style="color: white; display: block; margin-bottom: 15px; text-decoration: none;">
+                <i class="fas fa-phone" style="color: #10b981;"></i> 8 800 700-33-60
+            </a>
+            
+            <p style="margin-bottom: 8px; color: white; font-weight: 600;">Бронирование (Email 24/7):</p>
+            <a href="mailto:booking@vip-zal.ru" style="color: white; display: block; text-decoration: none;">
+                <i class="fas fa-envelope" style="color: #10b981;"></i> booking@vip-zal.ru
             </a>
         </div>
     </div>
