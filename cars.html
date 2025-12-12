@@ -202,9 +202,7 @@
         /* СТИЛИ КОНТЕНТА СТРАНИЦЫ (ОБЩИЕ) */
         /* ---------------------------------------------------- */
         
-        /* ЦВЕТОВАЯ СХЕМА: ЗЕЛЕНЫЙ (по запросу) */
-        /* Main Green: #10b981 (Emerald Green) */
-        /* Dark Green: #065f46 (Dark Teal Green for headings/accents) */
+        /* ЦВЕТОВАЯ СХЕМА: ЗЕЛЕНЫЙ */
         
         .section-title {
             text-align: center;
@@ -240,7 +238,7 @@
         .cta-button {
             display: inline-block;
             background-color: #10b981; /* Зеленый */
-            color: white; /* Изменено с #1e293b для лучшего контраста */
+            color: white; 
             padding: 15px 35px;
             border-radius: 8px;
             text-decoration: none;
@@ -278,7 +276,6 @@
             border-radius: 8px;
         }
         
-        /* Изменение цвета иконок на ЗЕЛЕНЫЙ по умолчанию */
         .product-icon {
             font-size: 3rem;
             margin-bottom: 10px;
@@ -291,7 +288,6 @@
             transform: translateY(-5px);
         }
         
-        /* Изменение цвета иконки на Темно-зеленый при наведении */
         .product-icon-link:hover .product-icon {
             color: #065f46;
         }
@@ -319,7 +315,6 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             background: #f8fafc; /* Очень светлый фон */
-            /* Основной цвет по умолчанию, но будет переопределен инлайн стилями */
             border-top: 5px solid #065f46; /* Темно-зеленый */
             transition: transform 0.3s;
         }
@@ -331,7 +326,6 @@
 
         .feature-icon {
             font-size: 3rem;
-            /* Основной цвет по умолчанию, но будет переопределен инлайн стилями */
             color: #065f46; /* Темно-зеленый */
             margin-bottom: 15px;
         }
@@ -348,7 +342,6 @@
             font-size: 0.95rem;
         }
         
-        /* Карточки классов авто - используем тот же стиль */
         .car-class-section {
             padding: 80px 20px;
             background: #f8fafc; /* Светлый фон */
@@ -603,7 +596,7 @@
 
 
         /* ---------------------------------------------------- */
-        /* СТИЛИ ФУТЕРА */
+        /* СТИЛИ ФУТЕРА (ОПТИМИЗИРОВАННЫЕ) */
         /* ---------------------------------------------------- */
         .footer {
             background-color: #1e293b;
@@ -612,16 +605,25 @@
             font-size: 14px;
         }
 
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px; /* Добавлено для мобильных */
+        }
+        
         .footer-content {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             margin-bottom: 40px;
+            /* Добавлена отзывчивость для лучшего контроля центрирования */
+            gap: 30px 20px; 
         }
 
         .footer-section {
-            width: 20%;
-            margin-right: 20px;
+            /* 4 колонки на больших экранах */
+            width: calc(25% - 15px);
+            min-width: 250px; 
             margin-bottom: 20px;
         }
 
@@ -650,11 +652,36 @@
             text-decoration: underline;
         }
         
+        /* АДАПТАЦИЯ ФУТЕРА */
+        @media (max-width: 1100px) {
+            .footer-section {
+                /* 2 колонки на планшетах */
+                width: calc(50% - 15px);
+                min-width: 0; /* Отключаем min-width для 2-колоночного режима */
+            }
+        }
+        
+        @media (max-width: 550px) {
+            .footer-section {
+                /* 1 колонка на мобильных */
+                width: 100%;
+            }
+        }
+        
+        /* Стили, которые были в старом коде, но стали избыточными после оптимизации
         @media (max-width: 768px) {
             .footer-section {
                 width: 100%;
                 margin-right: 0;
             }
+        }
+        */
+        
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+            text-align: center;
+            color: #94a3b8;
         }
     </style>
 </head>
@@ -663,7 +690,7 @@
     <nav class="main-navigation">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-               🚗 Airflow
+              🚙 Airflow
             </a>
 
             <ul class="nav-menu">
@@ -672,7 +699,7 @@
                 <li><a href="hotels.html">🏨 Отели</a></li>
                 <li><a href="cars.html" class="active">🚗 Аренда авто</a></li>
                 <li><a href="transfers.html">🚕 Трансферы</a></li>
-                <li><a href="trains-buses.html">🚆 Поезда</a></li>
+                <li><a href="trains-buses.html">🚌 Автобусы </a></li>
             </ul>
             
             <button class="mobile-menu-button" id="mobile-menu-button" aria-label="Меню">
@@ -691,7 +718,7 @@
             <li><a href="hotels.html">🏨 Отели</a></li>
             <li><a href="cars.html" class="active">🚗 Аренда авто</a></li>
             <li><a href="transfers.html">🚕 Трансферы</a></li>
-            <li><a href="trains-buses.html">🚆 Поезда</a></li>
+            <li><a href="trains-buses.html">🚌 Автобусы </a></li>
             <li><a href="about.html">ℹ️ О нас</a></li>
             <li><a href="help.html">❓ Помощь</a></li>
         </ul>
@@ -702,8 +729,9 @@
         <section class="hero-section">
             <div class="container">
                 <div class="hero-content">
-                    <h1>AIRFLOW | АВТОПРОКАТ</h1>
-                    <p><script async src="//tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&country=20&city=539641&classes=&powered_by=true&erid=2VtzqxDuSK3&campaign_id=7&promo_id=2468" charset="utf-8"></script>
+                    <h1>Airfllow © АВТОПРОКАТ</h1>
+                    <p>
+                        <script async src="//tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&country=20&city=539641&classes=&powered_by=true&erid=2VtzqxDuSK3&campaign_id=7&promo_id=2468" charset="utf-8"></script>
                         Прокат автомобилей – Лучшие предложения и условия аренды. Аренда авто без скрытых комиссий и с гарантией лучшей цены.
                     </p>
                     </a>
@@ -731,6 +759,7 @@
                         <div class="product-icon"><i class="fas fa-taxi"></i></div>
                         <div class="product-title">Трансферы</div>
                     </a>
+                    <a href="trains-buses.html">
                     <a href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ" class="product-icon-link">
                         <div class="product-icon"><i class="fas fa-train"></i></div>
                         <div class="product-title">Поезда</div>
