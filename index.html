@@ -85,7 +85,7 @@ property="og:description"/>
         100% { transform: translate(0, 0); }
     }
     @-webkit-keyframes float-mobile-reverse {
-        0% { -webkit-transform: translate(0, 0); }
+        0% { -webkit-transform: translate(-1px, -2px); } 
         50% { -webkit-transform: translate(-1px, -2px); } 
         100% { -webkit-transform: translate(0, 0); }
     }
@@ -112,16 +112,15 @@ property="og:description"/>
         height: 100%;
     }
 
+    /* СТИЛИЗАЦИЯ ЛОГОТИПА ИЗОБРАЖЕНИЕМ */
     .nav-logo {
         display: flex;
         align-items: center;
-        gap: 12px;
-        color: white;
-        font-size: 18px;
-        font-weight: 600;
         text-decoration: none;
+        padding: 5px 0; /* Добавляем отступы для изображения */
     }
-    
+    /* Изображение логотипа стилизуется inline в HTML */
+
     .nav-menu {
         display: flex;
         list-style: none;
@@ -236,13 +235,7 @@ property="og:description"/>
         text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
         line-height: 1.1;
     }
-
-    .hero-logo i {
-        color: #f59e0b; 
-        display: block;
-        margin-bottom: 5px;
-    }
-
+    
     /* НОВЫЙ СТИЛЬ H1: МАКСИМАЛЬНО МАЛЕНЬКИЙ */
     .hero-content h1 {
         font-size: clamp(1.2rem, 2.5vw, 2rem);
@@ -326,7 +319,7 @@ property="og:description"/>
         background-color: rgba(255, 255, 255, 0.1); 
         color: white;
         text-decoration: none;
-        padding: 15px 10px;
+        padding: 15px 10px; 
         border-radius: 8px;
         display: flex;
         flex-direction: column;
@@ -391,7 +384,7 @@ property="og:description"/>
             margin: 0 auto;
         }
         .dashboard-nav-grid .nav-item {
-            padding: 20px 10px; 
+            padding: 15px 10px; /* НОВЫЕ, КОМПАКТНЫЕ КНОПКИ */
         }
     }
 
@@ -446,6 +439,7 @@ property="og:description"/>
         padding: 20px 15px;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        /* Базовый синий цвет для Авиабилетов */
         border-top: 4px solid #1d4ed8; 
         transition: transform 0.3s, box-shadow 0.3s;
         height: 100%;
@@ -453,22 +447,72 @@ property="og:description"/>
         flex-direction: column;
         justify-content: center;
     }
+    /* СТИЛИ, ПЕРЕОПРЕДЕЛЯЮЩИЕ БАЗОВЫЙ СИНИЙ */
+
+    /* 2. Отели - Голубой/Морская волна */
+    .product-card.hotel-color {
+        border-top-color: #06b6d4; 
+    }
+    .product-card.hotel-color .product-icon {
+        color: #06b6d4;
+    }
+    .product-card.hotel-color:hover {
+        border-color: #06b6d4; 
+    }
+
+    /* 3. Аренда авто - Желтый */
+    .product-card.car-color {
+        border-top-color: #f59e0b; 
+    }
+    .product-card.car-color .product-icon {
+        color: #f59e0b;
+    }
+    .product-card.car-color:hover {
+        border-color: #f59e0b;
+    }
+
+    /* 4. Трансферы - Зеленый */
+    .product-card.transfer-color {
+        border-top-color: #10b981; 
+    }
+    .product-card.transfer-color .product-icon {
+        color: #10b981;
+    }
+    .product-card.transfer-color:hover {
+        border-color: #10b981;
+    }
+
+    /* 5. Ж/д билеты - Серый/Сланец */
+    .product-card.train-color {
+        border-top-color: #64748b; 
+    }
+    .product-card.train-color .product-icon {
+        color: #64748b;
+    }
+    .product-card.train-color:hover {
+        border-color: #64748b;
+    }
+    /* КОНЕЦ ПЕРЕОПРЕДЕЛЕНИЯ ЦВЕТОВ */
+
 
     .product-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        border-color: #f59e0b; /* Акцент при наведении */
+        /* Если не переопределено выше, вернется к синему */
+        border-color: #1d4ed8; 
     }
     
     .product-icon {
         font-size: 2.5rem;
         margin-bottom: 10px;
+        /* Базовый синий цвет для Авиабилетов */
         color: #1d4ed8; 
         transition: color 0.3s ease;
     }
     
     .product-card:hover .product-icon {
-        color: #f59e0b;
+        /* При наведении, цвет иконки следует цвету границы */
+        color: inherit; /* Использует цвет, заданный в классах выше */
     }
     
     .product-title {
@@ -512,7 +556,8 @@ property="og:description"/>
         border-radius: 10px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
         background: #f8fafc; /* Светло-серый фон для карточек */
-        border-top: 5px solid #10b981;
+        /* Базовый цвет акцента, который переопределяется ниже */
+        border-top: 5px solid #10b981; 
         transition: transform 0.3s, box-shadow 0.3s;
         height: 100%;
         text-align: left;
@@ -526,7 +571,8 @@ property="og:description"/>
         transform: translateY(-4px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
     }
-
+    
+    /* ГЛАВНЫЙ СТИЛЬ: Наследует цвет от border-top */
     .feature-icon, .tip-icon {
         font-size: 3rem;
         color: #10b981; 
@@ -594,6 +640,7 @@ property="og:description"/>
         border-radius: 6px;
         line-height: 1.5;
     }
+    
     /* СТИЛИ ОТЗЫВОВ И ФУТЕРА */
     .testimonials-section {
         background: #f8fafc;
@@ -701,7 +748,7 @@ property="og:description"/>
         background: #10b981 !important;
     }
 
-    /* СТИЛИ ФУТЕРА (ТРИ КОЛОНКИ) */
+    /* СТИЛИ ФУТЕРА (3 КОЛОНКИ НА ДЕСКТОПЕ) */
     .footer {
         background-color: #1e293b;
         color: #94a3b8;
@@ -723,15 +770,63 @@ property="og:description"/>
         gap: 30px; 
     }
     
+    /* ОБНОВЛЕНИЕ: 3 равные колонки для чистоты */
     .footer-section {
-        width: calc(33.333% - 20px);
+        width: calc(33.333% - 20px); 
         min-width: 250px; 
         margin-bottom: 20px;
     }
+    
+    /* СТИЛИЗАЦИЯ 3-Й КОЛОНКИ: НАШИ ПАРТНЕРЫ */
+    .partners-list-in-footer {
+        /* Колонка Партнеров остается такой же ширины */
+    }
+
+    /* Стили для сетки партнеров внутри футера */
+    .footer-partners-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 логотипа в ряд внутри колонки */
+        gap: 15px;
+        margin-top: 10px;
+    }
+    
+    /* Стили для ссылок внутри сетки партнеров (для Specialty Coffee) */
+    .footer-partners-grid a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .partner-item-footer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 0;
+        font-size: 0.9rem;
+        color: white; 
+    }
+
+    .partner-item-footer i {
+        font-size: 1.2rem;
+        color: #10b981; /* Зеленый акцент для иконок */
+    }
+    
+    /* Специальный стиль для иконки Specialty Coffee */
+    .partner-item-footer a i.fa-mug-hot {
+        color: #f59e0b !important; /* Оранжевый акцент */
+    }
+
+    .partner-item-footer p {
+        margin: 0;
+        color: #94a3b8;
+        line-height: 1.2;
+    }
+
+    /* КОНЕЦ СТИЛЕЙ ПАРТНЕРОВ В ФУТЕРЕ */
 
     .footer-section h3 {
         margin-bottom: 20px;
-        color: white;
+        /* Сохраняем Белый цвет */
+        color: white; 
         font-size: 1.1rem;
         border-bottom: 2px solid #334155;
         padding-bottom: 10px;
@@ -760,6 +855,7 @@ property="og:description"/>
     
     .footer-section .footer-contacts {
         font-size: 1rem;
+        margin-top: 10px;
     }
     
     .footer-section .footer-contacts a {
@@ -781,6 +877,15 @@ property="og:description"/>
         text-align: center;
         color: #94a3b8;
     }
+    
+    /* АДАПТАЦИЯ НА 3 КОЛОНКИ (ПЛАНШЕТЫ/МЕНЬШИЕ ЭКРАНЫ) */
+    @media (max-width: 1024px) {
+        .footer-section {
+            width: calc(33.333% - 20px);
+        }
+    }
+    
+    /* АДАПТАЦИЯ НА 1 КОЛОНКУ (МОБИЛЬНЫЕ) */
     @media (max-width: 768px) {
         .footer-content {
             flex-direction: column;
@@ -795,15 +900,23 @@ property="og:description"/>
         .footer-section .footer-contacts {
             margin-bottom: 15px;
         }
+        /* На мобильных: 3 логотипа в ряд для партнеров */
+        .footer-partners-grid {
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 10px;
+            margin-bottom: 15px;
+        }
     }
 </style>
 </head>
 <body>
 <nav class="main-navigation">
 <div class="nav-container">
-<a class="nav-logo" href="index.html">
-              <i class="fas fa-bus"></i> Airflow
-            </a>
+
+    <a class="nav-logo" href="index.html" style="padding: 5px 0;">
+        <img src="AirflowTravel.png" alt="Airflow Travel Logo" style="height: 45px; width: auto; display: block;">
+    </a>
+
 <ul class="nav-menu">
 <li><a href="index.html" class="active">Главная</a></li> 
 <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
@@ -836,9 +949,8 @@ property="og:description"/>
 <div class="container">
 <div class="hero-content">
     
-    <div class="hero-logo">
-        <i class="fas fa-bus" style="font-size: 3.5rem;"></i>
-        <p style="font-size: 1.5rem; font-weight: 500;">Airflow Travel</p>
+    <div class="hero-logo" style="margin-bottom: 30px;">
+        <img src="AirflowTravel.png" alt="Airflow Travel: Главный логотип" style="max-width: 250px; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));">
     </div>
 
     <h1 style="text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);">
@@ -899,25 +1011,25 @@ property="og:description"/>
         <p>Сравните цены от 728 авиакомпаний по всему миру.</p>
     </a>
 
-    <a href="hotels.html" class="product-card">
+    <a href="hotels.html" class="product-card hotel-color">
         <div class="product-icon"><i class="fas fa-hotel"></i></div>
         <div class="product-title">Отели</div>
         <p>Бронируйте жилье со скидкой до 40% без предоплаты.</p>
     </a>
     
-    <a href="cars.html" class="product-card">
+    <a href="cars.html" class="product-card car-color">
         <div class="product-icon"><i class="fas fa-car-alt"></i></div>
         <div class="product-title">Аренда авто</div>
         <p>Выгодный прокат в 175 странах от ведущих компаний.</p>
     </a>
     
-    <a href="/transfers.html" class="product-card">
+    <a href="/transfers.html" class="product-card transfer-color">
         <div class="product-icon"><i class="fas fa-taxi"></i></div>
         <div class="product-title">Трансферы</div>
         <p>Индивидуальный трансфер из/в аэропорт по фиксированной цене.</p>
     </a>
     
-    <a href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ" class="product-card">
+    <a href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ" class="product-card train-color">
         <div class="product-icon"><i class="fas fa-train"></i></div>
         <div class="product-title">Ж/д билеты</div>
         <p>Актуальное расписание и покупка билетов по России и СНГ.</p>
@@ -932,8 +1044,8 @@ property="og:description"/>
 <h2 class="section-title" style="color: #1e293b;">Преимущества покупки через Airflow</h2>
 <div class="features-grid">
 
-<a href="/insurance.html" class="feature-card" style="border-top-color: #f59e0b;">
-    <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-shield-alt"></i></div>
+<a href="/insurance.html" class="feature-card" style="border-top-color: #1d4ed8;">
+    <div class="feature-icon" style="color: #1d4ed8;"><i class="fas fa-shield-alt"></i></div>
     <h4>Страхование Путешествий</h4>
     <p>Сравните полисы для поездок по Шенгену и миру.</p>
 </a>
@@ -950,8 +1062,8 @@ property="og:description"/>
     <p>Доступ в бизнес-залы аэропортов по всему миру.</p>
 </a>
 
-<a href="/drimsim.html" class="feature-card" style="border-top-color: #1d4ed8;">
-    <div class="feature-icon" style="color: #1d4ed8;"><i class="fas fa-sim-card"></i></div>
+<a href="/drimsim.html" class="feature-card" style="border-top-color: #f59e0b;">
+    <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-sim-card"></i></div>
     <h4>Drimsim (Мобильный Интернет)</h4>
     <p>Универсальная SIM-карта для дешевого интернета и звонков в 190 странах мира.</p>
 </a>
@@ -968,8 +1080,8 @@ property="og:description"/>
     <p>Билеты без очередей в музеи, парки и достопримечательности.</p>
 </a>
 
-<a href="/trains.html" class="feature-card" style="border-top-color: #1d4ed8;">
-    <div class="feature-icon" style="color: #1d4ed8;"><i class="fas fa-train"></i></div>
+<a href="/trains.html" class="feature-card" style="border-top-color: #10b981;">
+    <div class="feature-icon" style="color: #10b981;"><i class="fas fa-train"></i></div>
     <h4>Ж/Д Билеты</h4>
     <p>Быстрый поиск и покупка Ж/Д билетов на вашем сайте.</p>
 </a>
@@ -980,8 +1092,8 @@ property="og:description"/>
     <p>Самое полное расписание рейсов по России и СНГ.</p>
 </a>
 
-<a href="/transfers.html" class="feature-card" style="border-top-color: #10b981;">
-    <div class="feature-icon" style="color: #10b981;"><i class="fas fa-taxi"></i></div>
+<a href="/transfers.html" class="feature-card" style="border-top-color: #1d4ed8;">
+    <div class="feature-icon" style="color: #1d4ed8;"><i class="fas fa-taxi"></i></div>
     <h4>Трансферы и Такси</h4>
     <p>Заказ такси и индивидуальных трансферов в любую точку.</p>
 </a>
@@ -1150,41 +1262,70 @@ property="og:description"/>
 <footer class="footer">
 <div class="footer-container">
 <div class="footer-content">
-<div class="footer-section">
-<h3>Наши Продукты</h3>
-<ul>
-<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-<li><a href="hotels.html">🏨 Отели</a></li>
-<li><a href="cars.html">🚗 Аренда авто</a></li>
-<li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ">🚂 Ж/д билеты</a></li>
-</ul>
-</div>
-
-<div class="footer-section">
-<h3>Информация</h3>
-<ul>
-<li><a href="https://airflowtravel.net/about.html">О нас</a></li>
-<li><a href="https://airflowtravel.net/terms.html">Условия использования</a></li>
-<li><a href="https://airflowtravel.net/privacy.html">Политика конфиденциальности</a></li>
-</ul>
-</div>
-
-<div class="footer-section">
-    <h3>Служба поддержки Airflow</h3>
-    <div class="footer-contacts" style="background: none;
-padding: 0; margin: 0;">
-        <a href="mailto:support@airflowtravel.net" style="color: white;">
-            <i class="fas fa-envelope"></i> support@airflowtravel.net
-        </a>
-        <p style="margin-top: 5px;
-font-size: 0.9rem; color: #64748b;">Мы ответим на ваши вопросы по всем продуктам</p>
+    
+    <div class="footer-section">
+        <h3>Наши Продукты</h3>
+        <ul>
+            <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+            <li><a href="hotels.html">🏨 Отели</a></li>
+            <li><a href="cars.html">🚗 Аренда авто</a></li>
+            <li><a href="transfers.html">🚕 Трансферы</a></li>
+            <li><a href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ">🚂 Ж/д билеты</a></li>
+        </ul>
     </div>
-</div>
 
-</div>
+    <div class="footer-section company-info-section">
+        <h3>Компания и Поддержка</h3>
+        <ul>
+            <li><a href="https://airflowtravel.net/about.html">О нас</a></li>
+            <li><a href="https://airflowtravel.net/terms.html">Условия использования</a></li>
+            <li><a href="https://airflowtravel.net/privacy.html">Политика конфиденциальности</a></li>
+        </ul>
+        <div class="footer-contacts" style="margin-top: 15px;">
+            <a href="mailto:support@airflowtravel.net" style="color: white;">
+                <i class="fas fa-envelope"></i> support@airflowtravel.net
+            </a>
+        </div>
+    </div>
+
+    <div class="footer-section partners-list-in-footer">
+        <h3>Наши Партнеры</h3>
+        <div class="footer-partners-grid">
+            <div class="partner-item-footer">
+                <i class="fas fa-plane-departure"></i> 
+                <p>Skyscanner</p>
+            </div>
+            <div class="partner-item-footer">
+                <i class="fas fa-building"></i> 
+                <p>Booking</p>
+            </div>
+            <div class="partner-item-footer">
+                <i class="fas fa-car-side"></i> 
+                <p>DiscoverCars</p>
+            </div>
+            <div class="partner-item-footer">
+                <i class="fas fa-ticket-alt"></i> 
+                <p>Tiqets</p>
+            </div>
+            <div class="partner-item-footer">
+                <i class="fas fa-train"></i> 
+                <p>Tutu.ru</p>
+            </div>
+            <div class="partner-item-footer">
+                <a href="https://coffeespecialty.ru" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-mug-hot" style="color: #f59e0b;"></i> 
+                    <p style="margin: 0; color: #94a3b8;">Specialty Coffee</p>
+                </a>
+            </div>
+            </div>
+    </div>
+    </div>
 <div class="footer-bottom">
 <p>&copy; 2025 Airflow Travel. Все права защищены.</p>
+    <p style="margin-top: 5px; font-size: 0.85rem; color: #64748b; display: flex; align-items: center; justify-content: center; gap: 5px;">
+        <i class="fas fa-asterisk" style="color: #06b6d4;"></i> 
+        Powered by Airflow Platform AI
+    </p>
 </div>
 </div>
 </footer>
