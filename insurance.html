@@ -300,6 +300,30 @@
         border-radius: 12px !important;
         overflow: hidden;
     }
+    
+    /* АГРЕССИВНЫЕ ПРАВИЛА ДЛЯ ВСЕХ ПОЛЕЙ ВВОДА */
+    #train-bus-widget-container input,
+    #train-bus-widget-container select,
+    #train-bus-widget-container textarea,
+    #train-bus-widget-container button,
+    #train-bus-widget-container .form-control,
+    #train-bus-widget-container [class*="input"],
+    #train-bus-widget-container [class*="field"],
+    #train-bus-widget-container [class*="select"] {
+        border-radius: 8px !important;
+        border-top-left-radius: 8px !important;
+        border-top-right-radius: 8px !important;
+        border-bottom-left-radius: 8px !important;
+        border-bottom-right-radius: 8px !important;
+    }
+    
+    /* ДОПОЛНИТЕЛЬНЫЕ ПРАВИЛА ДЛЯ IFRAME СОДЕРЖИМОГО */
+    #train-bus-widget-container iframe input,
+    #train-bus-widget-container iframe select,
+    #train-bus-widget-container iframe textarea,
+    #train-bus-widget-container iframe button {
+        border-radius: 8px !important;
+    }
 
     /* МАКСИМАЛЬНО КОМПАКТНЫЕ МОБИЛЬНЫЕ ИСПРАВЛЕНИЯ */
     @media (max-width: 768px) {
@@ -1370,7 +1394,6 @@
                 if (iframe) {
                     iframe.style.height = targetHeight;
                     iframe.style.minHeight = targetHeight;
-                    // ИСПРАВЛЕНИЕ: единый border-radius
                     iframe.style.borderRadius = '12px';
                     iframe.style.overflow = 'hidden';
                 }
@@ -1381,9 +1404,31 @@
                 // Принудительно устанавливаем стили для всех дочерних элементов
                 const allElements = widgetContainer.querySelectorAll('*');
                 allElements.forEach(element => {
-                    // ИСПРАВЛЕНИЕ: единые закругленные углы
-                    if (element.tagName === 'DIV' || element.tagName === 'FORM') {
-                        element.style.borderRadius = '12px';
+                    // АГРЕССИВНОЕ ПРИМЕНЕНИЕ BORDER-RADIUS КО ВСЕМ ЭЛЕМЕНТАМ
+                    const tagName = element.tagName;
+                    const inputType = element.type;
+                    
+                    // Для контейнеров
+                    if (tagName === 'DIV' || tagName === 'FORM' || tagName === 'SECTION') {
+                        element.style.setProperty('border-radius', '12px', 'important');
+                    }
+                    
+                    // КРИТИЧЕСКИ ВАЖНО: все поля ввода должны иметь одинаковые углы
+                    if (tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA') {
+                        element.style.setProperty('border-radius', '8px', 'important');
+                        element.style.setProperty('border-top-left-radius', '8px', 'important');
+                        element.style.setProperty('border-top-right-radius', '8px', 'important');
+                        element.style.setProperty('border-bottom-left-radius', '8px', 'important');
+                        element.style.setProperty('border-bottom-right-radius', '8px', 'important');
+                    }
+                    
+                    // Кнопки
+                    if (tagName === 'BUTTON' || inputType === 'submit' || inputType === 'button') {
+                        element.style.setProperty('border-radius', '8px', 'important');
+                        element.style.setProperty('border-top-left-radius', '8px', 'important');
+                        element.style.setProperty('border-top-right-radius', '8px', 'important');
+                        element.style.setProperty('border-bottom-left-radius', '8px', 'important');
+                        element.style.setProperty('border-bottom-right-radius', '8px', 'important');
                     }
                     
                     // Применяем стили ко всем элементам
@@ -1392,44 +1437,48 @@
                     element.style.boxSizing = 'border-box';
                     element.style.overflow = 'visible';
                     element.style.wordWrap = 'break-word';
-                    element.style.whiteSpace = 'normal'; // РАЗРЕШАЕМ перенос текста
+                    element.style.whiteSpace = 'normal';
                     
                     // КОМПАКТНЫЕ размеры для узких экранов
-                    if (element.tagName === 'IFRAME' || element.tagName === 'DIV') {
+                    if (tagName === 'IFRAME' || tagName === 'DIV') {
                         element.style.minWidth = window.innerWidth <= 390 ? '250px' : '280px';
                     }
                     
                     // КОМПАКТНЫЕ стили для текстовых элементов
-                    if (['INPUT', 'SELECT', 'BUTTON', 'LABEL', 'SPAN'].includes(element.tagName)) {
+                    if (['INPUT', 'SELECT', 'BUTTON', 'LABEL', 'SPAN'].includes(tagName)) {
                         element.style.fontSize = window.innerWidth <= 390 ? '12px' : (window.innerWidth <= 480 ? '14px' : '15px');
                         element.style.lineHeight = '1.3';
                         element.style.padding = window.innerWidth <= 390 ? '6px 3px' : (window.innerWidth <= 480 ? '8px 4px' : '10px 6px');
-                        element.style.whiteSpace = 'normal'; // РАЗРЕШАЕМ перенос
+                        element.style.whiteSpace = 'normal';
                         element.style.wordBreak = 'break-word';
                         element.style.hyphens = 'auto';
                         element.style.minHeight = window.innerWidth <= 390 ? '36px' : (window.innerWidth <= 480 ? '38px' : '40px');
                     }
                     
-                    // ИСПРАВЛЕНИЕ: закругленные углы для INPUT и SELECT
-                    if (element.tagName === 'INPUT' || element.tagName === 'SELECT') {
-                        element.style.borderRadius = '8px';
-                    }
-                    
                     // СПЕЦИАЛЬНЫЕ СТИЛИ ДЛЯ РАДИОКНОПОК И ЧЕКБОКСОВ
-                    if (element.type === 'radio' || element.type === 'checkbox') {
+                    if (inputType === 'radio' || inputType === 'checkbox') {
                         element.style.width = '18px';
                         element.style.height = '18px';
                         element.style.marginRight = window.innerWidth <= 390 ? '6px' : '8px';
                     }
                     
-                    // СТИЛИ ДЛЯ КНОПОК + закругленные углы
-                    if (element.tagName === 'BUTTON') {
+                    // СТИЛИ ДЛЯ КНОПОК
+                    if (tagName === 'BUTTON') {
                         element.style.minHeight = window.innerWidth <= 390 ? '40px' : (window.innerWidth <= 480 ? '42px' : '45px');
                         element.style.fontSize = window.innerWidth <= 390 ? '14px' : (window.innerWidth <= 480 ? '15px' : '16px');
                         element.style.fontWeight = 'bold';
                         element.style.padding = window.innerWidth <= 390 ? '8px 10px' : (window.innerWidth <= 480 ? '10px 12px' : '12px 15px');
-                        element.style.borderRadius = '8px';
                     }
+                });
+                
+                // ДОПОЛНИТЕЛЬНАЯ ОБРАБОТКА: поиск элементов по классам
+                const formControls = widgetContainer.querySelectorAll('.form-control, [class*="input"], [class*="field"], [class*="select"]');
+                formControls.forEach(el => {
+                    el.style.setProperty('border-radius', '8px', 'important');
+                    el.style.setProperty('border-top-left-radius', '8px', 'important');
+                    el.style.setProperty('border-top-right-radius', '8px', 'important');
+                    el.style.setProperty('border-bottom-left-radius', '8px', 'important');
+                    el.style.setProperty('border-bottom-right-radius', '8px', 'important');
                 });
                 
                 // СПЕЦИАЛЬНАЯ ОБРАБОТКА ЛЕЙБЛОВ РАДИОКНОПОК
@@ -1453,15 +1502,28 @@
         }
 
         // Запускаем принудительную адаптацию через интервалы
-        // УВЕЛИЧЕНО количество попыток для загрузки iframe
+        // МАКСИМАЛЬНОЕ количество попыток для гарантии применения стилей
+        setTimeout(forceWidgetUltraCompactResize, 100);
+        setTimeout(forceWidgetUltraCompactResize, 300);
         setTimeout(forceWidgetUltraCompactResize, 500);
+        setTimeout(forceWidgetUltraCompactResize, 800);
         setTimeout(forceWidgetUltraCompactResize, 1000);
+        setTimeout(forceWidgetUltraCompactResize, 1500);
         setTimeout(forceWidgetUltraCompactResize, 2000);
         setTimeout(forceWidgetUltraCompactResize, 3000);
         setTimeout(forceWidgetUltraCompactResize, 5000);
         setTimeout(forceWidgetUltraCompactResize, 7000);
         setTimeout(forceWidgetUltraCompactResize, 10000);
         setTimeout(forceWidgetUltraCompactResize, 15000);
+        setTimeout(forceWidgetUltraCompactResize, 20000);
+        
+        // Повторяем каждую секунду первые 5 секунд
+        let counter = 0;
+        const repeatInterval = setInterval(() => {
+            forceWidgetUltraCompactResize();
+            counter++;
+            if (counter >= 5) clearInterval(repeatInterval);
+        }, 1000);
         
         // MutationObserver для отслеживания появления iframe
         const widgetContainer = document.getElementById('train-bus-widget-container');
@@ -1469,10 +1531,14 @@
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
                     if (mutation.addedNodes.length) {
-                        // Проверяем, появился ли iframe
+                        // Проверяем, появился ли iframe или новые элементы
                         const iframe = widgetContainer.querySelector('iframe');
                         if (iframe) {
+                            // Применяем стили сразу и несколько раз с задержкой
                             forceWidgetUltraCompactResize();
+                            setTimeout(forceWidgetUltraCompactResize, 100);
+                            setTimeout(forceWidgetUltraCompactResize, 500);
+                            setTimeout(forceWidgetUltraCompactResize, 1000);
                         }
                     }
                 });
