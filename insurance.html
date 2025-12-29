@@ -279,7 +279,7 @@
     #train-bus-widget-container {
         padding: 0; 
         background: none;
-        border-radius: 0;
+        border-radius: 12px !important; /* ИСПРАВЛЕНИЕ: закругленные углы */
         box-shadow: none;
         margin: 0; 
         max-width: none; /* Разрешаем быть шире 100% */
@@ -291,6 +291,14 @@
         width: 100%;
         overflow-x: auto;
         overflow-y: hidden;
+        overflow: hidden; /* Обрезаем по border-radius */
+    }
+    
+    /* ЕДИНООБРАЗНЫЕ УГЛЫ ДЛЯ ВСЕХ ЭЛЕМЕНТОВ ВИДЖЕТА */
+    #train-bus-widget-container iframe,
+    #train-bus-widget-container > div {
+        border-radius: 12px !important;
+        overflow: hidden;
     }
 
     /* МАКСИМАЛЬНО КОМПАКТНЫЕ МОБИЛЬНЫЕ ИСПРАВЛЕНИЯ */
@@ -1362,6 +1370,9 @@
                 if (iframe) {
                     iframe.style.height = targetHeight;
                     iframe.style.minHeight = targetHeight;
+                    // ИСПРАВЛЕНИЕ: единый border-radius
+                    iframe.style.borderRadius = '12px';
+                    iframe.style.overflow = 'hidden';
                 }
                 
                 // Применяем высоту к контейнеру
@@ -1370,6 +1381,11 @@
                 // Принудительно устанавливаем стили для всех дочерних элементов
                 const allElements = widgetContainer.querySelectorAll('*');
                 allElements.forEach(element => {
+                    // ИСПРАВЛЕНИЕ: единые закругленные углы
+                    if (element.tagName === 'DIV' || element.tagName === 'FORM') {
+                        element.style.borderRadius = '12px';
+                    }
+                    
                     // Применяем стили ко всем элементам
                     element.style.maxWidth = '100%';
                     element.style.width = '100%';
@@ -1394,6 +1410,11 @@
                         element.style.minHeight = window.innerWidth <= 390 ? '36px' : (window.innerWidth <= 480 ? '38px' : '40px');
                     }
                     
+                    // ИСПРАВЛЕНИЕ: закругленные углы для INPUT и SELECT
+                    if (element.tagName === 'INPUT' || element.tagName === 'SELECT') {
+                        element.style.borderRadius = '8px';
+                    }
+                    
                     // СПЕЦИАЛЬНЫЕ СТИЛИ ДЛЯ РАДИОКНОПОК И ЧЕКБОКСОВ
                     if (element.type === 'radio' || element.type === 'checkbox') {
                         element.style.width = '18px';
@@ -1401,12 +1422,13 @@
                         element.style.marginRight = window.innerWidth <= 390 ? '6px' : '8px';
                     }
                     
-                    // СТИЛИ ДЛЯ КНОПОК
+                    // СТИЛИ ДЛЯ КНОПОК + закругленные углы
                     if (element.tagName === 'BUTTON') {
                         element.style.minHeight = window.innerWidth <= 390 ? '40px' : (window.innerWidth <= 480 ? '42px' : '45px');
                         element.style.fontSize = window.innerWidth <= 390 ? '14px' : (window.innerWidth <= 480 ? '15px' : '16px');
                         element.style.fontWeight = 'bold';
                         element.style.padding = window.innerWidth <= 390 ? '8px 10px' : (window.innerWidth <= 480 ? '10px 12px' : '12px 15px');
+                        element.style.borderRadius = '8px';
                     }
                 });
                 
