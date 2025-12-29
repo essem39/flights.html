@@ -126,10 +126,9 @@
     }
     
     .hero-section {
-        /* СИНИЙ ГРАДИЕНТ, КАК ФОН ДЛЯ СЛИЯНИЯ */
-        background: linear-gradient(135deg, #3c5496 0%, #636AFF 100%);
-        color: white;
-        /* УВЕЛИЧЕННЫЙ ПАДДИНГ */
+        /* ИНДИГО-ГРАДИЕНТ под новую палитру виджета */
+        background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+        color: #1e293b;
         padding: 80px 20px 60px; 
         text-align: center;
     }
@@ -140,12 +139,12 @@
         margin-bottom: 20px;
         font-weight: 700; 
         text-align: center;
-        color: white;
+        color: #4f46e5; /* Индиго акцент */
     }
     
     .hero-content p {
         font-size: 1.1rem;
-        color: rgba(255, 255, 255, 0.9);
+        color: #475569;
         margin-bottom: 30px;
         max-width: 800px;
         margin-left: auto;
@@ -153,17 +152,31 @@
     }
     
     /* ********************************************* */
-    /* *** КОНТЕЙНЕР ДЛЯ ВИДЖЕТА - МОБИЛЬНЫЕ ИСПРАВЛЕНИЯ *** */
+    /* *** КОНТЕЙНЕР ДЛЯ ВИДЖЕТА - ИНДИГО-ТЕМА *** */
     /* ********************************************* */
     #insurance-main-card {
         max-width: 900px; 
         margin: 0 auto 30px auto; 
-        padding: 20px; 
-        background: rgba(255, 255, 255, 0.15); /* Полупрозрачный белый */
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+        padding: 30px; 
+        background: white;
+        border: 3px solid #4f46e5; /* Индиго рамка */
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(79, 70, 229, 0.2), 0 0 40px rgba(199, 210, 254, 0.3); 
         width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Декоративный градиент в углу */
+    #insurance-main-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%);
+        pointer-events: none;
     }
 
     /* КРИТИЧЕСКИЕ МОБИЛЬНЫЕ ИСПРАВЛЕНИЯ */
@@ -227,10 +240,12 @@
     .card-title-search {
         font-size: 1.5rem;
         font-weight: 700;
-        color: white; 
+        color: #4f46e5; /* Индиго */
         margin-top: 0; 
         margin-bottom: 15px;
         text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
     
     /* МОБИЛЬНЫЕ ИСПРАВЛЕНИЯ ДЛЯ ЗАГОЛОВКА */
@@ -278,16 +293,16 @@
     /* Стили для Виджета - МАКСИМАЛЬНО КОМПАКТНЫЕ МОБИЛЬНЫЕ ИСПРАВЛЕНИЯ */
     #train-bus-widget-container {
         padding: 0; 
-        background: none;
+        background: linear-gradient(135deg, #faf5ff 0%, #f5f3ff 100%); /* Легкий индиго-оттенок */
         border-radius: 12px;
-        box-shadow: none;
+        box-shadow: inset 0 2px 8px rgba(79, 70, 229, 0.1);
         margin: 0; 
         max-width: none;
         position: relative;
         min-height: 450px; 
         margin-bottom: 10px;
         width: 100%;
-        overflow: hidden; /* Обрезает содержимое по border-radius */
+        overflow: hidden;
     }
 
     /* АДАПТИВНАЯ ВЫСОТА ДЛЯ РАЗНЫХ ЭКРАНОВ */
@@ -512,8 +527,8 @@
         font-size: 0.9rem;
         margin-top: 15px;
         margin-bottom: 0;
-        opacity: 0.8;
-        color: rgba(255, 255, 255, 0.8); 
+        opacity: 1;
+        color: #475569; 
         max-width: 90%;
         margin: 15px auto 15px auto; 
         text-align: center;
@@ -537,7 +552,7 @@
     /* СТИЛИ ДЛЯ ПЕРЕМЕЩЕННОГО SEO-ТЕКСТА (РАЗДЕЛ "Сравните предложения...") */
     .seo-description-moved {
         font-size: 1.1rem;
-        color: rgba(255, 255, 255, 0.9);
+        color: #475569;
         margin-top: 25px;
         max-width: 800px;
         margin-left: auto;
@@ -563,7 +578,7 @@
     }
     
     .product-icons-section .section-title {
-        color: #636AFF; 
+        color: #4f46e5; 
     }
     
     .product-icons-grid {
@@ -592,12 +607,12 @@
     }
     
     .product-icon-link:hover {
-        color: #636AFF; 
+        color: #4f46e5; 
         transform: translateY(-5px);
     }
     
     .product-icon-link:hover .product-icon {
-        color: #636AFF; 
+        color: #4f46e5; 
     }
 
     /* СТИЛИ КАРТОЧЕК */
@@ -626,7 +641,7 @@
         border-radius: 10px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
         background: #ffffff;
-        border-top: 5px solid #636AFF; 
+        border-top: 5px solid #4f46e5; 
         transition: transform 0.3s, box-shadow 0.3s;
         height: 100%;
         text-align: left;
@@ -643,7 +658,7 @@
 
     .feature-icon, .tip-icon {
         font-size: 3rem;
-        color: #636AFF; 
+        color: #4f46e5; 
         margin-bottom: 15px;
         text-align: center;
     }
@@ -681,7 +696,7 @@
         right: 0;
         top: 5px;
         font-size: 14px;
-        color: #636AFF; 
+        color: #4f46e5; 
         transition: transform 0.3s;
     }
     .tip-card[open] summary:after {
@@ -736,7 +751,7 @@
     }
     
     .author-avatar {
-        background: #636AFF; 
+        background: #4f46e5; 
         color: white;
         width: 50px;
         height: 50px;
@@ -780,11 +795,11 @@
     }
 
     .swiper-pagination-bullet-active {
-        background: #636AFF !important; 
+        background: #4f46e5 !important; 
     }
     
     .swiper-button-prev, .swiper-button-next {
-        color: #636AFF !important; 
+        color: #4f46e5 !important; 
         opacity: 0.7;
         transition: opacity 0.3s;
     }
@@ -863,7 +878,7 @@
     }
     
     .footer-section .footer-contacts i {
-        color: #636AFF; 
+        color: #4f46e5; 
         margin-right: 8px;
     }
 
@@ -935,7 +950,7 @@
         <div id="widget-flex-wrapper"> 
             
             <div id="train-bus-widget-container">
-            <script async src="//tpwgt.com/content?trs=478043&shmarker=144185&countryGroups=schengen&medicine=30000&powered_by=false&primary=%23636AFF&light=%23EDF4FE&background=%23E5ECF6&success=%2341CC78&warning=%23FB751C&error=%23FF6666&search=%23F54B92&deletion=%23FFECEC&erid=2VtzqukAgWu&campaign_id=24&promo_id=1498" charset="utf-8"></script>
+            <script async src="//tpwgt.com/content?trs=478043&shmarker=144185&countryGroups=schengen&medicine=30000&powered_by=false&primary=%234f46e5&light=%23e0e7ff&background=%23c7d2fe&success=%23059669&warning=%23d97706&error=%23dc2626&search=%238b5cf6&deletion=%23fecaca&erid=2VtzqukAgWu&campaign_id=24&promo_id=1498" charset="utf-8"></script>
             </div>
             
         </div>
@@ -999,33 +1014,33 @@
 <div class="container">
 <h2 class="section-title" style="color: #1e293b;">Преимущества покупки страхового полиса</h2>
 <div class="features-grid">
-<div class="feature-card" style="border-top-color: #636AFF;">
-<div class="feature-icon" style="color: #636AFF;"><i class="fas fa-clipboard-check"></i></div>
+<div class="feature-card" style="border-top-color: #4f46e5;">
+<div class="feature-icon" style="color: #4f46e5;"><i class="fas fa-clipboard-check"></i></div>
 <h4>Аккредитация Visa</h4>
 <p>Полисы соответствуют всем требованиям для получения Шенгенской и других виз.</p>
 </div>
-<div class="feature-card" style="border-top-color: #636AFF;">
-<div class="feature-icon" style="color: #636AFF;"><i class="fas fa-hand-holding-dollar"></i></div>
+<div class="feature-card" style="border-top-color: #4f46e5;">
+<div class="feature-icon" style="color: #4f46e5;"><i class="fas fa-hand-holding-dollar"></i></div>
 <h4>Без переплат</h4>
 <p>Сравнивайте цены напрямую от 14+ ведущих страховых компаний.</p>
 </div>
-<div class="feature-card" style="border-top-color: #636AFF;">
-<div class="feature-icon" style="color: #636AFF;"><i class="fas fa-user-shield"></i></div>
+<div class="feature-card" style="border-top-color: #4f46e5;">
+<div class="feature-icon" style="color: #4f46e5;"><i class="fas fa-user-shield"></i></div>
 <h4>Надежные партнеры</h4>
 <p>Работаем только с проверенными страховыми компаниями России.</p>
 </div>
-<div class="feature-card" style="border-top-color: #636AFF;">
-<div class="feature-icon" style="color: #636AFF;"><i class="fas fa-file-pdf"></i></div>
+<div class="feature-card" style="border-top-color: #4f46e5;">
+<div class="feature-icon" style="color: #4f46e5;"><i class="fas fa-file-pdf"></i></div>
 <h4>Полис на Email</h4>
 <p>Страховка придет на вашу почту в формате PDF через 5 минут после оплаты.</p>
 </div>
-<div class="feature-card" style="border-top-color: #636AFF;">
-<div class="feature-icon" style="color: #636AFF;"><i class="fas fa-medkit"></i></div>
+<div class="feature-card" style="border-top-color: #4f46e5;">
+<div class="feature-icon" style="color: #4f46e5;"><i class="fas fa-medkit"></i></div>
 <h4>Экстренная помощь 24/7</h4>
 <p>Круглосуточная поддержка от сервисной компании по всему миру.</p>
 </div>
-<div class="feature-card" style="border-top-color: #636AFF;">
-<div class="feature-icon" style="color: #636AFF;"><i class="fas fa-map-location-dot"></i></div>
+<div class="feature-card" style="border-top-color: #4f46e5;">
+<div class="feature-icon" style="color: #4f46e5;"><i class="fas fa-map-location-dot"></i></div>
 <h4>Любая страна</h4>
 <p>Оформление полиса для поездки в любую точку мира, включая сложные направления.</p>
 </div>
@@ -1037,9 +1052,9 @@
 <div class="container">
 <h2 class="section-title">Вопросы и Ответы о Страховании</h2>
 <div class="tips-grid">
-<details class="tip-card" style="border-top-color: #636AFF;">
+<details class="tip-card" style="border-top-color: #4f46e5;">
 <summary>
-<div class="tip-icon" style="color: #636AFF;"><i class="fas fa-dollar-sign"></i></div>
+<div class="tip-icon" style="color: #4f46e5;"><i class="fas fa-dollar-sign"></i></div>
 <h4>Минимальная сумма покрытия</h4>
 <p class="tip-card-text-short">Какое покрытие выбрать для Шенгенской визы?</p>
 </summary>
@@ -1048,9 +1063,9 @@
 </div>
 </details>
 
-<details class="tip-card" style="border-top-color: #636AFF;">
+<details class="tip-card" style="border-top-color: #4f46e5;">
 <summary>
-<div class="tip-icon" style="color: #636AFF;"><i class="fas fa-person-skiing"></i></div>
+<div class="tip-icon" style="color: #4f46e5;"><i class="fas fa-person-skiing"></i></div>
 <h4>Страхование активного отдыха</h4>
 <p class="tip-card-text-short">Нужен ли отдельный полис для катания на лыжах или дайвинга?</p>
 </summary>
@@ -1059,9 +1074,9 @@
 </div>
 </details>
 
-<details class="tip-card" style="border-top-color: #636AFF;">
+<details class="tip-card" style="border-top-color: #4f46e5;">
 <summary>
-<div class="tip-icon" style="color: #636AFF;"><i class="fas fa-virus"></i></div>
+<div class="tip-icon" style="color: #4f46e5;"><i class="fas fa-virus"></i></div>
 <h4>Покрытие COVID-19</h4>
 <p class="tip-card-text-short">Включено ли лечение коронавируса в стандартный полис?</p>
 </summary>
@@ -1070,9 +1085,9 @@
 </div>
 </details>
 
-<details class="tip-card" style="border-top-color: #636AFF;">
+<details class="tip-card" style="border-top-color: #4f46e5;">
 <summary>
-<div class="tip-icon" style="color: #636AFF;"><i class="fas fa-laptop-code"></i></div>
+<div class="tip-icon" style="color: #4f46e5;"><i class="fas fa-laptop-code"></i></div>
 <h4>Как работает страховка</h4>
 <p class="tip-card-text-short">Что делать при наступлении страхового случая за границей?</p>
 </summary>
@@ -1081,9 +1096,9 @@
 </div>
 </details>
 
-<details class="tip-card" style="border-top-color: #636AFF;">
+<details class="tip-card" style="border-top-color: #4f46e5;">
 <summary>
-<div class="tip-icon" style="color: #636AFF;"><i class="fas fa-clock-rotate-left"></i></div>
+<div class="tip-icon" style="color: #4f46e5;"><i class="fas fa-clock-rotate-left"></i></div>
 <h4>Когда оформлять полис</h4>
 <p class="tip-card-text-short">За сколько дней до поездки лучше купить страховку?</p>
 </summary>
@@ -1092,9 +1107,9 @@
 </div>
 </details>
 
-<details class="tip-card" style="border-top-color: #636AFF;">
+<details class="tip-card" style="border-top-color: #4f46e5;">
 <summary>
-<div class="tip-icon" style="color: #636AFF;"><i class="fas fa-ban"></i></div>
+<div class="tip-icon" style="color: #4f46e5;"><i class="fas fa-ban"></i></div>
 <h4>Страховка от невыезда</h4>
 <p class="tip-card-text-short">В каких случаях можно получить компенсацию за отмену поездки?</p>
 </summary>
