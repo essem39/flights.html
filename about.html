@@ -1,490 +1,716 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="ie=edge" http-equiv="X-X-Compatible"/>
-<meta content="Миссия Airflow Travel: Ваш надежный агрегатор для поиска и сравнения самых выгодных предложений авиабилетов, отелей и трансферов."
-name="description"/>
-
-<link href="bus_icon-icons.com_76529.ico" rel="icon" type="image/x-icon"/>
-
-<title>О нас | Airflow Travel</title>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet"/>
-<style>
-    /* БАЗОВЫЕ СТИЛИ (ОБЩИЕ) - ОТ НАШЕГО ШАБЛОНА */
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO META TAGS -->
+  <title>О нас - Поиск авиабилетов Airflow | Aviasales агрегатор</title>
+  <meta name="description" content="Airflow - современный агрегатор поиска авиабилетов. Сравниваем цены среди 728 авиакомпаний через Aviasales. Реальные данные, честные цены, без скрытых комиссий.">
+  <meta name="keywords" content="о нас, airflow travel, поиск билетов, aviasales, агрегатор, сравнение цен, дешевые авиабилеты, 728 авиакомпаний">
+  <meta name="robots" content="index, follow">
+  
+  <!-- OPEN GRAPH -->
+  <meta property="og:title" content="О нас - Airflow Поиск Авиабилетов">
+  <meta property="og:description" content="Современный агрегатор поиска авиабилетов. Сравниваем 728 авиакомпаний через Aviasales">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://search.airflowtravel.net/about.html">
+  
+  <link rel="icon" href="bus_icon-icons.com_76529.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
     * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    html, body {
-        overflow-x: hidden;
-        width: 100%;
-        max-width: 100%;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        line-height: 1.6;
-        color: #333;
-        background-color: #f8fafc; /* Светлый фон для страницы "О нас" */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      background: #f8fafc;
     }
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-    
-    /* ЦВЕТОВАЯ СХЕМА (Нейтральный синий) */
-    :root {
-        --color-primary: #1e40af; /* Яркий синий, как в оригинале */
-        --color-accent: #2563eb;  /* Акцент */
-        --color-text: #1e293b;
-        --color-light: #f8fafc;
-    }
-
-    /* СТИЛИ ВЕРХНЕГО МЕНЮ (НАВИГАЦИИ) - СТАНДАРТ */
+    /* НАВИГАЦИЯ */
     .main-navigation {
-        background: #1e293b;
-        padding: 0;
-        position: sticky;
-        top: 0;
-        z-index: 1020;
-        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        height: 55px;
+      background: #1e293b;
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+      height: 55px;
     }
 
     .nav-container {
-        max-width: 1240px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 100px;
-        height: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 100px;
+      height: 100%;
     }
 
     .nav-logo {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        padding: 5px 0;
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
     }
-    .nav-logo img {
-        height: 45px; width: auto; display: block;
+
+    .nav-logo-icon {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, #163e9c 0%, #0c9c71 100%);
+      border-radius: 8px;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo-icon::before {
+      content: "✈";
+      color: white;
+      font-size: 16px;
     }
 
     .nav-menu {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        gap: 25px;
+      display: flex;
+      list-style: none;
+      gap: 25px;
     }
 
     .nav-menu a {
-        color: #94a3b8;
-        text-decoration: none;
-        font-size: 15px;
-        font-weight: 500;
-        padding: 18px 0;
-        transition: color 0.3s ease;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 18px 0;
+      transition: color 0.3s ease;
     }
 
-    .nav-menu a:hover, .nav-menu a.active {
-        color: white;
-        text-decoration: none;
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: white;
     }
 
-    /* Мобильное меню - СТАНДАРТ */
-    .mobile-menu-button { display: none; background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 8px; }
-    .mobile-menu-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 999; opacity: 0; transition: opacity 0.3s ease; }
-    .mobile-menu-overlay.active { opacity: 1; }
-    .mobile-menu { display: none; position: fixed; top: 0; right: -280px; width: 260px; height: 100vh; background: #1e293b; z-index: 1001; padding: 60px 15px 15px; box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3); transition: right 0.3s ease; overflow-y: auto; }
-    .mobile-menu.active { right: 0; }
-    .mobile-menu-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 5px; }
-    .mobile-menu-links { list-style: none; padding: 0; margin: 0; }
-    .mobile-menu-links a { color: #94a3b8; text-decoration: none; font-size: 16px; display: block; padding: 12px 15px; border-radius: 6px; transition: all 0.3s ease; }
-    .mobile-menu-links a:hover, .mobile-menu-links a.active { background: #334155; color: white; text-decoration: none; }
-
-    @media (max-width: 1175px) {
-        .nav-container { padding: 0 16px; }
-        .nav-menu { display: none; }
-        .mobile-menu-button { display: block; }
-        .mobile-menu-overlay, .mobile-menu { display: block; }
-    }
-    @media (max-width: 480px) {
-        .nav-container { padding: 0 12px; }
+    /* HERO SECTION */
+    .hero-section {
+      background: linear-gradient(135deg, #163e9c 0%, #0c9c71 100%);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* --- СЕКЦИЯ КОНТЕНТА "О НАС" --- */
-    .about-section {
-        padding: 80px 20px;
-        background: var(--color-light); 
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M50 10 L90 90 L10 90 Z" fill="rgba(255,255,255,0.03)"/></svg>');
+      opacity: 0.3;
     }
 
-    .about-card {
-        background: white;
-        padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        max-width: 900px;
-        margin: 0 auto;
-    }
-    
-    .about-card h1 {
-        color: var(--color-primary);
-        font-size: 2.2rem;
-        margin-bottom: 25px;
-        border-bottom: 2px solid #e5e7eb;
-        padding-bottom: 15px;
-        font-weight: 700;
-    }
-    .about-card h2 {
-        color: var(--color-text);
-        font-size: 1.5rem;
-        margin-top: 30px;
-        margin-bottom: 15px;
-        font-weight: 600;
-    }
-    .about-card p {
-        font-size: 1rem;
-        color: #4b5563;
-        margin-bottom: 15px;
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    /* ПЕРЕРАБОТАННЫЙ ГРИД ПРИНЦИПОВ (Используем структуру features-grid) */
-    .principles-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-        margin: 40px 0;
-    }
-    
-    .principle-card {
-        background: #f0f4ff; /* Очень светлый синий фон */
-        padding: 25px;
-        border-radius: 10px;
-        text-align: center;
-        border-bottom: 3px solid var(--color-accent);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    .hero-section h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      font-weight: 700;
     }
 
-    .principle-card i {
-        font-size: 2.5rem;
-        color: var(--color-accent); 
-        margin-bottom: 10px;
+    .hero-section .subtitle {
+      font-size: 24px;
+      margin-bottom: 15px;
+      opacity: 0.95;
     }
 
-    .principle-card strong {
-        display: block;
-        font-size: 1.1rem;
-        color: var(--color-primary);
-        font-weight: 700;
-        margin-bottom: 8px;
+    .hero-section p {
+      font-size: 18px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    .principle-card p {
-        color: #64748b;
-        font-size: 0.95rem;
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-top: 40px;
+      flex-wrap: wrap;
     }
 
-
-    /* --- СТИЛИ ФУТЕРА (СТАНДАРТ) --- */
-    .footer {
-        background-color: #1e293b;
-        color: #94a3b8;
-        padding: 60px 0 20px;
-        font-size: 14px;
+    .stat-item {
+      text-align: center;
     }
 
-    .footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
+    .stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* CONTENT SECTIONS */
+    .content-section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 36px;
+      color: #163e9c;
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #64748b;
+      font-size: 18px;
+      margin-bottom: 50px;
+    }
+
+    /* CARDS */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #163e9c 0%, #0c9c71 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 28px;
+      color: white;
+    }
+
+    .card h3 {
+      color: #163e9c;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    /* MISSION BLOCK */
+    .mission-block {
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      border-radius: 16px;
+      padding: 50px;
+      margin: 60px 0;
+      border-left: 6px solid #163e9c;
+    }
+
+    .mission-block h2 {
+      color: #163e9c;
+      font-size: 32px;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .mission-block p {
+      font-size: 18px;
+      color: #475569;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    /* VALUES GRID */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .value-item {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      border-left: 4px solid #0c9c71;
+    }
+
+    .value-item h4 {
+      color: #163e9c;
+      font-size: 18px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .value-item p {
+      color: #64748b;
+      font-size: 15px;
+    }
+
+    /* PARTNERS SECTION */
+    .partners-section {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      margin: 40px 0;
+    }
+
+    .partners-section h3 {
+      color: #163e9c;
+      font-size: 28px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .partner-card {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 20px;
+      border-left: 4px solid #0c9c71;
+    }
+
+    .partner-card h4 {
+      color: #163e9c;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .partner-card p {
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      background: linear-gradient(135deg, #163e9c 0%, #0c9c71 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 16px;
+      margin: 60px 0;
+    }
+
+    .cta-section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .cta-section p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: white;
+      color: #163e9c;
+      padding: 15px 40px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1e293b;
+      color: #94a3b8;
+      padding: 50px 20px 20px;
     }
 
     .footer-content {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        margin-bottom: 40px;
-        gap: 30px; 
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 30px;
     }
-    
-    .footer-section {
-        width: calc(25% - 20px); 
-        min-width: 250px; 
-        margin-bottom: 20px;
-    }
-    
-    .footer-section:nth-child(2) { min-width: 200px; } /* Разделы сайта */
-    .footer-section:nth-child(3) { min-width: 220px; } /* Полезная информация */
-    .footer-section:nth-child(4) { min-width: 250px; } /* Направления */
-    
+
     .footer-section h3 {
-        margin-bottom: 20px;
-        color: white; 
-        font-size: 1.1rem;
-        border-bottom: 2px solid #334155;
-        padding-bottom: 10px;
+      color: white;
+      margin-bottom: 15px;
+      font-size: 18px;
     }
 
     .footer-section ul {
-        list-style: none;
-        padding-left: 0;
+      list-style: none;
     }
 
     .footer-section li {
-        margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .footer-section a {
-        color: #94a3b8;
-        transition: 0.3s;
-        font-size: 0.95rem;
-        text-decoration: none;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
     }
 
     .footer-section a:hover {
-        color: white;
-        text-decoration: underline;
-    }
-    
-    .footer-contacts a {
-        display: block;
-        margin-top: 5px;
-        color: white;
-        font-size: 0.95rem;
-    }
-    
-    .footer-contacts i {
-        color: #10b981;
-        margin-right: 8px;
-    }
-    
-    .footer-bottom {
-        border-top: 1px solid #334155;
-        padding-top: 20px;
-        text-align: center;
-        color: #94a3b8;
-    }
-    
-    .footer-bottom p {
-        margin-top: 5px; font-size: 0.85rem; color: #64748b; 
-        display: flex; align-items: center; justify-content: center; gap: 5px;
-    }
-    
-    .footer-bottom p i {
-        color: #06b6d4;
+      color: white;
     }
 
-    /* АДАПТАЦИЯ (МОБИЛЬНЫЕ) */
-    @media (max-width: 768px) {
-        .footer-content { flex-direction: column; gap: 0; }
-        .footer-section { width: 100%; }
-        .footer-section h3 { padding-top: 10px; }
-        .about-card { padding: 25px 15px; } /* Уменьшаем внутренний отступ для мобильных */
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #334155;
+      font-size: 14px;
     }
-</style>
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0 20px;
+      }
+
+      .nav-menu {
+        display: none;
+      }
+
+      .hero-section h1 {
+        font-size: 36px;
+      }
+
+      .hero-section .subtitle {
+        font-size: 20px;
+      }
+
+      .stats-bar {
+        gap: 30px;
+      }
+
+      .stat-number {
+        font-size: 28px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .mission-block {
+        padding: 30px 20px;
+      }
+
+      .cards-grid,
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<nav class="main-navigation">
-<div class="nav-container">
-
-    <a class="nav-logo" href="index.html">
-        <img src="AirflowTravel.png" alt="Airflow Travel Logo">
-    </a>
-
-<ul class="nav-menu">
-<li><a href="index.html">Главная</a></li> 
-<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-<li><a href="hotels.html">🏨 Отели</a></li>
-<li><a href="cars.html">🚗 Аренда авто</a></li>
-<li><a href="vip-lounge.html">👑 VIP-Залы</a></li> 
-<li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="trains-buses.html">🚌 Автобусы</a></li>
-</ul>
-<button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button">
-<i class="fas fa-bars"></i>
-</button>
-</div>
-</nav>
-<div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
-<nav class="mobile-menu" id="mobile-menu">
-<button aria-label="Закрыть" class="mobile-menu-close" id="mobile-menu-close">×</button>
-<ul class="mobile-menu-links">
-<li><a href="index.html">Главная</a></li>
-<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-<li><a href="hotels.html">🏨 Отели</a></li>
-<li><a href="cars.html">🚗 Аренда авто</a></li>
-<li><a href="vip-lounge.html">👑 VIP-Залы</a></li> 
-<li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="trains-buses.html">🚌 Автобусы</a></li>
-<li><a class="active" href="about.html">ℹ️ О нас</a></li>
-<li><a href="help.html">❓ Помощь</a></li>
-</ul>
-</nav>
-
-<main>
-    
-<section class="about-section">
-<div class="container">
-<div class="about-card">
-    
-    <h1>О нас: Миссия Airflow Travel</h1>
-    
-    <p>Добро пожаловать в Airflow Travel! Мы — не просто сайт, а Ваш личный инструмент для быстрого и эффективного поиска лучших предложений для путешествий.</p>
-
-    <h2>Наши принципы</h2>
-    
-    <div class="principles-grid">
-        <div class="principle-card">
-            <i class="fas fa-search-dollar"></i>
-            <strong>Сравнение цен</strong>
-            <p>Ищем за Вас среди сотен авиакомпаний и агентств, чтобы Вы всегда получали самую выгодную цену.</p>
-        </div>
-        
-        <div class="principle-card">
-            <i class="fas fa-layer-group"></i>
-            <strong>Полный спектр услуг</strong>
-            <p>От авиабилетов и отелей до аренды авто и трансферов — всё в одном месте.</p>
-        </div>
-        
-        <div class="principle-card">
-            <i class="fas fa-handshake"></i>
-            <strong>Прозрачность</strong>
-            <p>Мы работаем как агрегатор, используя проверенные и надежные технологии (например, Travelpayouts / Aviasales), и не берем комиссий.</p>
-        </div>
+  <!-- НАВИГАЦИЯ -->
+  <nav class="main-navigation">
+    <div class="nav-container">
+      <a href="https://search.airflowtravel.net" class="nav-logo">
+        <div class="nav-logo-icon"></div>
+        Airflow
+      </a>
+      <ul class="nav-menu">
+        <li><a href="https://airflowtravel.net">Главная</a></li>
+        <li><a href="https://search.airflowtravel.net">Авиабилеты</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="about.html" class="active">О нас</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <h2>Как мы работаем?</h2>
-    <p>Airflow Travel использует мощные поисковые системы для сканирования тысяч предложений в режиме реального времени. Когда Вы находите подходящий вариант (будь то билет, номер в отеле или автомобиль), мы перенаправляем Вас на сайт нашего партнера (авиакомпании, отельного агрегатора или агентства) для прямого бронирования и оплаты.</p>
-    
-    <p>Мы гордимся тем, что делаем процесс планирования путешествий проще, быстрее и доступнее для Вас.</p>
-    
-    <p style="margin-top: 40px; text-align: right; font-style: italic; font-weight: 600;">Путешествуйте легко с Airflow Travel!</p>
-</div>
-</div>
-</section>
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>О нас - Airflow</h1>
+      <p class="subtitle">Современный агрегатор поиска авиабилетов</p>
+      <p>Мы помогаем путешественникам находить лучшие предложения среди 728 авиакомпаний. Честные цены, реальные данные, без скрытых комиссий.</p>
+      
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="stat-number">728</span>
+          <span class="stat-label">Авиакомпаний</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Бесплатный поиск</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">Реальные данные</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</main>
+  <!-- КТО МЫ -->
+  <section class="content-section">
+    <h2 class="section-title">Кто мы такие?</h2>
+    <p class="section-subtitle">Современный подход к поиску авиабилетов</p>
 
-<footer class="footer">
-<div class="footer-container">
-<div class="footer-content">
-    
-    <div class="footer-section">
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <h3>Агрегатор, не продавец</h3>
+        <p>Мы не продаём билеты напрямую. Мы находим лучшие предложения среди 728 авиакомпаний через систему Aviasales и перенаправляем вас к официальным продавцам.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💰</div>
+        <h3>Честные цены</h3>
+        <p>Вы видите реальные цены в реальном времени. Никаких накруток, никаких скрытых комиссий. Мы зарабатываем на партнёрских отчислениях, которые не влияют на вашу стоимость.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>Реальные данные</h3>
+        <p>На нашем сайте вы видите актуальные курсы валют (USD, EUR, TRY) и погоду в популярных городах. Всё это обновляется автоматически через бесплатные API.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- МИССИЯ -->
+  <section class="content-section">
+    <div class="mission-block">
+      <h2>Наша миссия</h2>
+      <p><strong>Сделать поиск авиабилетов простым, прозрачным и выгодным для каждого путешественника.</strong></p>
+      <p>Мы верим, что путешествия должны быть доступными. Поэтому мы создали сервис, который:</p>
+      <ul style="margin: 20px 0 0 20px; color: #475569;">
+        <li style="margin-bottom: 10px;">✈️ Сравнивает цены среди сотен авиакомпаний за секунды</li>
+        <li style="margin-bottom: 10px;">💎 Показывает только реальные, актуальные цены</li>
+        <li style="margin-bottom: 10px;">🔒 Гарантирует безопасность данных</li>
+        <li style="margin-bottom: 10px;">🎯 Работает быстро и удобно на любых устройствах</li>
+        <li style="margin-bottom: 10px;">🆓 Предоставляет поиск абсолютно бесплатно</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ЦЕННОСТИ -->
+  <section class="content-section">
+    <h2 class="section-title">Наши ценности</h2>
+    <p class="section-subtitle">Принципы, которыми мы руководствуемся</p>
+
+    <div class="values-grid">
+      <div class="value-item">
+        <h4><i class="fas fa-shield-alt" style="color: #0c9c71;"></i> Прозрачность</h4>
+        <p>Мы честно говорим, что мы агрегатор, а не продавец. Нет скрытых условий.</p>
+      </div>
+
+      <div class="value-item">
+        <h4><i class="fas fa-chart-line" style="color: #0c9c71;"></i> Качество данных</h4>
+        <p>Только актуальная информация в реальном времени. Никаких фейковых виджетов.</p>
+      </div>
+
+      <div class="value-item">
+        <h4><i class="fas fa-users" style="color: #0c9c71;"></i> Фокус на пользователе</h4>
+        <p>Мы создаём сервис для людей, а не для алгоритмов. Удобство превыше всего.</p>
+      </div>
+
+      <div class="value-item">
+        <h4><i class="fas fa-bolt" style="color: #0c9c71;"></i> Скорость</h4>
+        <p>Поиск за секунды. Никакого ожидания. Результаты мгновенно.</p>
+      </div>
+
+      <div class="value-item">
+        <h4><i class="fas fa-lock" style="color: #0c9c71;"></i> Безопасность</h4>
+        <p>SSL-шифрование, защита данных, работа с проверенными партнёрами.</p>
+      </div>
+
+      <div class="value-item">
+        <h4><i class="fas fa-mobile-alt" style="color: #0c9c71;"></i> Доступность</h4>
+        <p>Работаем на всех устройствах. Десктоп, планшет, смартфон - везде удобно.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПАРТНЁРЫ -->
+  <section class="content-section">
+    <div class="partners-section">
+      <h3>С кем мы работаем</h3>
+      
+      <div class="partner-card">
+        <h4>🔷 Aviasales / Travelpayouts</h4>
+        <p><strong>Основная платформа поиска.</strong> Aviasales - один из крупнейших агрегаторов в России и СНГ. Через их систему мы получаем доступ к 728 авиакомпаниям и тысячам агентств. Их алгоритмы находят лучшие предложения за секунды.</p>
+        <p style="margin-top: 10px;"><strong>Почему Aviasales?</strong> Проверенная репутация, надёжность, широкий охват авиакомпаний, конкурентные цены.</p>
+      </div>
+
+      <div class="partner-card">
+        <h4>📊 ExchangeRate-API</h4>
+        <p><strong>Курсы валют в реальном времени.</strong> Бесплатное API для отображения актуальных курсов USD, EUR, TRY к рублю. Обновление каждые 5 минут.</p>
+      </div>
+
+      <div class="partner-card">
+        <h4>🌤️ Open-Meteo</h4>
+        <p><strong>Погода в популярных направлениях.</strong> Показываем температуру в Стамбуле, Дубае, Париже, Барселоне и других городах. Помогает планировать поездку.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- КАК МЫ РАБОТАЕМ -->
+  <section class="content-section">
+    <h2 class="section-title">Как мы работаем</h2>
+    <p class="section-subtitle">Прозрачный процесс от поиска до покупки</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">1️⃣</div>
+        <h3>Вы ищете билет</h3>
+        <p>Вводите маршрут, даты, количество пассажиров. Наш сайт отправляет запрос в систему Aviasales.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">2️⃣</div>
+        <h3>Мы сравниваем</h3>
+        <p>Aviasales проверяет цены среди 728 авиакомпаний и сотен агентств. Алгоритм находит лучшие предложения.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">3️⃣</div>
+        <h3>Вы видите результаты</h3>
+        <p>Показываем все варианты: прямые рейсы, с пересадками, разные тарифы. Сортируйте по цене, времени, удобству.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">4️⃣</div>
+        <h3>Вы переходите к покупке</h3>
+        <p>Кликаете на подходящий билет и переходите на сайт авиакомпании или агентства. Там завершаете бронирование.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">5️⃣</div>
+        <h3>Получаете билет</h3>
+        <p>После оплаты вам приходит маршрутная квитанция на email. Можно регистрироваться на рейс и лететь!</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h3>Наша выгода</h3>
+        <p>Мы получаем партнёрскую комиссию от Aviasales за каждую покупку. Это не влияет на вашу цену!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОЧЕМУ МЫ -->
+  <section class="content-section">
+    <h2 class="section-title">Почему выбирают Airflow?</h2>
+    <p class="section-subtitle">Преимущества нашего сервиса</p>
+
+    <div class="mission-block" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-left-color: #0c9c71;">
+      <ul style="margin: 0 0 0 20px; color: #475569;">
+        <li style="margin-bottom: 15px;"><strong style="color: #0c9c71;">✅ Реальные данные</strong> - Никаких фейковых виджетов. Всё что вы видите (курсы, погода, результаты поиска) обновляется в реальном времени.</li>
+        <li style="margin-bottom: 15px;"><strong style="color: #0c9c71;">✅ Честный подход</strong> - Мы прямо говорим, что мы агрегатор, а не продавец. Вся информация прозрачна.</li>
+        <li style="margin-bottom: 15px;"><strong style="color: #0c9c71;">✅ Широкий охват</strong> - 728 авиакомпаний через Aviasales. От бюджетных до премиальных.</li>
+        <li style="margin-bottom: 15px;"><strong style="color: #0c9c71;">✅ Быстрый поиск</strong> - Результаты за секунды. Удобные фильтры и сортировки.</li>
+        <li style="margin-bottom: 15px;"><strong style="color: #0c9c71;">✅ Никаких скрытых комиссий</strong> - Поиск бесплатный. Цена как на сайте авиакомпании.</li>
+        <li style="margin-bottom: 15px;"><strong style="color: #0c9c71;">✅ Безопасность</strong> - Работаем с проверенными партнёрами. SSL-шифрование.</li>
+        <li style="margin-bottom: 15px;"><strong style="color: #0c9c71;">✅ Адаптивный дизайн</strong> - Удобно на компьютере, планшете, смартфоне.</li>
+        <li><strong style="color: #0c9c71;">✅ Дополнительные сервисы</strong> - Не только билеты. Также отели, трансферы, аренда авто и другое на основном сайте <a href="https://airflowtravel.net" style="color: #163e9c;">airflowtravel.net</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="content-section">
+    <div class="cta-section">
+      <h2>Готовы найти свой идеальный рейс?</h2>
+      <p>Сравните цены среди 728 авиакомпаний прямо сейчас!</p>
+      <a href="https://search.airflowtravel.net" class="cta-button">Начать поиск билетов</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
         <h3>Airflow</h3>
-        <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 15px;">Ваш надежный помощник в организации комфортных путешествий по всему миру.</p>
-         <div class="social-icons" style="margin-top: 20px; display: flex; gap: 20px;">
-                <a href="#" aria-label="Facebook" style="font-size: 22px;"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Instagram" style="font-size: 22px;"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Telegram" style="font-size: 22px;"><i class="fab fa-telegram-plane"></i></a>
-            </div>
-    </div>
-
-    <div class="footer-section">
-        <h3>Наши Продукты</h3>
+        <p style="color: #64748b; font-size: 14px; line-height: 1.6;">Современный агрегатор поиска авиабилетов. Сравниваем 728 авиакомпаний через Aviasales.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Навигация</h3>
         <ul>
-            <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-            <li><a href="hotels.html">🏨 Отели</a></li>
-            <li><a href="cars.html">🚗 Аренда авто</a></li>
-            <li><a href="vip-lounge.html">👑 VIP-Залы</a></li>
-            <li><a href="transfers.html">🚕 Трансферы</a></li>
-            <li><a href="trains-buses.html">🚌 Автобусы</a></li>
+          <li><a href="https://search.airflowtravel.net">Поиск билетов</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="about.html">О нас</a></li>
+          <li><a href="privacy.html">Конфиденциальность</a></li>
+          <li><a href="terms.html">Условия использования</a></li>
         </ul>
-    </div>
-
-    <div class="footer-section">
-        <h3>Полезная информация</h3>
+      </div>
+      <div class="footer-section">
+        <h3>Услуги Airflow</h3>
         <ul>
-            <li style="font-weight: 700;"><a href="about.html" style="color: white;">О нас</a></li>
-            <li><a href="help.html">Помощь (FAQ)</a></li>
-            <li><a href="terms.html">Условия использования</a></li>
-            <li><a href="privacy.html">Политика конфиденциальности</a></li>
+          <li><a href="https://airflowtravel.net/hotels.html">🏨 Отели</a></li>
+          <li><a href="https://airflowtravel.net/cars.html">🚗 Аренда авто</a></li>
+          <li><a href="https://airflowtravel.net/transfers.html">🚕 Трансферы</a></li>
+          <li><a href="https://airflowtravel.net/vip-lounge.html">🛋️ VIP-залы</a></li>
+          <li><a href="https://airflowtravel.net/insurance.html">🛡️ Страховка</a></li>
         </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Контакты</h3>
+        <p style="color: #94a3b8; font-size: 14px; margin-bottom: 10px;">
+          <i class="fas fa-envelope" style="color: #0c9c71; margin-right: 5px;"></i>
+          <a href="mailto:info@airflowtravel.net" style="color: white;">info@airflowtravel.net</a>
+        </p>
+        <p style="color: #64748b; font-size: 13px;">По всем вопросам о сервисе</p>
+      </div>
     </div>
-
-    <div class="footer-section">
-        <h3>Наши Партнеры</h3>
-        <ul style="list-style: none; padding: 0;">
-            <li><a href="#">Skyscanner</a></li>
-            <li><a href="#">Booking</a></li>
-            <li><a href="#">DiscoverCars</a></li>
-            <li><a href="#">Tiqets</a></li>
-            <li><a href="#">Tutu.ru</a></li>
-            <li>
-                <a href="https://coffeespecialty.ru" style="color: #f59e0b; text-decoration: none; display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-                    <i class="fas fa-mug-hot" style="color: #f59e0b;"></i> 
-                    <p style="margin: 0; color: #94a3b8;">Specialty Coffee</p>
-                </a>
-            </li>
-        </ul>
+    <div class="footer-bottom">
+      <p>© 2025 Airflow Travel. Все права защищены.</p>
+      <p style="margin-top: 5px; font-size: 13px; color: #64748b;">Агрегатор поиска авиабилетов через Aviasales/Travelpayouts</p>
     </div>
-    </div>
-<div class="footer-bottom">
-<p>&copy; 2025 Airflow Travel. Все права защищены.</p>
-    <p>
-        <i class="fas fa-gem"></i> 
-        Powered by Airflow Platform AI
-    </p>
-</div>
-</div>
-</footer>
+  </footer>
 
-<script>
-    // Код для навигации (стандартный, рабочий скрипт)
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuButton = document.getElementById('mobile-menu-button');
-    const menuOverlay = document.getElementById('mobile-menu-overlay');
-    const menuClose = document.getElementById('mobile-menu-close');
-    let isMenuOpen = false;
-
-    function toggleMenu() {
-        isMenuOpen = !isMenuOpen;
-        if (isMenuOpen) {
-            mobileMenu.classList.add('active');
-            menuOverlay.classList.add('active');
-            menuOverlay.style.display = 'block';
-            document.body.style.overflow = 'hidden'; 
-        } else {
-            mobileMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = ''; 
-            setTimeout(() => {
-                if (!isMenuOpen) {
-                    menuOverlay.style.display = 'none';
-                }
-            }, 300);
-        }
-    }
-
-    function closeMenu() {
-        isMenuOpen = false;
-        mobileMenu.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        document.body.style.overflow = ''; 
-        setTimeout(() => {
-            menuOverlay.style.display = 'none';
-        }, 300);
-    }
-
-    if (menuButton) menuButton.addEventListener('click', toggleMenu);
-    if (menuClose) menuClose.addEventListener('click', closeMenu);
-    if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
-    
-    // Закрытие мобильного меню при клике на ссылку
-    document.querySelectorAll('.mobile-menu-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('active')) {
-                closeMenu();
-            }
-        });
-    });
-</script>
 </body>
 </html>
