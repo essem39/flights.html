@@ -637,7 +637,7 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     font-size: 1rem;
 }
 
-/* ФУТЕР - ОРИГИНАЛЬНЫЕ СТИЛИ */
+/* ФУТЕР - ОБНОВЛЕННЫЙ */
 .footer { 
     background: #1e293b; 
     color: #94a3b8; 
@@ -661,6 +661,8 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     font-size: 1.1rem; 
     margin-bottom: 20px; 
     font-weight: 600;
+    border-bottom: 2px solid #334155; 
+    padding-bottom: 10px;
 }
 
 .footer-section a { 
@@ -691,6 +693,22 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     font-size: 0.9rem;
 }
 
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    color: #94a3b8;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: white;
+}
+
 /* АДАПТИВНОСТЬ */
 @media (max-width: 768px) {
     .hero-section { padding: 45px 15px 35px; }
@@ -707,6 +725,7 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     .features-grid, .products-grid { grid-template-columns: 1fr; }
     .tariff-grid { grid-template-columns: 1fr; }
     .hero-text-inside p { font-size: 0.9rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
 }
 
 @media (max-width: 480px) {
@@ -730,17 +749,17 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 <!-- Верхнее меню -->
 <nav class="main-navigation">
     <div class="nav-container">
-        <a href="#" class="nav-logo">
+        <a href="https://airflowtravel.net" class="nav-logo">
             🏛️ Airflow
         </a>
         
         <ul class="nav-menu">
-            <li><a href="#" class="active">Главная</a></li>
-            <li><a href="#">✈️ Авиабилеты</a></li>
-            <li><a href="#">🏨 Отели</a></li>
-            <li><a href="#">📱 SIM-карты/eSIM</a></li>
-            <li><a href="#">ℹ️ О нас</a></li>
-            <li><a href="#">❓ Помощь</a></li>
+            <li><a href="https://airflowtravel.net" class="active">Главная</a></li>
+            <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+            <li><a href="https://airflowtravel.net/hotels">🏨 Отели</a></li>
+            <li><a href="https://airflowtravel.net/drimsim">📱 SIM-карты/eSIM</a></li>
+            <li><a href="https://airflowtravel.net/about">ℹ️ О нас</a></li>
+            <li><a href="https://airflowtravel.net/help">❓ Помощь</a></li>
         </ul>
         
         <button class="mobile-menu-button" aria-label="Открыть меню">
@@ -756,12 +775,12 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
         <i class="fas fa-times"></i>
     </button>
     <ul class="mobile-menu-links">
-        <li><a href="#" class="active">Главная</a></li>
-        <li><a href="#">✈️ Авиабилеты</a></li>
-        <li><a href="#">🏨 Отели</a></li>
-        <li><a href="#">📱 SIM-карты/eSIM</a></li>
-        <li><a href="#">ℹ️ О нас</a></li>
-        <li><a href="#">❓ Помощь</a></li>
+        <li><a href="https://airflowtravel.net" class="active">Главная</a></li>
+        <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+        <li><a href="https://airflowtravel.net/hotels">🏨 Отели</a></li>
+        <li><a href="https://airflowtravel.net/drimsim">📱 SIM-карты/eSIM</a></li>
+        <li><a href="https://airflowtravel.net/about">ℹ️ О нас</a></li>
+        <li><a href="https://airflowtravel.net/help">❓ Помощь</a></li>
     </ul>
 </div>
 
@@ -1026,39 +1045,51 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     </div>
 </section>
 
-<!-- Футер -->
+<!-- Футер - ОБНОВЛЕННЫЙ ПО ФАЙЛУ -->
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-grid">
             <div class="footer-section">
-                <h4>Наши Продукты</h4>
-                <a href="#">✈️ Авиабилеты</a>
-                <a href="#">🏨 Отели</a>
-                <a href="#">🚗 Аренда авто</a>
-                <a href="#">🚕 Трансферы</a>
-                <a href="#">🚌 Автобусы</a>
-                <a href="#">🏛️ Музеи/Экскурсии</a>
-                <a href="#">📱 SIM-карты/eSIM</a>
+                <h4>Airflowpilot</h4>
+                <p>Ваш надежный помощник в организации комфортных путешествий по всему миру.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                </div>
             </div>
             
             <div class="footer-section">
-                <h4>Информация</h4>
-                <a href="#">О нас</a>
-                <a href="#">Условия использования</a>
-                <a href="#">Политика конфиденциальности</a>
+                <h4>Наши услуги</h4>
+                <a href="https://search.airflowtravel.net">✈️ Авиабилеты (728 авиакомпаний)</a>
+                <a href="https://airflowtravel.net/hotels">🏨 Отели</a>
+                <a href="https://airflowtravel.net/cars">🚗 Аренда авто</a>
+                <a href="https://airflowtravel.net/transfers">🚕 Трансферы</a>
+                <a href="https://airflowtravel.net/trains-buses">🚌 Ж/Д и автобусы</a>
+                <a href="https://airflowtravel.net/vip-lounge">🛋️ VIP-залы</a>
             </div>
             
             <div class="footer-section">
-                <h4>Служба поддержки</h4>
-                <p>По коммерческим вопросам: свяжитесь со своим менеджером по работе с клиентами.</p>
-                <p><strong>Вопросы для клиентов (Drimsim):</strong> help@drimsim.com</p>
-                <p><strong>Финансы/Счета (Drimsim):</strong> help@drimsim.com</p>
-                <p><strong>Техническое обслуживание/Отчеты (Drimsim):</strong> help@drimsim.com</p>
+                <h4>Дополнительно</h4>
+                <a href="https://airflowtravel.net/insurance">🛡️ Страховка путешествий</a>
+                <a href="https://airflowtravel.net/drimsim">📱 SIM-карты (190 стран)</a>
+                <a href="https://airflowtravel.net/parking">🅿️ Паркинг</a>
+                <a href="https://airflowtravel.net/attractions">🎫 Билеты в музеи без очередей</a>
+                <a href="https://airflowtravel.net/flight-compensation">💰 Компенсация за отменённые рейсы</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Полезная информация</h4>
+                <a href="https://airflowtravel.net/about">О нас</a>
+                <a href="https://airflowtravel.net/help">Помощь (FAQ)</a>
+                <a href="https://airflowtravel.net/terms">Условия использования</a>
+                <a href="https://airflowtravel.net/privacy">Политика конфиденциальности</a>
+                <a href="https://airflowtravel.net/support">Поддержка</a>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <p>© 2025 Airflow Travel. Все права защищены.</p>
+            <p>&copy; 2025 Airflowpilot. Все права защищены.</p>
         </div>
     </div>
 </footer>
