@@ -731,9 +731,9 @@
     <div class="modal-content">
         <button class="modal-close" onclick="closeModal()">×</button>
         <div class="modal-widget">
-            <h2 style="text-align: center; color: #1e293b; margin-bottom: 20px; font-size: 1.8rem;">Расчёт компенсации</h2>
-            <div id="widget-container"></div>
-            <script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&width=100&powered_by=false&campaign_id=86&promo_id=2110" charset="utf-8"></script>
+            <h2 style="text-align: center; color: #1d4ed8; margin-bottom: 20px; font-size: 1.6rem; font-weight: 600;">
+                <i class="fas fa-plane"></i> Airflow поможет рассчитать вашу компенсацию
+            </h2>
         </div>
     </div>
 </div>
@@ -1132,10 +1132,23 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
     // МОДАЛЬНОЕ ОКНО
+    let widgetLoaded = false;
+    
     function openModal() {
         const modal = document.getElementById('compensationModal');
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        
+        // Загружаем виджет только при первом открытии
+        if (!widgetLoaded) {
+            const widgetContainer = document.querySelector('.modal-widget');
+            const script = document.createElement('script');
+            script.src = 'https://tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&width=100&powered_by=false&campaign_id=86&promo_id=2110';
+            script.charset = 'utf-8';
+            script.async = true;
+            widgetContainer.appendChild(script);
+            widgetLoaded = true;
+        }
     }
 
     function closeModal() {
