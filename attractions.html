@@ -43,50 +43,38 @@
     @media (max-width: 480px) { .nav-container { padding: 0 12px; } }
 
     /* ============================================== */
-    /* СТИЛИ HERO СЕКЦИИ С ФОНОВЫМ ИЗОБРАЖЕНИЕМ */
+    /* СТИЛИ HERO СЕКЦИИ С ГРАДИЕНТОМ */
     /* ============================================== */
     .hero-section { 
-        color: white; 
-        padding: 0; 
+        background: linear-gradient(180deg, 
+            #ffffff 0%,      /* Белый */
+            #fefefe 30%,     /* Почти белый */
+            #fcfcfd 60%,     /* Еще чуть темнее */
+            #fafbfc 85%,     /* Почти #f8fafc */
+            #f8fafc 100%     /* Ваш цвет! */
+        );
+        color: #1e293b; 
+        padding: 60px 20px 80px;
         text-align: center; 
-        position: relative; 
-        overflow: hidden; 
-        height: 400px; /* Заданная высота баннера */
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        background-color: #000; /* Черный фон на случай, если картинка не загрузится */
-    }
-    .hero-image { /* Стиль для img, которое Вы прислали */
-        width: 100%; 
-        height: 100%; 
-        object-fit: cover; 
-        position: absolute; 
-        top: 0; 
-        left: 0; 
-        opacity: 0.5; /* Снижаем яркость для читаемости текста */
-        z-index: 1;
     }
     .hero-content {
-        position: relative; /* Контент всегда поверх картинки */
+        position: relative;
         z-index: 5; 
         width: 100%;
-        padding: 20px;
-        background: none; /* Убираем фон, если он был */
+        padding: 0;
+        background: none;
     }
-    .hero-content h1 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 600; text-align: center; color: white; }
+    .hero-content h1 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 600; text-align: center; color: #1e293b; }
     
     /* СТИЛИ КОНТЕНТА СТРАНИЦЫ (ОБЩИЕ) */
     .section-title { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 40px; color: #1e293b; }
     #bus-card-container { padding: 0; background: none; border-radius: 0; width: 100%; max-width: 1000px; margin: 0 auto 20px auto; box-shadow: none; text-align: center; }
-    .card-title-search { font-size: 1.5rem; font-weight: 700; color: white; text-shadow: 0 0 5px rgba(0,0,0,0.4); margin-bottom: 20px; }
-    .card-description { font-size: 1rem; margin-bottom: 0; opacity: 0.9; color: white; max-width: 90%; margin: 20px auto 20px auto; }
+    .card-title-search { font-size: 1.5rem; font-weight: 700; color: #1e293b; margin-bottom: 20px; }
+    .hero-text-box { background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 16px; padding: 35px 45px; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.1); max-width: 900px; margin: 0 auto 30px auto; }
+    .card-description { font-size: 1rem; margin-bottom: 0; color: #475569; max-width: 90%; margin: 20px auto 20px auto; }
     
-    /* ============================================== */
-    /* СТИЛИ ДЛЯ CTA-КНОПКИ В HERO СЕКЦИИ */
-    /* ============================================== */
     .banner-cta-button {
-        background-color: #f59e0b; /* Янтарный цвет для контраста */
+        background-color: #f59e0b;
         color: white;
         font-size: 1.1rem;
         font-weight: 700;
@@ -100,9 +88,8 @@
         margin-top: 10px;
     }
     .banner-cta-button:hover {
-        background-color: #d97706; /* Более темный янтарный при наведении */
+        background-color: #d97706;
     }
-    /* Добавление стиля для заголовков виджетов */
     .travel-guides-section h3 {
         font-size: 1.5rem; 
         font-weight: 600; 
@@ -112,28 +99,27 @@
     }
     .widget-placeholder { min-height: 250px; margin-bottom: 40px; }
     
-    /* Остальные секции (без изменений) */
-    .product-icons-section { padding: 60px 20px; background: white; text-align: center; }
+    .product-icons-section { padding: 60px 20px; background: #f8fafc; text-align: center; }
     .product-icons-grid { display: flex; justify-content: center; gap: 50px; max-width: 900px; margin: 0 auto; flex-wrap: wrap; }
     .product-icon-link { text-decoration: none; color: #1e293b; transition: color 0.3s ease, transform 0.3s ease; display: block; padding: 15px; border-radius: 8px; }
-    .product-icon { font-size: 3rem; margin-bottom: 10px; color: #f59e0b; transition: color 0.3s ease; }
-    .product-icon-link:hover { color: #1d4ed8; transform: translateY(-5px); }
-    .product-icon-link:hover .product-icon { color: #1d4ed8; }
+    .product-icon { font-size: 3rem; margin-bottom: 10px; color: #a855f7; margin-bottom: 5px; transition: color 0.3s ease; }
+    .product-icon-link:hover { color: #a855f7; margin-bottom: 5px; transform: translateY(-5px); }
+    .product-icon-link:hover .product-icon { color: #9333ea; }
 
     .widgets-card-section { padding: 80px 20px; background: #f8fafc; }
     .seo-tips-section { padding: 80px 20px; background: #f8fafc; }
     
     .features-grid, .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
     @media (min-width: 1024px) { .features-grid, .tips-grid { grid-template-columns: repeat(3, 1fr); max-width: 1100px; } }
-    .feature-card, .tip-card { padding: 30px 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); background: #ffffff; border-top: 5px solid #10b981; transition: transform 0.3s, box-shadow 0.3s; height: 100%; text-align: left; cursor: pointer; }
+    .feature-card, .tip-card { padding: 30px 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); background: #ffffff; border-top: 5px solid #a855f7; transition: transform 0.3s, box-shadow 0.3s; height: 100%; text-align: left; cursor: pointer; }
     .feature-card:hover, .tip-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); }
-    .feature-icon, .tip-icon { font-size: 3rem; color: #10b981; margin-bottom: 15px; text-align: center; }
+    .feature-icon, .tip-icon { font-size: 3rem; color: #a855f7; margin-bottom: 5px; margin-bottom: 15px; text-align: center; }
     .feature-card h4, .tip-card h4 { font-size: 1.2rem; color: #1e293b; font-weight: 700; margin-bottom: 10px; text-align: center; }
     .feature-card p, .tip-card p { color: #64748b; font-size: 0.95rem; text-align: center; }
     
     .tip-card summary { list-style: none; display: flex; flex-direction: column; padding-right: 25px; position: relative; outline: none; }
     .tip-card summary::-webkit-details-marker { display: none; }
-    .tip-card summary:after { content: "\25B6"; position: absolute; right: 0; top: 5px; font-size: 14px; color: #10b981; transition: transform 0.3s; }
+    .tip-card summary:after { content: "\25B6"; position: absolute; right: 0; top: 5px; font-size: 14px; color: #a855f7; margin-bottom: 5px; transition: transform 0.3s; }
     .tip-card[open] summary:after { content: "\25BC"; top: 8px; }
     .tip-card .tip-card-text-short { color: #64748b; font-size: 0.95rem; margin-bottom: 15px; text-align: center; }
     .tip-content { border-top: 1px solid #e2e8f0; padding-top: 15px; margin-top: 15px; font-size: 0.95rem; color: #475569; text-align: left; font-style: italic; background-color: #f0fff4; padding: 15px; border-radius: 6px; line-height: 1.5; }
@@ -142,16 +128,16 @@
     .testimonials-container { max-width: 1200px; margin: 0 auto; position: relative; padding: 0 20px; }
     .testimonial-card { background: #f8fafc; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); border: 1px solid #e2e8f0; height: 100%; display: flex; flex-direction: column; }
     .testimonial-card:hover { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); transform: none; }
-    .stars { color: #f59e0b; margin-bottom: 15px; }
+    .stars { color: #a855f7; margin-bottom: 15px; }
     .testimonial-text { color: #475569; margin-bottom: 20px; font-style: italic; position: relative; }
     .testimonial-author { display: flex; align-items: center; gap: 15px; margin-top: auto; }
-    .author-avatar { width: 50px; height: 50px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1.2rem; }
+    .author-avatar { width: 50px; height: 50px; background: #a855f7; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1.2rem; }
     .author-info h4 { margin: 0; color: #1e293b; font-size: 1rem; }
     .author-info p { margin: 0; color: #64748b; font-size: 0.9rem; }
     .swiper-button-prev, .swiper-button-next { background: transparent !important; width: 30px; height: 30px; border-radius: 0; box-shadow: none; transition: opacity 0.3s; top: 50%; margin-top: -15px; opacity: 0.7; }
     .swiper-button-prev:hover, .swiper-button-next:hover { background: transparent !important; opacity: 1; }
     .swiper-button-prev:after, .swiper-button-next:after { color: #1e293b !important; font-size: 24px !important; }
-    .swiper-pagination-bullet-active { background: #10b981 !important; }
+    .swiper-pagination-bullet-active { background: #a855f7 !important; }
 
     .footer { background-color: #1e293b; color: #94a3b8; padding: 60px 0 20px; font-size: 14px; }
     .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -164,7 +150,7 @@
     .footer-section a:hover { color: white; text-decoration: underline; }
     .footer-section .footer-contacts { font-size: 1rem; }
     .footer-section .footer-contacts a { display: block; margin-top: 5px; color: white; font-size: 0.95rem; }
-    .footer-section .footer-contacts i { color: #10b981; margin-right: 8px; }
+    .footer-section .footer-contacts i { color: #a855f7; margin-bottom: 5px; margin-right: 8px; }
     .footer-bottom { border-top: 1px solid #334155; padding-top: 20px; text-align: center; color: #94a3b8; }
     @media (max-width: 768px) { .footer-content { flex-direction: column; gap: 0; } .footer-section { width: 100%; } .footer-section h3 { padding-top: 10px; } .footer-section .footer-contacts { margin-bottom: 15px; } }
 </style>
@@ -204,34 +190,32 @@
 </nav>
 <main>
 <section class="hero-section">
-    <img src="images/ticets.png" 
-         alt="Баннер Экскурсий и Достопримечательностей Airflow" 
-         class="hero-image">
-    
-    <div class="container" style="position: relative; z-index: 5; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+    <div class="container">
         <div class="hero-content">
-            <h1>Билеты в музеи, на выставки и экскурсии</h1>
 
             <div id="bus-card-container">
                 
-                <h2 class="card-title-search">Пропуск без очереди в мировые достопримечательности</h2>
-
-                <p class="card-description" style="max-width: 600px; margin: 20px auto 40px auto; font-size: 1.1rem; opacity: 1;">
-                    Забронируйте билеты в музеи, на выставки и экскурсии по всему миру.
-                </p>
+                <!-- МУЗЕЙНАЯ ВИТРИНА С ЗАГОЛОВКАМИ -->
+                <div class="hero-text-box">
+                    <h1>Билеты в музеи, на выставки и экскурсии</h1>
+                    <h2 class="card-title-search">Пропуск без очереди в мировые достопримечательности</h2>
+                    <p class="card-description" style="max-width: 600px; margin: 20px auto 30px auto; font-size: 1.1rem;">
+                        Забронируйте билеты в музеи, на выставки и экскурсии по всему миру.
+                    </p>
+                </div>
                 
-                <a href="https://tiqets.tpo.li/k3I6Cswe?erid=2Vtzqv5haeu" target="_blank" class="banner-cta-button" style="background-color: #f59e0b; padding: 15px 40px; border-radius: 6px;">
-                    Найти Билеты Сейчас
-                </a>
+                <!-- ВИДЖЕТ ПОИСКА TIQETS -->
+                <div style="max-width: 900px; margin: 0 auto; padding: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                    <script async src="https://tpwgt.com/content?currency=EUR&trs=478043&shmarker=144185&language=ru&layout=full&orientation=horizontal&powered_by=false&campaign_id=89&promo_id=3984" charset="utf-8"></script>
+                </div>
 
             </div>
         </div>
     </div>
 </section>
-
 <section class="product-icons-section">
 <div class="container">
-<h2 class="section-title" style="margin-bottom: 30px; color: #1d4ed8;">Наши продукты и сервисы</h2>
+<h2 class="section-title" style="margin-bottom: 30px; color: #a855f7; margin-bottom: 5px;">Наши продукты и сервисы</h2>
 <div class="product-icons-grid">
 <a href="https://search.airflowtravel.net" class="product-icon-link">
 <div class="product-icon"><i class="fas fa-plane"></i></div>
@@ -253,7 +237,7 @@
 <div class="product-icon"><i class="fas fa-bus-simple"></i></div>
 <div class="product-title">Автобусы</div>
 </a>
-<a href="attractions.html" class="product-icon-link" style="border: 2px solid #10b981; border-radius: 8px;">
+<a href="attractions.html" class="product-icon-link" style="border: 2px solid #a855f7; border-radius: 8px;">
 <div class="product-icon"><i class="fas fa-landmark"></i></div>
 <div class="product-title">Музеи/Экскурсии</div>
 </a>
@@ -298,9 +282,9 @@
 <div class="container">
 <h2 class="section-title">Советы по бронированию Музеев и Экскурсий</h2>
 <div class="tips-grid">
-<details class="tip-card" style="border-top-color: #1d4ed8;">
+<details class="tip-card" style="border-top-color: #a855f7; margin-bottom: 5px;">
 <summary>
-<div class="tip-icon" style="color: #1d4ed8;"><i class="fas fa-calendar-alt"></i></div>
+<div class="tip-icon" style="color: #a855f7; margin-bottom: 5px;"><i class="fas fa-calendar-alt"></i></div>
 <h4>Лучшее время для бронирования</h4>
 <p class="tip-card-text-short">Когда лучше покупать билеты, чтобы не пропустить событие.</p>
 </summary>
@@ -331,9 +315,9 @@
 </div>
 </details>
 
-<details class="tip-card" style="border-top-color: #10b981;">
+<details class="tip-card" style="border-top-color: #a855f7; margin-bottom: 5px;">
 <summary>
-<div class="tip-icon" style="color: #10b981;"><i class="fas fa-headset"></i></div>
+<div class="tip-icon" style="color: #a855f7; margin-bottom: 5px;"><i class="fas fa-headset"></i></div>
 <h4>Использование аудиогида</h4>
 <p class="tip-card-text-short">Почему стоит приобрести аудиогид.</p>
 </summary>
@@ -353,9 +337,9 @@
 </div>
 </details>
 
-<details class="tip-card" style="border-top-color: #1d4ed8;">
+<details class="tip-card" style="border-top-color: #a855f7; margin-bottom: 5px;">
 <summary>
-<div class="tip-icon" style="color: #1d4ed8;"><i class="fas fa-umbrella-beach"></i></div>
+<div class="tip-icon" style="color: #a855f7; margin-bottom: 5px;"><i class="fas fa-umbrella-beach"></i></div>
 <h4>Погода и достопримечательности</h4>
 <p class="tip-card-text-short">Как планировать посещение в зависимости от погоды.</p>
 </summary>
@@ -367,7 +351,6 @@
 </div>
 </div>
 </section>
-
 <section class="testimonials-section">
 <div class="container">
 <h2 class="section-title">Что говорят наши клиенты об экскурсиях</h2>
@@ -485,24 +468,24 @@
     <h3>Служба поддержки</h3>
     <div class="footer-contacts" style="background: none; padding: 0; margin: 0;">
         <p style="margin-bottom: 10px; color: #94a3b8; font-size: 0.95rem; line-height: 1.4;">
-            <i class="fas fa-handshake" style="color: #10b981; margin-right: 8px;"></i> 
+            <i class="fas fa-handshake" style="color: #a855f7; margin-bottom: 5px; margin-right: 8px;"></i> 
             По коммерческим вопросам: свяжитесь со своим менеджером по работе с клиентами.
         </p>
         
         <p style="margin-bottom: 10px; font-size: 0.95rem; line-height: 1.4;">
-            <i class="fas fa-users" style="color: #10b981; margin-right: 8px;"></i> 
+            <i class="fas fa-users" style="color: #a855f7; margin-bottom: 5px; margin-right: 8px;"></i> 
             Вопросы для клиентов: 
             <a href="mailto:customerservice@tiqets.com" style="color: white; text-decoration: none;">customerservice@tiqets.com</a>
         </p>
 
         <p style="margin-bottom: 10px; font-size: 0.95rem; line-height: 1.4;">
-            <i class="fas fa-money-bill-wave" style="color: #10b981; margin-right: 8px;"></i> 
+            <i class="fas fa-money-bill-wave" style="color: #a855f7; margin-bottom: 5px; margin-right: 8px;"></i> 
             Финансы/Счета: 
             <a href="mailto:finance@tiqets.com" style="color: white; text-decoration: none;">finance@tiqets.com</a>
         </p>
         
         <p style="margin-bottom: 10px; font-size: 0.95rem; line-height: 1.4;">
-            <i class="fas fa-tools" style="color: #10b981; margin-right: 8px;"></i> 
+            <i class="fas fa-tools" style="color: #a855f7; margin-bottom: 5px; margin-right: 8px;"></i> 
             Техническое обслуживание/Отчеты: 
             <a href="mailto:suppliers@tiqets.com" style="color: white; text-decoration: none;">suppliers@tiqets.com</a>
         </p>
@@ -511,7 +494,7 @@
 
 </div>
 <div class="footer-bottom">
-<p>&copy; 2025 Airflow Travel. Все права защищены.</p>
+<p>&copy; 2026 Airflowpilot. Все права защищены.</p>
 </div>
 </div>
 </footer>
