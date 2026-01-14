@@ -702,8 +702,7 @@
                 <div class="hero-content">
                     <h1>🚗 AIRFLOW АВТОПРОКАТ</h1>
                     <p>
-                Аренда автомобилей в 22 странах мира. Прозрачные условия без скрытых комиссий. Гарантия лучшей цены.
-                    
+                        Прокат автомобилей в 22 странах мира – Лучшие предложения и условия аренды. Аренда авто без скрытых комиссий и с гарантией лучшей цены.
                     </p>
                     
                     <!-- DROPDOWN ВЫБОРА СТРАНЫ -->
@@ -745,7 +744,7 @@
         <!-- ИКОНКИ ПРОДУКТОВ -->
         <section class="product-icons-section">
             <div class="container">
-                <h2 class="section-title" style="color: #059669;">Прокат автомобилей по всему миру </h2>
+                <h2 class="section-title" style="color: #059669;">Наши продукты и сервисы</h2>
                 <div class="product-icons-grid">
                     <a href="https://search.airflowtravel.net" class="product-icon-link">
                         <div class="product-icon"><i class="fas fa-plane"></i></div>
@@ -1171,7 +1170,7 @@
             
             // Функция загрузки виджета
             function loadWidget(countryCode, cityCode) {
-                // Удаляем старый скрипт если есть
+                // Удаляем старый скрипт
                 const oldScript = document.getElementById('localrent-widget-script');
                 if (oldScript) {
                     oldScript.remove();
@@ -1180,33 +1179,42 @@
                 // Очищаем контейнер
                 widgetContainer.innerHTML = '';
                 
-                // Создаём новый скрипт
-                const script = document.createElement('script');
-                script.id = 'localrent-widget-script';
-                script.src = 'https://static.localrent.com/booking/v2/wl/app.js';
-                script.async = true;
-                script.setAttribute('data-mrc-wl', 'true');
-                script.setAttribute('data-affiliate', '13837');
-                script.setAttribute('data-country', countryCode);
-                script.setAttribute('data-city', cityCode);
-                script.setAttribute('data-routing', 'on');
-                script.setAttribute('data-zindex', '10000');
-                
-                // Добавляем скрипт в контейнер
-                widgetContainer.appendChild(script);
+                // Небольшая задержка перед загрузкой нового виджета
+                setTimeout(() => {
+                    const script = document.createElement('script');
+                    script.id = 'localrent-widget-script';
+                    script.src = 'https://static.localrent.com/booking/v2/wl/app.js';
+                    script.async = true;
+                    script.setAttribute('data-mrc-wl', 'true');
+                    script.setAttribute('data-affiliate', '13837');
+                    script.setAttribute('data-country', countryCode);
+                    script.setAttribute('data-city', cityCode);
+                    script.setAttribute('data-routing', 'on');
+                    script.setAttribute('data-zindex', '10000');
+                    
+                    widgetContainer.appendChild(script);
+                }, 100);
             }
             
-            // Загрузка виджета при изменении страны
-            countrySelect.addEventListener('change', function() {
-                const value = this.value;
-                const [countryCode, cityCode] = value.split('-');
-                loadWidget(countryCode, cityCode);
-            });
-            
-            // Загрузка виджета при загрузке страницы (Россия по умолчанию)
-            const defaultValue = countrySelect.value;
-            const [defaultCountry, defaultCity] = defaultValue.split('-');
-            loadWidget(defaultCountry, defaultCity);
+// Загрузка виджета при изменении страны
+countrySelect.addEventListener('change', function() {
+    const value = this.value;
+    const [countryCode, cityCode] = value.split('-');
+    
+    // Сохраняем выбор в URL и перезагружаем страницу
+    window.location.href = `?country=${countryCode}&city=${cityCode}`;
+});
+
+// Загрузка виджета при загрузке страницы
+const urlParams = new URLSearchParams(window.location.search);
+const countryCode = urlParams.get('country') || '20';
+const cityCode = urlParams.get('city') || '121511';
+
+// Устанавливаем правильное значение в dropdown
+countrySelect.value = `${countryCode}-${cityCode}`;
+
+// Загружаем виджет
+loadWidget(countryCode, cityCode);
         });
     </script>
 </body>
