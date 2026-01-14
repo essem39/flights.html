@@ -3,18 +3,21 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="ie=edge" http-equiv="X-X-Compatible"/>
-<meta content="Airflow Travel: Бронирование VIP-залов и Fast Track в аэропортах."
-name="description"/>
+<meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+<meta content="Бронирование VIP-залов и Fast Track в аэропортах по всему миру. Премиум-сервис, комфорт и быстрое прохождение контроля. Доступ к бизнес-залам более чем в 600 аэропортах." name="description"/>
 
 <link href="bus_icon-icons.com_76529.ico" rel="icon" type="image/x-icon"/>
 
-<title>Airflow Travel - VIP-Залы и Fast Track</title>
+<meta property="og:title" content="VIP-Залы в Аэропортах - Бронирование онлайн | Airflow Travel" />
+<meta property="og:description" content="Забронируйте доступ в VIP-залы аэропортов. Fast Track, премиум-питание, Wi-Fi. Более 600 аэропортов по всему миру." />
+<meta content="ru" property="og:locale"/>
+<meta content="website" property="og:type"/>
+
+<title>VIP-Залы и Fast Track в Аэропортах - Бронирование | Airflow Travel</title>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet"/>
 <style>
-    /* БАЗОВЫЕ СТИЛИ (ОБЩИЕ) */
     * {
         box-sizing: border-box;
         margin: 0;
@@ -36,15 +39,13 @@ name="description"/>
         padding: 0 20px;
     }
     
-    /* ЦВЕТОВАЯ СХЕМА VIP-ЗАЛОВ */
     :root {
-        --color-primary: #4c2f7b; /* Насыщенный Фиолетовый */
-        --color-accent: #a38f30;  /* Золотистый/Горчичный */
+        --color-primary: #4c2f7b;
+        --color-accent: #a38f30;
         --color-text: #1e293b;
         --color-light: #f8fafc;
     }
 
-    /* СТИЛИ ВЕРХНЕГО МЕНЮ (НАВИГАЦИИ) - КОПИЯ ГЛАВНОЙ */
     .main-navigation {
         background: #1e293b;
         padding: 0;
@@ -71,8 +72,11 @@ name="description"/>
         text-decoration: none;
         padding: 5px 0;
     }
+
     .nav-logo img {
-        height: 45px; width: auto; display: block;
+        height: 45px;
+        width: auto;
+        display: block;
     }
 
     .nav-menu {
@@ -81,6 +85,11 @@ name="description"/>
         margin: 0;
         padding: 0;
         gap: 25px;
+        align-items: center;
+    }
+
+    .nav-menu > li {
+        position: relative;
     }
 
     .nav-menu a {
@@ -90,6 +99,7 @@ name="description"/>
         font-weight: 500;
         padding: 18px 0;
         transition: color 0.3s ease;
+        display: block;
     }
 
     .nav-menu a:hover, .nav-menu a.active {
@@ -97,28 +107,161 @@ name="description"/>
         text-decoration: none;
     }
 
-    /* Мобильное меню */
-    .mobile-menu-button { display: none; background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 8px; }
-    .mobile-menu-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 999; opacity: 0; transition: opacity 0.3s ease; }
-    .mobile-menu-overlay.active { opacity: 1; }
-    .mobile-menu { display: none; position: fixed; top: 0; right: -280px; width: 260px; height: 100vh; background: #1e293b; z-index: 1001; padding: 60px 15px 15px; box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3); transition: right 0.3s ease; overflow-y: auto; }
-    .mobile-menu.active { right: 0; }
-    .mobile-menu-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 5px; }
-    .mobile-menu-links { list-style: none; padding: 0; margin: 0; }
-    .mobile-menu-links a { color: #94a3b8; text-decoration: none; font-size: 16px; display: block; padding: 12px 15px; border-radius: 6px; transition: all 0.3s ease; }
-    .mobile-menu-links a:hover, .mobile-menu-links a.active { background: #334155; color: white; text-decoration: none; }
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown-toggle {
+        cursor: pointer;
+        color: #94a3b8;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 18px 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .dropdown-toggle:hover {
+        color: white;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #1e293b;
+        min-width: 280px;
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        margin-top: 5px;
+        padding: 10px 0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+        padding: 12px 20px;
+        color: #94a3b8;
+        display: block;
+        transition: all 0.3s;
+    }
+
+    .dropdown-menu a:hover {
+        background: #334155;
+        color: white;
+    }
+
+    .mobile-menu-button {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 8px;
+    }
+
+    .mobile-menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 10000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu-overlay.active {
+        opacity: 1;
+    }
+
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 260px;
+        height: 100vh;
+        background: #1e293b;
+        z-index: 10001;
+        padding: 60px 15px 15px;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+        transition: right 0.3s ease;
+        overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+        right: 0;
+    }
+
+    .mobile-menu-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .mobile-menu-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .mobile-menu-links a {
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 16px;
+        display: block;
+        padding: 12px 15px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-menu-links a:hover, .mobile-menu-links a.active {
+        background: #334155;
+        color: white;
+        text-decoration: none;
+    }
 
     @media (max-width: 1175px) {
-        .nav-container { padding: 0 16px; }
-        .nav-menu { display: none; }
-        .mobile-menu-button { display: block; }
-        .mobile-menu-overlay, .mobile-menu { display: block; }
-    }
-    @media (max-width: 480px) {
-        .nav-container { padding: 0 12px; }
+        .nav-container {
+            padding: 0 16px;
+        }
+        .nav-menu {
+            display: none;
+        }
+        .mobile-menu-button {
+            display: block;
+        }
+        .mobile-menu-overlay,
+        .mobile-menu {
+            display: block;
+        }
     }
 
-    /* СТИЛИ СЕКЦИИ HERO (VIP-Lounge) */
+    @media (max-width: 480px) {
+        .nav-container {
+            padding: 0 12px;
+        }
+    }
+
     .vip-lounge-hero {
         background: url('vipzalairflow.png') no-repeat center center / cover; 
         color: white;
@@ -132,46 +275,57 @@ name="description"/>
         z-index: 1; 
     }
     
-    /* Оверлей для читаемости */
     .vip-lounge-hero::before {
         content: "";
         position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0, 0, 0, 0.35); 
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4); 
         z-index: -1; 
     }
 
-    /* ФИНАЛЬНЫЙ СТИЛЬ: "Тонкая Бумага" - ВОССТАНОВЛЕН */
     .hero-content {
-        max-width: 700px;
+        max-width: 800px;
         margin: 0 auto; 
-        padding: 30px; 
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.1); /* Прозрачный белый */
-        backdrop-filter: blur(2px); /* Эффект размытия фона */
+        padding: 35px 40px; 
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        border: 2px solid rgba(255, 255, 255, 0.25);
         color: white; 
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Легкая тень */
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        animation: fadeInScale 1s ease-out;
     }
     
     .hero-content h1 {
-        font-size: clamp(2rem, 5vw, 3.2rem); 
-        margin-bottom: 10px; 
+        font-size: clamp(2rem, 5vw, 3rem); 
+        margin-bottom: 15px; 
         font-weight: 700;
         color: white; 
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); 
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); 
     } 
 
     .hero-content p {
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        margin-top: 15px; 
-        margin-bottom: 30px; /* Увеличил отступ перед кнопкой */
-        opacity: 0.9;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        margin-bottom: 30px;
+        opacity: 0.95;
         color: white;
-        text-shadow: 0 0 8px rgba(0, 0, 0, 0.7); 
+        text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); 
     }
 
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
 
-    /* СТИЛЬ ПРОЗРАЧНОЙ КНОПКИ */
     .cta-button {
         display: inline-block;
         background-color: transparent; 
@@ -183,20 +337,23 @@ name="description"/>
         font-size: 1.2rem;
         border: 3px solid #f59e0b; 
         transition: all 0.3s ease;
-        box-shadow: 0 0 10px rgba(245, 158, 11, 0.5); 
-        text-transform: none; 
+        box-shadow: 0 0 15px rgba(245, 158, 11, 0.6); 
     }
+
     .cta-button:hover {
         background-color: #f59e0b; 
         color: #1e293b; 
-        box-shadow: none;
-        transform: none; 
+        box-shadow: 0 0 25px rgba(245, 158, 11, 0.8);
+        transform: translateY(-2px);
     }
 
-    /* СЕКЦИЯ С ПРЕИМУЩЕСТВАМИ */
-    .features-section {
+    .features-section, .airports-section, .seo-content-section {
         padding: 80px 20px;
         background: var(--color-light); 
+    }
+
+    .seo-content-section {
+        background: white;
     }
 
     .section-title {
@@ -247,8 +404,71 @@ name="description"/>
         color: #64748b;
         font-size: 1rem;
     }
+
+    /* СЕКЦИЯ ПОПУЛЯРНЫХ АЭРОПОРТОВ */
+    .airports-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .airport-card {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s, box-shadow 0.3s;
+        border-left: 4px solid var(--color-accent);
+    }
+
+    .airport-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    .airport-card h4 {
+        font-size: 1.1rem;
+        color: var(--color-primary);
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+
+    .airport-card p {
+        color: #64748b;
+        font-size: 0.9rem;
+    }
+
+    /* SEO КОНТЕНТ */
+    .seo-text {
+        max-width: 900px;
+        margin: 0 auto;
+        line-height: 1.8;
+        color: #475569;
+    }
+
+    .seo-text h3 {
+        font-size: 1.8rem;
+        color: var(--color-primary);
+        margin-bottom: 15px;
+        margin-top: 30px;
+    }
+
+    .seo-text p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+
+    .seo-text ul {
+        margin-left: 20px;
+        margin-bottom: 15px;
+    }
+
+    .seo-text li {
+        margin-bottom: 8px;
+    }
     
-    /* СЕКЦИЯ FAQ (ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ) */
     .faq-section {
         padding: 80px 20px;
         background: white;
@@ -278,10 +498,10 @@ name="description"/>
         background: #eef2ff;
     }
 
-    /* Стиль для кастомной стрелки */
     .faq-item summary::-webkit-details-marker {
         display: none;
     }
+
     .faq-item summary:after {
         content: "\25B8"; 
         position: absolute;
@@ -304,7 +524,6 @@ name="description"/>
         line-height: 1.7;
     }
     
-    /* СТИЛИ ФУТЕРА */
     .footer {
         background-color: #1e293b;
         color: #94a3b8;
@@ -323,18 +542,18 @@ name="description"/>
         justify-content: space-between;
         flex-wrap: wrap;
         margin-bottom: 40px;
-        gap: 30px; 
+        gap: 30px;
     }
-    
+
     .footer-section {
-        width: calc(33.333% - 20px); 
-        min-width: 250px; 
+        width: calc(25% - 20px);
+        min-width: 200px;
         margin-bottom: 20px;
     }
-    
+
     .footer-section h3 {
         margin-bottom: 20px;
-        color: white; 
+        color: white;
         font-size: 1.1rem;
         border-bottom: 2px solid #334155;
         padding-bottom: 10px;
@@ -360,50 +579,6 @@ name="description"/>
         color: white;
         text-decoration: underline;
     }
-    
-    .footer-contacts a {
-        display: block;
-        margin-top: 5px;
-        color: white;
-        font-size: 0.95rem;
-    }
-    
-    .footer-contacts i {
-        color: #10b981;
-        margin-right: 8px;
-    }
-    
-    /* Стили для сетки партнеров внутри футера */
-    .footer-partners-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 15px;
-        margin-top: 10px;
-    }
-    
-    .partner-item-footer {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 8px 0;
-        font-size: 0.9rem;
-        color: white; 
-    }
-
-    .partner-item-footer i {
-        font-size: 1.2rem;
-        color: #10b981; 
-    }
-    
-    .partner-item-footer a i.fa-mug-hot {
-        color: #f59e0b !important; 
-    }
-
-    .partner-item-footer p {
-        margin: 0;
-        color: #94a3b8;
-        line-height: 1.2;
-    }
 
     .footer-bottom {
         border-top: 1px solid #334155;
@@ -412,62 +587,96 @@ name="description"/>
         color: #94a3b8;
     }
     
-    .footer-bottom p {
-        margin-top: 5px; font-size: 0.85rem; color: #64748b; 
-        display: flex; align-items: center; justify-content: center; gap: 5px;
-    }
-    
-    .footer-bottom p i {
-        color: #06b6d4;
+    @media (max-width: 768px) {
+        .hero-content {
+            padding: 25px 30px;
+        }
+
+        .footer-content {
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .footer-section {
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .seo-text h3 {
+            font-size: 1.5rem;
+        }
     }
 
-    /* АДАПТАЦИЯ (МОБИЛЬНЫЕ) */
-    @media (max-width: 768px) {
-        .footer-content { flex-direction: column; gap: 0; }
-        .footer-section { width: 100%; }
-        .footer-section h3 { padding-top: 10px; }
-        .footer-section .footer-contacts { margin-bottom: 15px; }
-        .footer-partners-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; } 
-        .feature-card h3 { font-size: 1.2rem; }
+    @media (max-width: 480px) {
+        .hero-content {
+            padding: 20px 25px;
+        }
+
+        .hero-content h1 {
+            font-size: 1.8rem;
+        }
     }
 </style>
 </head>
 <body>
 <nav class="main-navigation">
 <div class="nav-container">
-
     <a class="nav-logo" href="index.html">
         <img src="AirflowTravel.png" alt="Airflow Travel Logo">
     </a>
 
-<ul class="nav-menu">
-<li><a href="index.html">Главная</a></li> 
-<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-<li><a href="hotels.html">🏨 Отели</a></li>
-<li><a href="cars.html">🚗 Аренда авто</a></li>
-<li><a class="active" href="vip-lounge.html">👑 VIP-Залы</a></li> 
-<li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="trains-buses.html">🚌 Автобусы</a></li>
-</ul>
-<button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button">
-<i class="fas fa-bars"></i>
-</button>
+    <ul class="nav-menu">
+        <li><a href="index.html">Главная</a></li> 
+        <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+        <li><a href="hotels.html">🏨 Отели</a></li>
+        <li><a href="cars.html">🚗 Аренда авто</a></li>
+        <li><a href="transfers.html">🚕 Трансферы</a></li>
+        <li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+        <li class="dropdown">
+            <span class="dropdown-toggle">
+                Ещё <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+            </span>
+            <div class="dropdown-menu">
+                <a href="attractions.html">🎭 Музеи и достопримечательности</a>
+                <a href="trains-buses.html">🚂 Поезда и автобусы</a>
+                <a href="vip-lounge.html" class="active">💎 VIP залы</a>
+                <a href="parking.html">🅿️ Парковка</a>
+                <a href="insurance.html">🛡️ Страховка</a>
+                <a href="simcard.html">📱 SIM карты</a>
+                <a href="about.html">ℹ️ О нас</a>
+                <a href="help.html">❓ Помощь</a>
+            </div>
+        </li>
+    </ul>
+
+    <button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button">
+        <i class="fas fa-bars"></i>
+    </button>
 </div>
 </nav>
+
 <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
 <nav class="mobile-menu" id="mobile-menu">
-<button aria-label="Закрыть" class="mobile-menu-close" id="mobile-menu-close">×</button>
-<ul class="mobile-menu-links">
-<li><a href="index.html">Главная</a></li>
-<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-<li><a href="hotels.html">🏨 Отели</a></li>
-<li><a href="cars.html">🚗 Аренда авто</a></li>
-<li><a class="active" href="vip-lounge.html">👑 VIP-Залы</a></li> 
-<li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="trains-buses.html">🚌 Автобусы</a></li>
-<li><a href="about.html">ℹ️ О нас</a></li>
-<li><a href="help.html">❓ Помощь</a></li>
-</ul>
+    <button aria-label="Закрыть" class="mobile-menu-close" id="mobile-menu-close">×</button>
+    <ul class="mobile-menu-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+        <li><a href="hotels.html">🏨 Отели</a></li>
+        <li><a href="cars.html">🚗 Аренда авто</a></li>
+        <li><a href="transfers.html">🚕 Трансферы</a></li>
+        <li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+        <li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
+        <li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
+        <li><a href="vip-lounge.html" class="active">💎 VIP залы</a></li>
+        <li><a href="parking.html">🅿️ Парковка</a></li>
+        <li><a href="insurance.html">🛡️ Страховка</a></li>
+        <li><a href="simcard.html">📱 SIM карты</a></li>
+        <li><a href="about.html">ℹ️ О нас</a></li>
+        <li><a href="help.html">❓ Помощь</a></li>
+    </ul>
 </nav>
 
 <main>
@@ -475,7 +684,7 @@ name="description"/>
 <section class="vip-lounge-hero">
 <div class="container">
 <div class="hero-content">
-    <h1>Доступ в VIP-залы</h1>
+    <h1>Доступ в VIP-залы аэропортов</h1>
     <p>
         Начните свое путешествие в комфорте. Бронируйте доступ в бизнес-залы
         аэропортов по всему миру без лишних хлопот.
@@ -530,6 +739,97 @@ name="description"/>
 </div>
 </section>
 
+<section class="airports-section">
+<div class="container">
+    <h2 class="section-title">Популярные направления с VIP-залами</h2>
+    <div class="airports-grid">
+        <div class="airport-card">
+            <h4>🇷🇺 Москва (SVO, DME, VKO)</h4>
+            <p>Шереметьево, Домодедово, Внуково - все крупнейшие аэропорты столицы</p>
+        </div>
+        <div class="airport-card">
+            <h4>🇷🇺 Санкт-Петербург (LED)</h4>
+            <p>Пулково - комфортабельные бизнес-залы культурной столицы</p>
+        </div>
+        <div class="airport-card">
+            <h4>🇦🇪 Дубай (DXB)</h4>
+            <p>Роскошные VIP-залы международного хаба</p>
+        </div>
+        <div class="airport-card">
+            <h4>🇹🇷 Стамбул (IST)</h4>
+            <p>Turkish Airlines Lounge и другие премиум-залы</p>
+        </div>
+        <div class="airport-card">
+            <h4>🇩🇪 Франкфурт (FRA)</h4>
+            <p>Lufthansa Lounges и партнерские залы</p>
+        </div>
+        <div class="airport-card">
+            <h4>🇬🇧 Лондон (LHR, LGW)</h4>
+            <p>Heathrow и Gatwick - эксклюзивные бизнес-залы</p>
+        </div>
+        <div class="airport-card">
+            <h4>🇫🇷 Париж (CDG)</h4>
+            <p>Шарль де Голль - французский премиум-сервис</p>
+        </div>
+        <div class="airport-card">
+            <h4>🇺🇸 Нью-Йорк (JFK)</h4>
+            <p>Premium lounges в главном международном аэропорту США</p>
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="seo-content-section">
+<div class="container">
+    <div class="seo-text">
+        <h2 class="section-title">VIP-залы аэропортов: комфорт и эксклюзивность</h2>
+        
+        <h3>Что такое VIP-зал аэропорта?</h3>
+        <p>
+            VIP-зал (или бизнес-зал) аэропорта — это закрытая зона повышенного комфорта, предназначенная для пассажиров, 
+            желающих провести время до вылета в спокойной и комфортабельной обстановке. Современные VIP-залы предлагают 
+            широкий спектр услуг: от бесплатного питания и напитков до душевых кабин, спа-процедур и конференц-залов.
+        </p>
+
+        <h3>Преимущества бронирования VIP-зала</h3>
+        <p>
+            Доступ в VIP-зал значительно улучшает впечатление от путешествия. Вы избегаете шумных и переполненных 
+            терминалов, получаете возможность поработать в тишине или просто расслабиться перед полетом. Многие залы 
+            предлагают услугу Fast Track — приоритетное прохождение всех контрольных пунктов, что экономит драгоценное время.
+        </p>
+
+        <h3>Кому подходят VIP-залы?</h3>
+        <ul>
+            <li><strong>Бизнес-путешественникам:</strong> возможность поработать в комфортной обстановке с высокоскоростным интернетом</li>
+            <li><strong>Семьям с детьми:</strong> игровые зоны, детское меню и спокойная атмосфера</li>
+            <li><strong>Пассажирам длительных пересадок:</strong> душевые, зоны отдыха и полноценное питание</li>
+            <li><strong>Путешественникам, ценящим комфорт:</strong> премиальный сервис и эксклюзивность</li>
+        </ul>
+
+        <h3>Как забронировать VIP-зал?</h3>
+        <p>
+            Бронирование VIP-зала через Airflow Travel — это быстро и удобно. Просто выберите аэропорт, дату и время 
+            вашего визита, оплатите онлайн и получите электронное подтверждение. При входе в зал предъявите QR-код 
+            или распечатанный ваучер. Никаких очередей, никаких сложностей!
+        </p>
+
+        <h3>Стоимость доступа в VIP-зал</h3>
+        <p>
+            Цены варьируются в зависимости от аэропорта, уровня комфорта и включенных услуг. В среднем доступ на 2-3 часа 
+            обойдется от 2000 до 8000 рублей на человека. Это разумная инвестиция в ваш комфорт, особенно если учесть 
+            стоимость питания и напитков в обычных аэропортовых кафе.
+        </p>
+
+        <h3>Fast Track — быстрое прохождение контроля</h3>
+        <p>
+            Fast Track (быстрый путь) — это премиальная услуга, позволяющая пройти регистрацию, паспортный и таможенный 
+            контроль по отдельному коридору без очередей. Особенно актуально в крупных международных аэропортах в часы пик. 
+            Услуга может приобретаться отдельно или быть включена в пакет доступа к VIP-залу.
+        </p>
+    </div>
+</div>
+</section>
+
 <section class="faq-section">
 <div class="container" style="max-width: 900px;">
     <h2 class="section-title">Часто задаваемые вопросы</h2>
@@ -572,6 +872,22 @@ name="description"/>
             </div>
         </details>
 
+        <details class="faq-item">
+            <summary>Нужно ли мне иметь бизнес-класс билет для доступа в VIP-зал?</summary>
+            <div class="faq-answer">
+                Нет, доступ в VIP-зал может приобрести любой пассажир независимо от класса билета. 
+                Это отличная возможность получить премиум-сервис даже при перелете экономклассом.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Можно ли взять с собой гостей в VIP-зал?</summary>
+            <div class="faq-answer">
+                Да, большинство VIP-залов позволяет приобрести дополнительные пропуска для гостей. 
+                Цена за каждого дополнительного гостя обычно такая же, как и за основного посетителя.
+            </div>
+        </details>
+
     </div>
 </div>
 </section>
@@ -581,85 +897,56 @@ name="description"/>
 <footer class="footer">
 <div class="footer-container">
 <div class="footer-content">
-    
     <div class="footer-section">
-        <h3>Наши Продукты</h3>
+        <h3>✨ О нас</h3>
+        <ul>
+            <li><a href="about.html">→ О проекте Airflow</a></li>
+            <li><a href="help.html">→ Помощь и контакты</a></li>
+            <li><a href="privacy.html">→ Политика конфиденциальности</a></li>
+            <li><a href="terms.html">→ Условия использования</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-section">
+        <h3>Продукты</h3>
         <ul>
             <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
             <li><a href="hotels.html">🏨 Отели</a></li>
             <li><a href="cars.html">🚗 Аренда авто</a></li>
             <li><a href="transfers.html">🚕 Трансферы</a></li>
-            <li><a href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ">🚂 Ж/д билеты</a></li>
-            <li><a href="help.html">❓ Центр помощи</a></li>
-            <li><a href="about.html">О нас</a></li>
-            <li><a href="privacy.html">Политика конфиденциальности</a></li>
-            <li><a href="terms.html">Условия использования</a></li>
+            <li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
+            <li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
         </ul>
     </div>
 
-    <div class="footer-section company-info-section">
-        <h3>Контакты</h3>
-        
-        <div class="footer-contacts" style="margin-bottom: 25px;">
-            <p style="margin-bottom: 8px; color: white; font-weight: 600;">24/7 Клиентская поддержка:</p>
-            <a href="tel:+74957750004" style="color: white; display: block; margin-bottom: 5px; text-decoration: none;">
-                <i class="fas fa-phone" style="color: #10b981;"></i> +7 495 775-00-04
-            </a>
-            <a href="tel:88007003360" style="color: white; display: block; margin-bottom: 15px; text-decoration: none;">
-                <i class="fas fa-phone" style="color: #10b981;"></i> 8 800 700-33-60
-            </a>
-            
-            <p style="margin-bottom: 8px; color: white; font-weight: 600;">Бронирование (Email 24/7):</p>
-            <a href="mailto:booking@vip-zal.ru" style="color: white; display: block; text-decoration: none;">
-                <i class="fas fa-envelope" style="color: #10b981;"></i> booking@vip-zal.ru
-            </a>
-        </div>
+    <div class="footer-section">
+        <h3>Дополнительно</h3>
+        <ul>
+            <li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
+            <li><a href="vip-lounge.html">💎 VIP залы</a></li>
+            <li><a href="parking.html">🅿️ Парковка</a></li>
+            <li><a href="insurance.html">🛡️ Страховка</a></li>
+            <li><a href="simcard.html">📱 SIM карты</a></li>
+        </ul>
     </div>
 
-    <div class="footer-section partners-list-in-footer">
-        <h3>Наши Партнеры</h3>
-        <div class="footer-partners-grid">
-            <div class="partner-item-footer">
-                <i class="fas fa-plane-departure"></i> 
-                <p>Skyscanner</p>
-            </div>
-            <div class="partner-item-footer">
-                <i class="fas fa-building"></i> 
-                <p>Booking</p>
-            </div>
-            <div class="partner-item-footer">
-                <i class="fas fa-car-side"></i> 
-                <p>DiscoverCars</p>
-            </div>
-            <div class="partner-item-footer">
-                <i class="fas fa-ticket-alt"></i> 
-                <p>Tiqets</p>
-            </div>
-            <div class="partner-item-footer">
-                <i class="fas fa-train"></i> 
-                <p>Tutu.ru</p>
-            </div>
-            <div class="partner-item-footer">
-                <a href="https://coffeespecialty.ru" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-mug-hot" style="color: #f59e0b;"></i> 
-                    <p style="margin: 0; color: #94a3b8;">Specialty Coffee</p>
-                </a>
-            </div>
-            </div>
+    <div class="footer-section">
+        <h3>Контакты VIP-зал</h3>
+        <p style="color: white; margin-bottom: 5px;">24/7 Поддержка:</p>
+        <p><i class="fas fa-phone" style="color: #10b981;"></i> +7 495 775-00-04</p>
+        <p><i class="fas fa-phone" style="color: #10b981;"></i> 8 800 700-33-60</p>
+        <p style="color: white; margin-top: 10px; margin-bottom: 5px;">Бронирование:</p>
+        <p><i class="fas fa-envelope" style="color: #10b981;"></i> booking@vip-zal.ru</p>
     </div>
-    </div>
+</div>
+
 <div class="footer-bottom">
-<p>&copy; 2025 Airflow Travel. Все права защищены.</p>
-    <p>
-        <i class="fas fa-gem"></i> 
-        Powered by Airflow Platform AI
-    </p>
+    &copy; 2025 Airflow Travel. Все права защищены.
 </div>
 </div>
 </footer>
 
 <script>
-    // Код для навигации
     const mobileMenu = document.getElementById('mobile-menu');
     const menuButton = document.getElementById('mobile-menu-button');
     const menuOverlay = document.getElementById('mobile-menu-overlay');
@@ -699,7 +986,6 @@ name="description"/>
     if (menuClose) menuClose.addEventListener('click', closeMenu);
     if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
     
-    // Закрытие мобильного меню при клике на ссылку
     document.querySelectorAll('.mobile-menu-links a').forEach(link => {
         link.addEventListener('click', () => {
             if (mobileMenu.classList.contains('active')) {
