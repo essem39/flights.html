@@ -35,8 +35,8 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 .nav-logo { display: flex; align-items: center; gap: 12px; color: white; font-size: 18px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; }
 .nav-logo:hover { color: #3b82f6; transform: scale(1.05); }
 
-.nav-menu { display: flex; list-style: none; margin: 0; padding: 0; gap: 25px; }
-.nav-menu > li { position: relative; }
+.nav-menu { display: flex; list-style: none; margin: 0; padding: 0; gap: 25px; align-items: center; }
+.nav-menu > li { position: relative; display: flex; align-items: center; }
 .nav-menu a { 
     color: #94a3b8; 
     text-decoration: none; 
@@ -200,111 +200,117 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 .hero-content { position: relative; z-index: 5; }
 .hero-content h1 { font-size: clamp(1.4rem, 2.8vw, 2.2rem); margin-bottom: 25px; font-weight: 700; text-align: center; color: white; }
 
-/* КОНТЕЙНЕР ВИДЖЕТА С КАРТИНКОЙ */
-#simcard-widget-container {
-    max-width: 900px; 
-    margin: 0 auto; 
-    padding: 30px 20px; 
+/* КОНТЕЙНЕР СЛАЙДЕРА */
+.slider-container {
     background: transparent;
-    border-radius: 16px; 
-    box-shadow: none; 
-    z-index: 10; 
-    position: relative;
+    padding: 30px 0;
+    margin: 0;
 }
 
-/* ЕДИНЫЙ БЛОК С КАРТИНКОЙ */
-#custom-sim-search {
-    display: flex; 
-    flex-direction: column; 
-    gap: 25px; 
-    align-items: center; 
-    padding: 40px 30px;
-    background: rgba(255, 255, 255, 0.12); 
-    border-radius: 20px; 
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+.slider {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-/* КАРТИНКА */
-.sim-hero-image {
-    width: 100%;
-    max-width: 750px;
-    height: auto;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+.slides {
+    display: flex;
+    transition: transform 0.5s ease;
 }
 
-.sim-hero-image:hover {
-    transform: scale(1.02);
+.slide {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    gap: 30px;
 }
 
-/* ТЕКСТ ПОД КАРТИНКОЙ */
-.hero-text-below {
-    text-align: center;
-    margin-top: 15px;
+.slide img {
+    width: 280px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.hero-text-below p {
-    font-size: 1.05rem;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.95);
+.slide-content {
+    flex: 1;
+    color: white;
+}
+
+.slide-content h3 {
+    font-size: 1.5rem;
     margin-bottom: 10px;
+    color: white;
+    font-weight: 700;
+}
+
+.slide-content p {
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 8px;
+    font-size: 1rem;
 }
 
-.hero-text-below p:last-child {
-    margin-bottom: 0;
+.slide-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fbbf24;
+    margin: 15px 0;
 }
 
-.hero-text-below .highlight {
-    font-weight: 600;
-    color: white;
-}
-
-/* КНОПКА CTA */
-.search-cta-button {
+.slide-cta {
     display: inline-block;
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    background: transparent;
     color: white;
-    font-size: 0.9rem; 
-    font-weight: 600; 
-    padding: 12px 30px; 
-    border: none; 
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 12px 28px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
     border-radius: 25px;
-    text-decoration: none; 
-    cursor: pointer; 
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); 
-    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    position: relative;
-    overflow: hidden;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
-.search-cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
+.slide-cta:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    transform: translateY(-2px);
 }
 
-.search-cta-button:hover::before {
-    left: 100%;
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
 }
 
-.search-cta-button:hover { 
-    background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
-    transform: translateY(-3px); 
-    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.dot.active {
+    background: #fbbf24;
+    transform: scale(1.3);
+    border-color: white;
 }
 
 /* СТИЛИ КАРТОЧЕК И СЕКЦИЙ */
@@ -770,18 +776,24 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 /* АДАПТИВНОСТЬ */
 @media (max-width: 768px) {
     .hero-section { padding: 45px 15px 35px; }
-    #simcard-widget-container { padding: 20px 15px; }
-    #custom-sim-search { padding: 30px 20px; }
-    .sim-hero-image { max-width: 100%; border-radius: 12px; }
-    .search-cta-button { 
-        font-size: 0.85rem; 
-        padding: 10px 22px; 
-        border-radius: 20px;
+    .slider { border-radius: 15px; }
+    .slide { 
+        flex-direction: column; 
+        text-align: center; 
+        padding: 30px 20px;
+        gap: 20px;
     }
+    .slide img { 
+        width: 100%; 
+        max-width: 280px;
+        height: 180px;
+    }
+    .slide-content h3 { font-size: 1.3rem; }
+    .slide-price { font-size: 1.6rem; }
+    .slide-cta { font-size: 0.85rem; padding: 10px 22px; }
     .section-title { font-size: 2rem; }
     .features-grid, .products-grid { grid-template-columns: 1fr; }
     .tariff-grid { grid-template-columns: 1fr; }
-    .hero-text-below p { font-size: 0.95rem; }
     .footer-grid { grid-template-columns: 1fr; gap: 30px; }
 }
 
@@ -789,13 +801,15 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     .hero-content h1 { font-size: 1.3rem; }
     .feature-card, .product-card { padding: 25px 20px; }
     .testimonial-slide { padding: 25px 20px; }
-    .search-cta-button { 
-        font-size: 0.8rem; 
-        padding: 9px 20px; 
-        border-radius: 18px;
+    .slide { padding: 25px 15px; }
+    .slide img { 
+        max-width: 240px;
+        height: 160px;
     }
-    #custom-sim-search { padding: 25px 15px; }
-    .hero-text-below p { font-size: 0.9rem; }
+    .slide-content h3 { font-size: 1.2rem; }
+    .slide-content p { font-size: 0.9rem; }
+    .slide-price { font-size: 1.4rem; }
+    .slide-cta { font-size: 0.8rem; padding: 9px 18px; }
 }
 </style>
 </head>
@@ -826,10 +840,10 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
                     <a href="https://airflowtravel.net/insurance" title="Страхование путешествий">🛡️ Страховка путешествий</a>
                     <a href="https://airflowtravel.net/attractions" title="Билеты в музеи и достопримечательности">🎫 Музеи и достопримечательности</a>
                     <a href="https://airflowtravel.net/flight-compensation" title="Компенсация за задержку или отмену рейса">💰 Компенсация за рейсы</a>
+                    <a href="https://airflowtravel.net/about" title="О компании Airflow Travel">ℹ️ О нас</a>
+                    <a href="https://airflowtravel.net/help" title="Помощь и часто задаваемые вопросы">❓ Помощь</a>
                 </div>
             </li>
-            <li><a href="https://airflowtravel.net/about" title="О компании Airflow Travel">ℹ️ О нас</a></li>
-            <li><a href="https://airflowtravel.net/help" title="Помощь и часто задаваемые вопросы">❓ Помощь</a></li>
         </ul>
         
         <button class="mobile-menu-button" aria-label="Открыть меню">
@@ -867,21 +881,64 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     <div class="hero-content">
         <h1>Сим-карта для путешествий за границу Drimsim</h1>
         
-        <div id="simcard-widget-container">
-            <div id="custom-sim-search">
-                <!-- КАРТИНКА -->
-                <img src="images/карта (1).png" alt="Drimsim - SIM-карта для путешествий в 190 странах" class="sim-hero-image">
-                
-                <!-- ТЕКСТ ПОД КАРТИНКОЙ -->
-                <div class="hero-text-below">
-                    <p><span class="highlight">Выгодный интернет в 190 странах.</span> Без абонентской платы и скрытых платежей.</p>
-                    <p>Drimsim помогает экономить на мобильном интернете, а не на впечатлениях от поездки.</p>
+        <div class="slider-container">
+            <div class="slider">
+                <div class="slides" id="slides">
+                    <!-- Слайд 1: Drimsim Classic -->
+                    <div class="slide">
+                        <img src="images/clasic.png w=280&h=200&fit=crop" alt="Drimsim Classic - Физическая SIM-карта">
+                        <div class="slide-content">
+                            <h3>📱 Drimsim Classic</h3>
+                            <p>Привычная физическая сим-карта трех форматов: нано, микро и мини.</p>
+                            <p><strong>✓ Работает в 190 странах</strong></p>
+                            <div class="slide-price">€10</div>
+                            <a href="https://drimsim.tpo.li/spvmqtIQ" class="slide-cta">Заказать Classic</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 2: Drimsim eSIM -->
+                    <div class="slide">
+                        <img src="images/fa205590763eda921ab32e74107f637c (1).pngw=280&h=200&fit=crop" alt="Drimsim eSIM - Виртуальная SIM-карта">
+                        <div class="slide-content">
+                            <h3>📲 Drimsim eSIM</h3>
+                            <p>Виртуальная сим-карта. Мгновенная активация через QR-код.</p>
+                            <p><strong>✓ Без курьера и ожидания</strong></p>
+                            <div class="slide-price">€10</div>
+                            <a href="#https://drimsim.tpo.li/spvmqtIQ" class="slide-cta">Заказать eSIM</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 3: Тариф Европа -->
+                    <div class="slide">
+                        <img src="images/travel kart.png w=280&h=200&fit=crop" alt="Интернет в Европе">
+                        <div class="slide-content">
+                            <h3>🇪🇺 Единый тариф Европа</h3>
+                            <p>Выгодный интернет во всех странах Европы по одному тарифу.</p>
+                            <p><strong>✓ 0,01 €/МБ без роуминга</strong></p>
+                            <div class="slide-price">€0,01/МБ</div>
+                            <a href="https://drimsim.tpo.li/spvmqtIQ" class="slide-cta">Узнать больше</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 4: Программа лояльности -->
+                    <div class="slide">
+                        <img src="images/карта (1).png w=280&h=200&fit=crop" alt="Программа лояльности Drimsim">
+                        <div class="slide-content">
+                            <h3>🎁 Программа лояльности</h3>
+                            <p>Рассказывайте о Drimsim друзьям и делитесь ссылкой.</p>
+                            <p><strong>✓ Получайте € за каждого друга</strong></p>
+                            <div class="slide-price">€7 за друга</div>
+                            <a href="https://drimsim.tpo.li/spvmqtIQ" class="slide-cta">Начать зарабатывать</a>
+                        </div>
+                    </div>
                 </div>
-                
-                <!-- КНОПКА -->
-                <a href="#tariffs" class="search-cta-button">
-                    Заказать сим-карту
-                </a>
+            </div>
+            
+            <div class="slider-dots">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
             </div>
         </div>
     </div>
@@ -1204,6 +1261,41 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Слайдер
+let currentSlideIndex = 0;
+const slides = document.getElementById('slides');
+const totalSlides = document.querySelectorAll('.slide').length;
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(index) {
+    slides.style.transform = `translateX(-${index * 100}%)`;
+    
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+}
+
+function changeSlide(direction) {
+    currentSlideIndex += direction;
+    
+    if (currentSlideIndex >= totalSlides) {
+        currentSlideIndex = 0;
+    } else if (currentSlideIndex < 0) {
+        currentSlideIndex = totalSlides - 1;
+    }
+    
+    showSlide(currentSlideIndex);
+}
+
+function currentSlide(index) {
+    currentSlideIndex = index - 1;
+    showSlide(currentSlideIndex);
+}
+
+// Автопрокрутка слайдера каждые 5 секунд
+setInterval(() => {
+    changeSlide(1);
+}, 5000);
 
 // Инициализация Swiper для отзывов
 document.addEventListener('DOMContentLoaded', function() {
