@@ -38,7 +38,6 @@
             padding: 0 20px;
         }
 
-        /* ВЕРХНЕЕ МЕНЮ */
         .main-navigation {
             background: #1e293b;
             padding: 0;
@@ -97,7 +96,6 @@
             text-decoration: none;
         }
 
-        /* ВЫПАДАЮЩЕЕ МЕНЮ */
         .dropdown {
             position: relative;
         }
@@ -151,7 +149,6 @@
             color: white;
         }
 
-        /* Мобильное меню */
         .mobile-menu-button {
             display: none;
             background: none;
@@ -254,7 +251,6 @@
             }
         }
 
-        /* HERO СЕКЦИЯ */
         .section-title {
             text-align: center;
             font-size: 2.5rem;
@@ -270,7 +266,6 @@
             text-align: center;
         }
 
-        /* ПРОЗРАЧНАЯ РАМКА ДЛЯ ЗАГОЛОВКА */
         .hero-title-wrapper {
             background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(12px);
@@ -278,7 +273,7 @@
             border-radius: 20px;
             padding: 25px 35px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            max-width: 900px;
+            max-width: 95%;
             margin: 0 auto 25px;
         }
 
@@ -294,7 +289,7 @@
             opacity: 0.95;
         }
         
-        /* DROPDOWN СТРАНЫ С ЗЕЛЕНЫМ ЦВЕТОМ */
+        /* КАСТОМНЫЙ DROPDOWN */
         .country-selector-wrapper {
             max-width: 95%;
             margin: 0 auto 30px;
@@ -308,10 +303,15 @@
             color: white;
             text-align: left;
         }
-        
-        .country-selector {
+
+        .custom-select {
+            position: relative;
             width: 100%;
-            padding: 12px 16px;
+        }
+
+        .custom-select-trigger {
+            width: 100%;
+            padding: 12px 40px 12px 16px;
             font-size: 1rem;
             border: 2px solid #10b981;
             border-radius: 6px;
@@ -320,21 +320,73 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        
-        .country-selector:hover {
+
+        .custom-select-trigger:hover {
             border-color: #059669;
         }
-        
-        .country-selector:focus {
-            outline: none;
+
+        .custom-select-trigger.active {
             border-color: #059669;
             box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
         }
 
-        /* ЗЕЛЕНЫЙ ЦВЕТ ДЛЯ ВЫБРАННОЙ ОПЦИИ */
-        .country-selector option:checked {
+        .custom-select-arrow {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            transition: transform 0.3s ease;
+            color: #059669;
+        }
+
+        .custom-select-trigger.active .custom-select-arrow {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .custom-select-dropdown {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 6px;
+            max-height: 300px;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+        }
+
+        .custom-select-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .custom-select-option {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #1e293b;
+            font-weight: 500;
+        }
+
+        .custom-select-option:hover {
             background: #10b981;
+            color: white;
+        }
+
+        .custom-select-option.selected {
+            background: #059669;
             color: white;
         }
         
@@ -610,7 +662,6 @@
             background: #10b981 !important;
         }
 
-        /* ФУТЕР */
         .footer {
             background-color: #1e293b;
             color: #94a3b8;
@@ -674,7 +725,6 @@
             color: #94a3b8;
         }
         
-        /* АДАПТИВНОСТЬ */
         @media (max-width: 768px) {
             .hero-section {
                 padding: 15px 15px 60px;
@@ -797,31 +847,37 @@
                     </div>
                     
                     <div class="country-selector-wrapper">
-                        <label for="country-select" class="country-selector-label">Выберите страну:</label>
-                        <select id="country-select" class="country-selector">
-                            <option value="20-121511">🇷🇺 Россия</option>
-                            <option value="124-106531">🇬🇪 Грузия</option>
-                            <option value="126-78171">🇦🇲 Армения</option>
-                            <option value="109-141121">🇹🇷 Турция</option>
-                            <option value="14-62821">🇦🇪 ОАЭ</option>
-                            <option value="29-51521">🇩🇪 Германия</option>
-                            <option value="12-64751">🇫🇷 Франция</option>
-                            <option value="13-54441">🇮🇹 Италия</option>
-                            <option value="35-60691">🇪🇸 Испания</option>
-                            <option value="17-67671">🇵🇹 Португалия</option>
-                            <option value="18-115571">🇬🇷 Греция</option>
-                            <option value="117-136221">🇨🇾 Кипр</option>
-                            <option value="114-61591">🇨🇿 Чехия</option>
-                            <option value="248-548915">🇺🇦 Крым</option>
-                            <option value="133-15">🇲🇪 Черногория</option>
-                            <option value="127-53231">🇦🇹 Австрия</option>
-                            <option value="153-68511">🇦🇿 Азербайджан</option>
-                            <option value="59-54391">🇨🇭 Швейцария</option>
-                            <option value="23-23571">🇺🇸 США</option>
-                            <option value="4-255321">🇨🇳 Китай</option>
-                            <option value="6-549219">🇮🇳 Индия</option>
-                            <option value="9-73501">🇹🇭 Таиланд</option>
-                        </select>
+                        <label class="country-selector-label">Выберите страну:</label>
+                        <div class="custom-select" id="custom-select">
+                            <div class="custom-select-trigger">
+                                <span id="selected-country">🇷🇺 Россия</span>
+                                <i class="fas fa-chevron-down custom-select-arrow"></i>
+                            </div>
+                            <div class="custom-select-dropdown">
+                                <div class="custom-select-option selected" data-value="20-121511">🇷🇺 Россия</div>
+                                <div class="custom-select-option" data-value="124-106531">🇬🇪 Грузия</div>
+                                <div class="custom-select-option" data-value="126-78171">🇦🇲 Армения</div>
+                                <div class="custom-select-option" data-value="109-141121">🇹🇷 Турция</div>
+                                <div class="custom-select-option" data-value="14-62821">🇦🇪 ОАЭ</div>
+                                <div class="custom-select-option" data-value="29-51521">🇩🇪 Германия</div>
+                                <div class="custom-select-option" data-value="12-64751">🇫🇷 Франция</div>
+                                <div class="custom-select-option" data-value="13-54441">🇮🇹 Италия</div>
+                                <div class="custom-select-option" data-value="35-60691">🇪🇸 Испания</div>
+                                <div class="custom-select-option" data-value="17-67671">🇵🇹 Португалия</div>
+                                <div class="custom-select-option" data-value="18-115571">🇬🇷 Греция</div>
+                                <div class="custom-select-option" data-value="117-136221">🇨🇾 Кипр</div>
+                                <div class="custom-select-option" data-value="114-61591">🇨🇿 Чехия</div>
+                                <div class="custom-select-option" data-value="248-548915">🇺🇦 Крым</div>
+                                <div class="custom-select-option" data-value="133-15">🇲🇪 Черногория</div>
+                                <div class="custom-select-option" data-value="127-53231">🇦🇹 Австрия</div>
+                                <div class="custom-select-option" data-value="153-68511">🇦🇿 Азербайджан</div>
+                                <div class="custom-select-option" data-value="59-54391">🇨🇭 Швейцария</div>
+                                <div class="custom-select-option" data-value="23-23571">🇺🇸 США</div>
+                                <div class="custom-select-option" data-value="4-255321">🇨🇳 Китай</div>
+                                <div class="custom-select-option" data-value="6-549219">🇮🇳 Индия</div>
+                                <div class="custom-select-option" data-value="9-73501">🇹🇭 Таиланд</div>
+                            </div>
+                        </div>
                     </div>
                     
                     <div id="widget-container"></div>
@@ -1111,6 +1167,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // МОБИЛЬНОЕ МЕНЮ
             const mobileMenu = document.getElementById('mobile-menu');
             const menuButton = document.getElementById('mobile-menu-button');
             const menuOverlay = document.getElementById('mobile-menu-overlay');
@@ -1156,6 +1213,7 @@
                 }
             });
 
+            // SWIPER СЛАЙДЕР
             new Swiper('.testimonials-slider', {
                 loop: true,
                 slidesPerView: 1,
@@ -1196,6 +1254,7 @@
                 }
             });
             
+            // АККОРДЕОН
             document.querySelectorAll('.accordion-header').forEach(header => {
                 header.addEventListener('click', () => {
                     const item = header.closest('.accordion-item');
@@ -1211,7 +1270,49 @@
                 });
             });
             
-            const countrySelect = document.getElementById('country-select');
+            // КАСТОМНЫЙ DROPDOWN
+            const customSelect = document.getElementById('custom-select');
+            const trigger = customSelect.querySelector('.custom-select-trigger');
+            const dropdown = customSelect.querySelector('.custom-select-dropdown');
+            const options = customSelect.querySelectorAll('.custom-select-option');
+            const selectedText = document.getElementById('selected-country');
+
+            // Открыть/закрыть dropdown
+            trigger.addEventListener('click', () => {
+                trigger.classList.toggle('active');
+                dropdown.classList.toggle('active');
+            });
+
+            // Закрыть при клике вне dropdown
+            document.addEventListener('click', (e) => {
+                if (!customSelect.contains(e.target)) {
+                    trigger.classList.remove('active');
+                    dropdown.classList.remove('active');
+                }
+            });
+
+            // Выбор опции
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    const value = option.getAttribute('data-value');
+                    const text = option.textContent;
+                    
+                    // Обновить выбранную опцию
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    selectedText.textContent = text;
+                    
+                    // Закрыть dropdown
+                    trigger.classList.remove('active');
+                    dropdown.classList.remove('active');
+                    
+                    // Перезагрузить страницу с новыми параметрами
+                    const [countryCode, cityCode] = value.split('-');
+                    window.location.href = `?country=${countryCode}&city=${cityCode}`;
+                });
+            });
+
+            // ВИДЖЕТ LOCALRENT
             const widgetContainer = document.getElementById('widget-container');
             
             function loadWidget(countryCode, cityCode) {
@@ -1237,17 +1338,22 @@
                     widgetContainer.appendChild(script);
                 }, 100);
             }
-            
-            countrySelect.addEventListener('change', function() {
-                const value = this.value;
-                const [countryCode, cityCode] = value.split('-');
-                window.location.href = `?country=${countryCode}&city=${cityCode}`;
-            });
 
+            // Загрузка виджета при загрузке страницы
             const urlParams = new URLSearchParams(window.location.search);
             const countryCode = urlParams.get('country') || '20';
             const cityCode = urlParams.get('city') || '121511';
-            countrySelect.value = `${countryCode}-${cityCode}`;
+            
+            // Установить правильную выбранную страну
+            const currentValue = `${countryCode}-${cityCode}`;
+            options.forEach(option => {
+                if (option.getAttribute('data-value') === currentValue) {
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    selectedText.textContent = option.textContent;
+                }
+            });
+            
             loadWidget(countryCode, cityCode);
         });
     </script>
