@@ -29,15 +29,85 @@
 html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-/* СТИЛИ ВЕРХНЕГО МЕНЮ (НАВИГАЦИИ) - ОРИГИНАЛЬНЫЕ РАЗМЕРЫ */
+/* СТИЛИ ВЕРХНЕГО МЕНЮ (НАВИГАЦИИ) */
 .main-navigation { background: #1e293b; padding: 0; position: sticky; top: 0; z-index: 1020; box-shadow: 0 2px 20px rgba(0,0,0,0.1); height: 55px; }
 .nav-container { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 100px; height: 100%; }
-.nav-logo { display: flex; align-items: center; gap: 12px; color: white; font-size: 18px; font-weight: 600; text-decoration: none; }
+.nav-logo { display: flex; align-items: center; gap: 12px; color: white; font-size: 18px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; }
+.nav-logo:hover { color: #3b82f6; transform: scale(1.05); }
+
 .nav-menu { display: flex; list-style: none; margin: 0; padding: 0; gap: 25px; }
-.nav-menu a { color: #94a3b8; text-decoration: none; font-size: 15px; font-weight: 500; padding: 18px 0; transition: color 0.3s ease; }
+.nav-menu > li { position: relative; }
+.nav-menu a { 
+    color: #94a3b8; 
+    text-decoration: none; 
+    font-size: 15px; 
+    font-weight: 500; 
+    padding: 18px 0; 
+    transition: all 0.3s ease;
+    position: relative;
+}
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #3b82f6;
+    transition: width 0.3s ease;
+}
+.nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
 .nav-menu a:hover, .nav-menu a.active { color: white; text-decoration: none; }
 
-/* Мобильное меню - ИСПРАВЛЕНО */
+/* Dropdown меню "Ещё" */
+.dropdown { position: relative; }
+.dropdown-toggle { cursor: pointer; display: flex; align-items: center; gap: 5px; }
+.dropdown-toggle i { font-size: 12px; transition: transform 0.3s ease; }
+.dropdown:hover .dropdown-toggle i { transform: rotate(180deg); }
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #1e293b;
+    min-width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    padding: 10px 0;
+    z-index: 1000;
+    border: 1px solid #334155;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    border-left: 3px solid transparent;
+}
+
+.dropdown-menu a::after { display: none; }
+
+.dropdown-menu a:hover {
+    background: #334155;
+    color: white;
+    border-left-color: #3b82f6;
+    padding-left: 25px;
+}
+
+/* Мобильное меню */
 .mobile-menu-button { display: none; background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 8px; }
 .mobile-menu-overlay { 
     position: fixed; 
@@ -84,7 +154,7 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 /* СТИЛИ КОНТЕНТА СТРАНИЦЫ */
 .section-title { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 40px; color: #1e293b; }
 
-/* HERO SECTION - УЛУЧШЕННАЯ */
+/* HERO SECTION - С КАРТИНКОЙ */
 .hero-section { 
     background: linear-gradient(135deg, #1d4ed8 0%, #f59e0b 100%); 
     color: white; 
@@ -103,7 +173,7 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     right: 50px; 
     transform: translateY(-50%) rotate(10deg); 
     font-size: 350px; 
-    color: rgba(255, 255, 255, 0.15); 
+    color: rgba(255, 255, 255, 0.08); 
     z-index: 1; 
     pointer-events: none; 
 }
@@ -117,7 +187,7 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     left: 50px; 
     transform: rotate(-10deg); 
     font-size: 250px; 
-    color: rgba(255, 255, 255, 0.1); 
+    color: rgba(255, 255, 255, 0.06); 
     z-index: 1; 
     pointer-events: none; 
 }
@@ -130,9 +200,9 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 .hero-content { position: relative; z-index: 5; }
 .hero-content h1 { font-size: clamp(1.4rem, 2.8vw, 2.2rem); margin-bottom: 25px; font-weight: 700; text-align: center; color: white; }
 
-/* КОНТЕЙНЕР ВИДЖЕТА - УЛУЧШЕННЫЙ */
+/* КОНТЕЙНЕР ВИДЖЕТА С КАРТИНКОЙ */
 #simcard-widget-container {
-    max-width: 800px; 
+    max-width: 900px; 
     margin: 0 auto; 
     padding: 30px 20px; 
     background: transparent;
@@ -142,107 +212,78 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     position: relative;
 }
 
-/* ЕДИНЫЙ БЛОК С ТЕКСТОМ И ВЫБОРОМ СТРАН */
+/* ЕДИНЫЙ БЛОК С КАРТИНКОЙ */
 #custom-sim-search {
     display: flex; 
     flex-direction: column; 
-    gap: 20px; 
+    gap: 25px; 
     align-items: center; 
-    padding: 30px 25px;
-    background: rgba(255, 255, 255, 0.15); 
-    border-radius: 18px; 
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 40px 30px;
+    background: rgba(255, 255, 255, 0.12); 
+    border-radius: 20px; 
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-/* ТЕКСТ ВНУТРИ КОНТЕЙНЕРА */
-.hero-text-inside {
+/* КАРТИНКА */
+.sim-hero-image {
+    width: 100%;
+    max-width: 750px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.sim-hero-image:hover {
+    transform: scale(1.02);
+}
+
+/* ТЕКСТ ПОД КАРТИНКОЙ */
+.hero-text-below {
     text-align: center;
-    margin-bottom: 10px;
+    margin-top: 15px;
 }
 
-.hero-text-inside p {
-    font-size: 1rem;
+.hero-text-below p {
+    font-size: 1.05rem;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.95);
-    margin-bottom: 8px;
-    line-height: 1.5;
+    margin-bottom: 10px;
+    line-height: 1.6;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-.hero-text-inside p:last-child {
+.hero-text-below p:last-child {
     margin-bottom: 0;
 }
 
-.hero-text-inside .highlight {
+.hero-text-below .highlight {
     font-weight: 600;
     color: white;
 }
 
-/* СПИСОК СТРАН С ФЛАГАМИ */
-.countries-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 10px;
-    width: 100%;
-    max-width: 580px;
-    margin-bottom: 8px;
-}
-
-.country-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 14px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: white;
-    font-weight: 500;
-    font-size: 0.9rem;
-    text-align: left;
-}
-
-.country-item:hover,
-.country-item.active {
-    background: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.6);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.country-flag {
-    font-size: 1.1rem;
-    flex-shrink: 0;
-}
-
-.country-name {
-    flex-grow: 1;
-}
-
-/* КНОПКА CTA - ЕЩЕ БОЛЕЕ КОМПАКТНАЯ */
+/* КНОПКА CTA */
 .search-cta-button {
     display: inline-block;
     background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
     color: white;
-    font-size: 0.85rem; 
+    font-size: 0.9rem; 
     font-weight: 600; 
-    padding: 10px 20px; 
+    padding: 12px 30px; 
     border: none; 
-    border-radius: 20px;
+    border-radius: 25px;
     text-decoration: none; 
     cursor: pointer; 
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 3px 12px rgba(245, 158, 11, 0.3); 
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); 
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.5px;
     position: relative;
     overflow: hidden;
-    margin-top: 2px;
+    margin-top: 5px;
 }
 
 .search-cta-button::before {
@@ -262,8 +303,8 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 
 .search-cta-button:hover { 
     background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
-    transform: translateY(-2px); 
-    box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
 }
 
 /* СТИЛИ КАРТОЧЕК И СЕКЦИЙ */
@@ -325,7 +366,7 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 .feature-card h4 { font-size: 1.2rem; color: #1e293b; font-weight: 700; margin-bottom: 10px; }
 .feature-card p { color: #64748b; font-size: 0.95rem; }
 
-/* СТИЛИ ОТЗЫВОВ - УЛУЧШЕННЫЕ */
+/* СТИЛИ ОТЗЫВОВ */
 .testimonials-section { 
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); 
     padding: 80px 0; 
@@ -561,7 +602,7 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3); 
 }
 
-/* FAQ СЕКЦИЯ - НОВАЯ */
+/* FAQ СЕКЦИЯ */
 .faq-section {
     padding: 80px 20px;
     background: #f8fafc;
@@ -637,7 +678,7 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     font-size: 1rem;
 }
 
-/* ФУТЕР - ОБНОВЛЕННЫЙ */
+/* ФУТЕР */
 .footer { 
     background: #1e293b; 
     color: #94a3b8; 
@@ -670,12 +711,28 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     text-decoration: none; 
     display: block; 
     margin-bottom: 8px; 
-    transition: color 0.3s ease; 
+    transition: all 0.3s ease; 
     font-size: 0.95rem;
+    position: relative;
+    padding-left: 0;
+}
+
+.footer-section a::before {
+    content: '→';
+    position: absolute;
+    left: -20px;
+    opacity: 0;
+    transition: all 0.3s ease;
 }
 
 .footer-section a:hover { 
     color: white; 
+    padding-left: 20px;
+}
+
+.footer-section a:hover::before {
+    left: 0;
+    opacity: 1;
 }
 
 .footer-section p { 
@@ -702,29 +759,29 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 .social-icons a {
     color: #94a3b8;
     font-size: 1.2rem;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .social-icons a:hover {
     color: white;
+    transform: translateY(-3px);
 }
 
 /* АДАПТИВНОСТЬ */
 @media (max-width: 768px) {
     .hero-section { padding: 45px 15px 35px; }
     #simcard-widget-container { padding: 20px 15px; }
-    #custom-sim-search { padding: 25px 20px; }
-    .countries-grid { grid-template-columns: 1fr; gap: 8px; }
-    .country-item { padding: 8px 12px; font-size: 0.85rem; }
+    #custom-sim-search { padding: 30px 20px; }
+    .sim-hero-image { max-width: 100%; border-radius: 12px; }
     .search-cta-button { 
-        font-size: 0.8rem; 
-        padding: 8px 16px; 
-        border-radius: 18px;
+        font-size: 0.85rem; 
+        padding: 10px 22px; 
+        border-radius: 20px;
     }
     .section-title { font-size: 2rem; }
     .features-grid, .products-grid { grid-template-columns: 1fr; }
     .tariff-grid { grid-template-columns: 1fr; }
-    .hero-text-inside p { font-size: 0.9rem; }
+    .hero-text-below p { font-size: 0.95rem; }
     .footer-grid { grid-template-columns: 1fr; gap: 30px; }
 }
 
@@ -732,15 +789,13 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     .hero-content h1 { font-size: 1.3rem; }
     .feature-card, .product-card { padding: 25px 20px; }
     .testimonial-slide { padding: 25px 20px; }
-    .countries-grid { grid-template-columns: 1fr; }
-    .country-item { font-size: 0.8rem; padding: 7px 10px; }
     .search-cta-button { 
-        font-size: 0.75rem; 
-        padding: 7px 14px; 
-        border-radius: 16px;
+        font-size: 0.8rem; 
+        padding: 9px 20px; 
+        border-radius: 18px;
     }
-    #custom-sim-search { padding: 20px 15px; }
-    .hero-text-inside p { font-size: 0.85rem; }
+    #custom-sim-search { padding: 25px 15px; }
+    .hero-text-below p { font-size: 0.9rem; }
 }
 </style>
 </head>
@@ -749,17 +804,32 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 <!-- Верхнее меню -->
 <nav class="main-navigation">
     <div class="nav-container">
-        <a href="https://airflowtravel.net" class="nav-logo">
+        <a href="https://airflowtravel.net" class="nav-logo" title="Вернуться на главную страницу Airflow Travel">
             🏛️ Airflow
         </a>
         
         <ul class="nav-menu">
-            <li><a href="https://airflowtravel.net" class="active">Главная</a></li>
-            <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-            <li><a href="https://airflowtravel.net/hotels">🏨 Отели</a></li>
-            <li><a href="https://airflowtravel.net/drimsim">📱 SIM-карты/eSIM</a></li>
-            <li><a href="https://airflowtravel.net/about">ℹ️ О нас</a></li>
-            <li><a href="https://airflowtravel.net/help">❓ Помощь</a></li>
+            <li><a href="https://airflowtravel.net" title="Главная страница Airflow Travel">Главная</a></li>
+            <li><a href="https://search.airflowtravel.net" title="Поиск и бронирование авиабилетов">✈️ Авиабилеты</a></li>
+            <li><a href="https://airflowtravel.net/hotels" title="Бронирование отелей по всему миру">🏨 Отели</a></li>
+            <li><a href="https://airflowtravel.net/drimsim" class="active" title="SIM-карты и eSIM для путешествий">📱 SIM-карты/eSIM</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" title="Дополнительные услуги Airflow Travel">
+                    Ещё <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="https://airflowtravel.net/cars" title="Аренда автомобилей в 22 странах">🚗 Аренда авто (22 страны)</a>
+                    <a href="https://airflowtravel.net/transfers" title="Трансферы из аэропорта">🚕 Трансферы</a>
+                    <a href="https://airflowtravel.net/trains-buses" title="Билеты на поезда и автобусы">🚌 Ж/Д и автобусы</a>
+                    <a href="https://airflowtravel.net/parking" title="Бронирование парковки в аэропорту">🅿️ Паркинг в аэропорту</a>
+                    <a href="https://airflowtravel.net/vip-lounge" title="Доступ в VIP-залы аэропортов">🛋️ VIP-залы аэропортов</a>
+                    <a href="https://airflowtravel.net/insurance" title="Страхование путешествий">🛡️ Страховка путешествий</a>
+                    <a href="https://airflowtravel.net/attractions" title="Билеты в музеи и достопримечательности">🎫 Музеи и достопримечательности</a>
+                    <a href="https://airflowtravel.net/flight-compensation" title="Компенсация за задержку или отмену рейса">💰 Компенсация за рейсы</a>
+                </div>
+            </li>
+            <li><a href="https://airflowtravel.net/about" title="О компании Airflow Travel">ℹ️ О нас</a></li>
+            <li><a href="https://airflowtravel.net/help" title="Помощь и часто задаваемые вопросы">❓ Помощь</a></li>
         </ul>
         
         <button class="mobile-menu-button" aria-label="Открыть меню">
@@ -775,10 +845,18 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
         <i class="fas fa-times"></i>
     </button>
     <ul class="mobile-menu-links">
-        <li><a href="https://airflowtravel.net" class="active">Главная</a></li>
+        <li><a href="https://airflowtravel.net">Главная</a></li>
         <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
         <li><a href="https://airflowtravel.net/hotels">🏨 Отели</a></li>
-        <li><a href="https://airflowtravel.net/drimsim">📱 SIM-карты/eSIM</a></li>
+        <li><a href="https://airflowtravel.net/drimsim" class="active">📱 SIM-карты/eSIM</a></li>
+        <li><a href="https://airflowtravel.net/cars">🚗 Аренда авто</a></li>
+        <li><a href="https://airflowtravel.net/transfers">🚕 Трансферы</a></li>
+        <li><a href="https://airflowtravel.net/trains-buses">🚌 Ж/Д и автобусы</a></li>
+        <li><a href="https://airflowtravel.net/parking">🅿️ Паркинг</a></li>
+        <li><a href="https://airflowtravel.net/vip-lounge">🛋️ VIP-залы</a></li>
+        <li><a href="https://airflowtravel.net/insurance">🛡️ Страховка</a></li>
+        <li><a href="https://airflowtravel.net/attractions">🎫 Музеи</a></li>
+        <li><a href="https://airflowtravel.net/flight-compensation">💰 Компенсация</a></li>
         <li><a href="https://airflowtravel.net/about">ℹ️ О нас</a></li>
         <li><a href="https://airflowtravel.net/help">❓ Помощь</a></li>
     </ul>
@@ -791,41 +869,16 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
         
         <div id="simcard-widget-container">
             <div id="custom-sim-search">
-                <!-- ТЕКСТ ВНУТРИ ЕДИНОГО КОНТЕЙНЕРА -->
-                <div class="hero-text-inside">
+                <!-- КАРТИНКА -->
+                <img src="images/карта (1).png" alt="Drimsim - SIM-карта для путешествий в 190 странах" class="sim-hero-image">
+                
+                <!-- ТЕКСТ ПОД КАРТИНКОЙ -->
+                <div class="hero-text-below">
                     <p><span class="highlight">Выгодный интернет в 190 странах.</span> Без абонентской платы и скрытых платежей.</p>
                     <p>Drimsim помогает экономить на мобильном интернете, а не на впечатлениях от поездки.</p>
                 </div>
                 
-                <h3 style="color: white; margin-bottom: 12px; font-size: 1.1rem; font-weight: 500;">Куда вы направляетесь?</h3>
-                
-                <div class="countries-grid">
-                    <div class="country-item" data-country="europe">
-                        <span class="country-flag">🇪🇺</span>
-                        <span class="country-name">Европа (Единый тариф)</span>
-                    </div>
-                    <div class="country-item" data-country="usa">
-                        <span class="country-flag">🇺🇸</span>
-                        <span class="country-name">США</span>
-                    </div>
-                    <div class="country-item" data-country="asia">
-                        <span class="country-flag">🌏</span>
-                        <span class="country-name">Юго-Восточная Азия</span>
-                    </div>
-                    <div class="country-item" data-country="thailand">
-                        <span class="country-flag">🇹🇭</span>
-                        <span class="country-name">Таиланд</span>
-                    </div>
-                    <div class="country-item" data-country="turkey">
-                        <span class="country-flag">🇹🇷</span>
-                        <span class="country-name">Турция</span>
-                    </div>
-                    <div class="country-item" data-country="other">
-                        <span class="country-flag">🌍</span>
-                        <span class="country-name">Другие страны...</span>
-                    </div>
-                </div>
-                
+                <!-- КНОПКА -->
                 <a href="#tariffs" class="search-cta-button">
                     Заказать сим-карту
                 </a>
@@ -1025,7 +1078,7 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
             <div class="faq-item">
                 <button class="faq-question">
                     Что такое eSIM и как она работает?
-                    <i class="fas fa-chevron-down faq-icon"></i>
+                    <i class="fas fa-chevon-down faq-icon"></i>
                 </button>
                 <div class="faq-answer">
                     <p>eSIM — это виртуальная сим-карта. Её не нужно вставлять в телефон. Ждать курьера и оплачивать доставку тоже не придется. Достаточно отсканировать QR-код из нашего электронного письма, и она загрузится в телефон.</p>
@@ -1045,7 +1098,7 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
     </div>
 </section>
 
-<!-- Футер - ОБНОВЛЕННЫЙ ПО ФАЙЛУ -->
+<!-- Футер -->
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-grid">
@@ -1053,38 +1106,38 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
                 <h4>Airflowpilot</h4>
                 <p>Ваш надежный помощник в организации комфортных путешествий по всему миру.</p>
                 <div class="social-icons">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
                 </div>
             </div>
             
             <div class="footer-section">
                 <h4>Наши услуги</h4>
-                <a href="https://search.airflowtravel.net">✈️ Авиабилеты (728 авиакомпаний)</a>
-                <a href="https://airflowtravel.net/hotels">🏨 Отели</a>
-                <a href="https://airflowtravel.net/cars">🚗 Аренда авто</a>
-                <a href="https://airflowtravel.net/transfers">🚕 Трансферы</a>
-                <a href="https://airflowtravel.net/trains-buses">🚌 Ж/Д и автобусы</a>
-                <a href="https://airflowtravel.net/vip-lounge">🛋️ VIP-залы</a>
+                <a href="https://search.airflowtravel.net" title="Поиск авиабилетов 728 авиакомпаний">✈️ Авиабилеты (728 авиакомпаний)</a>
+                <a href="https://airflowtravel.net/hotels" title="Бронирование отелей по всему миру">🏨 Отели</a>
+                <a href="https://airflowtravel.net/cars" title="Аренда автомобилей в 22 странах">🚗 Аренда авто</a>
+                <a href="https://airflowtravel.net/transfers" title="Трансферы из аэропортов">🚕 Трансферы</a>
+                <a href="https://airflowtravel.net/trains-buses" title="Билеты на железнодорожный и автобусный транспорт">🚌 Ж/Д и автобусы</a>
+                <a href="https://airflowtravel.net/vip-lounge" title="Доступ в VIP-залы аэропортов мира">🛋️ VIP-залы</a>
             </div>
             
             <div class="footer-section">
                 <h4>Дополнительно</h4>
-                <a href="https://airflowtravel.net/insurance">🛡️ Страховка путешествий</a>
-                <a href="https://airflowtravel.net/drimsim">📱 SIM-карты (190 стран)</a>
-                <a href="https://airflowtravel.net/parking">🅿️ Паркинг</a>
-                <a href="https://airflowtravel.net/attractions">🎫 Билеты в музеи без очередей</a>
-                <a href="https://airflowtravel.net/flight-compensation">💰 Компенсация за отменённые рейсы</a>
+                <a href="https://airflowtravel.net/insurance" title="Страхование путешествий и поездок">🛡️ Страховка путешествий</a>
+                <a href="https://airflowtravel.net/drimsim" title="SIM-карты и eSIM для путешествий в 190 странах">📱 SIM-карты (190 стран)</a>
+                <a href="https://airflowtravel.net/parking" title="Бронирование парковки в аэропортах">🅿️ Паркинг</a>
+                <a href="https://airflowtravel.net/attractions" title="Билеты в музеи и достопримечательности без очередей">🎫 Билеты в музеи без очередей</a>
+                <a href="https://airflowtravel.net/flight-compensation" title="Компенсация за задержку или отмену рейса">💰 Компенсация за отменённые рейсы</a>
             </div>
             
             <div class="footer-section">
                 <h4>Полезная информация</h4>
-                <a href="https://airflowtravel.net/about">О нас</a>
-                <a href="https://airflowtravel.net/help">Помощь (FAQ)</a>
-                <a href="https://airflowtravel.net/terms">Условия использования</a>
-                <a href="https://airflowtravel.net/privacy">Политика конфиденциальности</a>
-                <a href="https://airflowtravel.net/support">Поддержка</a>
+                <a href="https://airflowtravel.net/about" title="О компании Airflow Travel">О нас</a>
+                <a href="https://airflowtravel.net/help" title="Помощь и часто задаваемые вопросы">Помощь (FAQ)</a>
+                <a href="https://airflowtravel.net/terms" title="Условия использования сервиса">Условия использования</a>
+                <a href="https://airflowtravel.net/privacy" title="Политика конфиденциальности">Политика конфиденциальности</a>
+                <a href="https://airflowtravel.net/support" title="Служба поддержки клиентов">Поддержка</a>
             </div>
         </div>
         
@@ -1096,14 +1149,13 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-// ИСПРАВЛЕННЫЙ JAVASCRIPT ДЛЯ МОБИЛЬНОГО МЕНЮ
+// Мобильное меню
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.querySelector('.mobile-menu-button');
     const mobileMenu = document.querySelector('.mobile-menu');
     const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
     const mobileMenuClose = document.querySelector('.mobile-menu-close');
     
-    // Проверяем, что все элементы существуют
     if (!mobileMenuButton || !mobileMenu || !mobileMenuOverlay || !mobileMenuClose) {
         console.error('Мобильное меню: не найдены необходимые элементы');
         return;
@@ -1121,7 +1173,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
     
-    // Обработчики событий
     mobileMenuButton.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -1140,7 +1191,6 @@ document.addEventListener('DOMContentLoaded', function() {
         closeMobileMenu();
     });
     
-    // Закрытие меню при клике на ссылку
     const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a');
     mobileMenuLinks.forEach(link => {
         link.addEventListener('click', function() {
@@ -1148,24 +1198,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Закрытие меню при нажатии Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
             closeMobileMenu();
         }
-    });
-});
-
-// Выбор стран
-document.addEventListener('DOMContentLoaded', function() {
-    const countryItems = document.querySelectorAll('.country-item');
-    countryItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // Убираем активный класс у всех элементов
-            countryItems.forEach(i => i.classList.remove('active'));
-            // Добавляем активный класс к выбранному элементу
-            this.classList.add('active');
-        });
     });
 });
 
@@ -1207,13 +1243,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const answer = faqItem.querySelector('.faq-answer');
             const isActive = this.classList.contains('active');
             
-            // Закрываем все открытые FAQ
             faqQuestions.forEach(q => {
                 q.classList.remove('active');
                 q.parentElement.querySelector('.faq-answer').classList.remove('active');
             });
             
-            // Если текущий FAQ не был активен, открываем его
             if (!isActive) {
                 this.classList.add('active');
                 answer.classList.add('active');
