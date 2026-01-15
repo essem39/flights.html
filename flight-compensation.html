@@ -26,6 +26,10 @@ margin: 0;
 padding: 0;
 }
 
+html {
+scroll-behavior: smooth;
+}
+
 html, body {
 overflow-x: hidden;
 width: 100%;
@@ -178,7 +182,6 @@ text-align: center;
 color: white;
 }
 
-
 /* ПРОЗРАЧНАЯ КАРТОЧКА */
 .compensation-card {
 padding: 30px;
@@ -225,128 +228,6 @@ transform: translateY(-2px);
 box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
 }
 
-/* МОДАЛЬНОЕ ОКНО */
-.modal-overlay {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background: rgba(0, 0, 0, 0.7);
-z-index: 9999;
-align-items: center;
-justify-content: center;
-padding: 20px;
-}
-
-.modal-overlay.active {
-display: flex;
-}
-
-.modal-content {
-background: white;
-border-radius: 12px;
-width: 900px;
-max-width: 95%;
-max-height: 90vh;
-overflow: hidden;
-position: relative;
-box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-transition: all 0.3s ease;
-}
-
-.modal-close {
-position: absolute;
-top: 15px;
-right: 15px;
-background: #e74c3c;
-color: white;
-border: none;
-width: 35px;
-height: 35px;
-border-radius: 50%;
-font-size: 20px;
-cursor: pointer;
-z-index: 10;
-transition: all 0.3s ease;
-}
-
-.modal-close:hover {
-background: #c0392b;
-transform: rotate(90deg);
-}
-
-.modal-widget {
-padding: 60px 30px 30px;
-min-height: 400px;
-overflow-y: auto;
-max-height: 85vh;
-}
-
-/* МОБИЛЬНАЯ ВЕРСИЯ - ПОЛНЫЙ ЭКРАН */
-@media (max-width: 768px) {
-.modal-overlay {
-padding: 0;
-align-items: flex-start;
-}
-
-.modal-content {
-max-width: 100%;
-width: 100%;
-height: 100vh;
-height: 100dvh;
-max-height: 100vh;
-max-height: 100dvh;
-border-radius: 0;
-margin: 0;
-padding-top: env(safe-area-inset-top, 0px);
-display: flex;
-flex-direction: column;
-}
-
-.modal-widget {
-padding: 80px 15px 20px;
-padding-top: calc(80px + env(safe-area-inset-top, 0px));
-min-height: auto;
-height: 100%;
-overflow-y: auto;
-flex: 1;
-}
-
-.modal-widget h2 {
-font-size: 1.2rem !important;
-margin-bottom: 15px !important;
-padding-top: 10px;
-}
-
-.modal-close {
-position: fixed;
-top: 10px;
-top: calc(10px + env(safe-area-inset-top, 10px));
-right: 10px;
-width: 50px;
-height: 50px;
-font-size: 28px;
-z-index: 10000;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-}
-
-/* Дополнительная поддержка для очень маленьких экранов */
-@media (max-width: 480px) {
-.modal-widget {
-padding: 75px 10px 15px;
-padding-top: calc(75px + env(safe-area-inset-top, 0px));
-}
-
-.modal-close {
-width: 48px;
-height: 48px;
-font-size: 26px;
-}
-}
-
 .hero-contacts {
 background: rgba(255, 255, 255, 0.2);
 backdrop-filter: blur(10px);
@@ -374,6 +255,38 @@ gap: 8px;
 .hero-contacts i {
 color: #10b981;
 font-size: 1.2rem;
+}
+
+/* СЕКЦИЯ С ВИДЖЕТОМ */
+.widget-section {
+padding: 60px 20px;
+background: white;
+}
+
+.widget-container {
+max-width: 1000px;
+margin: 0 auto;
+background: #f8fafc;
+border-radius: 12px;
+padding: 40px 30px;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.widget-title {
+text-align: left;
+color: #1d4ed8;
+margin-bottom: 20px;
+font-size: 1.5rem;
+font-weight: 600;
+}
+
+@media (max-width: 768px) {
+.widget-container {
+padding: 30px 15px;
+}
+.widget-title {
+font-size: 1.2rem;
+}
 }
 
 .product-icons-section {
@@ -768,9 +681,9 @@ margin-bottom: 15px;
 <p class="card-description">
 Проверьте возможность получения компенсации до 600€ по европейскому закону EC 261. Без предоплаты.
 </p>
-<button class="check-button" onclick="openModal()">
+<a href="#widget-section" class="check-button" style="display: inline-block; text-decoration: none;">
 <i class="fas fa-search"></i> Проверить компенсацию
-</button>
+</a>
 </div>
 
 <div class="hero-contacts">
@@ -792,18 +705,18 @@ margin-bottom: 15px;
 </div>
 </section>
 
-<!-- МОДАЛЬНОЕ ОКНО С ВИДЖЕТОМ COMPENSAIR -->
-<div class="modal-overlay" id="compensationModal">
-<div class="modal-content">
-<button class="modal-close" onclick="closeModal()">×</button>
-<div class="modal-widget">
-<h2 style="text-align: center; color: #1d4ed8; margin-bottom: 20px; font-size: 1.6rem; font-weight: 600;">
-<i class="fas fa-plane"></i> Проверьте возможность компенсации
-</h2>
-<div id="compensairWidgetContainer"></div>
+<!-- СЕКЦИЯ С ВИДЖЕТОМ -->
+<section class="widget-section" id="widget-section">
+<div class="container">
+<div class="widget-container">
+<h2 class="widget-title">✈️ Проверка компенсации</h2>
+<div id="compensairWidgetContainer">
+<script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&width=100&powered_by=true&campaign_id=86&promo_id=2110" charset="utf-8"></script>
 </div>
 </div>
 </div>
+</section>
+
 <section class="product-icons-section">
 <div class="container">
 <h2 class="section-title" style="margin-bottom: 30px; color: #1d4ed8;">Наши продукты и сервисы</h2>
@@ -1198,47 +1111,6 @@ margin-bottom: 15px;
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-// МОДАЛЬНОЕ ОКНО
-let widgetLoaded = false;
-
-function openModal() {
-const modal = document.getElementById('compensationModal');
-modal.classList.add('active');
-document.body.style.overflow = 'hidden';
-
-// Загружаем виджет только один раз при первом открытии
-if (!widgetLoaded) {
-const script = document.createElement('script');
-script.src = 'https://tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&width=100&powered_by=true&campaign_id=86&promo_id=2110';
-script.charset = 'utf-8';
-script.async = true;
-document.getElementById('compensairWidgetContainer').appendChild(script);
-widgetLoaded = true;
-console.log('✅ Виджет Compensair загружен');
-}
-}
-
-function closeModal() {
-const modal = document.getElementById('compensationModal');
-modal.classList.remove('active');
-document.body.style.overflow = '';
-}
-
-// Закрытие по клику вне модалки
-document.addEventListener('click', function(e) {
-const modal = document.getElementById('compensationModal');
-if (e.target === modal) {
-closeModal();
-}
-});
-
-// Закрытие по ESC
-document.addEventListener('keydown', function(e) {
-if (e.key === 'Escape') {
-closeModal();
-}
-});
-
 document.addEventListener('DOMContentLoaded', function() {
 // МОБИЛЬНОЕ МЕНЮ
 const mobileMenu = document.getElementById('mobile-menu');
