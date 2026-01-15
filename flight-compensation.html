@@ -170,62 +170,125 @@ color: #1e293b;
 .hero-section {
 background: linear-gradient(135deg, #1d4ed8 0%, #10b981 100%);
 color: white;
-padding: 80px 20px 40px;
+padding: 80px 20px 60px;
 text-align: center;
 }
 
 .hero-content h1 {
 font-size: clamp(1.2rem, 2.5vw, 2rem);
-margin-bottom: 20px;
+margin-bottom: 30px;
 font-weight: 600;
 text-align: center;
 color: white;
 }
 
-/* ПРОЗРАЧНАЯ КАРТОЧКА */
-.compensation-card {
-padding: 30px;
+/* ВИДЖЕТ КАРТОЧКА В HERO - ПРОЗРАЧНАЯ */
+.hero-widget-card {
+padding: 25px 20px;
 background: rgba(255, 255, 255, 0.15);
 backdrop-filter: blur(10px);
 border: 1px solid rgba(255, 255, 255, 0.3);
 border-radius: 12px;
-width: 100%;
-max-width: 600px;
-margin: 0 auto 30px auto;
 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-text-align: center;
-}
-
-.card-title {
-font-size: 1.5rem;
-font-weight: 700;
-color: white;
-margin-bottom: 15px;
-}
-
-.card-description {
-font-size: 1rem;
-margin-bottom: 25px;
-color: rgba(255, 255, 255, 0.9);
-}
-
-.check-button {
-background: #10b981;
-color: white;
-border: none;
-padding: 15px 40px;
-font-size: 1.1rem;
-font-weight: 600;
-border-radius: 8px;
+max-width: 900px;
+margin: 0 auto 30px;
 cursor: pointer;
 transition: all 0.3s ease;
-box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
 }
 
-.check-button:hover {
-background: #0c8a5a;
+.hero-widget-card:hover {
 transform: translateY(-2px);
-box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+background: rgba(255, 255, 255, 0.2);
+}
+
+.hero-widget-card summary {
+list-style: none;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 15px;
+padding: 10px 30px 10px 10px;
+position: relative;
+outline: none;
+flex-wrap: wrap;
+}
+
+.hero-widget-card summary::-webkit-details-marker {
+display: none;
+}
+
+.hero-widget-card summary:after {
+content: "\25BC";
+position: absolute;
+right: 15px;
+top: 50%;
+transform: translateY(-50%);
+font-size: 16px;
+color: white;
+transition: transform 0.3s;
+}
+
+.hero-widget-card[open] summary:after {
+transform: translateY(-50%) rotate(180deg);
+}
+
+.widget-summary-content {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+
+.widget-search-icon {
+font-size: 2rem;
+color: white;
+}
+
+.widget-summary-text {
+text-align: left;
+}
+
+.widget-summary-text h2 {
+font-size: 1.3rem;
+color: white;
+font-weight: 700;
+margin: 0 0 5px 0;
+}
+
+.widget-summary-text p {
+font-size: 0.9rem;
+color: rgba(255, 255, 255, 0.9);
+margin: 0;
+}
+
+.hero-widget-content {
+border-top: 1px solid rgba(255, 255, 255, 0.3);
+padding-top: 25px;
+margin-top: 20px;
+background: rgba(255, 255, 255, 0.1);
+backdrop-filter: blur(5px);
+border-radius: 8px;
+padding: 25px;
+}
+
+@media (max-width: 768px) {
+.widget-summary-content {
+flex-direction: column;
+text-align: center;
+gap: 10px;
+}
+.widget-summary-text {
+text-align: center;
+}
+.widget-summary-text h2 {
+font-size: 1.1rem;
+}
+.widget-summary-text p {
+font-size: 0.85rem;
+}
+.hero-widget-card summary:after {
+top: 20px;
+}
 }
 
 .hero-contacts {
@@ -255,38 +318,6 @@ gap: 8px;
 .hero-contacts i {
 color: #10b981;
 font-size: 1.2rem;
-}
-
-/* СЕКЦИЯ С ВИДЖЕТОМ */
-.widget-section {
-padding: 60px 20px;
-background: white;
-}
-
-.widget-container {
-max-width: 1000px;
-margin: 0 auto;
-background: #f8fafc;
-border-radius: 12px;
-padding: 40px 30px;
-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.widget-title {
-text-align: left;
-color: #1d4ed8;
-margin-bottom: 20px;
-font-size: 1.5rem;
-font-weight: 600;
-}
-
-@media (max-width: 768px) {
-.widget-container {
-padding: 30px 15px;
-}
-.widget-title {
-font-size: 1.2rem;
-}
 }
 
 .product-icons-section {
@@ -676,15 +707,23 @@ margin-bottom: 15px;
 <div class="hero-content">
 <h1>Компенсация за задержку или отмену рейса</h1>
 
-<div class="compensation-card">
-<h2 class="card-title">Проверьте свой рейс на компенсацию</h2>
-<p class="card-description">
-Проверьте возможность получения компенсации до 600€ по европейскому закону EC 261. Без предоплаты.
-</p>
-<a href="#widget-section" class="check-button" style="display: inline-block; text-decoration: none;">
-<i class="fas fa-search"></i> Проверить компенсацию
-</a>
+<!-- ВИДЖЕТ ПРОВЕРКИ ПРЯМО В HERO - ПРОЗРАЧНЫЙ -->
+<details class="hero-widget-card" id="heroWidgetDetails">
+<summary>
+<div class="widget-summary-content">
+<div class="widget-search-icon">
+<i class="fas fa-search"></i>
 </div>
+<div class="widget-summary-text">
+<h2>Проверьте свой рейс на компенсацию</h2>
+<p>Нажмите, чтобы открыть форму проверки • До 600€ по закону EC 261</p>
+</div>
+</div>
+</summary>
+<div class="hero-widget-content">
+<div id="compensairWidgetContainer"></div>
+</div>
+</details>
 
 <div class="hero-contacts">
 <div>
@@ -701,18 +740,6 @@ margin-bottom: 15px;
 </div>
 </div>
 
-</div>
-</div>
-</section>
-
-<!-- СЕКЦИЯ С ВИДЖЕТОМ -->
-<section class="widget-section" id="widget-section">
-<div class="container">
-<div class="widget-container">
-<h2 class="widget-title">✈️ Проверка компенсации</h2>
-<div id="compensairWidgetContainer">
-<script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&width=100&powered_by=true&campaign_id=86&promo_id=2110" charset="utf-8"></script>
-</div>
 </div>
 </div>
 </section>
@@ -1112,6 +1139,25 @@ margin-bottom: 15px;
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+// ЗАГРУЗКА ВИДЖЕТА ПРИ РАСКРЫТИИ В HERO
+let widgetLoaded = false;
+const heroWidgetDetails = document.getElementById('heroWidgetDetails');
+const widgetContainer = document.getElementById('compensairWidgetContainer');
+
+if (heroWidgetDetails) {
+heroWidgetDetails.addEventListener('toggle', function() {
+if (this.open && !widgetLoaded) {
+const script = document.createElement('script');
+script.src = 'https://tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&width=100&powered_by=true&campaign_id=86&promo_id=2110';
+script.charset = 'utf-8';
+script.async = true;
+widgetContainer.appendChild(script);
+widgetLoaded = true;
+console.log('✅ Виджет Compensair загружен');
+}
+});
+}
+
 // МОБИЛЬНОЕ МЕНЮ
 const mobileMenu = document.getElementById('mobile-menu');
 const menuButton = document.getElementById('mobile-menu-button');
