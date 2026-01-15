@@ -279,7 +279,9 @@ transform: rotate(90deg);
 
 .modal-widget {
 padding: 60px 30px 30px;
-min-height: 775px;
+min-height: 400px;
+overflow-y: auto;
+max-height: 85vh;
 }
 
 /* МОБИЛЬНАЯ ВЕРСИЯ - ПОЛНЫЙ ЭКРАН */
@@ -798,12 +800,7 @@ margin-bottom: 15px;
 <h2 style="text-align: center; color: #1d4ed8; margin-bottom: 20px; font-size: 1.6rem; font-weight: 600;">
 <i class="fas fa-plane"></i> Проверьте возможность компенсации
 </h2>
-<iframe 
-  id="compensairWidget"
-  src="https://www.compensair.com/ru/check-flight.html" 
-  style="border: none; width: 100%; height: 850px; display: block;"
-  name="margaryan_gagik">
-</iframe>
+<div id="compensairWidgetContainer"></div>
 </div>
 </div>
 </div>
@@ -1202,10 +1199,23 @@ margin-bottom: 15px;
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 // МОДАЛЬНОЕ ОКНО
+let widgetLoaded = false;
+
 function openModal() {
 const modal = document.getElementById('compensationModal');
 modal.classList.add('active');
 document.body.style.overflow = 'hidden';
+
+// Загружаем виджет только один раз при первом открытии
+if (!widgetLoaded) {
+const script = document.createElement('script');
+script.src = 'https://tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&width=100&powered_by=true&campaign_id=86&promo_id=2110';
+script.charset = 'utf-8';
+script.async = true;
+document.getElementById('compensairWidgetContainer').appendChild(script);
+widgetLoaded = true;
+console.log('✅ Виджет Compensair загружен');
+}
 }
 
 function closeModal() {
@@ -1229,51 +1239,7 @@ closeModal();
 }
 });
 
-// АВТОПОДСТРОЙКА ВЫСОТЫ ВИДЖЕТА COMPENSAIR
-(function() {
-  const iframe = document.getElementById('compensairWidget');
-  if (!iframe) return;
-
-  // Слушаем сообщения от виджета о высоте
-  window.addEventListener('message', function(e) {
-    if (e.origin === 'https://www.compensair.com') {
-      if (e.data && typeof e.data === 'object') {
-        if (e.data.height) {
-          iframe.style.height = (parseInt(e.data.height) + 20) + 'px';
-          console.log('📏 Высота виджета обновлена:', e.data.height);
-        }
-        if (e.data.frameHeight) {
-          iframe.style.height = (parseInt(e.data.frameHeight) + 20) + 'px';
-          console.log('📏 Высота виджета обновлена:', e.data.frameHeight);
-        }
-      }
-    }
-  });
-
-  // При загрузке iframe
-  iframe.addEventListener('load', function() {
-    console.log('✅ Виджет Compensair загружен');
-    
-    // Отправляем запрос на получение высоты
-    try {
-      iframe.contentWindow.postMessage({ type: 'getHeight' }, 'https://www.compensair.com');
-    } catch(e) {
-      console.log('ℹ️ Используем фиксированную высоту 850px');
-    }
-  });
-
-  // Адаптация под мобильные
-  window.addEventListener('resize', function() {
-    if (window.innerWidth < 768) {
-      iframe.style.height = 'calc(100vh - 120px)';
-    } else {
-      if (iframe.style.height.indexOf('calc') !== -1) {
-        iframe.style.height = '850px';
-      }
-    }
-  });
-})();
-
+document.addEventListener('DOMContentLoaded', function() {
 // МОБИЛЬНОЕ МЕНЮ
 const mobileMenu = document.getElementById('mobile-menu');
 const menuButton = document.getElementById('mobile-menu-button');
@@ -1314,7 +1280,6 @@ if (menuButton) menuButton.addEventListener('click', toggleMenu);
 if (menuClose) menuClose.addEventListener('click', closeMenu);
 if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
 
-document.addEventListener('DOMContentLoaded', function() {
 // SWIPER SLIDER
 var swiper = new Swiper('.testimonials-slider', {
 slidesPerView: 1,
@@ -1325,7 +1290,6 @@ autoplay: {
 delay: 5000,
 disableOnInteraction: false,
 },
-
 pagination: {
 el: '.swiper-pagination',
 clickable: true,
