@@ -5,147 +5,46 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="ie=edge" http-equiv="X-X-Compatible"/>
 <meta content="Получите компенсацию до 600€ за отмененный или задержанный рейс. Проверка рейса и подача заявки онлайн." name="description"/>
-
 <link href="bus_icon-icons.com_76529.ico" rel="icon" type="image/x-icon"/>
-
 <meta content="Airflowpilot - Компенсация за задержку или отмену рейса" property="og:title"/>
 <meta content="Проверьте возможность получения компенсации до 600€ по европейскому закону EC 261." property="og:description"/>
 <meta content="ru" property="og:locale"/>
 <meta content="website" property="og:type"/>
-
 <title>Компенсация за задержку или отмену рейса до 600€ | Airflowpilot</title>
-
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet"/>
 <style>
-/* БАЗОВЫЕ СТИЛИ (ОБЩИЕ) */
-* {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-html {
-scroll-behavior: smooth;
-}
+.main-navigation { background: #1e293b; padding: 0; position: sticky; top: 0; z-index: 1020; box-shadow: 0 2px 20px rgba(0,0,0,0.1); height: 55px; }
+.nav-container { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 100px; height: 100%; }
+.nav-logo { display: flex; align-items: center; gap: 12px; color: white; font-size: 18px; font-weight: 600; text-decoration: none; }
+.nav-menu { display: flex; list-style: none; margin: 0; padding: 0; gap: 25px; align-items: center; }
+.nav-menu > li { position: relative; }
+.nav-menu a { color: #94a3b8; text-decoration: none; font-size: 15px; font-weight: 500; padding: 18px 0; transition: color 0.3s ease; display: block; }
+.nav-menu a:hover, .nav-menu a.active { color: white; text-decoration: none; }
 
-html, body {
-overflow-x: hidden;
-width: 100%;
-max-width: 100%;
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-line-height: 1.6;
-color: #333;
-}
+.dropdown { position: relative; }
+.dropdown-toggle { cursor: pointer; color: #94a3b8; font-size: 15px; font-weight: 500; padding: 18px 0; display: flex; align-items: center; gap: 5px; }
+.dropdown-toggle:hover { color: white; }
+.dropdown-menu { position: absolute; top: 100%; right: 0; background: #1e293b; min-width: 280px; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; margin-top: 5px; padding: 10px 0; }
+.dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-menu a { padding: 12px 20px; color: #94a3b8; display: block; transition: all 0.3s; }
+.dropdown-menu a:hover { background: #334155; color: white; }
 
-.container {
-max-width: 1200px;
-margin: 0 auto;
-padding: 0 20px;
-}
-
-/* СТИЛИ ВЕРХНЕГО МЕНЮ (НАВИГАЦИИ) */
-.main-navigation {
-background: #1e293b;
-padding: 0;
-position: sticky;
-top: 0;
-z-index: 1020;
-box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-height: 55px;
-}
-
-.nav-container {
-max-width: 1240px;
-margin: 0 auto;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 0 100px;
-height: 100%;
-}
-
-.nav-logo {
-display: flex;
-align-items: center;
-gap: 12px;
-color: white;
-font-size: 18px;
-font-weight: 600;
-text-decoration: none;
-}
-
-.nav-menu {
-display: flex;
-list-style: none;
-margin: 0;
-padding: 0;
-gap: 25px;
-}
-
-.nav-menu a {
-color: #94a3b8;
-text-decoration: none;
-font-size: 15px;
-font-weight: 500;
-padding: 18px 0;
-transition: color 0.3s ease;
-}
-
-.nav-menu a:hover, .nav-menu a.active {
-color: white;
-text-decoration: none;
-}
-
-/* Мобильное меню */
-.mobile-menu-button {
-display: none;
-background: none;
-border: none;
-color: white;
-font-size: 20px;
-cursor: pointer;
-padding: 8px;
-}
-.mobile-menu-overlay {
-display: none;
-position: fixed;
-top: 0; left: 0; right: 0; bottom: 0;
-background: rgba(0, 0, 0, 0.5);
-z-index: 999;
-opacity: 0;
-transition: opacity 0.3s ease;
-}
+.mobile-menu-button { display: none; background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 8px; }
+.mobile-menu-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 10000; opacity: 0; transition: opacity 0.3s ease; }
 .mobile-menu-overlay.active { opacity: 1; }
-.mobile-menu {
-display: none;
-position: fixed;
-top: 0; right: -280px;
-width: 260px;
-height: 100vh;
-background: #1e293b;
-z-index: 1001;
-padding: 60px 15px 15px;
-box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
-transition: right 0.3s ease;
-overflow-y: auto;
-}
+.mobile-menu { display: none; position: fixed; top: 0; right: -280px; width: 260px; height: 100vh; background: #1e293b; z-index: 10001; padding: 60px 15px 15px; box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3); transition: right 0.3s ease; overflow-y: auto; }
 .mobile-menu.active { right: 0; }
-.mobile-menu-close {
-position: absolute; top: 15px; right: 15px;
-background: none; border: none; color: white;
-font-size: 20px; cursor: pointer; padding: 5px;
-}
+.mobile-menu-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 5px; }
 .mobile-menu-links { list-style: none; padding: 0; margin: 0; }
-.mobile-menu-links a {
-color: #94a3b8; text-decoration: none; font-size: 16px;
-display: block; padding: 12px 15px; border-radius: 6px;
-transition: all 0.3s ease;
-}
-.mobile-menu-links a:hover, .mobile-menu-links a.active {
-background: #334155; color: white; text-decoration: none;
-}
+.mobile-menu-links a { color: #94a3b8; text-decoration: none; font-size: 16px; display: block; padding: 12px 15px; border-radius: 6px; transition: all 0.3s ease; }
+.mobile-menu-links a:hover, .mobile-menu-links a.active { background: #334155; color: white; text-decoration: none; }
 
 @media (max-width: 1175px) {
 .nav-container { padding: 0 16px; }
@@ -153,527 +52,97 @@ background: #334155; color: white; text-decoration: none;
 .mobile-menu-button { display: block; }
 .mobile-menu-overlay, .mobile-menu { display: block; }
 }
-@media (max-width: 480px) {
-.nav-container { padding: 0 12px; }
-}
+@media (max-width: 480px) { .nav-container { padding: 0 12px; } }
 
-/* СТИЛИ КОНТЕНТА СТРАНИЦЫ */
-.section-title {
-text-align: center;
-font-size: 2.5rem;
-font-weight: 700;
-margin-bottom: 40px;
-color: #1e293b;
-}
+.section-title { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 40px; color: #1e293b; }
 
-/* HERO С ГРАДИЕНТОМ */
-.hero-section {
-background: linear-gradient(135deg, #1d4ed8 0%, #10b981 100%);
-color: white;
-padding: 80px 20px 60px;
-text-align: center;
-}
+.hero-section { background: linear-gradient(135deg, #1d4ed8 0%, #10b981 100%); color: white; padding: 80px 5px 60px; text-align: center; }
+.hero-content h1 { font-size: clamp(1.2rem, 2.5vw, 2rem); margin-bottom: 30px; font-weight: 600; text-align: center; color: white; }
 
-.hero-content h1 {
-font-size: clamp(1.2rem, 2.5vw, 2rem);
-margin-bottom: 30px;
-font-weight: 600;
-text-align: center;
-color: white;
-}
-
-/* ВИДЖЕТ КАРТОЧКА В HERO - ПРОЗРАЧНАЯ */
-.hero-widget-card {
-padding: 25px 20px;
-background: rgba(255, 255, 255, 0.15);
-backdrop-filter: blur(10px);
-border: 1px solid rgba(255, 255, 255, 0.3);
-border-radius: 12px;
-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-max-width: 900px;
-margin: 0 auto 30px;
-cursor: pointer;
-transition: all 0.3s ease;
-}
-
-.hero-widget-card:hover {
-transform: translateY(-2px);
-box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-background: rgba(255, 255, 255, 0.2);
-}
-
-.hero-widget-card summary {
-list-style: none;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 15px;
-padding: 10px 30px 10px 10px;
-position: relative;
-outline: none;
-flex-wrap: wrap;
-}
-
-.hero-widget-card summary::-webkit-details-marker {
-display: none;
-}
-
-.hero-widget-card summary:after {
-content: "\25BC";
-position: absolute;
-right: 15px;
-top: 50%;
-transform: translateY(-50%);
-font-size: 16px;
-color: white;
-transition: transform 0.3s;
-}
-
-.hero-widget-card[open] summary:after {
-transform: translateY(-50%) rotate(180deg);
-}
-
-.widget-summary-content {
-display: flex;
-align-items: center;
-gap: 15px;
-}
-
-.widget-search-icon {
-font-size: 2rem;
-color: white;
-}
-
-.widget-summary-text {
-text-align: left;
-}
-
-.widget-summary-text h2 {
-font-size: 1.3rem;
-color: white;
-font-weight: 700;
-margin: 0 0 5px 0;
-}
-
-.widget-summary-text p {
-font-size: 0.9rem;
-color: rgba(255, 255, 255, 0.9);
-margin: 0;
-}
-
-.hero-widget-content {
-border-top: 1px solid rgba(255, 255, 255, 0.3);
-padding-top: 25px;
-margin-top: 20px;
-background: rgba(255, 255, 255, 0.1);
-backdrop-filter: blur(5px);
-border-radius: 8px;
-padding: 25px;
-}
+.hero-widget-card { padding: 15px 5px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); max-width: 1200px; margin: 0 auto 30px; cursor: pointer; transition: all 0.3s ease; }
+.hero-widget-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); background: rgba(255, 255, 255, 0.2); }
+.hero-widget-card summary { list-style: none; display: flex; align-items: center; justify-content: center; gap: 15px; padding: 10px 30px 10px 10px; position: relative; outline: none; flex-wrap: wrap; }
+.hero-widget-card summary::-webkit-details-marker { display: none; }
+.hero-widget-card summary:after { content: "\25BC"; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 16px; color: white; transition: transform 0.3s; }
+.hero-widget-card[open] summary:after { transform: translateY(-50%) rotate(180deg); }
+.widget-summary-content { display: flex; align-items: center; gap: 15px; }
+.widget-search-icon { font-size: 2rem; color: white; }
+.widget-summary-text { text-align: left; }
+.widget-summary-text h2 { font-size: 1.3rem; color: white; font-weight: 700; margin: 0 0 5px 0; }
+.widget-summary-text p { font-size: 0.9rem; color: rgba(255, 255, 255, 0.9); margin: 0; }
+.hero-widget-content { border-top: 1px solid rgba(255, 255, 255, 0.3); padding-top: 15px; margin-top: 15px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px); border-radius: 8px; padding: 10px 5px; overflow-x: hidden; max-width: 100%; min-height: auto; }
 
 @media (max-width: 768px) {
-.widget-summary-content {
-flex-direction: column;
-text-align: center;
-gap: 10px;
-}
-.widget-summary-text {
-text-align: center;
-}
-.widget-summary-text h2 {
-font-size: 1.1rem;
-}
-.widget-summary-text p {
-font-size: 0.85rem;
-}
-.hero-widget-card summary:after {
-top: 20px;
-}
+.widget-summary-content { flex-direction: column; text-align: center; gap: 10px; }
+.widget-summary-text { text-align: center; }
+.widget-summary-text h2 { font-size: 1rem; }
+.widget-summary-text p { font-size: 0.8rem; }
+.hero-widget-card summary:after { top: 20px; }
+.hero-widget-content { padding: 10px 5px; min-height: auto; }
+.hero-section { padding: 60px 5px 40px; }
+.hero-widget-card { padding: 15px 5px; }
+.section-title { font-size: 1.8rem; }
 }
 
-.hero-contacts {
-background: rgba(255, 255, 255, 0.2);
-backdrop-filter: blur(10px);
-border-radius: 8px;
-padding: 15px 20px;
-margin-top: 25px;
-display: flex;
-justify-content: center;
-gap: 30px;
-flex-wrap: wrap;
-max-width: 800px;
-margin-left: auto;
-margin-right: auto;
-}
+.car-features-section, .seo-tips-section { padding: 80px 20px; background: #f8fafc; }
+.features-grid, .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+@media (min-width: 1024px) { .features-grid, .tips-grid { grid-template-columns: repeat(3, 1fr); max-width: 1100px; } }
 
-.hero-contacts div {
-color: white;
-font-weight: 500;
-font-size: 1rem;
-display: flex;
-align-items: center;
-gap: 8px;
-}
+.feature-card, .tip-card { padding: 30px 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); background: #ffffff; border-top: 5px solid #10b981; transition: transform 0.3s, box-shadow 0.3s; height: 100%; text-align: left; cursor: pointer; }
+.feature-card:hover, .tip-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); }
+.feature-icon, .tip-icon { font-size: 3rem; color: #10b981; margin-bottom: 15px; text-align: center; }
+.feature-card h4, .tip-card h4 { font-size: 1.2rem; color: #1e293b; font-weight: 700; margin-bottom: 10px; text-align: center; }
+.feature-card p, .tip-card p { color: #64748b; font-size: 0.95rem; text-align: center; }
 
-.hero-contacts i {
-color: #10b981;
-font-size: 1.2rem;
-}
+.tip-card summary { list-style: none; display: flex; flex-direction: column; padding-right: 25px; position: relative; outline: none; }
+.tip-card summary::-webkit-details-marker { display: none; }
+.tip-card summary:after { content: "\25B6"; position: absolute; right: 0; top: 5px; font-size: 14px; color: #10b981; transition: transform 0.3s; }
+.tip-card[open] summary:after { content: "\25BC"; top: 8px; }
+.tip-card .tip-card-text-short { color: #64748b; font-size: 0.95rem; margin-bottom: 15px; text-align: center; }
+.tip-content { border-top: 1px solid #e2e8f0; padding-top: 15px; margin-top: 15px; font-size: 0.95rem; color: #475569; text-align: left; font-style: italic; background-color: #f0fff4; padding: 15px; border-radius: 6px; line-height: 1.5; }
 
-.product-icons-section {
-padding: 60px 20px;
-background: white;
-text-align: center;
-}
-
-.product-icons-grid {
-display: flex;
-justify-content: center;
-gap: 50px;
-max-width: 900px;
-margin: 0 auto;
-flex-wrap: wrap;
-}
-
-.product-icon-link {
-text-decoration: none;
-color: #1e293b;
-transition: color 0.3s ease, transform 0.3s ease;
-display: block;
-padding: 15px;
-border-radius: 8px;
-}
-
-.product-icon {
-font-size: 3rem;
-margin-bottom: 10px;
-color: #f59e0b;
-transition: color 0.3s ease;
-}
-
-.product-icon-link:hover {
-color: #1d4ed8;
-transform: translateY(-5px);
-}
-
-.product-icon-link:hover .product-icon {
-color: #1d4ed8;
-}
-
-/* СТИЛИ КАРТОЧЕК */
-.car-features-section, .seo-tips-section {
-padding: 80px 20px;
-background: #f8fafc;
-}
-
-.features-grid, .tips-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-gap: 30px;
-max-width: 1200px;
-margin: 0 auto;
-}
-
-@media (min-width: 1024px) {
-.features-grid, .tips-grid {
-grid-template-columns: repeat(3, 1fr);
-max-width: 1100px;
-}
-}
-
-.feature-card, .tip-card {
-padding: 30px 20px;
-border-radius: 10px;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-background: #ffffff;
-border-top: 5px solid #10b981;
-transition: transform 0.3s, box-shadow 0.3s;
-height: 100%;
-text-align: left;
-cursor: pointer;
-}
-
-.feature-card:hover, .tip-card:hover {
-transform: translateY(-4px);
-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.feature-icon, .tip-icon {
-font-size: 3rem;
-color: #10b981;
-margin-bottom: 15px;
-text-align: center;
-}
-
-.feature-card h4, .tip-card h4 {
-font-size: 1.2rem;
-color: #1e293b;
-font-weight: 700;
-margin-bottom: 10px;
-text-align: center;
-}
-
-.feature-card p, .tip-card p {
-color: #64748b;
-font-size: 0.95rem;
-text-align: center;
-}
-
-.tip-card summary {
-list-style: none;
-display: flex;
-flex-direction: column;
-padding-right: 25px;
-position: relative;
-outline: none;
-}
-
-.tip-card summary::-webkit-details-marker {
-display: none;
-}
-.tip-card summary:after {
-content: "\25B6";
-position: absolute;
-right: 0;
-top: 5px;
-font-size: 14px;
-color: #10b981;
-transition: transform 0.3s;
-}
-.tip-card[open] summary:after {
-content: "\25BC";
-top: 8px;
-}
-
-.tip-card .tip-card-text-short {
-color: #64748b;
-font-size: 0.95rem;
-margin-bottom: 15px;
-text-align: center;
-}
-
-.tip-content {
-border-top: 1px solid #e2e8f0;
-padding-top: 15px;
-margin-top: 15px;
-font-size: 0.95rem;
-color: #475569;
-text-align: left;
-font-style: italic;
-background-color: #f0fff4;
-padding: 15px;
-border-radius: 6px;
-line-height: 1.5;
-}
-
-.testimonials-section {
-background: white;
-padding: 80px 0;
-overflow: hidden;
-}
-
-.testimonials-container {
-max-width: 1200px;
-margin: 0 auto;
-position: relative;
-padding: 0 20px;
-}
-
-.swiper-container, .swiper-wrapper {
-height: auto;
-}
-.swiper-wrapper {
-align-items: stretch;
-}
-
-.testimonial-card {
-background: #f8fafc;
-padding: 30px;
-border-radius: 10px;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-border: 1px solid #e2e8f0;
-height: 100%;
-display: flex;
-flex-direction: column;
-}
-
-.testimonial-card:hover {
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-transform: none;
-}
-
-.stars {
-color: #f59e0b;
-margin-bottom: 15px;
-}
-
-.testimonial-text {
-color: #475569;
-margin-bottom: 20px;
-font-style: italic;
-position: relative;
-}
-
-.testimonial-author {
-display: flex;
-align-items: center;
-gap: 15px;
-margin-top: auto;
-}
-
-.author-avatar {
-width: 50px;
-height: 50px;
-background: #10b981;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-color: white;
-font-weight: 600;
-font-size: 1.2rem;
-}
-
-.author-info h4 {
-margin: 0;
-color: #1e293b;
-font-size: 1rem;
-}
-
-.author-info p {
-margin: 0;
-color: #64748b;
-font-size: 0.9rem;
-}
-
-.swiper-button-prev, .swiper-button-next {
-background: transparent !important;
-width: 30px;
-height: 30px;
-border-radius: 0;
-box-shadow: none;
-transition: opacity 0.3s;
-top: 50%;
-margin-top: -15px;
-opacity: 0.7;
-}
-
-.swiper-button-prev:hover, .swiper-button-next:hover {
-background: transparent !important;
-opacity: 1;
-}
-
-.swiper-button-prev:after, .swiper-button-next:after {
-color: #1e293b !important;
-font-size: 24px !important;
-}
-
-.swiper-pagination-bullet-active {
-background: #10b981 !important;
-}
-
-/* СТИЛИ ФУТЕРА */
-.footer {
-background-color: #1e293b;
-color: #94a3b8;
-padding: 60px 0 20px;
-font-size: 14px;
-}
-
-.footer-container {
-max-width: 1200px;
-margin: 0 auto;
-padding: 0 20px;
-}
-
-.footer-content {
-display: flex;
-justify-content: space-between;
-flex-wrap: wrap;
-margin-bottom: 40px;
-gap: 30px;
-}
-
-.footer-section {
-width: calc(33.333% - 20px);
-min-width: 250px;
-margin-bottom: 20px;
-}
-
-.footer-section h3 {
-margin-bottom: 20px;
-color: white;
-font-size: 1.1rem;
-border-bottom: 2px solid #334155;
-padding-bottom: 10px;
-}
-
-.footer-section ul {
-list-style: none;
-padding-left: 0;
-}
-
-.footer-section li {
-margin-bottom: 10px;
-}
-
-.footer-section a {
-color: #94a3b8;
-transition: 0.3s;
-font-size: 0.95rem;
-text-decoration: none;
-}
-
-.footer-section a:hover {
-color: white;
-text-decoration: underline;
-}
-
-.footer-section .footer-contacts {
-font-size: 1rem;
-}
-
-.footer-section .footer-contacts a {
-display: block;
-margin-top: 5px;
-color: white;
-font-size: 0.95rem;
-}
-
-.footer-section .footer-contacts i {
-color: #10b981;
-margin-right: 8px;
-}
-
-.footer-bottom {
-border-top: 1px solid #334155;
-padding-top: 20px;
-text-align: center;
-color: #94a3b8;
-}
 @media (max-width: 768px) {
-.footer-content {
-flex-direction: column;
-gap: 0;
+.feature-card h4, .tip-card h4 { font-size: 1rem; }
+.feature-card p, .tip-card p { font-size: 0.85rem; }
 }
-.footer-section {
-width: 100%;
-}
-.footer-section h3 {
-padding-top: 10px;
-}
-.footer-section .footer-contacts {
-margin-bottom: 15px;
-}
+
+.testimonials-section { background: white; padding: 80px 0; overflow: hidden; }
+.testimonials-container { max-width: 1200px; margin: 0 auto; position: relative; padding: 0 20px; }
+.testimonial-card { background: #f8fafc; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); border: 1px solid #e2e8f0; height: 100%; display: flex; flex-direction: column; }
+.testimonial-card:hover { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); transform: none; }
+.stars { color: #f59e0b; margin-bottom: 15px; }
+.testimonial-text { color: #475569; margin-bottom: 20px; font-style: italic; position: relative; }
+.testimonial-author { display: flex; align-items: center; gap: 15px; margin-top: auto; }
+.author-avatar { width: 50px; height: 50px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1.2rem; }
+.author-info h4 { margin: 0; color: #1e293b; font-size: 1rem; }
+.author-info p { margin: 0; color: #64748b; font-size: 0.9rem; }
+
+.swiper-button-prev, .swiper-button-next { background: transparent !important; width: 30px; height: 30px; border-radius: 0; box-shadow: none; transition: opacity 0.3s; top: 50%; margin-top: -15px; opacity: 0.7; }
+.swiper-button-prev:hover, .swiper-button-next:hover { background: transparent !important; opacity: 1; }
+.swiper-button-prev:after, .swiper-button-next:after { color: #1e293b !important; font-size: 24px !important; }
+.swiper-pagination-bullet-active { background: #10b981 !important; }
+
+.footer { background-color: #1e293b; color: #94a3b8; padding: 60px 0 20px; font-size: 14px; }
+.footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 40px; gap: 30px; }
+.footer-section { width: calc(25% - 20px); min-width: 200px; margin-bottom: 20px; }
+.footer-section h3 { margin-bottom: 20px; color: white; font-size: 1.1rem; border-bottom: 2px solid #334155; padding-bottom: 10px; }
+.footer-section ul { list-style: none; padding-left: 0; }
+.footer-section li { margin-bottom: 10px; }
+.footer-section a { color: #94a3b8; transition: 0.3s; font-size: 0.95rem; text-decoration: none; }
+.footer-section a:hover { color: white; text-decoration: underline; }
+.footer-bottom { border-top: 1px solid #334155; padding-top: 20px; text-align: center; color: #94a3b8; }
+
+@media (max-width: 768px) {
+.footer-content { flex-direction: column; gap: 0; }
+.footer-section { width: 100%; }
 }
 </style>
 </head>
 <body>
 <nav class="main-navigation">
 <div class="nav-container">
-<a class="nav-logo" href="index.html">
-✈️ Airflow
-</a>
+<a class="nav-logo" href="index.html">✈️ Airflow</a>
 <ul class="nav-menu">
 <li><a href="index.html">Главная</a></li>
 <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
@@ -681,10 +150,21 @@ margin-bottom: 15px;
 <li><a href="cars.html">🚗 Аренда авто</a></li>
 <li><a href="transfers.html">🚕 Трансферы</a></li>
 <li><a href="flight-compensation.html" class="active">⚖️ Компенсация</a></li>
+<li class="dropdown">
+<span class="dropdown-toggle">Ещё <i class="fas fa-chevron-down" style="font-size: 12px;"></i></span>
+<div class="dropdown-menu">
+<a href="attractions.html">🎭 Музеи и достопримечательности</a>
+<a href="trains-buses.html">🚂 Поезда и автобусы</a>
+<a href="vip-lounge.html">💎 VIP залы</a>
+<a href="parking.html">🅿️ Парковка</a>
+<a href="insurance.html">🛡️ Страховка</a>
+<a href="simcard.html">📱 SIM карты</a>
+<a href="about.html">ℹ️ О нас</a>
+<a href="help.html">❓ Помощь</a>
+</div>
+</li>
 </ul>
-<button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button">
-<i class="fas fa-bars"></i>
-</button>
+<button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button"><i class="fas fa-bars"></i></button>
 </div>
 </nav>
 <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
@@ -697,23 +177,26 @@ margin-bottom: 15px;
 <li><a href="cars.html">🚗 Аренда авто</a></li>
 <li><a href="transfers.html">🚕 Трансферы</a></li>
 <li><a href="flight-compensation.html" class="active">⚖️ Компенсация</a></li>
+<li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
+<li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
+<li><a href="vip-lounge.html">💎 VIP залы</a></li>
+<li><a href="parking.html">🅿️ Парковка</a></li>
+<li><a href="insurance.html">🛡️ Страховка</a></li>
+<li><a href="simcard.html">📱 SIM карты</a></li>
 <li><a href="about.html">ℹ️ О нас</a></li>
 <li><a href="help.html">❓ Помощь</a></li>
 </ul>
 </nav>
+
 <main>
 <section class="hero-section">
 <div class="container">
 <div class="hero-content">
-<h1>Компенсация за задержку или отмену рейса</h1>
-
-<!-- ВИДЖЕТ ПРОВЕРКИ ПРЯМО В HERO - ПРОЗРАЧНЫЙ -->
+<h1><img src="images/compesaci.png" alt="Компенсация" style="width: 60px; height: 60px; vertical-align: middle; margin-right: 12px;">Компенсация за задержку или отмену рейса</h1>
 <details class="hero-widget-card" id="heroWidgetDetails">
 <summary>
 <div class="widget-summary-content">
-<div class="widget-search-icon">
-<i class="fas fa-search"></i>
-</div>
+<div class="widget-search-icon"><i class="fas fa-search"></i></div>
 <div class="widget-summary-text">
 <h2>Проверьте свой рейс на компенсацию</h2>
 <p>Нажмите, чтобы открыть форму проверки • До 600€ по закону EC 261</p>
@@ -724,50 +207,6 @@ margin-bottom: 15px;
 <div id="compensairWidgetContainer"></div>
 </div>
 </details>
-
-<div class="hero-contacts">
-<div>
-<i class="fas fa-check-circle"></i> Задержки рейса
-</div>
-<div>
-<i class="fas fa-check-circle"></i> Отмены рейса
-</div>
-<div>
-<i class="fas fa-check-circle"></i> Отказ в посадке
-</div>
-<div>
-<i class="fas fa-check-circle"></i> Пропущенная пересадка
-</div>
-</div>
-
-</div>
-</div>
-</section>
-
-<section class="product-icons-section">
-<div class="container">
-<h2 class="section-title" style="margin-bottom: 30px; color: #1d4ed8;">Наши продукты и сервисы</h2>
-<div class="product-icons-grid">
-<a href="https://search.airflowtravel.net" class="product-icon-link">
-<div class="product-icon"><i class="fas fa-plane"></i></div>
-<div class="product-title">Авиабилеты</div>
-</a>
-<a href="hotels.html" class="product-icon-link">
-<div class="product-icon"><i class="fas fa-hotel"></i></div>
-<div class="product-title">Отели</div>
-</a>
-<a href="cars.html" class="product-icon-link">
-<div class="product-icon"><i class="fas fa-car-alt"></i></div>
-<div class="product-title">Аренда авто</div>
-</a>
-<a href="transfers.html" class="product-icon-link">
-<div class="product-icon"><i class="fas fa-taxi"></i></div>
-<div class="product-title">Трансферы</div>
-</a>
-<a href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ" class="product-icon-link">
-<div class="product-icon"><i class="fas fa-train"></i></div>
-<div class="product-title">Ж/д билеты</div>
-</a>
 </div>
 </div>
 </section>
@@ -892,98 +331,6 @@ margin-bottom: 15px;
 </div>
 </details>
 
-<details class="tip-card" style="border-top-color: #f59e0b;">
-<summary>
-<div class="tip-icon" style="color: #f59e0b;"><i class="fas fa-earth-europe"></i></div>
-<h4>На какие страны и авиакомпании распространяются права пассажиров ЕС и Турции?</h4>
-<p class="tip-card-text-short">Территориальное действие Регламента (ЕС) 261/2004.</p>
-</summary>
-<div class="tip-content">
-Права авиапассажиров, изложенные в Постановлении (ЕС) 261/2004 действуют, если:
-<ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;">
-<li>Страна вылета принадлежит ЕС независимо от того, какой авиакомпанией был выполнен рейс</li>
-<li>Любой рейс, выполненный авиакомпанией, зарегистрированной в ЕС (также в Исландии, Норвегии или Швейцарии)</li>
-</ul>
-</div>
-</details>
-
-<details class="tip-card" style="border-top-color: #10b981;">
-<summary>
-<div class="tip-icon" style="color: #10b981;"><i class="fas fa-calendar-alt"></i></div>
-<h4>Если задержка/отмена/отказ в посадке произошли, но это было давно?</h4>
-<p class="tip-card-text-short">Срок исковой давности для подачи претензии.</p>
-</summary>
-<div class="tip-content">
-Если ваш рейс был задержан либо отменен, или вам отказали в посадке на борт в течение последних 2-6 лет (в зависимости от авиакомпании), вы имеете право на компенсацию и можете отправить информацию о вашем рейсе в Compensair.
-</div>
-</details>
-
-<details class="tip-card" style="border-top-color: #1d4ed8;">
-<summary>
-<div class="tip-icon" style="color: #1d4ed8;"><i class="fas fa-person"></i></div>
-<h4>Кто получит компенсацию, если мой рейс был оплачен компанией?</h4>
-<p class="tip-card-text-short">Определяем законного получателя денежной выплаты.</p>
-</summary>
-<div class="tip-content">
-Право на получение компенсации принадлежит пассажиру, а не тому, кто оплатил билет.
-</div>
-</details>
-
-<details class="tip-card" style="border-top-color: #e9573f;">
-<summary>
-<div class="tip-icon" style="color: #e9573f;"><i class="fas fa-file-signature"></i></div>
-<h4>Что мне необходимо предоставить для того, чтобы претендовать на компенсацию?</h4>
-<p class="tip-card-text-short">Список документов, необходимых для начала процесса.</p>
-</summary>
-<div class="tip-content">
-<ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;">
-<li>Подписанная форма согласия на представление интересов</li>
-<li>Информация о рейсе и номер билета/бронирования</li>
-</ul>
-</div>
-</details>
-
-<details class="tip-card" style="border-top-color: #f59e0b;">
-<summary>
-<div class="tip-icon" style="color: #f59e0b;"><i class="fas fa-handshake"></i></div>
-<h4>Партнерская программа Compensair: Преимущества</h4>
-<p class="tip-card-text-short">Что вы получите, сотрудничая с нами.</p>
-</summary>
-<div class="tip-content">
-С помощью Compensair вы:
-<ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;">
-<li>Превратите клиентов, столкнувшихся с задержкой или отменой рейса, в лояльных</li>
-<li>Будете зарабатывать в среднем **40 евро** за успешную заявку</li>
-<li>Сможете дополнительно монетизировать имеющуюся базу клиентов за последние 6 лет</li>
-<li>Предоставите своим клиентам дополнительную ценность</li>
-</ul>
-<p style="margin-top: 15px; font-style: normal; text-align: center;">
-<a href="https://compensair.tpo.li/D7XbiL71?erid=2VtzqxNeJXs" target="_blank" style="color: #f59e0b; font-weight: 700; text-decoration: underline;">
-Подробнее о Партнерской программе →
-</a>
-</p>
-</div>
-</details>
-
-<details class="tip-card" style="border-top-color: #10b981;">
-<summary>
-<div class="tip-icon" style="color: #10b981;"><i class="fas fa-qrcode"></i></div>
-<h4>QR-код для быстрой регистрации партнера</h4>
-<p class="tip-card-text-short">Быстрый переход на страницу "Стать партнёром".</p>
-</summary>
-<div class="tip-content">
-Для мгновенного перехода на страницу регистрации партнера отсканируйте код.
-<div style="text-align: center; margin: 15px 0;">
-<a href="https://compensair.tpo.li/D7XbiL71?erid=2VtzqxNeJXs" target="_blank" style="display: inline-block; text-decoration: none;">
-<img src="images/tp-compensair-qr-code.jpeg" alt="QR-код регистрации партнера Compensair" style="max-width: 250px; width: 100%; height: auto; border: 3px solid #10b981; border-radius: 8px; padding: 10px; background: #ffffff;">
-</a>
-<p style="margin-top: 10px; font-style: normal; font-size: 0.9rem; color: #1e293b;">
-Отсканируйте камерой смартфона или <a href="https://compensair.tpo.li/D7XbiL71?erid=2VtzqxNeJXs" target="_blank" style="color: #10b981; font-weight: 600; text-decoration: underline;">нажмите для перехода</a>
-</p>
-</div>
-</div>
-</details>
-
 </div>
 </div>
 </section>
@@ -996,12 +343,8 @@ margin-bottom: 15px;
 
 <div class="swiper-slide">
 <div class="testimonial-card">
-<div class="stars">
-<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-</div>
-<p class="testimonial-text">
-«Благодаря Compensair получил 400€ за задержку рейса из Парижа! Думал, это невозможно, но ребята справились. Спасибо!»
-</p>
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+<p class="testimonial-text">«Благодаря Compensair получил 400€ за задержку рейса из Парижа! Думал, это невозможно, но ребята справились. Спасибо!»</p>
 <div class="testimonial-author">
 <div class="author-avatar">ДК</div>
 <div class="author-info">
@@ -1014,12 +357,8 @@ margin-bottom: 15px;
 
 <div class="swiper-slide">
 <div class="testimonial-card">
-<div class="stars">
-<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-</div>
-<p class="testimonial-text">
-«Подала заявку за 2 минуты, и через 3 месяца получила деньги. Никаких хлопот с документами и перепиской с авиакомпанией.»
-</p>
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p class="testimonial-text">«Подала заявку за 2 минуты, и через 3 месяца получила деньги. Никаких хлопот с документами и перепиской с авиакомпанией.»</p>
 <div class="testimonial-author">
 <div class="author-avatar">МС</div>
 <div class="author-info">
@@ -1032,12 +371,8 @@ margin-bottom: 15px;
 
 <div class="swiper-slide">
 <div class="testimonial-card">
-<div class="stars">
-<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-</div>
-<p class="testimonial-text">
-«Удобно, что нет предоплаты. Это снимает все риски. Работают профессионально, результат — 100%.»
-</p>
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p class="testimonial-text">«Удобно, что нет предоплаты. Это снимает все риски. Работают профессионально, результат — 100%.»</p>
 <div class="testimonial-author">
 <div class="author-avatar">ОВ</div>
 <div class="author-info">
@@ -1050,12 +385,8 @@ margin-bottom: 15px;
 
 <div class="swiper-slide">
 <div class="testimonial-card">
-<div class="stars">
-<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-</div>
-<p class="testimonial-text">
-«Я даже не знал, что мне положена компенсация за старый рейс! Проверил, подал заявку и получил деньги. Отличный сервис.»
-</p>
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p class="testimonial-text">«Я даже не знал, что мне положена компенсация за старый рейс! Проверил, подал заявку и получил деньги. Отличный сервис.»</p>
 <div class="testimonial-author">
 <div class="author-avatar">АГ</div>
 <div class="author-info">
@@ -1068,12 +399,8 @@ margin-bottom: 15px;
 
 <div class="swiper-slide">
 <div class="testimonial-card">
-<div class="stars">
-<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-</div>
-<p class="testimonial-text">
-«Сайт быстрый и понятный. Проверила рейс, подала заявку и получила 600 евро. Идеально.»
-</p>
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p class="testimonial-text">«Сайт быстрый и понятный. Проверила рейс, подала заявку и получила 600 евро. Идеально.»</p>
 <div class="testimonial-author">
 <div class="author-avatar">ЕВ</div>
 <div class="author-info">
@@ -1091,12 +418,20 @@ margin-bottom: 15px;
 </div>
 </div>
 </section>
-
 </main>
 
 <footer class="footer">
 <div class="footer-container">
 <div class="footer-content">
+<div class="footer-section">
+<h3>✨ О нас</h3>
+<ul>
+<li><a href="about.html">→ О проекте Airflow</a></li>
+<li><a href="help.html">→ Помощь и контакты</a></li>
+<li><a href="privacy.html">→ Политика конфиденциальности</a></li>
+<li><a href="terms.html">→ Условия использования</a></li>
+</ul>
+</div>
 <div class="footer-section">
 <h3>Наши Продукты</h3>
 <ul>
@@ -1104,24 +439,25 @@ margin-bottom: 15px;
 <li><a href="hotels.html">🏨 Отели</a></li>
 <li><a href="cars.html">🚗 Аренда авто</a></li>
 <li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ">🚂 Ж/д билеты</a></li>
+<li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
 </ul>
 </div>
-
 <div class="footer-section">
-<h3>Информация</h3>
+<h3>Дополнительно</h3>
 <ul>
-<li><a href="https://airflowtravel.net/about.html">О нас</a></li>
-<li><a href="https://airflowtravel.net/terms.html">Условия использования</a></li>
-<li><a href="https://airflowtravel.net/privacy.html">Политика конфиденциальности</a></li>
+<li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
+<li><a href="vip-lounge.html">💎 VIP залы</a></li>
+<li><a href="parking.html">🅿️ Парковка</a></li>
+<li><a href="insurance.html">🛡️ Страховка</a></li>
+<li><a href="simcard.html">📱 SIM карты</a></li>
 </ul>
 </div>
-
 <div class="footer-section">
 <h3>Служба поддержки Compensair</h3>
 <div class="footer-contacts" style="background: none; padding: 0; margin: 0;">
-<a href="mailto:team@compensair.com" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-<i class="fas fa-envelope"></i> team@compensair.com
+<a href="/cdn-cgi/l/email-protection#84f0e1e5e9c4e7ebe9f4e1eaf7e5edf6aae7ebe9" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+<i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="4c38292d210c2f23213c29223f2d253e622f2321">[email&#160;protected]</span>
 </a>
 <a href="https://wa.me/447537141140" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px;">
 <i class="fab fa-whatsapp"></i> WhatsApp: +44 753 714 1140
@@ -1136,10 +472,9 @@ margin-bottom: 15px;
 </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-// ЗАГРУЗКА ВИДЖЕТА ПРИ РАСКРЫТИИ В HERO
 let widgetLoaded = false;
 const heroWidgetDetails = document.getElementById('heroWidgetDetails');
 const widgetContainer = document.getElementById('compensairWidgetContainer');
@@ -1147,18 +482,19 @@ const widgetContainer = document.getElementById('compensairWidgetContainer');
 if (heroWidgetDetails) {
 heroWidgetDetails.addEventListener('toggle', function() {
 if (this.open && !widgetLoaded) {
-const script = document.createElement('script');
-script.src = 'https://tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&width=100&powered_by=true&campaign_id=86&promo_id=2110';
-script.charset = 'utf-8';
-script.async = true;
-widgetContainer.appendChild(script);
+const iframe = document.createElement('iframe');
+iframe.src = 'https://www.compensair.com/check-flight.html';
+iframe.name = 'margaryan_gagik';
+iframe.style.border = '1px solid #ccc';
+iframe.style.width = '100%';
+iframe.style.height = '960PX';
+widgetContainer.appendChild(iframe);
 widgetLoaded = true;
 console.log('✅ Виджет Compensair загружен');
 }
 });
 }
 
-// МОБИЛЬНОЕ МЕНЮ
 const mobileMenu = document.getElementById('mobile-menu');
 const menuButton = document.getElementById('mobile-menu-button');
 const menuOverlay = document.getElementById('mobile-menu-overlay');
@@ -1198,10 +534,16 @@ if (menuButton) menuButton.addEventListener('click', toggleMenu);
 if (menuClose) menuClose.addEventListener('click', closeMenu);
 if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
 
-// SWIPER SLIDER
+window.addEventListener('resize', function() {
+if (window.innerWidth > 1175 && isMenuOpen) {
+closeMenu();
+}
+});
+
 var swiper = new Swiper('.testimonials-slider', {
 slidesPerView: 1,
 spaceBetween: 30,
+loop: true,
 observer: true,
 observeParents: true,
 autoplay: {
@@ -1225,20 +567,9 @@ spaceBetween: 30
 slidesPerView: 3,
 spaceBetween: 30
 }
-},
-autoHeight: true,
-on: {
-init: function () {
-document.body.style.overflowX = 'hidden';
-this.update();
-},
-resize: function () {
-this.update();
-}
 }
 });
 
-// Закрытие мобильного меню при клике на ссылку
 document.querySelectorAll('.mobile-menu-links a').forEach(link => {
 link.addEventListener('click', () => {
 if (mobileMenu.classList.contains('active')) {
