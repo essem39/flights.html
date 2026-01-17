@@ -58,7 +58,7 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 
 .hero-section { background: linear-gradient(135deg, #1d4ed8 0%, #10b981 100%); color: white; padding: 80px 5px 60px; text-align: center; }
 
-.hero-widget-card { padding: 20px 15px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); max-width: 1200px; margin: 0 auto; cursor: pointer; transition: all 0.3s ease; }
+.hero-widget-card { padding: 20px 15px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); max-width: 1200px; margin: 0 auto; transition: all 0.3s ease; }
 .hero-widget-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); background: rgba(255, 255, 255, 0.2); }
 
 .hero-widget-card h1 { 
@@ -74,10 +74,11 @@ flex-wrap: wrap;
 gap: 10px;
 }
 
+.hero-widget-card details { cursor: pointer; }
 .hero-widget-card summary { list-style: none; display: flex; align-items: center; justify-content: center; gap: 15px; padding: 15px 30px 10px 10px; position: relative; outline: none; flex-wrap: wrap; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 10px; }
 .hero-widget-card summary::-webkit-details-marker { display: none; }
 .hero-widget-card summary:after { content: "\25BC"; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 16px; color: white; transition: transform 0.3s; }
-.hero-widget-card[open] summary:after { transform: translateY(-50%) rotate(180deg); }
+.hero-widget-card details[open] summary:after { transform: translateY(-50%) rotate(180deg); }
 .widget-summary-content { display: flex; align-items: center; gap: 15px; }
 .widget-search-icon { font-size: 2rem; color: white; }
 .widget-summary-text { text-align: left; }
@@ -101,7 +102,6 @@ gap: 10px;
 
 .seo-info-section { padding: 60px 20px; background: white; }
 .seo-info-container { max-width: 1100px; margin: 0 auto; }
-.seo-banner { width: 100%; max-width: 1200px; height: auto; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 .seo-text-content { text-align: left; line-height: 1.8; color: #475569; }
 .seo-text-content h2 { font-size: 2rem; color: #1e293b; margin-bottom: 20px; font-weight: 700; }
 .seo-text-content h3 { font-size: 1.4rem; color: #1d4ed8; margin: 25px 0 15px; font-weight: 600; }
@@ -114,6 +114,7 @@ gap: 10px;
 .seo-text-content h2 { font-size: 1.6rem; }
 .seo-text-content h3 { font-size: 1.2rem; }
 .seo-text-content p, .seo-text-content li { font-size: 0.95rem; }
+.seo-info-section .seo-info-container > div:first-child { grid-template-columns: 1fr !important; gap: 20px !important; }
 }
 
 .car-features-section, .seo-tips-section { padding: 80px 20px; background: #f8fafc; }
@@ -224,8 +225,10 @@ gap: 10px;
 <section class="hero-section">
 <div class="container">
 <div class="hero-content">
-<details class="hero-widget-card" id="heroWidgetDetails">
-<h1><img src="images/compesaci.png" alt="Компенсация" style="width: 250px; height: 120px; vertical-align: middle; margin-right: 1px;">Компенсация за задержку или отмену рейса</h1>
+<div class="hero-widget-card">
+<img src="images/banner.png" alt="Компенсация за рейсы" style="width: 100%; max-width: 1200px; height: auto; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+<h1><img src="images/compesaci.png" alt="Compensair" style="width: 250px; height: 120px; vertical-align: middle; margin-right: 1px;">Компенсация за задержку или отмену рейса</h1>
+<details id="heroWidgetDetails">
 <summary>
 <div class="widget-summary-content">
 <div class="widget-search-icon"><i class="fas fa-search"></i></div>
@@ -241,14 +244,21 @@ gap: 10px;
 </details>
 </div>
 </div>
+</div>
 </section>
 
 <section class="seo-info-section">
 <div class="seo-info-container">
-<img src="images/banner.png" alt="Компенсация за задержку или отмену рейса" class="seo-banner">
+<div style="display: grid; grid-template-columns: 380px 1fr; gap: 40px; align-items: start; margin-bottom: 40px;">
+<div>
+<img src="images/compessari.png" alt="Компенсация за задержку или отмену рейса" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+</div>
 <div class="seo-text-content">
 <h2>Компенсация за задержку или отмену рейса по закону EC 261/2004</h2>
 <p>Если ваш рейс задержали или отменили в пределах Европейского Союза, вы имеете законное право на денежную компенсацию от €250 до €600 согласно европейскому Регламенту EC 261/2004. Compensair помогает пассажирам получить заслуженную компенсацию быстро, без лишних хлопот и полностью взяв на себя все риски.</p>
+</div>
+</div>
+<div class="seo-text-content">
 
 <h3>Когда положена компенсация?</h3>
 <p>Вы можете требовать компенсацию в следующих ситуациях:</p>
@@ -520,8 +530,8 @@ gap: 10px;
 <div class="footer-section">
 <h3>Служба поддержки Compensair</h3>
 <div class="footer-contacts" style="background: none; padding: 0; margin: 0;">
-<a href="mailto:team@compensair.com" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-<i class="fas fa-envelope"></i> team@compensair.com
+<a href="/cdn-cgi/l/email-protection#067263676b4665696b76636875676f742865696b" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+<i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="f98d9c9894b99a9694899c978a98908bd79a9694">[email&#160;protected]</span>
 </a>
 <a href="https://wa.me/447537141140" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px;">
 <i class="fab fa-whatsapp"></i> WhatsApp: +44 753 714 1140
@@ -536,7 +546,7 @@ gap: 10px;
 </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 let widgetLoaded = false;
