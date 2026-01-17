@@ -57,11 +57,24 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 .section-title { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 40px; color: #1e293b; }
 
 .hero-section { background: linear-gradient(135deg, #1d4ed8 0%, #10b981 100%); color: white; padding: 80px 5px 60px; text-align: center; }
-.hero-content h1 { font-size: clamp(1.2rem, 2.5vw, 2rem); margin-bottom: 30px; font-weight: 600; text-align: center; color: white; }
 
-.hero-widget-card { padding: 15px 5px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); max-width: 1200px; margin: 0 auto 30px; cursor: pointer; transition: all 0.3s ease; }
+.hero-widget-card { padding: 20px 15px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); max-width: 1200px; margin: 0 auto; cursor: pointer; transition: all 0.3s ease; }
 .hero-widget-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); background: rgba(255, 255, 255, 0.2); }
-.hero-widget-card summary { list-style: none; display: flex; align-items: center; justify-content: center; gap: 15px; padding: 10px 30px 10px 10px; position: relative; outline: none; flex-wrap: wrap; }
+
+.hero-widget-card h1 { 
+font-size: clamp(1.2rem, 2.5vw, 2rem); 
+margin-bottom: 20px; 
+font-weight: 600; 
+text-align: center; 
+color: white;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+gap: 10px;
+}
+
+.hero-widget-card summary { list-style: none; display: flex; align-items: center; justify-content: center; gap: 15px; padding: 15px 30px 10px 10px; position: relative; outline: none; flex-wrap: wrap; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 10px; }
 .hero-widget-card summary::-webkit-details-marker { display: none; }
 .hero-widget-card summary:after { content: "\25BC"; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 16px; color: white; transition: transform 0.3s; }
 .hero-widget-card[open] summary:after { transform: translateY(-50%) rotate(180deg); }
@@ -73,6 +86,8 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 .hero-widget-content { border-top: 1px solid rgba(255, 255, 255, 0.3); padding-top: 15px; margin-top: 15px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px); border-radius: 8px; padding: 10px 5px; overflow-x: hidden; max-width: 100%; min-height: auto; }
 
 @media (max-width: 768px) {
+.hero-widget-card h1 { font-size: 1rem; flex-direction: column; }
+.hero-widget-card h1 img { width: 180px !important; height: 90px !important; }
 .widget-summary-content { flex-direction: column; text-align: center; gap: 10px; }
 .widget-summary-text { text-align: center; }
 .widget-summary-text h2 { font-size: 1rem; }
@@ -80,8 +95,25 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 .hero-widget-card summary:after { top: 20px; }
 .hero-widget-content { padding: 10px 5px; min-height: auto; }
 .hero-section { padding: 60px 5px 40px; }
-.hero-widget-card { padding: 15px 5px; }
+.hero-widget-card { padding: 15px 10px; }
 .section-title { font-size: 1.8rem; }
+}
+
+.seo-info-section { padding: 60px 20px; background: white; }
+.seo-info-container { max-width: 1100px; margin: 0 auto; }
+.seo-banner { width: 100%; max-width: 1200px; height: auto; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.seo-text-content { text-align: left; line-height: 1.8; color: #475569; }
+.seo-text-content h2 { font-size: 2rem; color: #1e293b; margin-bottom: 20px; font-weight: 700; }
+.seo-text-content h3 { font-size: 1.4rem; color: #1d4ed8; margin: 25px 0 15px; font-weight: 600; }
+.seo-text-content p { margin-bottom: 15px; font-size: 1.05rem; }
+.seo-text-content ul { margin: 15px 0 15px 25px; }
+.seo-text-content li { margin-bottom: 10px; font-size: 1.05rem; }
+.seo-highlight { background: linear-gradient(135deg, #1d4ed8 0%, #10b981 100%); color: white; padding: 20px; border-radius: 8px; margin: 20px 0; font-weight: 500; }
+
+@media (max-width: 768px) {
+.seo-text-content h2 { font-size: 1.6rem; }
+.seo-text-content h3 { font-size: 1.2rem; }
+.seo-text-content p, .seo-text-content li { font-size: 0.95rem; }
 }
 
 .car-features-section, .seo-tips-section { padding: 80px 20px; background: #f8fafc; }
@@ -192,8 +224,8 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 <section class="hero-section">
 <div class="container">
 <div class="hero-content">
-<h1><img src="images/compesaci.png" alt="Компенсация" style="width: 250px; height: 120px; vertical-align: middle; margin-right: 1px;">Компенсация за задержку или отмену рейса</h1>
 <details class="hero-widget-card" id="heroWidgetDetails">
+<h1><img src="images/compesaci.png" alt="Компенсация" style="width: 250px; height: 120px; vertical-align: middle; margin-right: 1px;">Компенсация за задержку или отмену рейса</h1>
 <summary>
 <div class="widget-summary-content">
 <div class="widget-search-icon"><i class="fas fa-search"></i></div>
@@ -211,6 +243,38 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 </div>
 </section>
 
+<section class="seo-info-section">
+<div class="seo-info-container">
+<img src="images/banner.png" alt="Компенсация за задержку или отмену рейса" class="seo-banner">
+<div class="seo-text-content">
+<h2>Компенсация за задержку или отмену рейса по закону EC 261/2004</h2>
+<p>Если ваш рейс задержали или отменили в пределах Европейского Союза, вы имеете законное право на денежную компенсацию от €250 до €600 согласно европейскому Регламенту EC 261/2004. Compensair помогает пассажирам получить заслуженную компенсацию быстро, без лишних хлопот и полностью взяв на себя все риски.</p>
+
+<h3>Когда положена компенсация?</h3>
+<p>Вы можете требовать компенсацию в следующих ситуациях:</p>
+<ul>
+<li><strong>Задержка рейса более 3 часов</strong> — если вы прибыли в конечный пункт назначения с опозданием на 3 часа или более</li>
+<li><strong>Отмена рейса</strong> — если авиакомпания отменила рейс менее чем за 14 дней до вылета</li>
+<li><strong>Отказ в посадке (овербукинг)</strong> — если вам не разрешили сесть на рейс из-за перебронирования мест</li>
+<li><strong>Пропущенная стыковка</strong> — если из-за задержки первого рейса вы пропустили пересадку и прибыли с опозданием более 3 часов</li>
+</ul>
+
+<div class="seo-highlight">
+💰 <strong>Размер компенсации:</strong> от €250 до €600 в зависимости от дальности рейса. Средняя выплата наших клиентов составляет €450.
+</div>
+
+<h3>Как работает процесс с Compensair?</h3>
+<p>Получить компенсацию с Compensair — это просто:</p>
+<ul>
+<li><strong>Проверьте свой рейс</strong> — заполните данные о рейсе в форме выше (займёт 2 минуты)</li>
+<li><strong>Мы берём всю работу на себя</strong> — наше программное обеспечение анализирует ваше дело, составляет документы и ведёт переговоры с авиакомпанией</li>
+<li><strong>Получаете деньги</strong> — мы перечисляем вам компенсацию после успешного взыскания средств</li>
+</ul>
+
+<p><strong>Никаких предоплат и рисков!</strong> Мы взимаем комиссию только при успешном получении компенсации. Работаем со 150+ авиакомпаниями из 60 стран мира. Закон EC 261 распространяется на всех пассажиров, независимо от гражданства.</p>
+</div>
+</div>
+</section>
 <section class="car-features-section">
 <div class="container">
 <h2 class="section-title" style="color: #1e293b;">Наши ключевые преимущества</h2>
@@ -456,8 +520,8 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 <div class="footer-section">
 <h3>Служба поддержки Compensair</h3>
 <div class="footer-contacts" style="background: none; padding: 0; margin: 0;">
-<a href="/cdn-cgi/l/email-protection#84f0e1e5e9c4e7ebe9f4e1eaf7e5edf6aae7ebe9" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-<i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="4c38292d210c2f23213c29223f2d253e622f2321">[email&#160;protected]</span>
+<a href="mailto:team@compensair.com" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+<i class="fas fa-envelope"></i> team@compensair.com
 </a>
 <a href="https://wa.me/447537141140" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px;">
 <i class="fab fa-whatsapp"></i> WhatsApp: +44 753 714 1140
@@ -472,7 +536,7 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 let widgetLoaded = false;
@@ -485,9 +549,9 @@ if (this.open && !widgetLoaded) {
 const iframe = document.createElement('iframe');
 iframe.src = 'https://www.compensair.com/check-flight.html';
 iframe.name = 'margaryan_gagik';
-iframe.style.border = '1px solid #ccc';
+iframe.style.border = 'none';
 iframe.style.width = '100%';
-iframe.style.height = '960PX';
+iframe.style.height = '960px';
 widgetContainer.appendChild(iframe);
 widgetLoaded = true;
 console.log('✅ Виджет Compensair загружен');
