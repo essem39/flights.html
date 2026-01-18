@@ -55,12 +55,14 @@ html,body{overflow-x:hidden;width:100%;max-width:100%;font-family:-apple-system,
 .hero-content p{font-size:1rem;margin-bottom:0;opacity:0.95}
 .widget-container{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.3);border-radius:16px;padding:30px;max-width:1000px;margin:0 auto;box-shadow:0 8px 32px rgba(0,0,0,0.1)}
 .section-title{text-align:center;font-size:2.5rem;font-weight:700;margin-bottom:40px;color:#1e293b}
-.product-icons-section{padding:60px 20px;background:white;text-align:center}
-.product-icons-grid{display:flex;justify-content:center;gap:50px;max-width:900px;margin:0 auto;flex-wrap:wrap}
-.product-icon-link{text-decoration:none;color:#1e293b;transition:color 0.3s ease,transform 0.3s ease;display:block;padding:15px;border-radius:8px}
-.product-icon{font-size:3rem;margin-bottom:10px;color:#1e293b;transition:color 0.3s ease}
-.product-icon-link:hover{color:#10b981;transform:translateY(-5px)}
-.product-icon-link:hover .product-icon{color:#10b981}
+.how-it-works-section{padding:80px 20px;background:#f8fafc}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;max-width:1100px;margin:0 auto}
+.step-card{background:white;padding:35px 25px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.08);text-align:center;position:relative;transition:transform 0.3s,box-shadow 0.3s;border-top:4px solid #1d4ed8}
+.step-card:hover{transform:translateY(-8px);box-shadow:0 12px 30px rgba(0,0,0,0.15)}
+.step-number{position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:40px;height:40px;background:linear-gradient(135deg,#1d4ed8,#10b981);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;box-shadow:0 4px 10px rgba(29,78,216,0.3)}
+.step-icon{font-size:3rem;color:#1d4ed8;margin:20px 0 15px}
+.step-card h3{font-size:1.25rem;color:#1e293b;font-weight:700;margin-bottom:12px}
+.step-card p{color:#64748b;font-size:0.95rem;line-height:1.6}
 .car-features-section,.seo-tips-section{padding:80px 20px;background:#f8fafc}
 .features-grid,.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;max-width:1100px;margin:0 auto}
 .feature-card,.tip-card{padding:30px 20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);background:#ffffff;border-top:5px solid #10b981;transition:transform 0.3s,box-shadow 0.3s;height:100%;text-align:left;cursor:pointer}
@@ -112,8 +114,10 @@ html,body{overflow-x:hidden;width:100%;max-width:100%;font-family:-apple-system,
 .hero-content h1 img{width:60px!important;height:60px!important}
 .widget-container{padding:20px 15px}
 .section-title{font-size:1.8rem;margin-bottom:30px}
-.product-icon{font-size:2.2rem}
-.product-title{font-size:0.9rem}
+.how-it-works-section{padding:60px 20px}
+.steps-grid{grid-template-columns:1fr;gap:40px}
+.step-icon{font-size:2.5rem}
+.step-card h3{font-size:1.15rem}
 .feature-icon,.tip-icon{font-size:2.2rem}
 .feature-card h4,.tip-card h4{font-size:1.05rem}
 .footer-content{flex-direction:column;gap:0}
@@ -127,8 +131,11 @@ html,body{overflow-x:hidden;width:100%;max-width:100%;font-family:-apple-system,
 .hero-content h1 img{width:50px!important;height:50px!important}
 .hero-content p{font-size:0.9rem}
 .section-title{font-size:1.5rem;margin-bottom:25px}
-.product-icon{font-size:2rem}
-.product-title{font-size:0.85rem}
+.how-it-works-section{padding:50px 15px}
+.step-card{padding:30px 20px}
+.step-icon{font-size:2.2rem}
+.step-card h3{font-size:1.1rem}
+.step-card p{font-size:0.9rem}
 .feature-icon,.tip-icon{font-size:2rem}
 .feature-card h4,.tip-card h4{font-size:1rem}
 .feature-card p,.tip-card p{font-size:0.9rem}
@@ -254,30 +261,34 @@ html,body{overflow-x:hidden;width:100%;max-width:100%;font-family:-apple-system,
 </div>
 </div>
 </section>
-<section class="product-icons-section">
+<section class="how-it-works-section">
 <div class="container">
-<h2 class="section-title" style="margin-bottom:30px;color:#1d4ed8">Профессиональный трансфер автомобилей</h2>
-<div class="product-icons-grid">
-<a href="https://search.airflowtravel.net" class="product-icon-link" aria-label="Поиск авиабилетов">
-<div class="product-icon"><i class="fas fa-plane"></i></div>
-<div class="product-title">Авиабилеты</div>
-</a>
-<a href="hotels.html" class="product-icon-link" aria-label="Бронирование отелей">
-<div class="product-icon"><i class="fas fa-hotel"></i></div>
-<div class="product-title">Отели</div>
-</a>
-<a href="cars.html" class="product-icon-link" aria-label="Аренда автомобилей">
-<div class="product-icon"><i class="fas fa-car-alt"></i></div>
-<div class="product-title">Аренда авто</div>
-</a>
-<a href="transfers.html" class="product-icon-link" aria-label="Заказать трансфер">
-<div class="product-icon"><i class="fas fa-taxi"></i></div>
-<div class="product-title">Трансферы</div>
-</a>
-<a href="trains-buses.html" class="product-icon-link" aria-label="Билеты на поезда">
-<div class="product-icon"><i class="fas fa-train"></i></div>
-<div class="product-title">Поезда</div>
-</a>
+<h2 class="section-title" style="margin-bottom:50px;color:#1d4ed8">Как заказать трансфер</h2>
+<div class="steps-grid">
+<div class="step-card">
+<div class="step-number">1</div>
+<div class="step-icon"><i class="fas fa-map-marker-alt"></i></div>
+<h3>Укажите маршрут</h3>
+<p>Введите точки отправления и назначения. Аэропорт, отель, адрес — любая локация.</p>
+</div>
+<div class="step-card">
+<div class="step-number">2</div>
+<div class="step-icon"><i class="fas fa-calendar-check"></i></div>
+<h3>Выберите время</h3>
+<p>Укажите дату и время подачи. Для аэропорта вводите номер рейса — водитель отследит задержки.</p>
+</div>
+<div class="step-card">
+<div class="step-number">3</div>
+<div class="step-icon"><i class="fas fa-credit-card"></i></div>
+<h3>Оплатите онлайн</h3>
+<p>Фиксированная цена без скрытых доплат. Оплата картой онлайн — быстро и безопасно.</p>
+</div>
+<div class="step-card">
+<div class="step-number">4</div>
+<div class="step-icon"><i class="fas fa-user-tie"></i></div>
+<h3>Встреча с водителем</h3>
+<p>Водитель встретит с табличкой в указанное время. Поможет с багажом и довезёт с комфортом.</p>
+</div>
 </div>
 </div>
 </section>
