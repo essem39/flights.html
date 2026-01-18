@@ -1,468 +1,247 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="ie=edge" http-equiv="X-X-Compatible"/>
-<meta content="Airflow Travel: Бронируйте билеты в музеи, на выставки и экскурсии по всему миру. Гарантия лучшей цены и проход без очереди." name="description"/>
-
-<link href="bus_icon-icons.com_76529.ico" rel="icon" type="image/x-icon"/>
-<meta content="Airflow Travel - Билеты в музеи, на выставки и экскурсии" property="og:title"/>
-<meta content="Бронируйте билеты в музеи, на выставки и экскурсии по всему миру. Гарантия лучшей цены и проход без очереди." property="og:description"/>
-<meta content="ru" property="og:locale"/>
-<meta content="website" property="og:type"/>
-
-<title>Билеты в музеи, на выставки и экскурсии</title>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Билеты в музеи, на выставки и экскурсии - Airflow Travel</title>
+<meta name="description" content="Airflow Travel: Бронируйте билеты в музеи, на выставки и экскурсии по всему миру. Гарантия лучшей цены и проход без очереди.">
+<meta name="keywords" content="билеты в музеи, экскурсии, выставки, достопримечательности, музеи онлайн">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://airflowtravel.net/attractions.html">
+<link rel="icon" href="bus_icon-icons.com_76529.ico" type="image/x-icon">
+<meta property="og:title" content="Airflow Travel - Билеты в музеи, на выставки и экскурсии">
+<meta property="og:description" content="Бронируйте билеты в музеи, на выставки и экскурсии по всему миру. Гарантия лучшей цены и проход без очереди.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://airflowtravel.net/attractions.html">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Airflow Travel">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Билеты в музеи и на экскурсии - Airflow Travel">
+<meta name="twitter:description" content="Бронируйте билеты в музеи, на выставки и экскурсии по всему миру.">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
 <style>
-    /* БАЗОВЫЕ СТИЛИ */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    
-    /* НАВИГАЦИЯ */
-    .main-navigation { background: #1e293b; padding: 0; position: sticky; top: 0; z-index: 1020; box-shadow: 0 2px 20px rgba(0,0,0,0.1); height: 55px; }
-    .nav-container { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 100px; height: 100%; }
-    .nav-logo { display: flex; align-items: center; gap: 12px; color: white; font-size: 18px; font-weight: 600; text-decoration: none; }
-    .nav-menu { display: flex; list-style: none; margin: 0; padding: 0; gap: 25px; }
-    .nav-menu a { color: #94a3b8; text-decoration: none; font-size: 15px; font-weight: 500; padding: 18px 0; transition: color 0.3s ease; }
-    .nav-menu a:hover, .nav-menu a.active { color: white; text-decoration: none; }
-    
-    .mobile-menu-button { display: none; background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 8px; }
-    .mobile-menu-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 999; opacity: 0; transition: opacity 0.3s ease; }
-    .mobile-menu-overlay.active { opacity: 1; }
-    .mobile-menu { display: none; position: fixed; top: 0; right: -280px; width: 260px; height: 100vh; background: #1e293b; z-index: 1001; padding: 60px 15px 15px; box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3); transition: right 0.3s ease; overflow-y: auto; }
-    .mobile-menu.active { right: 0; }
-    .mobile-menu-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 5px; }
-    .mobile-menu-links { list-style: none; padding: 0; margin: 0; }
-    .mobile-menu-links a { color: #94a3b8; text-decoration: none; font-size: 16px; display: block; padding: 12px 15px; border-radius: 6px; transition: all 0.3s ease; }
-    .mobile-menu-links a:hover, .mobile-menu-links a.active { background: #334155; color: white; text-decoration: none; }
-    @media (max-width: 1175px) { .nav-container { padding: 0 16px; } .nav-menu { display: none; } .mobile-menu-button { display: block; } .mobile-menu-overlay, .mobile-menu { display: block; } }
-    @media (max-width: 480px) { .nav-container { padding: 0 12px; } }
-
-    /* HERO СЕКЦИЯ */
-    .hero-section { 
-        background: linear-gradient(180deg, #ffffff 0%, #fefefe 30%, #fcfcfd 60%, #fafbfc 85%, #f8fafc 100%);
-        color: #1e293b; 
-        padding: 60px 20px 80px;
-        text-align: center; 
-    }
-    .hero-content { position: relative; z-index: 5; width: 100%; padding: 0; background: none; }
-    .hero-content h1 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 600; text-align: center; color: #1e293b; }
-    
-    .section-title { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 40px; color: #1e293b; }
-    #bus-card-container { padding: 0; background: none; border-radius: 0; width: 100%; max-width: 1200px; margin: 0 auto 20px auto; box-shadow: none; text-align: center; }
-    .card-title-search { font-size: 1.5rem; font-weight: 700; color: #1e293b; margin-bottom: 20px; }
-    
-    /* ШИРИНА РАМКИ УВЕЛИЧЕНА */
-    .hero-text-box { 
-        background: rgba(255, 255, 255, 0.4); 
-        border: 1px solid rgba(168, 85, 247, 0.3); 
-        border-radius: 16px; 
-        padding: 35px 45px 25px; 
-        backdrop-filter: blur(10px); 
-        box-shadow: 0 4px 20px rgba(168, 85, 247, 0.1); 
-        max-width: 1200px; 
-        margin: 0 auto 30px auto; 
-    }
-    .card-description { font-size: 1rem; margin-bottom: 0; color: #475569; max-width: 90%; margin: 20px auto 25px auto; }
-
-    /* ТОП-8 СТРАН - 3D FLIP КАРТОЧКИ */
-    .top-countries-section {
-        max-width: 1200px;
-        margin: 0 auto 40px;
-        padding: 0;
-    }
-
-    .top-countries-title {
-        text-align: center;
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: #1e293b;
-        margin-bottom: 30px;
-    }
-
-    .top-countries-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 25px;
-        margin-bottom: 30px;
-    }
-
-    /* 3D FLIP ЭФФЕКТ */
-    .country-card-flip {
-        perspective: 1000px;
-        height: 280px;
-    }
-
-    .country-card-flip-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        transition: transform 0.8s;
-        transform-style: preserve-3d;
-    }
-
-    .country-card-flip:hover .country-card-flip-inner {
-        transform: rotateY(180deg);
-    }
-
-    .country-card-front,
-    .country-card-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .country-card-front {
-        background: #fff;
-    }
-
-    .country-card-back {
-        background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
-        color: white;
-        transform: rotateY(180deg);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 20px;
-    }
-
-    .country-card-back h3 {
-        font-size: 1.2rem;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .country-card-back p {
-        font-size: 0.85rem;
-        line-height: 1.4;
-        margin-bottom: 12px;
-    }
-
-    .country-card-back .museums-count {
-        font-weight: 700;
-        font-size: 0.8rem;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-top: auto;
-    }
-
-    .country-card-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .country-card-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
-        padding: 25px 20px;
-        color: white;
-    }
-
-    .country-card-flag {
-        font-size: 2rem;
-        margin-bottom: 8px;
-    }
-
-    .country-card-name {
-        font-size: 1.3rem;
-        font-weight: 700;
-        margin: 0;
-    }
-
-    /* КНОПКА "ВСЕ СТРАНЫ" - ВНИЗУ В РАМКЕ */
-    .all-countries-btn {
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(10px);
-        color: #1e293b;
-        font-size: 1.1rem;
-        font-weight: 700;
-        padding: 18px 40px;
-        border: 2px solid rgba(168, 85, 247, 0.3);
-        border-radius: 12px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        width: 100%;
-        position: relative;
-    }
-
-    .all-countries-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(168, 85, 247, 0.3);
-        border-color: rgba(168, 85, 247, 0.6);
-        background: rgba(255, 255, 255, 0.95);
-    }
-
-    .all-countries-btn i {
-        transition: transform 0.3s ease;
-    }
-
-    .all-countries-btn.active i {
-        transform: rotate(180deg);
-    }
-
-    /* DROPDOWN МЕНЮ */
-    .countries-dropdown {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        margin-top: 15px;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        padding: 30px;
-        display: none;
-        z-index: 2000;
-        max-height: 500px;
-        overflow-y: auto;
-    }
-
-    .countries-dropdown.active {
-        display: block;
-        animation: slideDown 0.3s ease;
-    }
-
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .dropdown-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-    }
-
-    .dropdown-country-link {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 15px;
-        border-radius: 8px;
-        text-decoration: none;
-        color: #1e293b;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        border: 2px solid transparent;
-    }
-
-    .dropdown-country-link:hover {
-        background: #f8fafc;
-        border-color: #a855f7;
-        transform: translateX(5px);
-    }
-
-    .dropdown-country-link .flag {
-        font-size: 1.5rem;
-    }
-
-    /* ТИПЫ ЭКСКУРСИЙ */
-    .tour-types-section {
-        padding: 80px 20px;
-        background: white;
-    }
-
-    .tour-types-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 25px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .tour-type-card {
-        position: relative;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        cursor: pointer;
-        text-decoration: none;
-        display: block;
-        height: 320px;
-    }
-
-    .tour-type-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 30px rgba(168, 85, 247, 0.3);
-    }
-
-    .tour-type-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .tour-type-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
-        padding: 30px 20px;
-        color: white;
-    }
-
-    .tour-type-icon {
-        font-size: 2.5rem;
-        margin-bottom: 12px;
-    }
-
-    .tour-type-name {
-        font-size: 1.4rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
-
-    .tour-type-description {
-        font-size: 0.95rem;
-        line-height: 1.5;
-        opacity: 0.95;
-    }
-
-    .ad-disclaimer {
-        text-align: center;
-        font-size: 0.85rem;
-        color: #64748b;
-        margin-top: 30px;
-    }
-
-    @media (max-width: 1024px) {
-        .top-countries-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        .tour-types-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        .dropdown-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 640px) {
-        .top-countries-grid {
-            grid-template-columns: 1fr;
-        }
-        .tour-types-grid {
-            grid-template-columns: 1fr;
-        }
-        .dropdown-grid {
-            grid-template-columns: 1fr;
-        }
-        .country-card-flip {
-            height: 220px;
-        }
-        .tour-type-card {
-            height: 280px;
-        }
-    }
-
-    /* ОСТАЛЬНЫЕ СЕКЦИИ */
-    .widgets-card-section { padding: 80px 20px; background: #f8fafc; }
-    .seo-tips-section { padding: 80px 20px; background: #f8fafc; }
-    
-    .features-grid, .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-    @media (min-width: 1024px) { .features-grid, .tips-grid { grid-template-columns: repeat(3, 1fr); max-width: 1100px; } }
-    .feature-card, .tip-card { padding: 30px 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); background: #ffffff; border-top: 5px solid #a855f7; transition: transform 0.3s, box-shadow 0.3s; height: 100%; text-align: left; cursor: pointer; }
-    .feature-card:hover, .tip-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); }
-    .feature-icon, .tip-icon { font-size: 3rem; color: #a855f7; margin-bottom: 15px; text-align: center; }
-    .feature-card h4, .tip-card h4 { font-size: 1.2rem; color: #1e293b; font-weight: 700; margin-bottom: 10px; text-align: center; }
-    .feature-card p, .tip-card p { color: #64748b; font-size: 0.95rem; text-align: center; }
-    
-    .tip-card summary { list-style: none; display: flex; flex-direction: column; padding-right: 25px; position: relative; outline: none; }
-    .tip-card summary::-webkit-details-marker { display: none; }
-    .tip-card summary:after { content: "\25B6"; position: absolute; right: 0; top: 5px; font-size: 14px; color: #a855f7; transition: transform 0.3s; }
-    .tip-card[open] summary:after { content: "\25BC"; top: 8px; }
-    .tip-card .tip-card-text-short { color: #64748b; font-size: 0.95rem; margin-bottom: 15px; text-align: center; }
-    .tip-content { border-top: 1px solid #e2e8f0; padding-top: 15px; margin-top: 15px; font-size: 0.95rem; color: #475569; text-align: left; font-style: italic; background-color: #f0fff4; padding: 15px; border-radius: 6px; line-height: 1.5; }
-    
-    /* ОТЗЫВЫ - ФИКСИРОВАННАЯ ВЫСОТА */
-    .testimonials-section { background: white; padding: 80px 0; overflow: hidden; }
-    .testimonials-container { max-width: 1200px; margin: 0 auto; position: relative; padding: 0 20px; }
-    .testimonial-card { background: #f8fafc; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); border: 1px solid #e2e8f0; height: 100%; display: flex; flex-direction: column; }
-    .testimonial-card:hover { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); transform: none; }
-    .stars { color: #a855f7; margin-bottom: 15px; }
-    .testimonial-text { 
-        color: #475569; 
-        margin-bottom: 20px; 
-        font-style: italic; 
-        position: relative;
-        min-height: 120px;
-        display: flex;
-        align-items: center;
-    }
-    .testimonial-author { display: flex; align-items: center; gap: 15px; margin-top: auto; }
-    .author-avatar { width: 50px; height: 50px; background: #a855f7; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1.2rem; }
-    .author-info h4 { margin: 0; color: #1e293b; font-size: 1rem; }
-    .author-info p { margin: 0; color: #64748b; font-size: 0.9rem; }
-    .swiper-button-prev, .swiper-button-next { background: transparent !important; width: 30px; height: 30px; border-radius: 0; box-shadow: none; transition: opacity 0.3s; top: 50%; margin-top: -15px; opacity: 0.7; }
-    .swiper-button-prev:hover, .swiper-button-next:hover { background: transparent !important; opacity: 1; }
-    .swiper-button-prev:after, .swiper-button-next:after { color: #1e293b !important; font-size: 24px !important; }
-    .swiper-pagination-bullet-active { background: #a855f7 !important; }
-
-    .footer { background-color: #1e293b; color: #94a3b8; padding: 60px 0 20px; font-size: 14px; }
-    .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 40px; gap: 30px; }
-    .footer-section { width: calc(33.333% - 20px); min-width: 250px; margin-bottom: 20px; }
-    .footer-section h3 { margin-bottom: 20px; color: white; font-size: 1.1rem; border-bottom: 2px solid #334155; padding-bottom: 10px; }
-    .footer-section ul { list-style: none; padding-left: 0; }
-    .footer-section li { margin-bottom: 10px; }
-    .footer-section a { color: #94a3b8; transition: 0.3s; font-size: 0.95rem; text-decoration: none; }
-    .footer-section a:hover { color: white; text-decoration: underline; }
-    .footer-section .footer-contacts { font-size: 1rem; }
-    .footer-section .footer-contacts a { display: block; margin-top: 5px; color: white; font-size: 0.95rem; }
-    .footer-section .footer-contacts i { color: #a855f7; margin-right: 8px; }
-    .footer-bottom { border-top: 1px solid #334155; padding-top: 20px; text-align: center; color: #94a3b8; }
-    @media (max-width: 768px) { .footer-content { flex-direction: column; gap: 0; } .footer-section { width: 100%; } .footer-section h3 { padding-top: 10px; } .footer-section .footer-contacts { margin-bottom: 15px; } }
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;width:100%;max-width:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#333}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.main-navigation{background:#1e293b;padding:0;position:sticky;top:0;z-index:1020;box-shadow:0 2px 20px rgba(0,0,0,0.1);height:55px}
+.nav-container{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 100px;height:100%}
+.nav-logo{display:flex;align-items:center;gap:12px;color:white;font-size:18px;font-weight:600;text-decoration:none}
+.nav-menu{display:flex;list-style:none;margin:0;padding:0;gap:25px;align-items:center}
+.nav-menu>li{position:relative}
+.nav-menu a{color:#94a3b8;text-decoration:none;font-size:15px;font-weight:500;padding:18px 0;transition:color 0.3s ease;display:block}
+.nav-menu a:hover,.nav-menu a.active{color:white;text-decoration:none}
+.dropdown{position:relative}
+.dropdown-toggle{cursor:pointer;color:#94a3b8;font-size:15px;font-weight:500;padding:18px 0;display:flex;align-items:center;gap:5px}
+.dropdown-toggle:hover{color:white}
+.dropdown-menu{position:absolute;top:100%;right:0;background:#1e293b;min-width:280px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.3);opacity:0;visibility:hidden;transform:translateY(-10px);transition:all 0.3s ease;margin-top:5px;padding:10px 0}
+.dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown-menu a{padding:12px 20px;color:#94a3b8;display:block;transition:all 0.3s}
+.dropdown-menu a:hover{background:#334155;color:white}
+.mobile-menu-button{display:none;background:none;border:none;color:white;font-size:20px;cursor:pointer;padding:8px}
+.mobile-menu-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:999;opacity:0;transition:opacity 0.3s ease}
+.mobile-menu-overlay.active{opacity:1}
+.mobile-menu{display:none;position:fixed;top:0;right:-280px;width:260px;height:100vh;background:#1e293b;z-index:1001;padding:60px 15px 15px;box-shadow:-4px 0 20px rgba(0,0,0,0.3);transition:right 0.3s ease;overflow-y:auto}
+.mobile-menu.active{right:0}
+.mobile-menu-close{position:absolute;top:15px;right:15px;background:none;border:none;color:white;font-size:20px;cursor:pointer;padding:5px}
+.mobile-menu-links{list-style:none;padding:0;margin:0}
+.mobile-menu-links a{color:#94a3b8;text-decoration:none;font-size:16px;display:block;padding:12px 15px;border-radius:6px;transition:all 0.3s ease}
+.mobile-menu-links a:hover,.mobile-menu-links a.active{background:#334155;color:white;text-decoration:none}
+.hero-section{background:linear-gradient(180deg,#ffffff 0%,#fefefe 30%,#fcfcfd 60%,#fafbfc 85%,#f8fafc 100%);color:#1e293b;padding:60px 20px 80px;text-align:center}
+.hero-content{position:relative;z-index:5;width:100%;padding:0;background:none}
+.hero-content h1{font-size:2.5rem;margin-bottom:20px;font-weight:600;text-align:center;color:#1e293b}
+.section-title{text-align:center;font-size:2.5rem;font-weight:700;margin-bottom:40px;color:#1e293b}
+#bus-card-container{padding:0;background:none;border-radius:0;width:100%;max-width:1200px;margin:0 auto 20px auto;box-shadow:none;text-align:center}
+.card-title-search{font-size:1.5rem;font-weight:700;color:#1e293b;margin-bottom:20px}
+.hero-text-box{background:rgba(255,255,255,0.4);border:1px solid rgba(168,85,247,0.3);border-radius:16px;padding:35px 45px 25px;backdrop-filter:blur(10px);box-shadow:0 4px 20px rgba(168,85,247,0.1);max-width:1200px;margin:0 auto 30px auto}
+.card-description{font-size:1rem;margin-bottom:0;color:#475569;max-width:90%;margin:20px auto 25px auto}
+.top-countries-section{max-width:1200px;margin:0 auto 40px;padding:0}
+.top-countries-title{text-align:center;font-size:1.8rem;font-weight:700;color:#1e293b;margin-bottom:30px}
+.top-countries-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;margin-bottom:30px}
+.country-card-flip{perspective:1000px;height:280px}
+.country-card-flip-inner{position:relative;width:100%;height:100%;transition:transform 0.8s;transform-style:preserve-3d}
+.country-card-flip:hover .country-card-flip-inner{transform:rotateY(180deg)}
+.country-card-front,.country-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:16px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1)}
+.country-card-front{background:#fff}
+.country-card-back{background:linear-gradient(135deg,#a855f7 0%,#9333ea 100%);color:white;transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:center;padding:20px}
+.country-card-back h3{font-size:1.2rem;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.country-card-back p{font-size:0.85rem;line-height:1.4;margin-bottom:12px}
+.country-card-back .museums-count{font-weight:700;font-size:0.8rem;display:flex;align-items:center;gap:6px;margin-top:auto}
+.country-card-image{width:100%;height:100%;object-fit:cover}
+.country-card-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 100%);padding:25px 20px;color:white}
+.country-card-flag{font-size:2rem;margin-bottom:8px}
+.country-card-name{font-size:1.3rem;font-weight:700;margin:0}
+.all-countries-btn{background:rgba(255,255,255,0.8);backdrop-filter:blur(10px);color:#1e293b;font-size:1.1rem;font-weight:700;padding:18px 40px;border:2px solid rgba(168,85,247,0.3);border-radius:12px;cursor:pointer;transition:all 0.3s ease;box-shadow:0 2px 10px rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;gap:10px;width:100%;position:relative}
+.all-countries-btn:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(168,85,247,0.3);border-color:rgba(168,85,247,0.6);background:rgba(255,255,255,0.95)}
+.all-countries-btn i{transition:transform 0.3s ease}
+.all-countries-btn.active i{transform:rotate(180deg)}
+.countries-dropdown{position:absolute;top:100%;left:0;right:0;margin-top:15px;background:white;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.15);padding:30px;display:none;z-index:2000;max-height:500px;overflow-y:auto}
+.countries-dropdown.active{display:block;animation:slideDown 0.3s ease}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.dropdown-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.dropdown-country-link{display:flex;align-items:center;gap:10px;padding:12px 15px;border-radius:8px;text-decoration:none;color:#1e293b;font-weight:600;transition:all 0.3s ease;border:2px solid transparent}
+.dropdown-country-link:hover{background:#f8fafc;border-color:#a855f7;transform:translateX(5px)}
+.dropdown-country-link .flag{font-size:1.5rem}
+.tour-types-section{padding:80px 20px;background:white}
+.tour-types-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;max-width:1200px;margin:0 auto}
+.tour-type-card{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1);transition:all 0.3s ease;cursor:pointer;text-decoration:none;display:block;height:320px}
+.tour-type-card:hover{transform:translateY(-8px);box-shadow:0 12px 30px rgba(168,85,247,0.3)}
+.tour-type-image{width:100%;height:100%;object-fit:cover}
+.tour-type-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.3) 60%,transparent 100%);padding:30px 20px;color:white}
+.tour-type-icon{font-size:2.5rem;margin-bottom:12px}
+.tour-type-name{font-size:1.4rem;font-weight:700;margin-bottom:10px}
+.tour-type-description{font-size:0.95rem;line-height:1.5;opacity:0.95}
+.ad-disclaimer{text-align:center;font-size:0.85rem;color:#64748b;margin-top:30px}
+.widgets-card-section{padding:80px 20px;background:#f8fafc}
+.seo-tips-section{padding:80px 20px;background:#f8fafc}
+.features-grid,.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;max-width:1200px;margin:0 auto}
+@media (min-width:1024px){.features-grid,.tips-grid{grid-template-columns:repeat(3,1fr);max-width:1100px}}
+.feature-card,.tip-card{padding:30px 20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);background:#ffffff;border-top:5px solid #a855f7;transition:transform 0.3s,box-shadow 0.3s;height:100%;text-align:left;cursor:pointer}
+.feature-card:hover,.tip-card:hover{transform:translateY(-4px);box-shadow:0 10px 20px rgba(0,0,0,0.15)}
+.feature-icon,.tip-icon{font-size:3rem;color:#a855f7;margin-bottom:15px;text-align:center}
+.feature-card h4,.tip-card h4{font-size:1.2rem;color:#1e293b;font-weight:700;margin-bottom:10px;text-align:center}
+.feature-card p,.tip-card p{color:#64748b;font-size:0.95rem;text-align:center}
+.tip-card summary{list-style:none;display:flex;flex-direction:column;padding-right:25px;position:relative;outline:none}
+.tip-card summary::-webkit-details-marker{display:none}
+.tip-card summary:after{content:"\25B6";position:absolute;right:0;top:5px;font-size:14px;color:#a855f7;transition:transform 0.3s}
+.tip-card[open] summary:after{content:"\25BC";top:8px}
+.tip-card .tip-card-text-short{color:#64748b;font-size:0.95rem;margin-bottom:15px;text-align:center}
+.tip-content{border-top:1px solid #e2e8f0;padding-top:15px;margin-top:15px;font-size:0.95rem;color:#475569;text-align:left;font-style:italic;background-color:#f0fff4;padding:15px;border-radius:6px;line-height:1.5}
+.testimonials-section{background:white;padding:80px 0;overflow:hidden}
+.testimonials-container{max-width:1200px;margin:0 auto;position:relative;padding:0 20px}
+.testimonial-card{background:#f8fafc;padding:30px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #e2e8f0;height:100%;display:flex;flex-direction:column}
+.testimonial-card:hover{box-shadow:0 2px 8px rgba(0,0,0,0.08);transform:none}
+.stars{color:#a855f7;margin-bottom:15px}
+.testimonial-text{color:#475569;margin-bottom:20px;font-style:italic;position:relative;min-height:120px;display:flex;align-items:center}
+.testimonial-author{display:flex;align-items:center;gap:15px;margin-top:auto}
+.author-avatar{width:50px;height:50px;background:#a855f7;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:1.2rem}
+.author-info h4{margin:0;color:#1e293b;font-size:1rem}
+.author-info p{margin:0;color:#64748b;font-size:0.9rem}
+.swiper-button-prev,.swiper-button-next{background:transparent!important;width:30px;height:30px;border-radius:0;box-shadow:none;transition:opacity 0.3s;top:50%;margin-top:-15px;opacity:0.7}
+.swiper-button-prev:hover,.swiper-button-next:hover{background:transparent!important;opacity:1}
+.swiper-button-prev:after,.swiper-button-next:after{color:#1e293b!important;font-size:24px!important}
+.swiper-pagination-bullet-active{background:#a855f7!important}
+.footer{background-color:#1e293b;color:#94a3b8;padding:60px 0 20px;font-size:14px}
+.footer-container{max-width:1200px;margin:0 auto;padding:0 20px}
+.footer-content{display:flex;justify-content:space-between;flex-wrap:wrap;margin-bottom:40px;gap:30px}
+.footer-section{width:calc(25% - 20px);min-width:200px;margin-bottom:20px}
+.footer-section h3{margin-bottom:20px;color:white;font-size:1.1rem;border-bottom:2px solid #334155;padding-bottom:10px}
+.footer-section ul{list-style:none;padding-left:0}
+.footer-section li{margin-bottom:10px}
+.footer-section a{color:#94a3b8;transition:0.3s;font-size:0.95rem;text-decoration:none}
+.footer-section a:hover{color:white;text-decoration:underline}
+.footer-section .footer-contacts{font-size:1rem}
+.footer-section .footer-contacts a{display:block;margin-top:5px;color:white;font-size:0.95rem}
+.footer-section .footer-contacts i{color:#a855f7;margin-right:8px}
+.footer-bottom{border-top:1px solid #334155;padding-top:20px;text-align:center;color:#94a3b8}
+@media (max-width:1175px){
+.nav-container{padding:0 16px}
+.nav-menu{display:none}
+.mobile-menu-button{display:block}
+.mobile-menu-overlay,.mobile-menu{display:block}
+}
+@media (max-width:1024px){
+.top-countries-grid{grid-template-columns:repeat(2,1fr)}
+.tour-types-grid{grid-template-columns:repeat(2,1fr)}
+.dropdown-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:768px){
+.hero-section{padding:40px 20px 60px}
+.hero-content h1{font-size:1.6rem;margin-bottom:15px}
+.card-title-search{font-size:1.2rem;margin-bottom:15px}
+.card-description{font-size:0.95rem}
+.hero-text-box{padding:25px 20px}
+.top-countries-title{font-size:1.4rem;margin-bottom:20px}
+.section-title{font-size:1.8rem;margin-bottom:30px}
+.widgets-card-section h3{font-size:1.2rem;margin-top:40px!important}
+.footer-content{flex-direction:column;gap:0}
+.footer-section{width:100%}
+}
+@media (max-width:640px){
+.top-countries-grid{grid-template-columns:1fr}
+.tour-types-grid{grid-template-columns:1fr}
+.dropdown-grid{grid-template-columns:1fr}
+.country-card-flip{height:220px}
+.tour-type-card{height:280px}
+}
+@media (max-width:480px){
+.nav-container{padding:0 12px}
+.hero-section{padding:30px 15px 50px}
+.hero-content h1{font-size:1.3rem;margin-bottom:12px}
+.card-title-search{font-size:1.1rem;margin-bottom:12px}
+.card-description{font-size:0.9rem;margin:15px auto 20px}
+.hero-text-box{padding:20px 15px}
+.top-countries-title{font-size:1.2rem;margin-bottom:18px}
+.section-title{font-size:1.5rem;margin-bottom:25px}
+.all-countries-btn{font-size:1rem;padding:15px 30px}
+.widgets-card-section h3{font-size:1.1rem;margin-top:35px!important}
+.feature-icon,.tip-icon{font-size:2.5rem}
+.feature-card h4,.tip-card h4{font-size:1.1rem}
+}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Airflow Travel",
+  "description": "Билеты в музеи, на выставки и экскурсии по всему миру",
+  "url": "https://airflowtravel.net",
+  "logo": "https://airflowtravel.net/images/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "customerservice@tiqets.com",
+    "contactType": "Customer Service"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "RU"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Билеты в музеи и экскурсии",
+  "provider": {
+    "@type": "Organization",
+    "name": "Airflow Travel"
+  },
+  "areaServed": "Worldwide"
+}
+</script>
 </head>
 <body>
 <nav class="main-navigation">
 <div class="nav-container">
-<a class="nav-logo" href="index.html">🏛️ Airflow</a>
+<a class="nav-logo" href="index.html" aria-label="Airflow Travel Главная">🏛️ Airflow</a>
 <ul class="nav-menu">
-<li><a href="index.html">Главная</a></li> 
+<li><a href="index.html">Главная</a></li>
 <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
 <li><a href="hotels.html">🏨 Отели</a></li>
 <li><a href="cars.html">🚗 Аренда авто</a></li>
 <li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="attractions.html" class="active">🏛️ Музеи/Экскурсии</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+<li class="dropdown">
+<span class="dropdown-toggle">Ещё <i class="fas fa-chevron-down" style="font-size:12px"></i></span>
+<div class="dropdown-menu">
+<a href="attractions.html" class="active">🎭 Музеи и достопримечательности</a>
+<a href="trains-buses.html">🚂 Поезда и автобусы</a>
+<a href="vip-lounge.html">💎 VIP залы</a>
+<a href="parking.html">🅿️ Парковка</a>
+<a href="insurance.html">🛡️ Страховка</a>
+<a href="simcard.html">📱 SIM карты</a>
+<a href="about.html">ℹ️ О нас</a>
+<a href="help.html">❓ Помощь</a>
+</div>
+</li>
 </ul>
-<button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button">
-<i class="fas fa-bars"></i>
-</button>
+<button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button"><i class="fas fa-bars"></i></button>
 </div>
 </nav>
-
 <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
-<nav class="mobile-menu" id="mobile-menu">
+<nav class="mobile-menu" id="mobile-menu" aria-label="Мобильное меню">
 <button aria-label="Закрыть" class="mobile-menu-close" id="mobile-menu-close">×</button>
 <ul class="mobile-menu-links">
 <li><a href="index.html">Главная</a></li>
@@ -470,477 +249,336 @@
 <li><a href="hotels.html">🏨 Отели</a></li>
 <li><a href="cars.html">🚗 Аренда авто</a></li>
 <li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="attractions.html" class="active">🏛️ Музеи/Экскурсии</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+<li><a href="attractions.html" class="active">🎭 Музеи и достопримечательности</a></li>
+<li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
+<li><a href="vip-lounge.html">💎 VIP залы</a></li>
+<li><a href="parking.html">🅿️ Парковка</a></li>
+<li><a href="insurance.html">🛡️ Страховка</a></li>
+<li><a href="simcard.html">📱 SIM карты</a></li>
 <li><a href="about.html">ℹ️ О нас</a></li>
 <li><a href="help.html">❓ Помощь</a></li>
 </ul>
 </nav>
-
 <main>
 <section class="hero-section">
-    <div class="container">
-        <div class="hero-content">
-            <div id="bus-card-container">
-                
-                <div class="hero-text-box" style="position: relative;">
-                    <h1>Билеты в музеи, на выставки и экскурсии</h1>
-                    <h2 class="card-title-search">Выберите страну для путешествия</h2>
-                    <p class="card-description" style="max-width: 600px; margin: 20px auto 25px auto; font-size: 1.1rem;">
-                        Забронируйте билеты в музеи, на выставки и экскурсии по всему миру.
-                    </p>
-
-                    <!-- ТОП-8 С 3D FLIP ЭФФЕКТОМ -->
-                    <div class="top-countries-section">
-                        <h3 class="top-countries-title">🌟 Популярные направления</h3>
-                        <div class="top-countries-grid">
-                            
-                            <!-- ФРАНЦИЯ -->
-                            <a href="https://tiqets.tpo.li/frKT4Mjs?erid=2Vtzqv5haeu" class="country-card-flip">
-                                <div class="country-card-flip-inner">
-                                    <div class="country-card-front">
-                                        <img src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=400&h=300&fit=crop" alt="Франция" class="country-card-image">
-                                        <div class="country-card-overlay">
-                                            <div class="country-card-flag">🇫🇷</div>
-                                            <h3 class="country-card-name">Франция</h3>
-                                        </div>
-                                    </div>
-                                    <div class="country-card-back">
-                                        <h3><i class="fas fa-landmark"></i> Франция</h3>
-                                        <p>Лувр, Версаль, Эйфелева башня. Откройте для себя богатейшее культурное наследие страны искусств и моды.</p>
-                                        <div class="museums-count"><i class="fas fa-ticket-alt"></i> 500+ музеев и достопр.</div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- ИСПАНИЯ -->
-                            <a href="https://tiqets.tpo.li/DgnDx1TA?erid=2Vtzqv5haeu" class="country-card-flip">
-                                <div class="country-card-flip-inner">
-                                    <div class="country-card-front">
-                                        <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=400&h=300&fit=crop" alt="Испания" class="country-card-image">
-                                        <div class="country-card-overlay">
-                                            <div class="country-card-flag">🇪🇸</div>
-                                            <h3 class="country-card-name">Испания</h3>
-                                        </div>
-                                    </div>
-                                    <div class="country-card-back">
-                                        <h3><i class="fas fa-landmark"></i> Испания</h3>
-                                        <p>Саграда Фамилия, Прадо, Альгамбра. Погрузитесь в мир Гауди, Дали и фламенко.</p>
-                                        <div class="museums-count"><i class="fas fa-ticket-alt"></i> 400+ музеев и достопр.</div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- ИТАЛИЯ -->
-                            <a href="https://tiqets.tpo.li/2cfmb2zS?erid=2Vtzqv5haeu" class="country-card-flip">
-                                <div class="country-card-flip-inner">
-                                    <div class="country-card-front">
-                                        <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&h=300&fit=crop" alt="Италия" class="country-card-image">
-                                        <div class="country-card-overlay">
-                                            <div class="country-card-flag">🇮🇹</div>
-                                            <h3 class="country-card-name">Италия</h3>
-                                        </div>
-                                    </div>
-                                    <div class="country-card-back">
-                                        <h3><i class="fas fa-landmark"></i> Италия</h3>
-                                        <p>Колизей, Ватикан, галерея Уффици. Прикоснитесь к величию Римской империи и эпохи Возрождения.</p>
-                                        <div class="museums-count"><i class="fas fa-ticket-alt"></i> 600+ музеев и достопр.</div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- ГЕРМАНИЯ -->
-                            <a href="https://tiqets.tpo.li/V0gTjqoE?erid=2Vtzqv5haeu" class="country-card-flip">
-                                <div class="country-card-flip-inner">
-                                    <div class="country-card-front">
-                                        <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=300&fit=crop" alt="Германия" class="country-card-image">
-                                        <div class="country-card-overlay">
-                                            <div class="country-card-flag">🇩🇪</div>
-                                            <h3 class="country-card-name">Германия</h3>
-                                        </div>
-                                    </div>
-                                    <div class="country-card-back">
-                                        <h3><i class="fas fa-landmark"></i> Германия</h3>
-                                        <p>Музейный остров, Нойшванштайн, Бранденбургские ворота. История встречается с современностью.</p>
-                                        <div class="museums-count"><i class="fas fa-ticket-alt"></i> 350+ музеев и достопр.</div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- ВЕЛИКОБРИТАНИЯ -->
-                            <a href="https://tiqets.tpo.li/bID4d476?erid=2Vtzqv5haeu" class="country-card-flip">
-                                <div class="country-card-flip-inner">
-                                    <div class="country-card-front">
-                                        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=300&fit=crop" alt="Великобритания" class="country-card-image">
-                                        <div class="country-card-overlay">
-                                            <div class="country-card-flag">🇬🇧</div>
-                                            <h3 class="country-card-name">Великобритания</h3>
-                                        </div>
-                                    </div>
-                                    <div class="country-card-back">
-                                        <h3><i class="fas fa-landmark"></i> Великобритания</h3>
-                                        <p>Британский музей, Тауэр, Стоунхендж. Откройте тайны королевской истории и античности.</p>
-                                        <div class="museums-count"><i class="fas fa-ticket-alt"></i> 450+ музеев и достопр.</div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- НИДЕРЛАНДЫ -->
-                            <a href="https://tiqets.tpo.li/8GhTfvAB?erid=2Vtzqv5haeu" class="country-card-flip">
-                                <div class="country-card-flip-inner">
-                                    <div class="country-card-front">
-                                        <img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=400&h=300&fit=crop" alt="Нидерланды" class="country-card-image">
-                                        <div class="country-card-overlay">
-                                            <div class="country-card-flag">🇳🇱</div>
-                                            <h3 class="country-card-name">Нидерланды</h3>
-                                        </div>
-                                    </div>
-                                    <div class="country-card-back">
-                                        <h3><i class="fas fa-landmark"></i> Нидерланды</h3>
-                                        <p>Рейксмузеум, дом Анны Франк, музей Ван Гога. Страна мастеров золотого века живописи.</p>
-                                        <div class="museums-count"><i class="fas fa-ticket-alt"></i> 250+ музеев и достопр.</div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- США -->
-                            <a href="https://tiqets.tpo.li/fohv6jse?erid=2Vtzqv5haeu" class="country-card-flip">
-                                <div class="country-card-flip-inner">
-                                    <div class="country-card-front">
-                                        <img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=400&h=300&fit=crop" alt="США" class="country-card-image">
-                                        <div class="country-card-overlay">
-                                            <div class="country-card-flag">🇺🇸</div>
-                                            <h3 class="country-card-name">США</h3>
-                                        </div>
-                                    </div>
-                                    <div class="country-card-back">
-                                        <h3><i class="fas fa-landmark"></i> США</h3>
-                                        <p>МЕТ, Статуя Свободы, Смитсоновский институт. Грандиозные музеи страны возможностей.</p>
-                                        <div class="museums-count"><i class="fas fa-ticket-alt"></i> 700+ музеев и достопр.</div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- ГРЕЦИЯ -->
-                            <a href="https://tiqets.tpo.li/tAo891rr?erid=2Vtzqv5haeu" class="country-card-flip">
-                                <div class="country-card-flip-inner">
-                                    <div class="country-card-front">
-                                        <img src="https://images.unsplash.com/photo-1555993539-1732b0258235?w=400&h=300&fit=crop" alt="Греция" class="country-card-image">
-                                        <div class="country-card-overlay">
-                                            <div class="country-card-flag">🇬🇷</div>
-                                            <h3 class="country-card-name">Греция</h3>
-                                        </div>
-                                    </div>
-                                    <div class="country-card-back">
-                                        <h3><i class="fas fa-landmark"></i> Греция</h3>
-                                        <p>Акрополь, Дельфы, музей археологии. Колыбель западной цивилизации ждет вас.</p>
-                                        <div class="museums-count"><i class="fas fa-ticket-alt"></i> 200+ музеев и достопр.</div>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-
-                    <!-- КНОПКА "ВСЕ СТРАНЫ" ВНИЗУ -->
-                    <button class="all-countries-btn" id="allCountriesBtn">
-                        <span>Все страны мира</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-
-                    <!-- DROPDOWN МЕНЮ -->
-                    <div class="countries-dropdown" id="countriesDropdown">
-                        <div class="dropdown-grid">
-                            <a href="https://tiqets.tpo.li/7aEBfjAV?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇦🇹</span> Австрия
-                            </a>
-                            <a href="https://tiqets.tpo.li/MHYgK8Z9?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇦🇺</span> Австралия
-                            </a>
-                            <a href="https://tiqets.tpo.li/n28xAvZH?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇧🇭</span> Бахрейн
-                            </a>
-                            <a href="https://tiqets.tpo.li/j8nfux16?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇧🇪</span> Бельгия
-                            </a>
-                            <a href="https://tiqets.tpo.li/bID4d476?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇬🇧</span> Великобритания
-                            </a>
-                            <a href="https://tiqets.tpo.li/mRCWWgm6?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇭🇺</span> Венгрия
-                            </a>
-                            <a href="https://tiqets.tpo.li/V0gTjqoE?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇩🇪</span> Германия
-                            </a>
-                            <a href="https://tiqets.tpo.li/tAo891rr?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇬🇷</span> Греция
-                            </a>
-                            <a href="https://tiqets.tpo.li/Lr0rsunP?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇪🇬</span> Египет
-                            </a>
-                            <a href="https://tiqets.tpo.li/4P3c67OL?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇮🇩</span> Индонезия
-                            </a>
-                            <a href="https://tiqets.tpo.li/2iJCj1fx?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇯🇴</span> Иордания
-                            </a>
-                            <a href="https://tiqets.tpo.li/wntS8mye?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇮🇪</span> Ирландия
-                            </a>
-                            <a href="https://tiqets.tpo.li/DgnDx1TA?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇪🇸</span> Испания
-                            </a>
-                            <a href="https://tiqets.tpo.li/2cfmb2zS?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇮🇹</span> Италия
-                            </a>
-                            <a href="https://tiqets.tpo.li/1aeVXh7n?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇱🇻</span> Латвия
-                            </a>
-                            <a href="https://tiqets.tpo.li/DFI4T2Kz?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇱🇹</span> Литва
-                            </a>
-                            <a href="https://tiqets.tpo.li/j3DrqRLr?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇱🇺</span> Люксембург
-                            </a>
-                            <a href="https://tiqets.tpo.li/c4waBFEZ?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇲🇦</span> Марокко
-                            </a>
-                            <a href="https://tiqets.tpo.li/FjPnHmhi?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇲🇨</span> Монако
-                            </a>
-                            <a href="https://tiqets.tpo.li/8GhTfvAB?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇳🇱</span> Нидерланды
-                            </a>
-                            <a href="https://tiqets.tpo.li/A2IePQno?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇳🇴</span> Норвегия
-                            </a>
-                            <a href="https://tiqets.tpo.li/kXBDiLqJ?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇵🇱</span> Польша
-                            </a>
-                            <a href="https://tiqets.tpo.li/YTIG3XWr?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇵🇹</span> Португалия
-                            </a>
-                            <a href="https://tiqets.tpo.li/kufWs9ui?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇸🇬</span> Сингапур
-                            </a>
-                            <a href="https://tiqets.tpo.li/UDOofxfX?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇸🇰</span> Словакия
-                            </a>
-                            <a href="https://tiqets.tpo.li/i64sD6WY?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇸🇮</span> Словения
-                            </a>
-                            <a href="https://tiqets.tpo.li/fohv6jse?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇺🇸</span> США
-                            </a>
-                            <a href="https://tiqets.tpo.li/fd1xaqUv?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇹🇭</span> Таиланд
-                            </a>
-                            <a href="https://tiqets.tpo.li/L9n8K25t?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇹🇷</span> Турция
-                            </a>
-                            <a href="https://tiqets.tpo.li/OAwhANUC?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇫🇮</span> Финляндия
-                            </a>
-                            <a href="https://tiqets.tpo.li/frKT4Mjs?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇫🇷</span> Франция
-                            </a>
-                            <a href="https://tiqets.tpo.li/FcSLRuKq?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇭🇷</span> Хорватия
-                            </a>
-                            <a href="https://tiqets.tpo.li/5xSdinol?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇨🇿</span> Чехия
-                            </a>
-                            <a href="https://tiqets.tpo.li/3cd95AzH?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇨🇭</span> Швейцария
-                            </a>
-                            <a href="https://tiqets.tpo.li/6SblnULJ?erid=2Vtzqv5haeu" class="dropdown-country-link">
-                                <span class="flag">🇸🇪</span> Швеция
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
+<div class="container">
+<div class="hero-content">
+<div id="bus-card-container">
+<div class="hero-text-box" style="position:relative">
+<h1>Билеты в музеи, на выставки и экскурсии</h1>
+<h2 class="card-title-search">Выберите страну для путешествия</h2>
+<p class="card-description" style="max-width:600px;margin:20px auto 25px auto;font-size:1.1rem">Забронируйте билеты в музеи, на выставки и экскурсии по всему миру.</p>
+<div class="top-countries-section">
+<h3 class="top-countries-title">🌟 Популярные направления</h3>
+<div class="top-countries-grid">
+<a href="https://tiqets.tpo.li/frKT4Mjs?erid=2Vtzqv5haeu" class="country-card-flip">
+<div class="country-card-flip-inner">
+<div class="country-card-front">
+<img src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=400&h=300&fit=crop" alt="Франция - музеи и достопримечательности" class="country-card-image" width="400" height="300">
+<div class="country-card-overlay">
+<div class="country-card-flag">🇫🇷</div>
+<h3 class="country-card-name">Франция</h3>
+</div>
+</div>
+<div class="country-card-back">
+<h3><i class="fas fa-landmark"></i> Франция</h3>
+<p>Лувр, Версаль, Эйфелева башня. Откройте для себя богатейшее культурное наследие страны искусств и моды.</p>
+<div class="museums-count"><i class="fas fa-ticket-alt"></i> 500+ музеев и достопр.</div>
+</div>
+</div>
+</a>
+<a href="https://tiqets.tpo.li/DgnDx1TA?erid=2Vtzqv5haeu" class="country-card-flip">
+<div class="country-card-flip-inner">
+<div class="country-card-front">
+<img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=400&h=300&fit=crop" alt="Испания - музеи и экскурсии" class="country-card-image" width="400" height="300">
+<div class="country-card-overlay">
+<div class="country-card-flag">🇪🇸</div>
+<h3 class="country-card-name">Испания</h3>
+</div>
+</div>
+<div class="country-card-back">
+<h3><i class="fas fa-landmark"></i> Испания</h3>
+<p>Саграда Фамилия, Прадо, Альгамбра. Погрузитесь в мир Гауди, Дали и фламенко.</p>
+<div class="museums-count"><i class="fas fa-ticket-alt"></i> 400+ музеев и достопр.</div>
+</div>
+</div>
+</a>
+<a href="https://tiqets.tpo.li/2cfmb2zS?erid=2Vtzqv5haeu" class="country-card-flip">
+<div class="country-card-flip-inner">
+<div class="country-card-front">
+<img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&h=300&fit=crop" alt="Италия - билеты в музеи" class="country-card-image" width="400" height="300">
+<div class="country-card-overlay">
+<div class="country-card-flag">🇮🇹</div>
+<h3 class="country-card-name">Италия</h3>
+</div>
+</div>
+<div class="country-card-back">
+<h3><i class="fas fa-landmark"></i> Италия</h3>
+<p>Колизей, Ватикан, галерея Уффици. Прикоснитесь к величию Римской империи и эпохи Возрождения.</p>
+<div class="museums-count"><i class="fas fa-ticket-alt"></i> 600+ музеев и достопр.</div>
+</div>
+</div>
+</a>
+<a href="https://tiqets.tpo.li/V0gTjqoE?erid=2Vtzqv5haeu" class="country-card-flip">
+<div class="country-card-flip-inner">
+<div class="country-card-front">
+<img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=300&fit=crop" alt="Германия - экскурсии и музеи" class="country-card-image" width="400" height="300">
+<div class="country-card-overlay">
+<div class="country-card-flag">🇩🇪</div>
+<h3 class="country-card-name">Германия</h3>
+</div>
+</div>
+<div class="country-card-back">
+<h3><i class="fas fa-landmark"></i> Германия</h3>
+<p>Музейный остров, Нойшванштайн, Бранденбургские ворота. История встречается с современностью.</p>
+<div class="museums-count"><i class="fas fa-ticket-alt"></i> 350+ музеев и достопр.</div>
+</div>
+</div>
+</a>
+<a href="https://tiqets.tpo.li/bID4d476?erid=2Vtzqv5haeu" class="country-card-flip">
+<div class="country-card-flip-inner">
+<div class="country-card-front">
+<img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=300&fit=crop" alt="Великобритания - музеи Лондона" class="country-card-image" width="400" height="300">
+<div class="country-card-overlay">
+<div class="country-card-flag">🇬🇧</div>
+<h3 class="country-card-name">Великобритания</h3>
+</div>
+</div>
+<div class="country-card-back">
+<h3><i class="fas fa-landmark"></i> Великобритания</h3>
+<p>Британский музей, Тауэр, Стоунхендж. Откройте тайны королевской истории и античности.</p>
+<div class="museums-count"><i class="fas fa-ticket-alt"></i> 450+ музеев и достопр.</div>
+</div>
+</div>
+</a>
+<a href="https://tiqets.tpo.li/8GhTfvAB?erid=2Vtzqv5haeu" class="country-card-flip">
+<div class="country-card-flip-inner">
+<div class="country-card-front">
+<img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=400&h=300&fit=crop" alt="Нидерланды - музеи Амстердама" class="country-card-image" width="400" height="300">
+<div class="country-card-overlay">
+<div class="country-card-flag">🇳🇱</div>
+<h3 class="country-card-name">Нидерланды</h3>
+</div>
+</div>
+<div class="country-card-back">
+<h3><i class="fas fa-landmark"></i> Нидерланды</h3>
+<p>Рейксмузеум, дом Анны Франк, музей Ван Гога. Страна мастеров золотого века живописи.</p>
+<div class="museums-count"><i class="fas fa-ticket-alt"></i> 250+ музеев и достопр.</div>
+</div>
+</div>
+</a>
+<a href="https://tiqets.tpo.li/fohv6jse?erid=2Vtzqv5haeu" class="country-card-flip">
+<div class="country-card-flip-inner">
+<div class="country-card-front">
+<img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=400&h=300&fit=crop" alt="США - музеи Нью-Йорка" class="country-card-image" width="400" height="300">
+<div class="country-card-overlay">
+<div class="country-card-flag">🇺🇸</div>
+<h3 class="country-card-name">США</h3>
+</div>
+</div>
+<div class="country-card-back">
+<h3><i class="fas fa-landmark"></i> США</h3>
+<p>МЕТ, Статуя Свободы, Смитсоновский институт. Грандиозные музеи страны возможностей.</p>
+<div class="museums-count"><i class="fas fa-ticket-alt"></i> 700+ музеев и достопр.</div>
+</div>
+</div>
+</a>
+<a href="https://tiqets.tpo.li/tAo891rr?erid=2Vtzqv5haeu" class="country-card-flip">
+<div class="country-card-flip-inner">
+<div class="country-card-front">
+<img src="https://images.unsplash.com/photo-1555993539-1732b0258235?w=400&h=300&fit=crop" alt="Греция - Акрополь и музеи" class="country-card-image" width="400" height="300">
+<div class="country-card-overlay">
+<div class="country-card-flag">🇬🇷</div>
+<h3 class="country-card-name">Греция</h3>
+</div>
+</div>
+<div class="country-card-back">
+<h3><i class="fas fa-landmark"></i> Греция</h3>
+<p>Акрополь, Дельфы, музей археологии. Колыбель западной цивилизации ждет вас.</p>
+<div class="museums-count"><i class="fas fa-ticket-alt"></i> 200+ музеев и достопр.</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<button class="all-countries-btn" id="allCountriesBtn">
+<span>Все страны мира</span>
+<i class="fas fa-chevron-down"></i>
+</button>
+<div class="countries-dropdown" id="countriesDropdown">
+<div class="dropdown-grid">
+<a href="https://tiqets.tpo.li/7aEBfjAV?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇦🇹</span> Австрия</a>
+<a href="https://tiqets.tpo.li/MHYgK8Z9?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇦🇺</span> Австралия</a>
+<a href="https://tiqets.tpo.li/n28xAvZH?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇧🇭</span> Бахрейн</a>
+<a href="https://tiqets.tpo.li/j8nfux16?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇧🇪</span> Бельгия</a>
+<a href="https://tiqets.tpo.li/bID4d476?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇬🇧</span> Великобритания</a>
+<a href="https://tiqets.tpo.li/mRCWWgm6?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇭🇺</span> Венгрия</a>
+<a href="https://tiqets.tpo.li/V0gTjqoE?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇩🇪</span> Германия</a>
+<a href="https://tiqets.tpo.li/tAo891rr?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇬🇷</span> Греция</a>
+<a href="https://tiqets.tpo.li/Lr0rsunP?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇪🇬</span> Египет</a>
+<a href="https://tiqets.tpo.li/4P3c67OL?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇮🇩</span> Индонезия</a>
+<a href="https://tiqets.tpo.li/2iJCj1fx?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇯🇴</span> Иордания</a>
+<a href="https://tiqets.tpo.li/wntS8mye?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇮🇪</span> Ирландия</a>
+<a href="https://tiqets.tpo.li/DgnDx1TA?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇪🇸</span> Испания</a>
+<a href="https://tiqets.tpo.li/2cfmb2zS?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇮🇹</span> Италия</a>
+<a href="https://tiqets.tpo.li/1aeVXh7n?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇱🇻</span> Латвия</a>
+<a href="https://tiqets.tpo.li/DFI4T2Kz?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇱🇹</span> Литва</a>
+<a href="https://tiqets.tpo.li/j3DrqRLr?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇱🇺</span> Люксембург</a>
+<a href="https://tiqets.tpo.li/c4waBFEZ?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇲🇦</span> Марокко</a>
+<a href="https://tiqets.tpo.li/FjPnHmhi?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇲🇨</span> Монако</a>
+<a href="https://tiqets.tpo.li/8GhTfvAB?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇳🇱</span> Нидерланды</a>
+<a href="https://tiqets.tpo.li/A2IePQno?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇳🇴</span> Норвегия</a>
+<a href="https://tiqets.tpo.li/kXBDiLqJ?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇵🇱</span> Польша</a>
+<a href="https://tiqets.tpo.li/YTIG3XWr?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇵🇹</span> Португалия</a>
+<a href="https://tiqets.tpo.li/kufWs9ui?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇸🇬</span> Сингапур</a>
+<a href="https://tiqets.tpo.li/UDOofxfX?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇸🇰</span> Словакия</a>
+<a href="https://tiqets.tpo.li/i64sD6WY?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇸🇮</span> Словения</a>
+<a href="https://tiqets.tpo.li/fohv6jse?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇺🇸</span> США</a>
+<a href="https://tiqets.tpo.li/fd1xaqUv?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇹🇭</span> Таиланд</a>
+<a href="https://tiqets.tpo.li/L9n8K25t?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇹🇷</span> Турция</a>
+<a href="https://tiqets.tpo.li/OAwhANUC?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇫🇮</span> Финляндия</a>
+<a href="https://tiqets.tpo.li/frKT4Mjs?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇫🇷</span> Франция</a>
+<a href="https://tiqets.tpo.li/FcSLRuKq?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇭🇷</span> Хорватия</a>
+<a href="https://tiqets.tpo.li/5xSdinol?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇨🇿</span> Чехия</a>
+<a href="https://tiqets.tpo.li/3cd95AzH?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇨🇭</span> Швейцария</a>
+<a href="https://tiqets.tpo.li/6SblnULJ?erid=2Vtzqv5haeu" class="dropdown-country-link"><span class="flag">🇸🇪</span> Швеция</a>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-
-<!-- ТИПЫ ЭКСКУРСИЙ -->
 <section class="tour-types-section">
-    <div class="container">
-        <h2 class="section-title">🎯 Типы экскурсий</h2>
-        
-        <div class="tour-types-grid">
-            
-            <!-- ПЕШИЕ ТУРЫ -->
-            <a href="https://tiqets.tpo.li/FqymFf4A?erid=2Vtzqv5haeu" class="tour-type-card">
-                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=350&fit=crop" alt="Пешие туры" class="tour-type-image">
-                <div class="tour-type-overlay">
-                    <div class="tour-type-icon">🚶</div>
-                    <h3 class="tour-type-name">Пешие туры</h3>
-                    <p class="tour-type-description">Исследуйте города пешком с профессиональными гидами. Узнайте историю улиц и скрытые жемчужины.</p>
-                </div>
-            </a>
-
-            <!-- АВТОБУСНЫЕ ЭКСКУРСИИ -->
-            <a href="https://tiqets.tpo.li/bqSjtHbF?erid=2Vtzqv5haeu" class="tour-type-card">
-                <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&h=350&fit=crop" alt="Автобусные туры" class="tour-type-image">
-                <div class="tour-type-overlay">
-                    <div class="tour-type-icon">🚌</div>
-                    <h3 class="tour-type-name">Автобусные экскурсии</h3>
-                    <p class="tour-type-description">Комфортные туры на hop-on hop-off автобусах. Увидьте все главные достопримечательности за один день.</p>
-                </div>
-            </a>
-
-            <!-- ВОДНЫЕ КРУИЗЫ -->
-            <a href="https://tiqets.tpo.li/ODtuFMP0?erid=2Vtzqv5haeu" class="tour-type-card">
-                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=350&fit=crop" alt="Водные круизы" class="tour-type-image">
-                <div class="tour-type-overlay">
-                    <div class="tour-type-icon">🚢</div>
-                    <h3 class="tour-type-name">Водные круизы</h3>
-                    <p class="tour-type-description">Романтические прогулки по рекам и каналам. Откройте город с воды в уникальной атмосфере.</p>
-                </div>
-            </a>
-
-            <!-- ГАСТРО-ТУРЫ -->
-            <a href="https://tiqets.tpo.li/hwHZoX9E?erid=2Vtzqv5haeu" class="tour-type-card">
-                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=350&fit=crop" alt="Гастро-туры" class="tour-type-image">
-                <div class="tour-type-overlay">
-                    <div class="tour-type-icon">🍷</div>
-                    <h3 class="tour-type-name">Гастро-туры</h3>
-                    <p class="tour-type-description">Познайте культуру через кухню. Дегустации, мастер-классы и посещение лучших ресторанов.</p>
-                </div>
-            </a>
-
-        </div>
-
-        <div class="ad-disclaimer">
-            Реклама. Tiqets International B.V.. ИНН 59620285
-        </div>
-    </div>
+<div class="container">
+<h2 class="section-title">🎯 Типы экскурсий</h2>
+<div class="tour-types-grid">
+<a href="https://tiqets.tpo.li/FqymFf4A?erid=2Vtzqv5haeu" class="tour-type-card">
+<img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=350&fit=crop" alt="Пешие туры по городам" class="tour-type-image" width="400" height="350">
+<div class="tour-type-overlay">
+<div class="tour-type-icon">🚶</div>
+<h3 class="tour-type-name">Пешие туры</h3>
+<p class="tour-type-description">Исследуйте города пешком с профессиональными гидами. Узнайте историю улиц и скрытые жемчужины.</p>
+</div>
+</a>
+<a href="https://tiqets.tpo.li/bqSjtHbF?erid=2Vtzqv5haeu" class="tour-type-card">
+<img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&h=350&fit=crop" alt="Автобусные экскурсии hop-on hop-off" class="tour-type-image" width="400" height="350">
+<div class="tour-type-overlay">
+<div class="tour-type-icon">🚌</div>
+<h3 class="tour-type-name">Автобусные экскурсии</h3>
+<p class="tour-type-description">Комфортные туры на hop-on hop-off автобусах. Увидьте все главные достопримечательности за один день.</p>
+</div>
+</a>
+<a href="https://tiqets.tpo.li/ODtuFMP0?erid=2Vtzqv5haeu" class="tour-type-card">
+<img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=350&fit=crop" alt="Водные круизы по каналам" class="tour-type-image" width="400" height="350">
+<div class="tour-type-overlay">
+<div class="tour-type-icon">🚢</div>
+<h3 class="tour-type-name">Водные круизы</h3>
+<p class="tour-type-description">Романтические прогулки по рекам и каналам. Откройте город с воды в уникальной атмосфере.</p>
+</div>
+</a>
+<a href="https://tiqets.tpo.li/hwHZoX9E?erid=2Vtzqv5haeu" class="tour-type-card">
+<img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=350&fit=crop" alt="Гастрономические туры и дегустации" class="tour-type-image" width="400" height="350">
+<div class="tour-type-overlay">
+<div class="tour-type-icon">🍷</div>
+<h3 class="tour-type-name">Гастро-туры</h3>
+<p class="tour-type-description">Познайте культуру через кухню. Дегустации, мастер-классы и посещение лучших ресторанов.</p>
+</div>
+</a>
+</div>
+<div class="ad-disclaimer">Реклама. Tiqets International B.V.. ИНН 59620285</div>
+</div>
 </section>
-
 <section class="widgets-card-section">
-    <div class="container">
-        
-        <h2 class="section-title" style="color: #1e293b;">🏆 ТОП-50 Экскурсий Мира</h2>
-
-        <h3 style="margin-top: 60px;">🇪🇸 Барселона: Архитектура Гауди и лучшие туры по городу</h3>
-        <div style="min-height: 250px; margin-bottom: 40px;">
-         <script async src="https://tpwgt.com/content?currency=USD&trs=478043&shmarker=144185&language=ru&locale=66342&layout=responsive&cards=10&powered_by=false&erid=2VtzqxUgJZF&campaign_id=89&promo_id=3947" charset="utf-8"></script>
-        </div>
-
-        <h3 style="margin-top: 60px;">🌷 Амстердам: Каналы, Рейксмузеум и Тайные Места</h3>
-        <div style="min-height: 250px; margin-bottom: 40px;">
-            <script async src="https://tpwgt.com/content?currency=USD&trs=478043&shmarker=144185&language=ru&locale=75061&layout=responsive&cards=10&powered_by=false&erid=2VtzqxUgJZF&campaign_id=89&promo_id=3947" charset="utf-8"></script>
-        </div>
-
-        <h3 style="margin-top: 60px;">🏛️ Дубай: Вечный Город Современности и Уникальные Галереи</h3>
-        <div style="min-height: 250px; margin-bottom: 40px;">
-        <script async src="https://tpwgt.com/content?currency=USD&trs=478043&shmarker=144185&language=ru&locale=60005&layout=responsive&cards=10&powered_by=false&erid=2VtzqxUgJZF&campaign_id=89&promo_id=3947" charset="utf-8"></script>
-        </div>
-
-        <h3 style="margin-top: 60px;">🗼 Культовая Франция: Лувр, Эйфель и Билеты в Версаль</h3>
-        <div style="min-height: 250px; margin-bottom: 40px;">
-           <script async src="https://tpwgt.com/content?currency=USD&trs=478043&shmarker=144185&language=ru&locale=66746&layout=responsive&cards=10&powered_by=false&erid=2VtzqxUgJZF&campaign_id=89&promo_id=3947" charset="utf-8"></script>
-        </div>
-
-        <h3 style="margin-top: 60px;">🗽 Нью-Йорк: Статуя Свободы, Эмпайр-стейт и ТОП-туры США</h3>
-        <div style="min-height: 250px; margin-bottom: 40px;">
-           <script async src="https://tpwgt.com/content?currency=USD&trs=478043&shmarker=144185&language=ru&locale=260932&layout=responsive&cards=10&powered_by=false&erid=2VtzqxUgJZF&campaign_id=89&promo_id=3947" charset="utf-8"></script>
-        </div>
-
-    </div>
+<div class="container">
+<h2 class="section-title" style="color:#1e293b">🏆 ТОП-50 Экскурсий Мира</h2>
+<h3 style="margin-top:60px">🇪🇸 Барселона: Архитектура Гауди и лучшие туры по городу</h3>
+<div style="min-height:250px;margin-bottom:40px">
+<script async src="https://tpwgt.com/content?currency=USD&trs=478043&shmarker=144185&language=ru&locale=66342&layout=responsive&cards=10&powered_by=false&erid=2VtzqxUgJZF&campaign_id=89&promo_id=3947" charset="utf-8"></script>
+</div>
+<h3 style="margin-top:60px">🌷 Амстердам: Каналы, Рейксмузеум и Тайные Места</h3>
+<div style="min-height:250px;margin-bottom:40px">
+<script async src="https://tpwgt.com/content?currency=USD&trs=478043&shmarker=144185&language=ru&locale=75061&layout=responsive&cards=10&powered_by=false&erid=2VtzqxUgJZF&campaign_id=89&promo_id=3947" charset="utf-8"></script>
+</div>
+<h3 style="margin-top:60px">🏛️ Дубай: Вечный Город Современности и Уникальные Галереи</h3>
+<div style="min-height:250px;margin-bottom:40px">
+<script async src="https://tpwgt.com/content?currency=USD&trs=478043&shmarker=144185&language=ru&locale=60005&layout=responsive&cards=10&powered_by=false&erid=2VtzqxUgJZF&campaign_id=89&promo_id=3947" charset="utf-8"></script>
+</div>
+<h3 style="margin-top:60px">🗼 Культовая Франция: Лувр, Эйфель и Билеты в Версаль</h3>
+<div style="min-height:250px;margin-bottom:40px">
+<script async src="https://tpwgt.com/content?currency=USD&trs=478043&shmarker=144185&language=ru&locale=66746&layout=responsive&cards=10&powered_by=false&erid=2VtzqxUgJZF&campaign_id=89&promo_id=3947" charset="utf-8"></script>
+</div>
+<h3 style="margin-top:60px">🗽 Нью-Йорк: Статуя Свободы, Эмпайр-стейт и ТОП-туры США</h3>
+<div style="min-height:250px;margin-bottom:40px">
+<script async src="https://tpwgt.com/content?currency=USD&trs=478043&shmarker=144185&language=ru&locale=260932&layout=responsive&cards=10&powered_by=false&erid=2VtzqxUgJZF&campaign_id=89&promo_id=3947" charset="utf-8"></script>
+</div>
+</div>
 </section>
-
 <section class="seo-tips-section">
 <div class="container">
 <h2 class="section-title">Советы по бронированию Музеев и Экскурсий</h2>
 <div class="tips-grid">
-<details class="tip-card" style="border-top-color: #a855f7;">
+<details class="tip-card" style="border-top-color:#a855f7">
 <summary>
-<div class="tip-icon" style="color: #a855f7;"><i class="fas fa-calendar-alt"></i></div>
+<div class="tip-icon" style="color:#a855f7"><i class="fas fa-calendar-alt"></i></div>
 <h4>Лучшее время для бронирования</h4>
 <p class="tip-card-text-short">Когда лучше покупать билеты, чтобы не пропустить событие.</p>
 </summary>
-<div class="tip-content">
-**Лайфхак:** Для самых популярных достопримечательностей (Эйфелева башня, Колизей) бронируйте за 2-3 месяца. Для менее загруженных мест достаточно 1-2 недель. Покупка в день посещения крайне не рекомендуется.
-</div>
+<div class="tip-content">**Лайфхак:** Для самых популярных достопримечательностей (Эйфелева башня, Колизей) бронируйте за 2-3 месяца. Для менее загруженных мест достаточно 1-2 недель. Покупка в день посещения крайне не рекомендуется.</div>
 </details>
-
-<details class="tip-card" style="border-top-color: #e9573f;">
+<details class="tip-card" style="border-top-color:#e9573f">
 <summary>
-<div class="tip-icon" style="color: #e9573f;"><i class="fas fa-clock"></i></div>
+<div class="tip-icon" style="color:#e9573f"><i class="fas fa-clock"></i></div>
 <h4>Выбор утренних часов</h4>
 <p class="tip-card-text-short">Как избежать толп и насладиться посещением.</p>
 </summary>
-<div class="tip-content">
-**Лайфхак:** По возможности выбирайте самый ранний слот времени (сразу после открытия). В это время меньше посетителей, и вы сможете осмотреть главные экспонаты без спешки.
-</div>
+<div class="tip-content">**Лайфхак:** По возможности выбирайте самый ранний слот времени (сразу после открытия). В это время меньше посетителей, и вы сможете осмотреть главные экспонаты без спешки.</div>
 </details>
-
-<details class="tip-card" style="border-top-color: #f59e0b;">
+<details class="tip-card" style="border-top-color:#f59e0b">
 <summary>
-<div class="tip-icon" style="color: #f59e0b;"><i class="fas fa-map-location-dot"></i></div>
+<div class="tip-icon" style="color:#f59e0b"><i class="fas fa-map-location-dot"></i></div>
 <h4>Комбинированные билеты</h4>
 <p class="tip-card-text-short">Как сэкономить на посещении нескольких мест.</p>
 </summary>
-<div class="tip-content">
-**Лайфхак:** Многие города предлагают туристические карты или комбинированные билеты, которые включают вход сразу в несколько музеев и проезд. Это часто выгоднее, чем покупать билеты по отдельности.
-</div>
+<div class="tip-content">**Лайфхак:** Многие города предлагают туристические карты или комбинированные билеты, которые включают вход сразу в несколько музеев и проезд. Это часто выгоднее, чем покупать билеты по отдельности.</div>
 </details>
-
-<details class="tip-card" style="border-top-color: #a855f7;">
+<details class="tip-card" style="border-top-color:#a855f7">
 <summary>
-<div class="tip-icon" style="color: #a855f7;"><i class="fas fa-headset"></i></div>
+<div class="tip-icon" style="color:#a855f7"><i class="fas fa-headset"></i></div>
 <h4>Использование аудиогида</h4>
 <p class="tip-card-text-short">Почему стоит приобрести аудиогид.</p>
 </summary>
-<div class="tip-content">
-**Лайфхак:** Аудиогид часто включен в стоимость или продается отдельно. Он предоставляет информацию на вашем языке и позволяет изучать экспонаты в вашем темпе, делая посещение более осмысленным.
-</div>
+<div class="tip-content">**Лайфхак:** Аудиогид часто включен в стоимость или продается отдельно. Он предоставляет информацию на вашем языке и позволяет изучать экспонаты в вашем темпе, делая посещение более осмысленным.</div>
 </details>
-
-<details class="tip-card" style="border-top-color: #e9573f;">
+<details class="tip-card" style="border-top-color:#e9573f">
 <summary>
-<div class="tip-icon" style="color: #e9573f;"><i class="fas fa-child-reaching"></i></div>
+<div class="tip-icon" style="color:#e9573f"><i class="fas fa-child-reaching"></i></div>
 <h4>Скидки для детей и студентов</h4>
 <p class="tip-card-text-short">Проверьте, не подходите ли вы под льготную категорию.</p>
 </summary>
-<div class="tip-content">
-**Лайфхак:** Обязательно проверяйте наличие специальных цен для детей, студентов, пенсионеров и местных жителей. Всегда имейте при себе соответствующие документы (студенческий билет, паспорт).
-</div>
+<div class="tip-content">**Лайфхак:** Обязательно проверяйте наличие специальных цен для детей, студентов, пенсионеров и местных жителей. Всегда имейте при себе соответствующие документы (студенческий билет, паспорт).</div>
 </details>
-
-<details class="tip-card" style="border-top-color: #a855f7;">
+<details class="tip-card" style="border-top-color:#a855f7">
 <summary>
-<div class="tip-icon" style="color: #a855f7;"><i class="fas fa-umbrella-beach"></i></div>
+<div class="tip-icon" style="color:#a855f7"><i class="fas fa-umbrella-beach"></i></div>
 <h4>Погода и достопримечательности</h4>
 <p class="tip-card-text-short">Как планировать посещение в зависимости от погоды.</p>
 </summary>
-<div class="tip-content">
-**Лайфхак:** В плохую погоду лучше посещать крытые музеи, а в солнечный день — парки и открытые экскурсии. Бронирование заранее позволяет быть гибким и корректировать планы.
-</div>
+<div class="tip-content">**Лайфхак:** В плохую погоду лучше посещать крытые музеи, а в солнечный день — парки и открытые экскурсии. Бронирование заранее позволяет быть гибким и корректировать планы.</div>
 </details>
-
 </div>
 </div>
 </section>
-
 <section class="testimonials-section">
 <div class="container">
 <h2 class="section-title">Что говорят наши клиенты об экскурсиях</h2>
 <div class="testimonials-container">
 <div class="swiper testimonials-slider">
 <div class="swiper-wrapper">
-
 <div class="swiper-slide">
-<div class="testimonial-card">
-<div class="stars">
-<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-</div>
-<p class="testimonial-text">
-«Купили билет в Музей Прадо в Мадриде. Прошли без очереди! Огромное спасибо Airflow за сэкономленное время.»
-</p>
+<article class="testimonial-card">
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p class="testimonial-text">«Купили билет в Музей Прадо в Мадриде. Прошли без очереди! Огромное спасибо Airflow за сэкономленное время.»</p>
 <div class="testimonial-author">
 <div class="author-avatar">АВ</div>
 <div class="author-info">
@@ -948,17 +586,12 @@
 <p>Турист (Испания)</p>
 </div>
 </div>
+</article>
 </div>
-</div>
-
 <div class="swiper-slide">
-<div class="testimonial-card">
-<div class="stars">
-<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-</div>
-<p class="testimonial-text">
-«Нашли уникальную экскурсию по Риму, которую не видели нигде больше. Очень удобный интерфейс поиска.»
-</p>
+<article class="testimonial-card">
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+<p class="testimonial-text">«Нашли уникальную экскурсию по Риму, которую не видели нигде больше. Очень удобный интерфейс поиска.»</p>
 <div class="testimonial-author">
 <div class="author-avatar">РМ</div>
 <div class="author-info">
@@ -966,17 +599,12 @@
 <p>Путешественник (Италия)</p>
 </div>
 </div>
+</article>
 </div>
-</div>
-
 <div class="swiper-slide">
-<div class="testimonial-card">
-<div class="stars">
-<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-</div>
-<p class="testimonial-text">
-«Цена была такой же, как на официальном сайте, но бронирование через Airflow было быстрее и проще. Рекомендую всем.»
-</p>
+<article class="testimonial-card">
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p class="testimonial-text">«Цена была такой же, как на официальном сайте, но бронирование через Airflow было быстрее и проще. Рекомендую всем.»</p>
 <div class="testimonial-author">
 <div class="author-avatar">ИС</div>
 <div class="author-info">
@@ -984,17 +612,12 @@
 <p>Постоянный клиент</p>
 </div>
 </div>
+</article>
 </div>
-</div>
-
 <div class="swiper-slide">
-<div class="testimonial-card">
-<div class="stars">
-<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-</div>
-<p class="testimonial-text">
-«Пользуюсь Airflow для всех видов бронирования. Ценю удобство и то, что всегда нахожу выгодные предложения.»
-</p>
+<article class="testimonial-card">
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p class="testimonial-text">«Пользуюсь Airflow для всех видов бронирования. Ценю удобство и то, что всегда нахожу выгодные предложения.»</p>
 <div class="testimonial-author">
 <div class="author-avatar">ОВ</div>
 <div class="author-info">
@@ -1002,17 +625,12 @@
 <p>Постоянный клиент</p>
 </div>
 </div>
+</article>
 </div>
-</div>
-
 <div class="swiper-slide">
-<div class="testimonial-card">
-<div class="stars">
-<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-</div>
-<p class="testimonial-text">
-«Забронировали билеты в Лувр за месяц до поездки. В день посещения просто показали QR-код на телефоне и прошли.»
-</p>
+<article class="testimonial-card">
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p class="testimonial-text">«Забронировали билеты в Лувр за месяц до поездки. В день посещения просто показали QR-код на телефоне и прошли.»</p>
 <div class="testimonial-author">
 <div class="author-avatar">МК</div>
 <div class="author-info">
@@ -1020,17 +638,12 @@
 <p>Турист (Франция)</p>
 </div>
 </div>
+</article>
 </div>
-</div>
-
 <div class="swiper-slide">
-<div class="testimonial-card">
-<div class="stars">
-<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-</div>
-<p class="testimonial-text">
-«Отличный сервис! Купили семейные билеты в Диснейленд Париж со скидкой. Дети в восторге, а мы сэкономили деньги.»
-</p>
+<article class="testimonial-card">
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p class="testimonial-text">«Отличный сервис! Купили семейные билеты в Диснейленд Париж со скидкой. Дети в восторге, а мы сэкономили деньги.»</p>
 <div class="testimonial-author">
 <div class="author-avatar">ЕЛ</div>
 <div class="author-info">
@@ -1038,198 +651,68 @@
 <p>Семья с детьми</p>
 </div>
 </div>
+</article>
 </div>
-</div>
-
 </div>
 <div class="swiper-pagination"></div>
 <div class="swiper-button-prev"></div>
 <div class="swiper-button-next"></div>
 </div>
 </div>
+</div>
 </section>
-
 </main>
-
 <footer class="footer">
 <div class="footer-container">
 <div class="footer-content">
 <div class="footer-section">
-<h3>Наши Продукты</h3>
+<h3>✨ О нас</h3>
+<ul>
+<li><a href="about.html">→ О проекте Airflow</a></li>
+<li><a href="help.html">→ Помощь и контакты</a></li>
+<li><a href="privacy.html">→ Политика конфиденциальности</a></li>
+<li><a href="terms.html">→ Условия использования</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Продукты</h3>
 <ul>
 <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
 <li><a href="hotels.html">🏨 Отели</a></li>
 <li><a href="cars.html">🚗 Аренда авто</a></li>
 <li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="trains-buses.html">🚌 Автобусы</a></li>
-<li><a href="attractions.html">🏛️ Музеи/Экскурсии</a></li> 
+<li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
 </ul>
 </div>
-
 <div class="footer-section">
-<h3>Информация</h3>
+<h3>Дополнительно</h3>
 <ul>
-<li><a href="https://airflowtravel.net/about.html">О нас</a></li>
-<li><a href="https://airflowtravel.net/terms.html">Условия использования</a></li>
-<li><a href="https://airflowtravel.net/privacy.html">Политика конфиденциальности</a></li>
+<li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
+<li><a href="vip-lounge.html">💎 VIP залы</a></li>
+<li><a href="parking.html">🅿️ Парковка</a></li>
+<li><a href="insurance.html">🛡️ Страховка</a></li>
+<li><a href="simcard.html">📱 SIM карты</a></li>
 </ul>
 </div>
-
 <div class="footer-section">
-    <h3>Служба поддержки</h3>
-    <div class="footer-contacts" style="background: none; padding: 0; margin: 0;">
-        <p style="margin-bottom: 10px; color: #94a3b8; font-size: 0.95rem; line-height: 1.4;">
-            <i class="fas fa-handshake" style="color: #a855f7; margin-right: 8px;"></i> 
-            По коммерческим вопросам: свяжитесь со своим менеджером по работе с клиентами.
-        </p>
-        
-        <p style="margin-bottom: 10px; font-size: 0.95rem; line-height: 1.4;">
-            <i class="fas fa-users" style="color: #a855f7; margin-right: 8px;"></i> 
-            Вопросы для клиентов: 
-            <a href="mailto:customerservice@tiqets.com" style="color: white; text-decoration: none;">customerservice@tiqets.com</a>
-        </p>
-
-        <p style="margin-bottom: 10px; font-size: 0.95rem; line-height: 1.4;">
-            <i class="fas fa-money-bill-wave" style="color: #a855f7; margin-right: 8px;"></i> 
-            Финансы/Счета: 
-            <a href="mailto:finance@tiqets.com" style="color: white; text-decoration: none;">finance@tiqets.com</a>
-        </p>
-        
-        <p style="margin-bottom: 10px; font-size: 0.95rem; line-height: 1.4;">
-            <i class="fas fa-tools" style="color: #a855f7; margin-right: 8px;"></i> 
-            Техническое обслуживание/Отчеты: 
-            <a href="mailto:suppliers@tiqets.com" style="color: white; text-decoration: none;">suppliers@tiqets.com</a>
-        </p>
-    </div>
+<h3>Служба поддержки</h3>
+<div class="footer-contacts" style="background:none;padding:0;margin:0">
+<p style="margin-bottom:10px;color:#94a3b8;font-size:0.95rem;line-height:1.4"><i class="fas fa-handshake" style="color:#a855f7;margin-right:8px"></i> По коммерческим вопросам: свяжитесь со своим менеджером по работе с клиентами.</p>
+<p style="margin-bottom:10px;font-size:0.95rem;line-height:1.4"><i class="fas fa-users" style="color:#a855f7;margin-right:8px"></i> Вопросы для клиентов: <a href="mailto:customerservice@tiqets.com" style="color:white;text-decoration:none">customerservice@tiqets.com</a></p>
+<p style="margin-bottom:10px;font-size:0.95rem;line-height:1.4"><i class="fas fa-money-bill-wave" style="color:#a855f7;margin-right:8px"></i> Финансы/Счета: <a href="mailto:finance@tiqets.com" style="color:white;text-decoration:none">finance@tiqets.com</a></p>
+<p style="margin-bottom:10px;font-size:0.95rem;line-height:1.4"><i class="fas fa-tools" style="color:#a855f7;margin-right:8px"></i> Техническое обслуживание/Отчеты: <a href="mailto:suppliers@tiqets.com" style="color:white;text-decoration:none">suppliers@tiqets.com</a></p>
 </div>
-
+</div>
 </div>
 <div class="footer-bottom">
-<p>&copy; 2026 Airflowpilot. Все права защищены.</p>
+<p>&copy; 2026 Airflow Travel. Все права защищены.</p>
 </div>
 </div>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    // Навигация
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuButton = document.getElementById('mobile-menu-button');
-    const menuOverlay = document.getElementById('mobile-menu-overlay');
-    const menuClose = document.getElementById('mobile-menu-close');
-    let isMenuOpen = false;
-
-    function toggleMenu() {
-        isMenuOpen = !isMenuOpen;
-        if (isMenuOpen) {
-            mobileMenu.classList.add('active');
-            menuOverlay.classList.add('active');
-            menuOverlay.style.display = 'block';
-            document.body.style.overflow = 'hidden'; 
-        } else {
-            mobileMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = ''; 
-            setTimeout(() => {
-                if (!isMenuOpen) {
-                    menuOverlay.style.display = 'none';
-                }
-            }, 300);
-        }
-    }
-
-    function closeMenu() {
-        isMenuOpen = false;
-        mobileMenu.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        document.body.style.overflow = ''; 
-        setTimeout(() => {
-            menuOverlay.style.display = 'none';
-        }, 300);
-    }
-
-    if (menuButton) menuButton.addEventListener('click', toggleMenu);
-    if (menuClose) menuClose.addEventListener('click', closeMenu);
-    if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
-
-    // Dropdown "Все страны"
-    const allCountriesBtn = document.getElementById('allCountriesBtn');
-    const countriesDropdown = document.getElementById('countriesDropdown');
-    let isDropdownOpen = false;
-
-    allCountriesBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        isDropdownOpen = !isDropdownOpen;
-        
-        if (isDropdownOpen) {
-            countriesDropdown.classList.add('active');
-            allCountriesBtn.classList.add('active');
-        } else {
-            countriesDropdown.classList.remove('active');
-            allCountriesBtn.classList.remove('active');
-        }
-    });
-
-    // Закрытие dropdown при клике вне его
-    document.addEventListener('click', function(e) {
-        if (!countriesDropdown.contains(e.target) && !allCountriesBtn.contains(e.target)) {
-            countriesDropdown.classList.remove('active');
-            allCountriesBtn.classList.remove('active');
-            isDropdownOpen = false;
-        }
-    });
-
-    // Swiper
-    document.addEventListener('DOMContentLoaded', function() {
-        var swiper = new Swiper('.testimonials-slider', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            observer: true, 
-            observeParents: true, 
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 30
-                },
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 30
-                }
-            },
-            autoHeight: false,
-            on: {
-                init: function () {
-                    document.body.style.overflowX = 'hidden';
-                    this.update(); 
-                },
-                resize: function () {
-                    this.update();
-                }
-            }
-        });
-
-        document.querySelectorAll('.mobile-menu-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (mobileMenu.classList.contains('active')) {
-                    closeMenu();
-                }
-            });
-        });
-
-    });
+const mobileMenu=document.getElementById('mobile-menu');const menuButton=document.getElementById('mobile-menu-button');const menuOverlay=document.getElementById('mobile-menu-overlay');const menuClose=document.getElementById('mobile-menu-close');let isMenuOpen=false;function toggleMenu(){isMenuOpen=!isMenuOpen;if(isMenuOpen){mobileMenu.classList.add('active');menuOverlay.classList.add('active');menuOverlay.style.display='block';document.body.style.overflow='hidden'}else{mobileMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';setTimeout(()=>{if(!isMenuOpen){menuOverlay.style.display='none'}},300)}}function closeMenu(){isMenuOpen=false;mobileMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';setTimeout(()=>{menuOverlay.style.display='none'},300)}if(menuButton)menuButton.addEventListener('click',toggleMenu);if(menuClose)menuClose.addEventListener('click',closeMenu);if(menuOverlay)menuOverlay.addEventListener('click',closeMenu);const allCountriesBtn=document.getElementById('allCountriesBtn');const countriesDropdown=document.getElementById('countriesDropdown');let isDropdownOpen=false;allCountriesBtn.addEventListener('click',function(e){e.stopPropagation();isDropdownOpen=!isDropdownOpen;if(isDropdownOpen){countriesDropdown.classList.add('active');allCountriesBtn.classList.add('active')}else{countriesDropdown.classList.remove('active');allCountriesBtn.classList.remove('active')}});document.addEventListener('click',function(e){if(!countriesDropdown.contains(e.target)&&!allCountriesBtn.contains(e.target)){countriesDropdown.classList.remove('active');allCountriesBtn.classList.remove('active');isDropdownOpen=false}});document.addEventListener('DOMContentLoaded',function(){var swiper=new Swiper('.testimonials-slider',{slidesPerView:1,spaceBetween:30,observer:true,observeParents:true,autoplay:{delay:5000,disableOnInteraction:false},pagination:{el:'.swiper-pagination',clickable:true},navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'},breakpoints:{768:{slidesPerView:2,spaceBetween:30},1024:{slidesPerView:3,spaceBetween:30}},autoHeight:false,on:{init:function(){document.body.style.overflowX='hidden';this.update()},resize:function(){this.update()}}});document.querySelectorAll('.mobile-menu-links a').forEach(link=>{link.addEventListener('click',()=>{if(mobileMenu.classList.contains('active')){closeMenu()}})})});
 </script>
 </body>
 </html>
