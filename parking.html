@@ -1,968 +1,463 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="ie=edge" http-equiv="X-UA-Compatible"/>
-<meta content="Airflowpilot: Бронируйте охраняемый паркинг Park & Fly рядом с аэропортом (Шереметьево, Домодедово, Внуково) с бесплатным трансфером и упаковкой багажа. Актуальные тарифы, правила оплаты и карта расположения." name="description"/>
-
-<link href="bus_icon-icons.com_76529.ico" rel="icon" type="image/x-icon"/>
-
-<meta content="Airflowpilot - Охраняемый Паркинг в Аэропортах и Вокзалах" property="og:title"/>
-<meta content="Сравнивайте тарифы, бронируйте место на охраняемой парковке Park & Fly онлайн." property="og:description"/>
-<meta content="ru" property="og:locale"/>
-<meta content="website" property="og:type"/>
-
-<title>Паркинг в Аэропортах и Вокзалах — Airflowpilot</title>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Парковка в Аэропортах Park & Fly - Airflowpilot</title>
+<meta name="description" content="Охраняемая парковка Park & Fly в аэропортах Москвы (Шереметьево, Домодедово, Внуково). Бесплатный трансфер, упаковка багажа, бронирование онлайн от 500 руб/сутки.">
+<meta name="keywords" content="парковка аэропорт, park and fly, паркинг шереметьево, домодедово парковка, внуково парковка, охраняемая парковка">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://airflowtravel.net/parking.html">
+<link rel="icon" href="bus_icon-icons.com_76529.ico" type="image/x-icon">
+<meta property="og:title" content="Охраняемая Парковка Park & Fly в Аэропортах Москвы">
+<meta property="og:description" content="Бронируйте парковку в аэропорту онлайн. Бесплатный трансфер, охрана 24/7, упаковка багажа.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://airflowtravel.net/parking.html">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Airflowpilot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Парковка Park & Fly в Аэропортах - Airflowpilot">
+<meta name="twitter:description" content="Охраняемая парковка в аэропортах Москвы с бесплатным трансфером.">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
 <style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    html, body {
-        overflow-x: hidden;
-        width: 100%;
-        max-width: 100%;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        line-height: 1.6;
-        color: #333;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-    
-    .main-navigation {
-        background: #1e293b;
-        padding: 0;
-        position: sticky;
-        top: 0;
-        z-index: 1020;
-        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        height: 55px;
-    }
-
-    .nav-container {
-        max-width: 1240px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 100px;
-        height: 100%;
-    }
-
-    .nav-logo {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        padding: 5px 0;
-    }
-    
-    .nav-menu {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        gap: 25px;
-        align-items: center;
-    }
-
-    .nav-menu > li {
-        position: relative;
-    }
-
-    .nav-menu a {
-        color: #94a3b8;
-        text-decoration: none;
-        font-size: 15px;
-        font-weight: 500;
-        padding: 18px 0;
-        transition: color 0.3s ease;
-        display: block;
-    }
-
-    .nav-menu a:hover, .nav-menu a.active {
-        color: white;
-        text-decoration: none;
-    }
-
-    .dropdown {
-        position: relative;
-    }
-
-    .dropdown-toggle {
-        cursor: pointer;
-        color: #94a3b8;
-        font-size: 15px;
-        font-weight: 500;
-        padding: 18px 0;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .dropdown-toggle:hover {
-        color: white;
-    }
-
-    .dropdown-menu {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: #1e293b;
-        min-width: 280px;
-        border-radius: 8px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: all 0.3s ease;
-        margin-top: 5px;
-        padding: 10px 0;
-    }
-
-    .dropdown:hover .dropdown-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
-
-    .dropdown-menu a {
-        padding: 12px 20px;
-        color: #94a3b8;
-        display: block;
-        transition: all 0.3s;
-    }
-
-    .dropdown-menu a:hover {
-        background: #334155;
-        color: white;
-    }
-
-    .mobile-menu-button {
-        display: none;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 8px;
-    }
-
-    .mobile-menu-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 10000;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .mobile-menu-overlay.active {
-        opacity: 1;
-    }
-
-    .mobile-menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: -280px;
-        width: 260px;
-        height: 100vh;
-        background: #1e293b;
-        z-index: 10001;
-        padding: 60px 15px 15px;
-        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
-        transition: right 0.3s ease;
-        overflow-y: auto;
-    }
-
-    .mobile-menu.active {
-        right: 0;
-    }
-
-    .mobile-menu-close {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 5px;
-    }
-
-    .mobile-menu-links {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .mobile-menu-links a {
-        color: #94a3b8;
-        text-decoration: none;
-        font-size: 16px;
-        display: block;
-        padding: 12px 15px;
-        border-radius: 6px;
-        transition: all 0.3s ease;
-    }
-
-    .mobile-menu-links a:hover, .mobile-menu-links a.active {
-        background: #334155;
-        color: white;
-        text-decoration: none;
-    }
-
-    @media (max-width: 1175px) {
-        .nav-container {
-            padding: 0 16px;
-        }
-        .nav-menu {
-            display: none;
-        }
-        .mobile-menu-button {
-            display: block;
-        }
-        .mobile-menu-overlay,
-        .mobile-menu {
-            display: block;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .nav-container {
-            padding: 0 12px;
-        }
-    }
-
-    .section-title {
-        text-align: center;
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 40px;
-        color: #1e293b;
-    }
-    
-    .hero-section {
-        background: linear-gradient(135deg, #1e4ed8 0%, #0891b2 100%);
-        color: white;
-        padding: 30px 20px 80px; 
-        text-align: center;
-    }
-
-    /* ПРОЗРАЧНАЯ РАМКА ДЛЯ ЗАГОЛОВКА */
-    .hero-title-wrapper {
-        background: rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(12px);
-        border: 2px solid rgba(255, 255, 255, 0.25);
-        border-radius: 20px;
-        padding: 25px 35px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        max-width: 86%;
-        margin: 0 auto 25px;
-        animation: fadeInDown 0.8s ease-out;
-    }
-
-    .hero-content h1 {
-        font-size: clamp(2rem, 5vw, 3rem); 
-        margin-bottom: 15px;
-        font-weight: 700; 
-        color: white;
-    }
-    
-    /* ПРОЗРАЧНАЯ РАМКА ДЛЯ ВИДЖЕТА С АНИМАЦИЕЙ */
-    .widget-wrapper {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 16px;
-        padding: 30px;
-        max-width: 1000px;
-        margin: 0 auto 20px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        transform: translateY(50px);
-        animation: slideUpFade 1s ease-out 0.5s forwards;
-    }
-
-    #parking-card-container {
-        padding: 20px 0;
-        text-align: center;
-    }
-
-    .card-title-search {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: white; 
-        margin-top: 15px; 
-        margin-bottom: 20px;
-    }
-    
-    .hero-contacts {
-        background: rgba(255, 255, 255, 0.2); 
-        border-radius: 8px;
-        padding: 15px 20px;
-        margin-top: 25px; 
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        flex-wrap: wrap;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .hero-contacts a {
-        color: white; 
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transition: opacity 0.3s;
-    }
-
-    .hero-contacts a:hover {
-        opacity: 0.8;
-    }
-
-    .hero-contacts i {
-        color: #10b981; 
-        font-size: 1.2rem;
-    }
-    
-    .card-description {
-        font-size: 1rem;
-        margin-bottom: 0;
-        opacity: 0.9;
-        color: white; 
-    }
-    
-    /* АНИМАЦИИ */
-    @keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes slideUpFade {
-        from {
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .features-section-parking {
-        padding: 80px 20px;
-        background: #f8fafc; 
-    }
-    
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-        gap: 30px;
-        max-width: 1200px; 
-        margin: 0 auto;
-    }
-    
-    .feature-card {
-        padding: 30px 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
-        background: #ffffff;
-        border-top: 5px solid #10b981; 
-        transition: transform 0.3s, box-shadow 0.3s;
-        height: 100%;
-        text-align: left;
-        cursor: pointer;
-    }
-    
-    .feature-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
-    }
-
-    .feature-icon {
-        font-size: 3rem;
-        color: #10b981; 
-        margin-bottom: 15px;
-        text-align: center;
-    }
-
-    .feature-card h4 {
-        font-size: 1.2rem;
-        color: #1e293b;
-        font-weight: 700;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-    
-    .feature-card p {
-        color: #64748b;
-        font-size: 0.95rem;
-        text-align: center;
-    }
-    
-    .tip-card {
-        padding: 30px 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
-        background: #ffffff;
-        border-top: 5px solid #1d4ed8; 
-        transition: transform 0.3s, box-shadow 0.3s;
-        height: 100%;
-        text-align: left;
-        cursor: pointer;
-        margin-bottom: 30px; 
-    }
-    
-    .tip-card summary {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        padding-right: 25px;
-        position: relative;
-        outline: none;
-        cursor: pointer;
-    }
-
-    .tip-card summary::-webkit-details-marker {
-        display: none;
-    }
-    
-    .tip-card summary:after {
-        content: "\25B6";
-        position: absolute;
-        right: 0;
-        top: 5px;
-        font-size: 14px;
-        color: #1d4ed8; 
-        transition: transform 0.3s;
-    }
-    
-    .tip-card[open] summary:after {
-        content: "\25BC";
-        top: 8px;
-    }
-    
-    .tip-icon {
-        font-size: 3rem;
-        margin-bottom: 15px;
-        text-align: center;
-    }
-    
-    .tip-card h4 {
-        font-size: 1.2rem;
-        color: #1e293b;
-        font-weight: 700;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-
-    .tip-card .tip-card-text-short {
-        color: #64748b;
-        font-size: 0.95rem;
-        margin-bottom: 15px;
-        text-align: center;
-    }
-
-    .tip-content {
-        border-top: 1px solid #e2e8f0;
-        padding-top: 15px;
-        margin-top: 15px;
-        font-size: 0.95rem;
-        color: #475569;
-        text-align: left;
-        background-color: #f0fff4; 
-        padding: 15px;
-        border-radius: 6px;
-        line-height: 1.5;
-    }
-    
-    .tip-content ul {
-        list-style: none;
-        padding-left: 0;
-    }
-
-    .tip-content li {
-        margin-bottom: 8px;
-        padding-left: 10px;
-        position: relative;
-    }
-
-    .tip-content li:before {
-        content: "•";
-        position: absolute;
-        left: 0;
-        color: #10b981;
-        font-weight: bold;
-    }
-
-    .map-container {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-
-    .map-wrapper {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        height: 0;
-        padding-bottom: 71.42%;
-    } 
-
-    .map-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .map-wrapper a {
-        position: absolute;
-        left: 0px;
-        z-index: 10;
-    }
-    
-    .info-box { 
-        background-color: #fff7e6; 
-        border: 1px solid #ffd79b; 
-        color: #6e5229; 
-        padding: 15px; 
-        border-radius: 4px; 
-        margin-bottom: 15px; 
-    }
-
-    .footer {
-        background-color: #1e293b;
-        color: #94a3b8;
-        padding: 60px 0 20px;
-        font-size: 14px;
-    }
-
-    .footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    .footer-content {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        margin-bottom: 40px;
-        gap: 30px;
-    }
-
-    .footer-section {
-        width: calc(25% - 20px);
-        min-width: 200px;
-        margin-bottom: 20px;
-    }
-
-    .footer-section h3 {
-        margin-bottom: 20px;
-        color: white;
-        font-size: 1.1rem;
-        border-bottom: 2px solid #334155;
-        padding-bottom: 10px;
-    }
-
-    .footer-section ul {
-        list-style: none;
-        padding-left: 0;
-    }
-
-    .footer-section li {
-        margin-bottom: 10px;
-    }
-
-    .footer-section a {
-        color: #94a3b8;
-        transition: 0.3s;
-        font-size: 0.95rem;
-        text-decoration: none;
-    }
-
-    .footer-section a:hover {
-        color: white;
-        text-decoration: underline;
-    }
-
-    .footer-bottom {
-        border-top: 1px solid #334155;
-        padding-top: 20px;
-        text-align: center;
-        color: #94a3b8;
-    }
-
-    @media (max-width: 768px) {
-        .hero-section {
-            padding: 15px 15px 60px;
-        }
-
-        .hero-title-wrapper {
-            padding: 20px 25px;
-        }
-
-        .widget-wrapper {
-            padding: 20px 15px;
-        }
-
-        .footer-content {
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .footer-section {
-            width: 100%;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .hero-section {
-            padding: 10px 15px 60px;
-        }
-
-        .hero-title-wrapper {
-            padding: 15px 20px;
-        }
-
-        .widget-wrapper {
-            padding: 15px 10px;
-        }
-
-        .hero-content h1 {
-            font-size: 1.8rem;
-        }
-    }
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;width:100%;max-width:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#333}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.main-navigation{background:#1e293b;padding:0;position:sticky;top:0;z-index:1020;box-shadow:0 2px 20px rgba(0,0,0,0.1);height:55px}
+.nav-container{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 100px;height:100%}
+.nav-logo{display:flex;align-items:center;text-decoration:none;padding:5px 0}
+.nav-menu{display:flex;list-style:none;margin:0;padding:0;gap:25px;align-items:center}
+.nav-menu>li{position:relative}
+.nav-menu a{color:#94a3b8;text-decoration:none;font-size:15px;font-weight:500;padding:18px 0;transition:color 0.3s ease;display:block}
+.nav-menu a:hover,.nav-menu a.active{color:white;text-decoration:none}
+.dropdown{position:relative}
+.dropdown-toggle{cursor:pointer;color:#94a3b8;font-size:15px;font-weight:500;padding:18px 0;display:flex;align-items:center;gap:5px}
+.dropdown-toggle:hover{color:white}
+.dropdown-menu{position:absolute;top:100%;right:0;background:#1e293b;min-width:280px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.3);opacity:0;visibility:hidden;transform:translateY(-10px);transition:all 0.3s ease;margin-top:5px;padding:10px 0}
+.dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown-menu a{padding:12px 20px;color:#94a3b8;display:block;transition:all 0.3s}
+.dropdown-menu a:hover{background:#334155;color:white}
+.mobile-menu-button{display:none;background:none;border:none;color:white;font-size:20px;cursor:pointer;padding:8px}
+.mobile-menu-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:10000;opacity:0;transition:opacity 0.3s ease}
+.mobile-menu-overlay.active{opacity:1}
+.mobile-menu{display:none;position:fixed;top:0;right:-280px;width:260px;height:100vh;background:#1e293b;z-index:10001;padding:60px 15px 15px;box-shadow:-4px 0 20px rgba(0,0,0,0.3);transition:right 0.3s ease;overflow-y:auto}
+.mobile-menu.active{right:0}
+.mobile-menu-close{position:absolute;top:15px;right:15px;background:none;border:none;color:white;font-size:20px;cursor:pointer;padding:5px}
+.mobile-menu-links{list-style:none;padding:0;margin:0}
+.mobile-menu-links a{color:#94a3b8;text-decoration:none;font-size:16px;display:block;padding:12px 15px;border-radius:6px;transition:all 0.3s ease}
+.mobile-menu-links a:hover,.mobile-menu-links a.active{background:#334155;color:white;text-decoration:none}
+.section-title{text-align:center;font-size:2.5rem;font-weight:700;margin-bottom:40px;color:#1e293b}
+.hero-section{background:linear-gradient(135deg,#1e4ed8 0%,#0891b2 100%);color:white;padding:30px 20px 80px;text-align:center}
+.hero-title-wrapper{background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);border:2px solid rgba(255,255,255,0.25);border-radius:20px;padding:25px 35px;box-shadow:0 8px 32px rgba(0,0,0,0.15);max-width:86%;margin:0 auto 25px;animation:fadeInDown 0.8s ease-out}
+.hero-content h1{font-size:clamp(1.5rem,4vw,3rem);margin-bottom:15px;font-weight:700;color:white}
+.widget-wrapper{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.3);border-radius:16px;padding:30px;max-width:1000px;margin:0 auto 20px;box-shadow:0 8px 32px rgba(0,0,0,0.1);opacity:0;transform:translateY(50px);animation:slideUpFade 1s ease-out 0.5s forwards}
+#parking-card-container{padding:20px 0;text-align:center}
+.card-title-search{font-size:1.5rem;font-weight:700;color:white;margin-top:15px;margin-bottom:20px}
+.hero-contacts{background:rgba(255,255,255,0.2);border-radius:8px;padding:15px 20px;margin-top:25px;display:flex;justify-content:center;gap:30px;flex-wrap:wrap;max-width:700px;margin-left:auto;margin-right:auto}
+.hero-contacts a{color:white;text-decoration:none;font-weight:500;font-size:1rem;display:flex;align-items:center;gap:8px;transition:opacity 0.3s}
+.hero-contacts a:hover{opacity:0.8}
+.hero-contacts i{color:#10b981;font-size:1.2rem}
+.card-description{font-size:1rem;margin-bottom:0;opacity:0.9;color:white}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUpFade{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
+.seo-text-section{background:white;padding:60px 20px}
+.seo-content-wrapper{max-width:1200px;margin:0 auto;display:flex;gap:40px;align-items:center;margin-bottom:50px}
+.seo-content-wrapper.reverse{flex-direction:row-reverse}
+.seo-image-box{flex:1;min-width:300px}
+.seo-image-box img{width:100%;height:auto;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+.seo-text-box{flex:1;background:#f8fafc;padding:35px 30px;border-radius:12px;border-left:5px solid #1d4ed8}
+.seo-text-box h2{font-size:1.8rem;color:#1e293b;margin-bottom:18px;font-weight:700}
+.seo-text-box p{font-size:1.05rem;color:#475569;line-height:1.8;margin-bottom:15px;text-align:left}
+.seo-text-box ul{list-style:none;padding:0;margin:15px 0;text-align:left}
+.seo-text-box li{padding:6px 0 6px 28px;position:relative;color:#475569;font-size:1.05rem}
+.seo-text-box li:before{content:"✓";position:absolute;left:0;color:#10b981;font-weight:bold;font-size:1.2rem}
+.features-section-parking{padding:80px 20px;background:#f8fafc}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;max-width:1200px;margin:0 auto}
+.feature-card{padding:30px 20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);background:#ffffff;border-top:5px solid #10b981;transition:transform 0.3s,box-shadow 0.3s;height:100%;text-align:left;cursor:pointer}
+.feature-card:hover{transform:translateY(-4px);box-shadow:0 10px 20px rgba(0,0,0,0.15)}
+.feature-icon{font-size:3rem;color:#10b981;margin-bottom:15px;text-align:center}
+.feature-card h4{font-size:1.2rem;color:#1e293b;font-weight:700;margin-bottom:10px;text-align:center}
+.feature-card p{color:#64748b;font-size:0.95rem;text-align:center}
+.tip-card{padding:30px 20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);background:#ffffff;border-top:5px solid #1d4ed8;transition:transform 0.3s,box-shadow 0.3s;height:100%;text-align:left;cursor:pointer;margin-bottom:30px}
+.tip-card summary{list-style:none;display:flex;flex-direction:column;padding-right:25px;position:relative;outline:none;cursor:pointer}
+.tip-card summary::-webkit-details-marker{display:none}
+.tip-card summary:after{content:"\25B6";position:absolute;right:0;top:5px;font-size:14px;color:#1d4ed8;transition:transform 0.3s}
+.tip-card[open] summary:after{content:"\25BC";top:8px}
+.tip-icon{font-size:3rem;margin-bottom:15px;text-align:center}
+.tip-card h4{font-size:1.2rem;color:#1e293b;font-weight:700;margin-bottom:10px;text-align:center}
+.tip-card .tip-card-text-short{color:#64748b;font-size:0.95rem;margin-bottom:15px;text-align:center}
+.tip-content{border-top:1px solid #e2e8f0;padding-top:15px;margin-top:15px;font-size:0.95rem;color:#475569;text-align:left;background-color:#f0fff4;padding:15px;border-radius:6px;line-height:1.5}
+.tip-content ul{list-style:none;padding-left:0}
+.tip-content li{margin-bottom:8px;padding-left:10px;position:relative}
+.tip-content li:before{content:"•";position:absolute;left:0;color:#10b981;font-weight:bold}
+.faq-section{background:white;padding:80px 20px}
+.faq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;max-width:1100px;margin:0 auto}
+.faq-card{padding:25px 20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);background:#ffffff;border-left:4px solid #1d4ed8;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer}
+.faq-card:hover{transform:translateY(-3px);box-shadow:0 8px 16px rgba(0,0,0,0.12)}
+.faq-card h4{font-size:1.1rem;color:#1e293b;font-weight:700;margin-bottom:10px}
+.faq-card p{color:#64748b;font-size:0.95rem;line-height:1.6}
+.map-container{display:flex;justify-content:center;margin-bottom:20px}
+.map-wrapper{position:relative;overflow:hidden;width:100%;height:0;padding-bottom:71.42%}
+.map-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+.map-wrapper a{position:absolute;left:0;z-index:10}
+.info-box{background-color:#fff7e6;border:1px solid #ffd79b;color:#6e5229;padding:15px;border-radius:4px;margin-bottom:15px}
+.footer{background-color:#1e293b;color:#94a3b8;padding:60px 0 20px;font-size:14px}
+.footer-container{max-width:1200px;margin:0 auto;padding:0 20px}
+.footer-content{display:flex;justify-content:space-between;flex-wrap:wrap;margin-bottom:40px;gap:30px}
+.footer-section{width:calc(25% - 20px);min-width:200px;margin-bottom:20px}
+.footer-section h3{margin-bottom:20px;color:white;font-size:1.1rem;border-bottom:2px solid #334155;padding-bottom:10px}
+.footer-section ul{list-style:none;padding-left:0}
+.footer-section li{margin-bottom:10px}
+.footer-section a{color:#94a3b8;transition:0.3s;font-size:0.95rem;text-decoration:none}
+.footer-section a:hover{color:white;text-decoration:underline}
+.footer-bottom{border-top:1px solid #334155;padding-top:20px;text-align:center;color:#94a3b8}
+@media (max-width:1175px){
+.nav-container{padding:0 16px}
+.nav-menu{display:none}
+.mobile-menu-button{display:block}
+.mobile-menu-overlay,.mobile-menu{display:block}
+}
+@media (max-width:768px){
+.hero-section{padding:20px 15px 60px}
+.hero-title-wrapper{padding:20px 25px;max-width:95%}
+.hero-content h1{font-size:1.4rem}
+.widget-wrapper{padding:20px 15px}
+.card-title-search{font-size:1.2rem}
+.section-title{font-size:1.8rem;margin-bottom:30px}
+.seo-content-wrapper{flex-direction:column;gap:30px;margin-bottom:40px}
+.seo-content-wrapper.reverse{flex-direction:column}
+.seo-image-box{min-width:100%}
+.seo-text-box{padding:30px 20px}
+.seo-text-box h2{font-size:1.5rem}
+.seo-text-box p,.seo-text-box li{font-size:0.95rem}
+.footer-content{flex-direction:column;gap:0}
+.footer-section{width:100%}
+}
+@media (max-width:480px){
+.nav-container{padding:0 12px}
+.hero-section{padding:15px 15px 50px}
+.hero-title-wrapper{padding:15px 20px}
+.hero-content h1{font-size:1.2rem}
+.widget-wrapper{padding:15px 10px}
+.card-title-search{font-size:1.1rem}
+.section-title{font-size:1.5rem;margin-bottom:25px}
+.seo-content-wrapper{margin-bottom:30px}
+.seo-text-box{padding:25px 18px}
+.seo-text-box h2{font-size:1.3rem}
+.seo-text-box p,.seo-text-box li{font-size:0.9rem}
+.feature-icon,.tip-icon{font-size:2.5rem}
+.feature-card h4,.tip-card h4{font-size:1.1rem}
+}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ParkingFacility",
+  "name": "Park & Fly - Охраняемая парковка в аэропортах",
+  "description": "Охраняемая парковка Park & Fly в аэропортах Москвы с бесплатным трансфером",
+  "url": "https://airflowtravel.net/parking.html",
+  "telephone": "8-800-3333-474",
+  "email": "info@parkandfly.ru",
+  "priceRange": "От 500 руб/сутки",
+  "openingHours": "Mo-Su 00:00-24:00",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "RU",
+    "addressRegion": "Московская область"
+  }
+}
+</script>
 </head>
 <body>
-
 <nav class="main-navigation">
 <div class="nav-container">
-    <a class="nav-logo" href="index.html" style="padding: 5px 0;">
-        <img src="https://airflowtravel.net/airflowpilot-logo.png" alt="Airflowpilot Logo" style="height: 70px; width: auto; display: block;">
-    </a>
-    <ul class="nav-menu">
-        <li><a href="index.html">Главная</a></li> 
-        <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-        <li><a href="hotels.html">🏨 Отели</a></li>
-        <li><a href="cars.html">🚗 Аренда авто</a></li>
-        <li><a href="transfers.html">🚕 Трансферы</a></li>
-        <li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
-        <li class="dropdown">
-            <span class="dropdown-toggle">
-                Ещё <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
-            </span>
-            <div class="dropdown-menu">
-                <a href="attractions.html">🎭 Музеи и достопримечательности</a>
-                <a href="trains-buses.html">🚂 Поезда и автобусы</a>
-                <a href="vip-lounge.html">💎 VIP залы</a>
-                <a href="parking.html" class="active">🅿️ Парковка</a>
-                <a href="insurance.html">🛡️ Страховка</a>
-                <a href="simcard.html">📱 SIM карты</a>
-                <a href="about.html">ℹ️ О нас</a>
-                <a href="help.html">❓ Помощь</a>
-            </div>
-        </li>
-    </ul>
-    <button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button">
-        <i class="fas fa-bars"></i>
-    </button>
+<a class="nav-logo" href="index.html" aria-label="Airflowpilot Главная">
+<img src="https://airflowtravel.net/airflowpilot-logo.png" alt="Airflowpilot Logo" width="auto" height="70" style="display:block">
+</a>
+<ul class="nav-menu">
+<li><a href="index.html">Главная</a></li>
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a href="transfers.html">🚕 Трансферы</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+<li class="dropdown">
+<span class="dropdown-toggle">Ещё <i class="fas fa-chevron-down" style="font-size:12px"></i></span>
+<div class="dropdown-menu">
+<a href="attractions.html">🎭 Музеи и достопримечательности</a>
+<a href="trains-buses.html">🚂 Поезда и автобусы</a>
+<a href="vip-lounge.html">💎 VIP залы</a>
+<a href="parking.html" class="active">🅿️ Парковка</a>
+<a href="insurance.html">🛡️ Страховка</a>
+<a href="simcard.html">📱 SIM карты</a>
+<a href="about.html">ℹ️ О нас</a>
+<a href="help.html">❓ Помощь</a>
+</div>
+</li>
+</ul>
+<button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button"><i class="fas fa-bars"></i></button>
 </div>
 </nav>
-
 <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
-<nav class="mobile-menu" id="mobile-menu">
-    <button aria-label="Закрыть" class="mobile-menu-close" id="mobile-menu-close">×</button>
-    <ul class="mobile-menu-links">
-        <li><a href="index.html">Главная</a></li>
-        <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-        <li><a href="hotels.html">🏨 Отели</a></li>
-        <li><a href="cars.html">🚗 Аренда авто</a></li>
-        <li><a href="transfers.html">🚕 Трансферы</a></li>
-        <li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
-        <li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
-        <li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
-        <li><a href="vip-lounge.html">💎 VIP залы</a></li>
-        <li><a href="parking.html" class="active">🅿️ Парковка</a></li>
-        <li><a href="insurance.html">🛡️ Страховка</a></li>
-        <li><a href="simcard.html">📱 SIM карты</a></li>
-        <li><a href="about.html">ℹ️ О нас</a></li>
-        <li><a href="help.html">❓ Помощь</a></li>
-    </ul>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Мобильное меню">
+<button aria-label="Закрыть" class="mobile-menu-close" id="mobile-menu-close">×</button>
+<ul class="mobile-menu-links">
+<li><a href="index.html">Главная</a></li>
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a href="transfers.html">🚕 Трансферы</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+<li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
+<li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
+<li><a href="vip-lounge.html">💎 VIP залы</a></li>
+<li><a href="parking.html" class="active">🅿️ Парковка</a></li>
+<li><a href="insurance.html">🛡️ Страховка</a></li>
+<li><a href="simcard.html">📱 SIM карты</a></li>
+<li><a href="about.html">ℹ️ О нас</a></li>
+<li><a href="help.html">❓ Помощь</a></li>
+</ul>
 </nav>
-
 <main>
-    <section class="hero-section">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-title-wrapper">
-                    <h1>Охраняемый Паркинг в Аэропортах и Вокзалах</h1>
-                    <p class="card-description">
-                        Бронируйте парковку за 5 минут и путешествуйте спокойно. Все цены и наличие мест актуальны.
-                    </p>
-                </div>
-
-                <div class="widget-wrapper">
-                    <div id="parking-card-container">
-                        <div id="train-bus-widget-container">
-                            <script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&color=blue&powered_by=false&promo_id=8962&campaign_id=38" charset="utf-8"></script>
-                        </div>
-
-                        <h2 class="card-title-search">Онлайн-бронирование места на парковке Park & Fly</h2>
-
-                        <div class="hero-contacts">
-                            <a href="tel:88003333474">
-                                <i class="fas fa-phone"></i> 8-800-3333-474
-                            </a>
-                            <a href="mailto:info@parkandfly.ru">
-                                <i class="fas fa-envelope"></i> info@parkandfly.ru
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="features-section-parking">
-        <div class="container">
-            
-            <h2 class="section-title">Тарифы и Правила Оплаты (Park & Fly)</h2>
-            <details class="tip-card" style="border-top-color: #1d4ed8;">
-                <summary>
-                    <div class="tip-icon" style="color: #1d4ed8;"><i class="fas fa-sack-dollar"></i></div>
-                    <h4>Условия бронирования, скидки и расчетный час</h4>
-                    <p class="tip-card-text-short">Подробная информация о ценах и правилах оплаты на парковках Park & Fly.</p>
-                </summary>
-                <div class="tip-content">
-                    <ul>
-                        <li><strong>Базовый тариф:</strong> 500 рублей/сутки.</li>
-                        <li><strong>Клубная скидка:</strong> Скидка 10% по Клубной карте.</li>
-                        <li><strong>Льготные условия:</strong> Скидка 20% при парковке от 30 суток и для льготных категорий граждан.</li>
-                        <li><strong>Порядок оплаты:</strong> Предоплата картой в день заезда или онлайн в личном кабинете.</li>
-                        <li><strong>Расчетный час:</strong> Отсчет суток с момента въезда. В день выезда 4 часа бесплатно.</li>
-                    </ul>
-                </div>
-            </details>
-            
-            <h2 class="section-title" style="margin-top: 50px;">Порядок действий на парковках Park & Fly</h2>
-            <details class="tip-card" style="border-top-color: #10b981;">
-                <summary>
-                    <div class="tip-icon" style="color: #10b981;"><i class="fas fa-route"></i></div>
-                    <h4>Пошаговая инструкция от бронирования до возвращения</h4>
-                    <p class="tip-card-text-short">Как быстро и без проблем воспользоваться услугами паркинга.</p>
-                </summary>
-                <div class="tip-content">
-                    <ul>
-                        <li><strong>Бронирование:</strong> Забронируйте парковочное место через форму онлайн-бронирования.</li>
-                        <li><strong>Прибытие:</strong> Скачайте схему проезда и прибудьте на территорию парковки.</li>
-                        <li><strong>Оплата:</strong> Оплатите бронирование удобным способом — картой или по QR-коду.</li>
-                        <li><strong>Вылет:</strong> Ваш багаж будет бесплатно упакован, и Вас доставят до дверей терминала.</li>
-                        <li><strong>Возвращение:</strong> По прилету Вас встретят в аэропорту и с комфортом привезут обратно на парковку.</li>
-                    </ul>
-                </div>
-            </details>
-            
-            <h2 class="section-title" style="margin-top: 50px;">Преимущества сети парковок Park & Fly</h2>
-            <div class="features-grid">
-                <div class="feature-card" style="border-top-color: #f59e0b;">
-                    <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-shuttle-van"></i></div>
-                    <h4>Бесплатный Круглосуточный Трансфер</h4>
-                    <p>Доставляем пассажиров и багаж прямо до дверей терминала и обратно 24 часа в сутки.</p>
-                </div>
-                <div class="feature-card" style="border-top-color: #1d4ed8;">
-                    <div class="feature-icon" style="color: #1d4ed8;"><i class="fas fa-box"></i></div>
-                    <h4>Бесплатная Упаковка Багажа</h4>
-                    <p>Для всех клиентов предоставляется качественная и неограниченная упаковка багажа.</p>
-                </div>
-                <div class="feature-card" style="border-top-color: #10b981;">
-                    <div class="feature-icon" style="color: #10b981;"><i class="fas fa-lock"></i></div>
-                    <h4>Круглосуточный Контроль 24/7</h4>
-                    <p>Объект под постоянным видеонаблюдением, территория огорожена высоким забором.</p>
-                </div>
-                <div class="feature-card" style="border-top-color: #f59e0b;">
-                    <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-taxi"></i></div>
-                    <h4>Такси между аэропортами</h4>
-                    <p>Организация трансфера между московскими аэропортами по специальным выгодным тарифам.</p>
-                </div>
-                <div class="feature-card" style="border-top-color: #1d4ed8;">
-                    <div class="feature-icon" style="color: #1d4ed8;"><i class="fas fa-couch"></i></div>
-                    <h4>Комфортная Клиентская Комната</h4>
-                    <p>Зона для ожидания рейса: удобные диванчики, бесплатный Wi-Fi, вода и туалет.</p>
-                </div>
-                <div class="feature-card" style="border-top-color: #10b981;">
-                    <div class="feature-icon" style="color: #10b981;"><i class="fas fa-car-battery"></i></div>
-                    <h4>Бустер и Компрессор (Бесплатно)</h4>
-                    <p>Предоставляем бесплатную подкачку колес и подзарядку аккумулятора вашего автомобиля.</p>
-                </div>
-                <div class="feature-card" style="border-top-color: #f59e0b;">
-                    <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-percent"></i></div>
-                    <h4>Гибкая Система Скидок</h4>
-                    <p>Скидки по клубным картам и специальные льготы для определенных категорий граждан.</p>
-                </div>
-                <div class="feature-card" style="border-top-color: #1d4ed8;">
-                    <div class="feature-icon" style="color: #1d4ed8;"><i class="fas fa-clock"></i></div>
-                    <h4>Режим Работы 24/7</h4>
-                    <p>Парковка и все сопутствующие услуги работают круглосуточно.</p>
-                </div>
-                <div class="feature-card" style="border-top-color: #10b981;">
-                    <div class="feature-icon" style="color: #10b981;"><i class="fas fa-child"></i></div>
-                    <h4>Безопасность для Детей</h4>
-                    <p>В каждом фирменном микроавтобусе для трансфера установлено детское кресло.</p>
-                </div>
-            </div>
-            
-            <h2 class="section-title" style="margin-top: 50px;">Расположение Парковок Park & Fly</h2>
-            <div class="info-box" style="margin-top: 20px;">
-                <p style="text-align: center; font-style: italic; color: #6e5229;">На карте показана общая зона покрытия сети Park & Fly в Московском регионе.</p>
-            </div>
-            
-            <div class="map-container">
-                <div class="map-wrapper">
-                    <a href="https://yandex.com/maps/1/moscow-and-moscow-oblast/search/Park%20%26%20Fly/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;left:0;">Park & Fly в Москве и Московской области</a>
-                    <a href="https://yandex.com/maps/1/moscow-and-moscow-oblast/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;left:0;">Москва и Московская область</a>
-                    <iframe src="https://yandex.com/map-widget/v1/?display-text=Park%20%26%20Fly&from=api-maps&ll=35.996921%2C56.084971&mode=search&origin=jsapi21&sctx=ZAAAAAgBEAAaKAoSCWzNVl7yW0JAEXdKB%2Bv%2F3EtAEhIJibX4FADDDkARIZViR%2BPQ8z8iBgABAgMEBSgKOABAAUgBagJydZ0BzczMPaABAKgBAL0BmERPNsIBBoaE5YiJAYICGigoY2hhaW5faWQ6KDM2OTE1MTEzNTc1KSkpigIAkgIAmgIMZGVza3RvcC1tYXBzqgILMzY5MTUxMTM1NzWwAgE%3D&sll=35.996921%2C56.084971&sspn=7.690430%2C2.454293&text=%7B%22text%22%3A%22Park%20%26%20Fly%22%2C%22what%22%3A%5B%7B%22attr_name%22%3A%22chain_id%22%2C%22attr_values%22%3A%5B%2236915113575%22%5D%7D%5D%7D&z=8" 
-                    frameborder="1" allowfullscreen="true" 
-                    style="position:absolute; top:0; left:0; width: 100%; height: 100%;"></iframe>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-
+<section class="hero-section">
+<div class="container">
+<div class="hero-content">
+<div class="hero-title-wrapper">
+<h1>Охраняемый Паркинг в Аэропортах и Вокзалах</h1>
+<p class="card-description">Бронируйте парковку за 5 минут и путешествуйте спокойно. Все цены и наличие мест актуальны.</p>
+</div>
+<div class="widget-wrapper">
+<div id="parking-card-container">
+<div id="train-bus-widget-container">
+<script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&color=blue&powered_by=false&promo_id=8962&campaign_id=38" charset="utf-8"></script>
+</div>
+<h2 class="card-title-search">Онлайн-бронирование места на парковке Park & Fly</h2>
+<div class="hero-contacts">
+<a href="tel:88003333474"><i class="fas fa-phone"></i> 8-800-3333-474</a>
+<a href="mailto:info@parkandfly.ru"><i class="fas fa-envelope"></i> info@parkandfly.ru</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="seo-text-section">
+<div class="container">
+<!-- БЛОК 1: Картинка слева + Текст справа -->
+<div class="seo-content-wrapper">
+<div class="seo-image-box">
+<img src="images/parking.png" alt="Парковка Park & Fly в аэропорту Москвы" width="600" height="450">
+</div>
+<div class="seo-text-box">
+<h2>🅿️ Park & Fly в Аэропортах Москвы</h2>
+<p><strong>Park & Fly</strong> — это сеть охраняемых парковок возле крупнейших аэропортов Москвы: <strong>Шереметьево, Домодедово и Внуково</strong>. Сервис предлагает удобное и безопасное размещение вашего автомобиля на период путешествия.</p>
+<p>Оставляя машину на парковке Park & Fly, вы получаете:</p>
+<ul>
+<li>Бесплатный круглосуточный трансфер до терминала аэропорта и обратно</li>
+<li>Бесплатную упаковку багажа перед вылетом</li>
+<li>Круглосуточную охрану и видеонаблюдение территории</li>
+<li>Огороженную территорию с контролируемым въездом</li>
+</ul>
+</div>
+</div>
+<!-- БЛОК 2: Текст слева + Картинка справа -->
+<div class="seo-content-wrapper reverse">
+<div class="seo-image-box">
+<img src="images/parking 2.png" alt="Безопасная парковка возле аэропорта с охраной 24/7" width="600" height="450">
+</div>
+<div class="seo-text-box">
+<h2>💰 Тарифы и Удобное Бронирование</h2>
+<p>Тарифы на парковку начинаются от <strong>500 рублей в сутки</strong>. Доступны скидки при длительной парковке (от 30 дней) — до 20%, а также скидка 10% для владельцев клубных карт.</p>
+<p>Бронирование места осуществляется онлайн через удобную форму на сайте с мгновенным подтверждением и оплатой банковской картой. Все парковки Park & Fly работают <strong>круглосуточно без выходных</strong>, что позволяет оставить или забрать автомобиль в любое удобное время.</p>
+<p>Дополнительные услуги включают:</p>
+<ul>
+<li>Комфортную клиентскую комнату с Wi-Fi для ожидания рейса</li>
+<li>Бесплатную подкачку колес и подзарядку аккумулятора</li>
+<li>Трансфер между московскими аэропортами по выгодным тарифам</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="features-section-parking">
+<div class="container">
+<h2 class="section-title">Тарифы и Правила Оплаты (Park & Fly)</h2>
+<details class="tip-card" style="border-top-color:#1d4ed8">
+<summary>
+<div class="tip-icon" style="color:#1d4ed8"><i class="fas fa-sack-dollar"></i></div>
+<h4>Условия бронирования, скидки и расчетный час</h4>
+<p class="tip-card-text-short">Подробная информация о ценах и правилах оплаты на парковках Park & Fly.</p>
+</summary>
+<div class="tip-content">
+<ul>
+<li><strong>Базовый тариф:</strong> 500 рублей/сутки.</li>
+<li><strong>Клубная скидка:</strong> Скидка 10% по Клубной карте.</li>
+<li><strong>Льготные условия:</strong> Скидка 20% при парковке от 30 суток и для льготных категорий граждан.</li>
+<li><strong>Порядок оплаты:</strong> Предоплата картой в день заезда или онлайн в личном кабинете.</li>
+<li><strong>Расчетный час:</strong> Отсчет суток с момента въезда. В день выезда 4 часа бесплатно.</li>
+</ul>
+</div>
+</details>
+<h2 class="section-title" style="margin-top:50px">Порядок действий на парковках Park & Fly</h2>
+<details class="tip-card" style="border-top-color:#10b981">
+<summary>
+<div class="tip-icon" style="color:#10b981"><i class="fas fa-route"></i></div>
+<h4>Пошаговая инструкция от бронирования до возвращения</h4>
+<p class="tip-card-text-short">Как быстро и без проблем воспользоваться услугами паркинга.</p>
+</summary>
+<div class="tip-content">
+<ul>
+<li><strong>Бронирование:</strong> Забронируйте парковочное место через форму онлайн-бронирования.</li>
+<li><strong>Прибытие:</strong> Скачайте схему проезда и прибудьте на территорию парковки.</li>
+<li><strong>Оплата:</strong> Оплатите бронирование удобным способом — картой или по QR-коду.</li>
+<li><strong>Вылет:</strong> Ваш багаж будет бесплатно упакован, и Вас доставят до дверей терминала.</li>
+<li><strong>Возвращение:</strong> По прилету Вас встретят в аэропорту и с комфортом привезут обратно на парковку.</li>
+</ul>
+</div>
+</details>
+<h2 class="section-title" style="margin-top:50px">Преимущества сети парковок Park & Fly</h2>
+<div class="features-grid">
+<article class="feature-card" style="border-top-color:#f59e0b">
+<div class="feature-icon" style="color:#f59e0b"><i class="fas fa-shuttle-van"></i></div>
+<h4>Бесплатный Круглосуточный Трансфер</h4>
+<p>Доставляем пассажиров и багаж прямо до дверей терминала и обратно 24 часа в сутки.</p>
+</article>
+<article class="feature-card" style="border-top-color:#1d4ed8">
+<div class="feature-icon" style="color:#1d4ed8"><i class="fas fa-box"></i></div>
+<h4>Бесплатная Упаковка Багажа</h4>
+<p>Для всех клиентов предоставляется качественная и неограниченная упаковка багажа.</p>
+</article>
+<article class="feature-card" style="border-top-color:#10b981">
+<div class="feature-icon" style="color:#10b981"><i class="fas fa-lock"></i></div>
+<h4>Круглосуточный Контроль 24/7</h4>
+<p>Объект под постоянным видеонаблюдением, территория огорожена высоким забором.</p>
+</article>
+<article class="feature-card" style="border-top-color:#f59e0b">
+<div class="feature-icon" style="color:#f59e0b"><i class="fas fa-taxi"></i></div>
+<h4>Такси между аэропортами</h4>
+<p>Организация трансфера между московскими аэропортами по специальным выгодным тарифам.</p>
+</article>
+<article class="feature-card" style="border-top-color:#1d4ed8">
+<div class="feature-icon" style="color:#1d4ed8"><i class="fas fa-couch"></i></div>
+<h4>Комфортная Клиентская Комната</h4>
+<p>Зона для ожидания рейса: удобные диванчики, бесплатный Wi-Fi, вода и туалет.</p>
+</article>
+<article class="feature-card" style="border-top-color:#10b981">
+<div class="feature-icon" style="color:#10b981"><i class="fas fa-car-battery"></i></div>
+<h4>Бустер и Компрессор (Бесплатно)</h4>
+<p>Предоставляем бесплатную подкачку колес и подзарядку аккумулятора вашего автомобиля.</p>
+</article>
+<article class="feature-card" style="border-top-color:#f59e0b">
+<div class="feature-icon" style="color:#f59e0b"><i class="fas fa-percent"></i></div>
+<h4>Гибкая Система Скидок</h4>
+<p>Скидки по клубным картам и специальные льготы для определенных категорий граждан.</p>
+</article>
+<article class="feature-card" style="border-top-color:#1d4ed8">
+<div class="feature-icon" style="color:#1d4ed8"><i class="fas fa-clock"></i></div>
+<h4>Режим Работы 24/7</h4>
+<p>Парковка и все сопутствующие услуги работают круглосуточно.</p>
+</article>
+<article class="feature-card" style="border-top-color:#10b981">
+<div class="feature-icon" style="color:#10b981"><i class="fas fa-child"></i></div>
+<h4>Безопасность для Детей</h4>
+<p>В каждом фирменном микроавтобусе для трансфера установлено детское кресло.</p>
+</article>
+</div>
+<h2 class="section-title" style="margin-top:50px">Расположение Парковок Park & Fly</h2>
+<div class="info-box" style="margin-top:20px">
+<p style="text-align:center;font-style:italic;color:#6e5229">На карте показана общая зона покрытия сети Park & Fly в Московском регионе.</p>
+</div>
+<div class="map-container">
+<div class="map-wrapper">
+<a href="https://yandex.com/maps/1/moscow-and-moscow-oblast/search/Park%20%26%20Fly/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0;left:0">Park & Fly в Москве и Московской области</a>
+<a href="https://yandex.com/maps/1/moscow-and-moscow-oblast/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;left:0">Москва и Московская область</a>
+<iframe src="https://yandex.com/map-widget/v1/?display-text=Park%20%26%20Fly&from=api-maps&ll=35.996921%2C56.084971&mode=search&origin=jsapi21&sctx=ZAAAAAgBEAAaKAoSCWzNVl7yW0JAEXdKB%2Bv%2F3EtAEhIJibX4FADDDkARIZViR%2BPQ8z8iBgABAgMEBSgKOABAAUgBagJydZ0BzczMPaABAKgBAL0BmERPNsIBBoaE5YiJAYICGigoY2hhaW5faWQ6KDM2OTE1MTEzNTc1KSkpigIAkgIAmgIMZGVza3RvcC1tYXBzqgILMzY5MTUxMTM1NzWwAgE%3D&sll=35.996921%2C56.084971&sspn=7.690430%2C2.454293&text=%7B%22text%22%3A%22Park%20%26%20Fly%22%2C%22what%22%3A%5B%7B%22attr_name%22%3A%22chain_id%22%2C%22attr_values%22%3A%5B%2236915113575%22%5D%7D%5D%7D&z=8" frameborder="1" allowfullscreen="true" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
+</div>
+</div>
+</div>
+</section>
+<section class="faq-section">
+<div class="container">
+<h2 class="section-title">❓ Часто Задаваемые Вопросы</h2>
+<div class="faq-grid">
+<div class="faq-card">
+<h4>Сколько стоит парковка в аэропорту?</h4>
+<p>Базовый тариф составляет 500 рублей за сутки. При длительной парковке (от 30 дней) действует скидка 20%. Также доступны клубные карты со скидкой 10%.</p>
+</div>
+<div class="faq-card">
+<h4>Как добраться до терминала?</h4>
+<p>Бесплатный круглосуточный трансфер доставит вас от парковки до дверей терминала и обратно. Время в пути обычно составляет 5-10 минут.</p>
+</div>
+<div class="faq-card">
+<h4>Безопасно ли оставлять машину?</h4>
+<p>Да, территория огорожена, работает круглосуточное видеонаблюдение и охрана. Park & Fly работает с 2010 года и обслуживает тысячи клиентов ежемесячно.</p>
+</div>
+<div class="faq-card">
+<h4>Можно ли отменить бронирование?</h4>
+<p>Да, бронирование можно отменить заранее. Условия отмены и возврата средств уточняйте при бронировании или по телефону 8-800-3333-474.</p>
+</div>
+<div class="faq-card">
+<h4>Есть ли услуги для детей?</h4>
+<p>В каждом трансферном микроавтобусе установлено детское автокресло. Упаковка детских колясок также производится бесплатно.</p>
+</div>
+<div class="faq-card">
+<h4>Как оплатить парковку?</h4>
+<p>Оплата производится банковской картой онлайн при бронировании или на месте в день заезда. Принимаются все основные банковские карты.</p>
+</div>
+</div>
+</div>
+</section>
 </main>
-
 <footer class="footer">
-    <div class="footer-container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>✨ О нас</h3>
-                <ul>
-                    <li><a href="about.html">→ О проекте Airflow</a></li>
-                    <li><a href="help.html">→ Помощь и контакты</a></li>
-                    <li><a href="privacy.html">→ Политика конфиденциальности</a></li>
-                    <li><a href="terms.html">→ Условия использования</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Продукты</h3>
-                <ul>
-                    <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-                    <li><a href="hotels.html">🏨 Отели</a></li>
-                    <li><a href="cars.html">🚗 Аренда авто</a></li>
-                    <li><a href="transfers.html">🚕 Трансферы</a></li>
-                    <li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
-                    <li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Дополнительно</h3>
-                <ul>
-                    <li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
-                    <li><a href="vip-lounge.html">💎 VIP залы</a></li>
-                    <li><a href="parking.html">🅿️ Парковка</a></li>
-                    <li><a href="insurance.html">🛡️ Страховка</a></li>
-                    <li><a href="simcard.html">📱 SIM карты</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Служба поддержки Park & Fly</h3>
-                <ul>
-                    <li><a href="tel:88003333474"><i class="fas fa-phone" style="color: #10b981;"></i> 8-800-3333-474</a></li>
-                    <li><a href="tel:+74952121113"><i class="fas fa-phone" style="color: #10b981;"></i> +7 (495) 212-11-13</a></li>
-                    <li><a href="mailto:info@parkandfly.ru"><i class="fas fa-envelope" style="color: #10b981;"></i> info@parkandfly.ru</a></li>
-                    <li style="margin-top: 10px;"><p style="font-size: 0.85rem; color: #64748b; margin: 0;">Круглосуточно, бесплатный по России</p></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            &copy; 2025 Airflowpilot. Все права защищены.
-        </div>
-    </div>
+<div class="footer-container">
+<div class="footer-content">
+<div class="footer-section">
+<h3>✨ О нас</h3>
+<ul>
+<li><a href="about.html">→ О проекте Airflow</a></li>
+<li><a href="help.html">→ Помощь и контакты</a></li>
+<li><a href="privacy.html">→ Политика конфиденциальности</a></li>
+<li><a href="terms.html">→ Условия использования</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Продукты</h3>
+<ul>
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a href="transfers.html">🚕 Трансферы</a></li>
+<li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Дополнительно</h3>
+<ul>
+<li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
+<li><a href="vip-lounge.html">💎 VIP залы</a></li>
+<li><a href="parking.html">🅿️ Парковка</a></li>
+<li><a href="insurance.html">🛡️ Страховка</a></li>
+<li><a href="simcard.html">📱 SIM карты</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Служба поддержки Park & Fly</h3>
+<ul>
+<li><a href="tel:88003333474"><i class="fas fa-phone" style="color:#10b981"></i> 8-800-3333-474</a></li>
+<li><a href="tel:+74952121113"><i class="fas fa-phone" style="color:#10b981"></i> +7 (495) 212-11-13</a></li>
+<li><a href="mailto:info@parkandfly.ru"><i class="fas fa-envelope" style="color:#10b981"></i> info@parkandfly.ru</a></li>
+<li style="margin-top:10px"><p style="font-size:0.85rem;color:#64748b;margin:0">Круглосуточно, бесплатный по России</p></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">&copy; 2026 Airflowpilot. Все права защищены.</div>
+</div>
 </footer>
-
 <script>
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuButton = document.getElementById('mobile-menu-button');
-    const menuOverlay = document.getElementById('mobile-menu-overlay');
-    const menuClose = document.getElementById('mobile-menu-close');
-    let isMenuOpen = false;
-
-    function toggleMenu() {
-        isMenuOpen = !isMenuOpen;
-        if (isMenuOpen) {
-            mobileMenu.classList.add('active');
-            menuOverlay.classList.add('active');
-            menuOverlay.style.display = 'block';
-            document.body.style.overflow = 'hidden'; 
-        } else {
-            mobileMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = ''; 
-            setTimeout(() => {
-                if (!isMenuOpen) {
-                    menuOverlay.style.display = 'none';
-                }
-            }, 300);
-        }
-    }
-
-    function closeMenu() {
-        isMenuOpen = false;
-        mobileMenu.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        document.body.style.overflow = ''; 
-        setTimeout(() => {
-            menuOverlay.style.display = 'none';
-        }, 300);
-    }
-
-    if (menuButton) menuButton.addEventListener('click', toggleMenu);
-    if (menuClose) menuClose.addEventListener('click', closeMenu);
-    if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
-
-    document.querySelectorAll('.mobile-menu-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('active')) {
-                closeMenu();
-            }
-        });
-    });
+const mobileMenu=document.getElementById('mobile-menu');const menuButton=document.getElementById('mobile-menu-button');const menuOverlay=document.getElementById('mobile-menu-overlay');const menuClose=document.getElementById('mobile-menu-close');let isMenuOpen=false;function toggleMenu(){isMenuOpen=!isMenuOpen;if(isMenuOpen){mobileMenu.classList.add('active');menuOverlay.classList.add('active');menuOverlay.style.display='block';document.body.style.overflow='hidden'}else{mobileMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';setTimeout(()=>{if(!isMenuOpen){menuOverlay.style.display='none'}},300)}}function closeMenu(){isMenuOpen=false;mobileMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';setTimeout(()=>{menuOverlay.style.display='none'},300)}if(menuButton)menuButton.addEventListener('click',toggleMenu);if(menuClose)menuClose.addEventListener('click',closeMenu);if(menuOverlay)menuOverlay.addEventListener('click',closeMenu);document.querySelectorAll('.mobile-menu-links a').forEach(link=>{link.addEventListener('click',()=>{if(mobileMenu.classList.contains('active')){closeMenu()}})});
 </script>
 </body>
 </html>
