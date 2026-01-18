@@ -1,1122 +1,493 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="description" content="Закажите надежный трансфер авто по лучшей цене. Комфортные машины, фиксированный тариф, встреча с табличкой. Трансферы по городу и между городами." />
-    <link rel="icon" href="bus_icon-icons.com_76529.ico" type="image/x-icon">
-    <meta property="og:title" content="AIRFLOW ТРАНСФЕР - Бронирование Такси и Трансферов" />
-    <meta property="og:description" content="Забронируйте персональный трансфер заранее. Без скрытых доплат и очередей. Лучшие цены на такси-трансферы." />
-    <meta content="ru" property="og:locale">
-    <meta content="website" property="og:type">
-    <title>Заказать трансфер авто | Индивидуальные перевозки</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html, body {
-            overflow-x: hidden;
-            width: 100%;
-            max-width: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .main-navigation {
-            background: #1e293b;
-            padding: 0;
-            position: sticky;
-            top: 0;
-            z-index: 1020;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            height: 55px;
-        }
-
-        .nav-container {
-            max-width: 1240px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 100px;
-            height: 100%;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: white;
-            font-size: 18px;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-menu > li {
-            position: relative;
-        }
-
-        .nav-menu a {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            padding: 18px 0;
-            transition: color 0.3s ease;
-            display: block;
-        }
-
-        .nav-menu a:hover, .nav-menu a.active {
-            color: white;
-            text-decoration: none;
-        }
-
-        /* ВЫПАДАЮЩЕЕ МЕНЮ */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-            color: #94a3b8;
-            font-size: 15px;
-            font-weight: 500;
-            padding: 18px 0;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .dropdown-toggle:hover {
-            color: white;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: #1e293b;
-            min-width: 280px;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            margin-top: 5px;
-            padding: 10px 0;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu a {
-            padding: 12px 20px;
-            color: #94a3b8;
-            display: block;
-            transition: all 0.3s;
-        }
-
-        .dropdown-menu a:hover {
-            background: #334155;
-            color: white;
-        }
-
-        .mobile-menu-button {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .mobile-menu-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 10000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .mobile-menu-overlay.active {
-            opacity: 1;
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: -280px;
-            width: 260px;
-            height: 100vh;
-            background: #1e293b;
-            z-index: 10001;
-            padding: 60px 15px 15px;
-            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
-            transition: right 0.3s ease;
-            overflow-y: auto;
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .mobile-menu-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .mobile-menu-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .mobile-menu-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 16px;
-            display: block;
-            padding: 12px 15px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-links a:hover, .mobile-menu-links a.active {
-            background: #334155;
-            color: white;
-            text-decoration: none;
-        }
-
-        @media (max-width: 1175px) {
-            .nav-container {
-                padding: 0 16px;
-            }
-            .nav-menu {
-                display: none;
-            }
-            .mobile-menu-button {
-                display: block;
-            }
-            .mobile-menu-overlay,
-            .mobile-menu {
-                display: block;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-container {
-                padding: 0 12px;
-            }
-        }
-
-        .hero-section {
-            background: linear-gradient(135deg, #1d4ed8 0%, #10b981 100%);
-            color: white;
-            padding: 30px 20px 80px;
-            text-align: center;
-        }
-
-        .hero-content {
-            width: 100%;
-        }
-
-        /* ПРОЗРАЧНАЯ РАМКА ДЛЯ ЗАГОЛОВКА */
-        .hero-title-wrapper {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            border-radius: 20px;
-            padding: 25px 35px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            max-width: 86%;
-            margin: 0 auto 25px;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 15px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .hero-content p {
-            font-size: 1rem;
-            margin-bottom: 0;
-            opacity: 0.95;
-        }
-
-        /* ВИДЖЕТ */
-        .widget-container {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 16px;
-            padding: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 40px;
-            color: #1e293b;
-        }
-        
-        .product-icons-section {
-            padding: 60px 20px;
-            background: white;
-            text-align: center;
-        }
-
-        .product-icons-grid {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            max-width: 900px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-        }
-
-        .product-icon-link {
-            text-decoration: none;
-            color: #1e293b;
-            transition: color 0.3s ease, transform 0.3s ease;
-            display: block;
-            padding: 15px;
-            border-radius: 8px;
-        }
-        
-        .product-icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            color: #1e293b;
-            transition: color 0.3s ease;
-        }
-
-        .product-icon-link:hover {
-            color: #10b981;
-            transform: translateY(-5px);
-        }
-        
-        .product-icon-link:hover .product-icon {
-            color: #10b981;
-        }
-
-        .car-features-section, .seo-tips-section {
-            padding: 80px 20px;
-            background: #f8fafc;
-        }
-
-        .features-grid, .tips-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        
-        .feature-card, .tip-card {
-            padding: 30px 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
-            background: #ffffff;
-            border-top: 5px solid #10b981;
-            transition: transform 0.3s, box-shadow 0.3s;
-            height: 100%;
-            text-align: left;
-            cursor: pointer;
-        }
-        
-        .feature-card:hover, .tip-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
-        }
-
-        .feature-icon, .tip-icon {
-            font-size: 3rem;
-            color: #10b981;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .feature-card h4, .tip-card h4 {
-            font-size: 1.2rem;
-            color: #1e293b;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .feature-card p, .tip-card p {
-            color: #64748b;
-            font-size: 0.95rem;
-            text-align: center;
-        }
-        
-        .tip-card summary {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            padding-right: 25px;
-            position: relative;
-            outline: none;
-        }
-
-        .tip-card summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .tip-card summary:after {
-            content: "\25B6";
-            position: absolute;
-            right: 0;
-            top: 5px;
-            font-size: 14px;
-            color: #10b981;
-            transition: transform 0.3s;
-        }
-
-        .tip-card[open] summary:after {
-            content: "\25BC";
-            top: 8px;
-        }
-        
-        .tip-card .tip-card-text-short {
-            color: #64748b;
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .tip-content {
-            border-top: 1px solid #e2e8f0;
-            padding-top: 15px;
-            margin-top: 15px;
-            font-size: 0.95rem;
-            color: #475569;
-            text-align: left;
-            font-style: italic;
-            background-color: #f0fff4;
-            padding: 15px;
-            border-radius: 6px;
-            line-height: 1.5;
-        }
-
-        .testimonials-section {
-            background: white;
-            padding: 80px 20px;
-        }
-
-        .testimonials-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .swiper-container, .swiper-wrapper {
-            height: auto;
-        }
-
-        .testimonial-card {
-            background: #f8fafc;
-            padding: 30px;
-            border-radius: 10px; 
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
-            border: 1px solid #e2e8f0;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .testimonial-card:hover {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            transform: none;
-        }
-
-        .stars {
-            color: #f59e0b;
-            margin-bottom: 15px;
-        }
-
-        .testimonial-text {
-            color: #475569;
-            margin-bottom: 20px;
-            font-style: italic;
-            position: relative;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: auto;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: #10b981;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 1.2rem;
-        }
-
-        .author-info h4 {
-            margin: 0;
-            color: #1e293b;
-            font-size: 1rem;
-        }
-
-        .author-info p {
-            margin: 0;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-        
-        .swiper-button-prev, .swiper-button-next {
-            background: transparent !important;
-            width: 30px;
-            height: 30px;
-            border-radius: 0;
-            box-shadow: none;
-            transition: opacity 0.3s;
-            top: 50%; 
-            margin-top: -15px; 
-            opacity: 0.7;
-        }
-
-        .swiper-button-prev:hover, .swiper-button-next:hover {
-            background: transparent !important;
-            opacity: 1; 
-        }
-        
-        .swiper-button-prev:after, .swiper-button-next:after {
-            color: #1e293b !important;
-            font-size: 24px !important; 
-        }
-
-        .swiper-pagination-bullet-active {
-            background: #10b981 !important;
-        }
-
-        /* ФУТЕР */
-        .footer {
-            background-color: #1e293b;
-            color: #94a3b8;
-            padding: 60px 0 20px;
-            font-size: 14px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-            gap: 30px;
-        }
-
-        .footer-section {
-            width: calc(25% - 20px);
-            min-width: 200px;
-            margin-bottom: 20px;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 20px;
-            color: white;
-            font-size: 1.1rem;
-            border-bottom: 2px solid #334155;
-            padding-bottom: 10px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .footer-section li {
-            margin-bottom: 10px;
-        }
-
-        .footer-section a {
-            color: #94a3b8;
-            transition: 0.3s;
-            font-size: 0.95rem;
-            text-decoration: none;
-        }
-
-        .footer-section a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #334155;
-            padding-top: 20px;
-            text-align: center;
-            color: #94a3b8;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-section {
-                padding: 15px 15px 60px;
-            }
-
-            .hero-title-wrapper {
-                padding: 20px 25px;
-            }
-
-            .widget-container {
-                padding: 20px 15px;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 0;
-            }
-
-            .footer-section {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-section {
-                padding: 10px 15px 60px;
-            }
-
-            .hero-title-wrapper {
-                padding: 15px 20px;
-            }
-
-            .hero-content h1 {
-                font-size: 1.8rem;
-                letter-spacing: 1px;
-            }
-
-            .hero-content h1 img {
-                width: 80px !important;
-                height: 80px !important;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-content {
-            animation: fadeIn 0.8s ease-out;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Заказать трансфер авто | Индивидуальные перевозки - Airflow</title>
+<meta name="description" content="Закажите надежный трансфер авто по лучшей цене. Комфортные машины, фиксированный тариф, встреча с табличкой. Трансферы по городу и между городами.">
+<meta name="keywords" content="трансфер, такси, перевозки, заказать трансфер, трансфер из аэропорта, киви такси">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://airflowtravel.net/transfers.html">
+<link rel="icon" href="bus_icon-icons.com_76529.ico" type="image/x-icon">
+<meta property="og:title" content="AIRFLOW ТРАНСФЕР - Бронирование Такси и Трансферов">
+<meta property="og:description" content="Забронируйте персональный трансфер заранее. Без скрытых доплат и очередей. Лучшие цены на такси-трансферы.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://airflowtravel.net/transfers.html">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Airflow Travel">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AIRFLOW ТРАНСФЕР - Бронирование Такси и Трансферов">
+<meta name="twitter:description" content="Забронируйте персональный трансфер заранее. Без скрытых доплат и очередей.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;width:100%;max-width:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#333}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.main-navigation{background:#1e293b;padding:0;position:sticky;top:0;z-index:1020;box-shadow:0 2px 20px rgba(0,0,0,0.1);height:55px}
+.nav-container{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 100px;height:100%}
+.nav-logo{display:flex;align-items:center;gap:12px;color:white;font-size:18px;font-weight:600;text-decoration:none}
+.nav-menu{display:flex;list-style:none;margin:0;padding:0;gap:25px;align-items:center}
+.nav-menu>li{position:relative}
+.nav-menu a{color:#94a3b8;text-decoration:none;font-size:15px;font-weight:500;padding:18px 0;transition:color 0.3s ease;display:block}
+.nav-menu a:hover,.nav-menu a.active{color:white;text-decoration:none}
+.dropdown{position:relative}
+.dropdown-toggle{cursor:pointer;color:#94a3b8;font-size:15px;font-weight:500;padding:18px 0;display:flex;align-items:center;gap:5px}
+.dropdown-toggle:hover{color:white}
+.dropdown-menu{position:absolute;top:100%;right:0;background:#1e293b;min-width:280px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.3);opacity:0;visibility:hidden;transform:translateY(-10px);transition:all 0.3s ease;margin-top:5px;padding:10px 0}
+.dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown-menu a{padding:12px 20px;color:#94a3b8;display:block;transition:all 0.3s}
+.dropdown-menu a:hover{background:#334155;color:white}
+.mobile-menu-button{display:none;background:none;border:none;color:white;font-size:20px;cursor:pointer;padding:8px}
+.mobile-menu-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:10000;opacity:0;transition:opacity 0.3s ease}
+.mobile-menu-overlay.active{opacity:1}
+.mobile-menu{display:none;position:fixed;top:0;right:-280px;width:260px;height:100vh;background:#1e293b;z-index:10001;padding:60px 15px 15px;box-shadow:-4px 0 20px rgba(0,0,0,0.3);transition:right 0.3s ease;overflow-y:auto}
+.mobile-menu.active{right:0}
+.mobile-menu-close{position:absolute;top:15px;right:15px;background:none;border:none;color:white;font-size:20px;cursor:pointer;padding:5px}
+.mobile-menu-links{list-style:none;padding:0;margin:0}
+.mobile-menu-links a{color:#94a3b8;text-decoration:none;font-size:16px;display:block;padding:12px 15px;border-radius:6px;transition:all 0.3s ease}
+.mobile-menu-links a:hover,.mobile-menu-links a.active{background:#334155;color:white;text-decoration:none}
+.hero-section{background:linear-gradient(135deg,#1d4ed8 0%,#10b981 100%);color:white;padding:30px 20px 80px;text-align:center}
+.hero-content{width:100%;animation:fadeIn 0.8s ease-out}
+.hero-title-wrapper{background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);border:2px solid rgba(255,255,255,0.25);border-radius:20px;padding:25px 35px;box-shadow:0 8px 32px rgba(0,0,0,0.15);max-width:86%;margin:0 auto 25px}
+.hero-content h1{font-size:clamp(1.5rem,4vw,3rem);margin-bottom:15px;font-weight:700;text-transform:uppercase;letter-spacing:2px}
+.hero-content p{font-size:1rem;margin-bottom:0;opacity:0.95}
+.widget-container{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.3);border-radius:16px;padding:30px;max-width:1000px;margin:0 auto;box-shadow:0 8px 32px rgba(0,0,0,0.1)}
+.section-title{text-align:center;font-size:2.5rem;font-weight:700;margin-bottom:40px;color:#1e293b}
+.product-icons-section{padding:60px 20px;background:white;text-align:center}
+.product-icons-grid{display:flex;justify-content:center;gap:50px;max-width:900px;margin:0 auto;flex-wrap:wrap}
+.product-icon-link{text-decoration:none;color:#1e293b;transition:color 0.3s ease,transform 0.3s ease;display:block;padding:15px;border-radius:8px}
+.product-icon{font-size:3rem;margin-bottom:10px;color:#1e293b;transition:color 0.3s ease}
+.product-icon-link:hover{color:#10b981;transform:translateY(-5px)}
+.product-icon-link:hover .product-icon{color:#10b981}
+.car-features-section,.seo-tips-section{padding:80px 20px;background:#f8fafc}
+.features-grid,.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;max-width:1100px;margin:0 auto}
+.feature-card,.tip-card{padding:30px 20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);background:#ffffff;border-top:5px solid #10b981;transition:transform 0.3s,box-shadow 0.3s;height:100%;text-align:left;cursor:pointer}
+.feature-card:hover,.tip-card:hover{transform:translateY(-4px);box-shadow:0 10px 20px rgba(0,0,0,0.15)}
+.feature-icon,.tip-icon{font-size:3rem;color:#10b981;margin-bottom:15px;text-align:center}
+.feature-card h4,.tip-card h4{font-size:1.2rem;color:#1e293b;font-weight:700;margin-bottom:10px;text-align:center}
+.feature-card p,.tip-card p{color:#64748b;font-size:0.95rem;text-align:center}
+.tip-card summary{list-style:none;display:flex;flex-direction:column;padding-right:25px;position:relative;outline:none}
+.tip-card summary::-webkit-details-marker{display:none}
+.tip-card summary:after{content:"\25B6";position:absolute;right:0;top:5px;font-size:14px;color:#10b981;transition:transform 0.3s}
+.tip-card[open] summary:after{content:"\25BC";top:8px}
+.tip-card .tip-card-text-short{color:#64748b;font-size:0.95rem;margin-bottom:15px;text-align:center}
+.tip-content{border-top:1px solid #e2e8f0;padding-top:15px;margin-top:15px;font-size:0.95rem;color:#475569;text-align:left;font-style:italic;background-color:#f0fff4;padding:15px;border-radius:6px;line-height:1.5}
+.testimonials-section{background:white;padding:80px 20px}
+.testimonials-container{max-width:1200px;margin:0 auto;position:relative}
+.swiper-container,.swiper-wrapper{height:auto}
+.testimonial-card{background:#f8fafc;padding:30px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #e2e8f0;height:100%;display:flex;flex-direction:column}
+.testimonial-card:hover{box-shadow:0 2px 8px rgba(0,0,0,0.08);transform:none}
+.stars{color:#f59e0b;margin-bottom:15px}
+.testimonial-text{color:#475569;margin-bottom:20px;font-style:italic;position:relative}
+.testimonial-author{display:flex;align-items:center;gap:15px;margin-top:auto}
+.author-avatar{width:50px;height:50px;background:#10b981;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:1.2rem}
+.author-info h4{margin:0;color:#1e293b;font-size:1rem}
+.author-info p{margin:0;color:#64748b;font-size:0.9rem}
+.swiper-button-prev,.swiper-button-next{background:transparent!important;width:30px;height:30px;border-radius:0;box-shadow:none;transition:opacity 0.3s;top:50%;margin-top:-15px;opacity:0.7}
+.swiper-button-prev:hover,.swiper-button-next:hover{background:transparent!important;opacity:1}
+.swiper-button-prev:after,.swiper-button-next:after{color:#1e293b!important;font-size:24px!important}
+.swiper-pagination-bullet-active{background:#10b981!important}
+.footer{background-color:#1e293b;color:#94a3b8;padding:60px 0 20px;font-size:14px}
+.footer-container{max-width:1200px;margin:0 auto;padding:0 20px}
+.footer-content{display:flex;justify-content:space-between;flex-wrap:wrap;margin-bottom:40px;gap:30px}
+.footer-section{width:calc(25% - 20px);min-width:200px;margin-bottom:20px}
+.footer-section h3{margin-bottom:20px;color:white;font-size:1.1rem;border-bottom:2px solid #334155;padding-bottom:10px}
+.footer-section ul{list-style:none;padding-left:0}
+.footer-section li{margin-bottom:10px}
+.footer-section a{color:#94a3b8;transition:0.3s;font-size:0.95rem;text-decoration:none}
+.footer-section a:hover{color:white;text-decoration:underline}
+.footer-bottom{border-top:1px solid #334155;padding-top:20px;text-align:center;color:#94a3b8}
+@media (max-width:1175px){
+.nav-container{padding:0 16px}
+.nav-menu{display:none}
+.mobile-menu-button{display:block}
+.mobile-menu-overlay,.mobile-menu{display:block}
+}
+@media (max-width:768px){
+.hero-section{padding:15px 15px 60px}
+.hero-title-wrapper{padding:20px 25px;max-width:95%}
+.hero-content h1{font-size:1.5rem;letter-spacing:1px}
+.hero-content h1 img{width:60px!important;height:60px!important}
+.widget-container{padding:20px 15px}
+.section-title{font-size:1.8rem;margin-bottom:30px}
+.product-icon{font-size:2.2rem}
+.product-title{font-size:0.9rem}
+.feature-icon,.tip-icon{font-size:2.2rem}
+.feature-card h4,.tip-card h4{font-size:1.05rem}
+.footer-content{flex-direction:column;gap:0}
+.footer-section{width:100%}
+}
+@media (max-width:480px){
+.nav-container{padding:0 12px}
+.hero-section{padding:10px 15px 60px}
+.hero-title-wrapper{padding:15px 20px}
+.hero-content h1{font-size:1.3rem;letter-spacing:0.5px}
+.hero-content h1 img{width:50px!important;height:50px!important}
+.hero-content p{font-size:0.9rem}
+.section-title{font-size:1.5rem;margin-bottom:25px}
+.product-icon{font-size:2rem}
+.product-title{font-size:0.85rem}
+.feature-icon,.tip-icon{font-size:2rem}
+.feature-card h4,.tip-card h4{font-size:1rem}
+.feature-card p,.tip-card p{font-size:0.9rem}
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Airflow Travel",
+  "description": "Заказать трансфер авто - индивидуальные перевозки по всему миру",
+  "url": "https://airflowtravel.net",
+  "logo": "https://airflowtravel.net/images/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+7-499-404-12-22",
+    "contactType": "Customer Service",
+    "availableLanguage": ["Russian", "English"]
+  },
+  "sameAs": [
+    "https://www.facebook.com/airflowtravel",
+    "https://www.instagram.com/airflowtravel"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "RU"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Трансфер и перевозки",
+  "provider": {
+    "@type": "Organization",
+    "name": "Airflow Travel"
+  },
+  "areaServed": "Worldwide",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Услуги трансфера",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Трансфер из аэропорта"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Междугородние перевозки"
+        }
+      }
+    ]
+  }
+}
+</script>
 </head>
 <body>
-
-    <nav class="main-navigation">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-               ✈️ Airflow
-            </a>
-
-            <ul class="nav-menu">
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-                <li><a href="hotels.html">🏨 Отели</a></li>
-                <li><a href="cars.html">🚗 Аренда авто</a></li>
-                <li><a href="transfers.html" class="active">🚕 Трансферы</a></li>
-                <li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
-                <li class="dropdown">
-                    <span class="dropdown-toggle">
-                        Ещё <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
-                    </span>
-                    <div class="dropdown-menu">
-                        <a href="attractions.html">🎭 Музеи и достопримечательности</a>
-                        <a href="trains-buses.html">🚂 Поезда и автобусы</a>
-                        <a href="vip-lounge.html">💎 VIP залы</a>
-                        <a href="parking.html">🅿️ Парковка</a>
-                        <a href="insurance.html">🛡️ Страховка</a>
-                        <a href="simcard.html">📱 SIM карты</a>
-                        <a href="about.html">ℹ️ О нас</a>
-                        <a href="help.html">❓ Помощь</a>
-                    </div>
-                </li>
-            </ul>
-
-            <button class="mobile-menu-button" id="mobile-menu-button" aria-label="Меню">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
-
-    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
-    <nav id="mobile-menu" class="mobile-menu">
-        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Закрыть">×</button>
-
-        <ul class="mobile-menu-links">
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-            <li><a href="hotels.html">🏨 Отели</a></li>
-            <li><a href="cars.html">🚗 Аренда авто</a></li>
-            <li><a href="transfers.html" class="active">🚕 Трансферы</a></li>
-            <li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
-            <li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
-            <li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
-            <li><a href="vip-lounge.html">💎 VIP залы</a></li>
-            <li><a href="parking.html">🅿️ Парковка</a></li>
-            <li><a href="insurance.html">🛡️ Страховка</a></li>
-            <li><a href="simcard.html">📱 SIM карты</a></li>
-            <li><a href="about.html">ℹ️ О нас</a></li>
-            <li><a href="help.html">❓ Помощь</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section class="hero-section">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-title-wrapper">
-                        <h1><img src="images/transfer auto.png" alt="Трансфер авто" style="width: 110px; height: 110px; vertical-align: middle; margin-right: 10px;">Трансфер Автомобилей</h1>
-                        <p>
-                            Закажите услугу транспортировки авто в любую точку мира надежно и с гарантией.
-                        </p>
-                    </div>
-                    
-                    <div class="widget-container">
-                        <script async src="https://tpwgt.com/content?currency=RUB&trs=478043&shmarker=144185&locale=ru&powered_by=false&transfer_options_limit=10&transfer_options=MCR&disable_currency_selector=false&hide_form_extras=false&hide_external_links=true&erid=2VtzqwBWkJD&campaign_id=1&promo_id=3879" charset="utf-8"></script>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="product-icons-section">
-            <div class="container">
-                <div class="section-title" style="margin-bottom: 30px; color: #1d4ed8;">Профессиональный трансфер автомобилей</div>
-                <div class="product-icons-grid">
-                    <a href="https://search.airflowtravel.net" class="product-icon-link">
-                        <div class="product-icon"><i class="fas fa-plane"></i></div>
-                        <div class="product-title">Авиабилеты</div>
-                    </a>
-                    <a href="hotels.html" class="product-icon-link">
-                        <div class="product-icon"><i class="fas fa-hotel"></i></div>
-                        <div class="product-title">Отели</div>
-                    </a>
-                    <a href="cars.html" class="product-icon-link">
-                        <div class="product-icon"><i class="fas fa-car-alt"></i></div>
-                        <div class="product-title">Аренда авто</div>
-                    </a>
-                    <a href="transfers.html" class="product-icon-link">
-                        <div class="product-icon"><i class="fas fa-taxi"></i></div>
-                        <div class="product-title">Трансферы</div>
-                    </a>
-                    <a href="trains-buses.html" class="product-icon-link">
-                        <div class="product-icon"><i class="fas fa-train"></i></div>
-                        <div class="product-title">Поезда</div>
-                    </a>
-                </div>
-            </div>
-        </section>
-        
-        <section class="car-features-section">
-            <div class="container">
-                <h2 class="section-title" style="margin-bottom: 30px; color: #1e293b;">Трансфер Автомобилей По Всему Миру</h2>
-                <div class="features-grid">
-                    
-                    <div class="feature-card" style="border-top-color: #1d4ed8;">
-                        <div class="feature-icon" style="color: #1d4ed8;"><i class="fas fa-tag"></i></div>
-                        <h4>Фиксированная цена</h4>
-                        <p>Стоимость поездки известна сразу при бронировании и не изменится, даже если рейс задержится.</p>
-                    </div>
-                    
-                    <div class="feature-card" style="border-top-color: #10b981;">
-                        <div class="feature-icon" style="color: #10b981;"><i class="fas fa-handshake-angle"></i></div>
-                        <h4>Встреча с табличкой</h4>
-                        <p>Водитель будет ждать Вас в зале прилета/прибытия с именной табличкой.</p>
-                    </div>
-                    
-                    <div class="feature-card" style="border-top-color: #1abc9c;">
-                        <div class="feature-icon" style="color: #1abc9c;"><i class="fas fa-child-reaching"></i></div>
-                        <h4>Детские кресла</h4>
-                        <p>При бронировании можно выбрать необходимое количество детских кресел или бустеров.</p>
-                    </div>
-                    
-                    <div class="feature-card" style="border-top-color: #e9573f;">
-                        <div class="feature-icon" style="color: #e9573f;"><i class="fas fa-car-side"></i></div>
-                        <h4>Любой класс авто</h4>
-                        <p>От недорогого Эконома до Бизнес-класса или вместительного микроавтобуса.</p>
-                    </div>
-                    
-                    <div class="feature-card" style="border-top-color: #4a89dc;">
-                        <div class="feature-icon" style="color: #4a89dc;"><i class="fas fa-headset"></i></div>
-                        <h4>24/7 Поддержка</h4>
-                        <p>Наша служба поддержки всегда на связи и поможет решить любой вопрос.</p>
-                    </div>
-                    
-                    <div class="feature-card" style="border-top-color: #8cc152;">
-                        <div class="feature-icon" style="color: #8cc152;"><i class="fas fa-clock"></i></div>
-                        <h4>Бесплатное ожидание</h4>
-                        <p>60 минут ожидания в аэропорту и 15 минут в городе — бесплатно.</p>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-        
-        <section class="seo-tips-section" style="background: #f8fafc;">
-            <div class="container">
-                <h2 class="section-title" style="color: #1e293b;">Полезные советы для трансферов</h2>
-                <div class="tips-grid">
-                    
-                    <details class="tip-card" style="border-top-color: #1d4ed8;">
-                        <summary>
-                            <div class="tip-icon" style="color: #1d4ed8;"><i class="fas fa-car-alt"></i></div>
-                            <h4>Выбор правильного авто</h4>
-                            <p class="tip-card-text-short">Как выбрать класс авто (Эконом, Комфорт, Минивэн) для оптимальной цены.</p>
-                        </summary>
-                        <div class="tip-content">
-                            <strong>Лайфхак:</strong> Для одиночной поездки берите Эконом/Комфорт. Если у вас 3+ чемодана, всегда выбирайте Минивэн или Комфорт-седан (с пометкой "большой багажник"), чтобы не столкнуться с проблемой нехватки места.
-                        </div>
-                    </details>
-                    
-                    <details class="tip-card" style="border-top-color: #e9573f;">
-                        <summary>
-                            <div class="tip-icon" style="color: #e9573f;"><i class="fas fa-calendar-check"></i></div>
-                            <h4>Бронируйте заранее</h4>
-                            <p class="tip-card-text-short">Почему лучше заказывать трансфер за 24 часа, а не "ловить" такси на месте.</p>
-                        </summary>
-                        <div class="tip-content">
-                            <strong>Лайфхак:</strong> Бронирование за 24 часа гарантирует наличие нужного класса авто (особенно минивэнов) и лучшую фиксированную цену. При заказе "на месте" цена будет выше и нефиксированной.
-                        </div>
-                    </details>
-                    
-                    <details class="tip-card" style="border-top-color: #f59e0b;">
-                        <summary>
-                            <div class="tip-icon" style="color: #f59e0b;"><i class="fas fa-hourglass-half"></i></div>
-                            <h4>Время ожидания</h4>
-                            <p class="tip-card-text-short">Правила бесплатного ожидания водителя в аэропорту и на вокзале.</p>
-                        </summary>
-                        <div class="tip-content">
-                            <strong>Лайфхак:</strong> В аэропорту стандартно дают 60 минут бесплатного ожидания после посадки рейса (водитель следит за табло). В городе и на вокзалах это обычно 15 минут. Если знаете о возможной задержке, предупредите поддержку заранее.
-                        </div>
-                    </details>
-                    
-                    <details class="tip-card" style="border-top-color: #8cc152;">
-                        <summary>
-                            <div class="tip-icon" style="color: #8cc152;"><i class="fas fa-money-bill-transfer"></i></div>
-                            <h4>Скрытые расходы</h4>
-                            <p class="tip-card-text-short">Как избежать дополнительных сборов за багаж, платные дороги и остановки.</p>
-                        </summary>
-                        <div class="tip-content">
-                            <strong>Лайфхак:</strong> Убедитесь, что в форме заказа трансфера указан весь ваш багаж. Платные дороги и бензин всегда включены в фиксированную цену. Если водитель просит доплату за это, это нарушение правил партнера.
-                        </div>
-                    </details>
-                    
-                    <details class="tip-card" style="border-top-color: #a033d5;">
-                        <summary>
-                            <div class="tip-icon" style="color: #a033d5;"><i class="fas fa-location-dot"></i></div>
-                            <h4>Место встречи</h4>
-                            <p class="tip-card-text-short">Точные инструкции по поиску водителя в разных аэропортах.</p>
-                        </summary>
-                        <div class="tip-content">
-                            <strong>Лайфхак:</strong> Водитель всегда ждет у выхода из зоны прилета с табличкой, где написано Ваше имя. Никогда не ищите его на стоянке или у выхода из аэропорта — это небезопасно и не соответствует стандартам.
-                        </div>
-                    </details>
-                    
-                    <details class="tip-card" style="border-top-color: #1abc9c;">
-                        <summary>
-                            <div class="tip-icon" style="color: #1abc9c;"><i class="fas fa-circle-xmark"></i></div>
-                            <h4>Отмена бронирования</h4>
-                            <p class="tip-card-text-short">Условия и сроки для бесплатной отмены трансфера.</p>
-                        </summary>
-                        <div class="tip-content">
-                            <strong>Лайфхак:</strong> Большинство партнеров Airflow позволяют бесплатно отменить трансфер за 24 часа до поездки. Уточните точные условия отмены в подтверждении бронирования, чтобы избежать штрафов.
-                        </div>
-                    </details>
-                    
-                </div>
-            </div>
-        </section>
-
-        <section class="testimonials-section">
-            <div class="container">
-                <h2 class="section-title">Что говорят наши клиенты о трансферах</h2>
-                <div class="testimonials-container">
-                    <div class="swiper testimonials-slider">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="testimonial-card">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                                    </div>
-                                    <p class="testimonial-text">
-                                        «Заказывал трансфер из Шереметьево. Водитель ждал с табличкой, помог с багажом. Очень комфортная поездка по фиксированной цене. Спасибо!»
-                                    </p>
-                                    <div class="testimonial-author">
-                                        <div class="author-avatar">ДК</div>
-                                        <div class="author-info">
-                                            <h4>Дмитрий К.</h4>
-                                            <p>Клиент (Трансфер)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="testimonial-card">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <p class="testimonial-text">
-                                        «Раньше всегда ловила такси в аэропорту, но это нервы. С Kiwitaxi через Airflow все прошло идеально. Детское кресло установили, как просили.»
-                                    </p>
-                                    <div class="testimonial-author">
-                                        <div class="author-avatar">МС</div>
-                                        <div class="author-info">
-                                            <h4>Мария С.</h4>
-                                            <p>Мама-путешественница</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="testimonial-card">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <p class="testimonial-text">
-                                        «Отличный сервис. Пользуюсь для поездок между городами в России. Цены лучше, чем у местных такси, и машина всегда вовремя.»
-                                    </p>
-                                    <div class="testimonial-author">
-                                        <div class="author-avatar">ОВ</div>
-                                        <div class="author-info">
-                                            <h4>Ольга В.</h4>
-                                            <p>Постоянный клиент</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="testimonial-card">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <p class="testimonial-text">
-                                        «Рейс задержали на 2 часа. Водитель дождался без дополнительной платы. Это реально выручило! Очень надежный сервис.»
-                                    </p>
-                                    <div class="testimonial-author">
-                                        <div class="author-avatar">АГ</div>
-                                        <div class="author-info">
-                                            <h4>Артем Г.</h4>
-                                            <p>Клиент (Трансфер)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-pagination"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>✨ О нас</h3>
-                    <ul>
-                        <li><a href="about.html">→ О проекте Airflow</a></li>
-                        <li><a href="help.html">→ Помощь и контакты</a></li>
-                        <li><a href="privacy.html">→ Политика конфиденциальности</a></li>
-                        <li><a href="terms.html">→ Условия использования</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Продукты</h3>
-                    <ul>
-                        <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-                        <li><a href="hotels.html">🏨 Отели</a></li>
-                        <li><a href="cars.html">🚗 Аренда авто</a></li>
-                        <li><a href="transfers.html">🚕 Трансферы</a></li>
-                        <li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
-                        <li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Дополнительно</h3>
-                    <ul>
-                        <li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
-                        <li><a href="vip-lounge.html">💎 VIP залы</a></li>
-                        <li><a href="parking.html">🅿️ Парковка</a></li>
-                        <li><a href="insurance.html">🛡️ Страховка</a></li>
-                        <li><a href="simcard.html">📱 SIM карты</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Контакты</h3>
-                    <p style="color: white; margin-bottom: 5px;">Помощь</p>
-                    <p>✉ help@kiwitaxi.ru</p>
-                    <p style="color: white; margin-top: 15px; margin-bottom: 5px;">☎ 8 800 200-32-92</p>
-                    <p>📱 +7 499 404-12-22</p>
-                    <p>Airflowtravel & Kiwitaxi.</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2025 Airflow Travel. Все права защищены.
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuButton = document.getElementById('mobile-menu-button');
-            const menuOverlay = document.getElementById('mobile-menu-overlay');
-            const menuClose = document.getElementById('mobile-menu-close');
-            let isMenuOpen = false;
-
-            function toggleMenu() {
-                isMenuOpen = !isMenuOpen;
-                if (isMenuOpen) {
-                    mobileMenu.classList.add('active');
-                    menuOverlay.classList.add('active');
-                    menuOverlay.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    mobileMenu.classList.remove('active');
-                    menuOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                    setTimeout(() => {
-                        if (!isMenuOpen) {
-                            menuOverlay.style.display = 'none';
-                        }
-                    }, 300);
-                }
-            }
-
-            function closeMenu() {
-                isMenuOpen = false;
-                mobileMenu.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-                setTimeout(() => {
-                    menuOverlay.style.display = 'none';
-                }, 300);
-            }
-
-            if (menuButton) menuButton.addEventListener('click', toggleMenu);
-            if (menuClose) menuClose.addEventListener('click', closeMenu);
-            if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
-
-            new Swiper('.testimonials-slider', {
-                loop: true,
-                slidesPerView: 1,
-                spaceBetween: 30,
-                observer: true,
-                observeParents: true,
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                breakpoints: {
-                    768: {
-                        slidesPerView: 2,
-                        spaceBetween: 30
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                        spaceBetween: 30
-                    }
-                },
-                autoHeight: true,
-                on: {
-                    init: function () {
-                        document.body.style.overflowX = 'hidden';
-                        this.update();
-                    },
-                    resize: function () {
-                        this.update();
-                    }
-                }
-            });
-        });
-    </script>
+<nav class="main-navigation">
+<div class="nav-container">
+<a href="index.html" class="nav-logo" aria-label="Airflow Travel Главная">✈️ Airflow</a>
+<ul class="nav-menu">
+<li><a href="index.html">Главная</a></li>
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a href="transfers.html" class="active">🚕 Трансферы</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+<li class="dropdown">
+<span class="dropdown-toggle">Ещё <i class="fas fa-chevron-down" style="font-size:12px"></i></span>
+<div class="dropdown-menu">
+<a href="attractions.html">🎭 Музеи и достопримечательности</a>
+<a href="trains-buses.html">🚂 Поезда и автобусы</a>
+<a href="vip-lounge.html">💎 VIP залы</a>
+<a href="parking.html">🅿️ Парковка</a>
+<a href="insurance.html">🛡️ Страховка</a>
+<a href="simcard.html">📱 SIM карты</a>
+<a href="about.html">ℹ️ О нас</a>
+<a href="help.html">❓ Помощь</a>
+</div>
+</li>
+</ul>
+<button class="mobile-menu-button" id="mobile-menu-button" aria-label="Открыть меню"><i class="fas fa-bars"></i></button>
+</div>
+</nav>
+<div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+<nav id="mobile-menu" class="mobile-menu" aria-label="Мобильное меню">
+<button class="mobile-menu-close" id="mobile-menu-close" aria-label="Закрыть меню">×</button>
+<ul class="mobile-menu-links">
+<li><a href="index.html">Главная</a></li>
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a href="transfers.html" class="active">🚕 Трансферы</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+<li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
+<li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
+<li><a href="vip-lounge.html">💎 VIP залы</a></li>
+<li><a href="parking.html">🅿️ Парковка</a></li>
+<li><a href="insurance.html">🛡️ Страховка</a></li>
+<li><a href="simcard.html">📱 SIM карты</a></li>
+<li><a href="about.html">ℹ️ О нас</a></li>
+<li><a href="help.html">❓ Помощь</a></li>
+</ul>
+</nav>
+<main>
+<section class="hero-section">
+<div class="container">
+<div class="hero-content">
+<div class="hero-title-wrapper">
+<h1><img src="images/transfer auto.png" alt="Трансфер автомобилей по всему миру" width="110" height="110" style="vertical-align:middle;margin-right:10px">Трансфер Автомобилей</h1>
+<p>Закажите услугу транспортировки авто в любую точку мира надежно и с гарантией.</p>
+</div>
+<div class="widget-container">
+<script async src="https://tpwgt.com/content?currency=RUB&trs=478043&shmarker=144185&locale=ru&powered_by=false&transfer_options_limit=10&transfer_options=MCR&disable_currency_selector=false&hide_form_extras=false&hide_external_links=true&erid=2VtzqwBWkJD&campaign_id=1&promo_id=3879" charset="utf-8"></script>
+</div>
+</div>
+</div>
+</section>
+<section class="product-icons-section">
+<div class="container">
+<h2 class="section-title" style="margin-bottom:30px;color:#1d4ed8">Профессиональный трансфер автомобилей</h2>
+<div class="product-icons-grid">
+<a href="https://search.airflowtravel.net" class="product-icon-link" aria-label="Поиск авиабилетов">
+<div class="product-icon"><i class="fas fa-plane"></i></div>
+<div class="product-title">Авиабилеты</div>
+</a>
+<a href="hotels.html" class="product-icon-link" aria-label="Бронирование отелей">
+<div class="product-icon"><i class="fas fa-hotel"></i></div>
+<div class="product-title">Отели</div>
+</a>
+<a href="cars.html" class="product-icon-link" aria-label="Аренда автомобилей">
+<div class="product-icon"><i class="fas fa-car-alt"></i></div>
+<div class="product-title">Аренда авто</div>
+</a>
+<a href="transfers.html" class="product-icon-link" aria-label="Заказать трансфер">
+<div class="product-icon"><i class="fas fa-taxi"></i></div>
+<div class="product-title">Трансферы</div>
+</a>
+<a href="trains-buses.html" class="product-icon-link" aria-label="Билеты на поезда">
+<div class="product-icon"><i class="fas fa-train"></i></div>
+<div class="product-title">Поезда</div>
+</a>
+</div>
+</div>
+</section>
+<section class="car-features-section">
+<div class="container">
+<h2 class="section-title" style="margin-bottom:30px;color:#1e293b">Трансфер Автомобилей По Всему Миру</h2>
+<div class="features-grid">
+<article class="feature-card" style="border-top-color:#1d4ed8">
+<div class="feature-icon" style="color:#1d4ed8"><i class="fas fa-tag"></i></div>
+<h3>Фиксированная цена</h3>
+<p>Стоимость поездки известна сразу при бронировании и не изменится, даже если рейс задержится.</p>
+</article>
+<article class="feature-card" style="border-top-color:#10b981">
+<div class="feature-icon" style="color:#10b981"><i class="fas fa-handshake-angle"></i></div>
+<h3>Встреча с табличкой</h3>
+<p>Водитель будет ждать Вас в зале прилета/прибытия с именной табличкой.</p>
+</article>
+<article class="feature-card" style="border-top-color:#1abc9c">
+<div class="feature-icon" style="color:#1abc9c"><i class="fas fa-child-reaching"></i></div>
+<h3>Детские кресла</h3>
+<p>При бронировании можно выбрать необходимое количество детских кресел или бустеров.</p>
+</article>
+<article class="feature-card" style="border-top-color:#e9573f">
+<div class="feature-icon" style="color:#e9573f"><i class="fas fa-car-side"></i></div>
+<h3>Любой класс авто</h3>
+<p>От недорогого Эконома до Бизнес-класса или вместительного микроавтобуса.</p>
+</article>
+<article class="feature-card" style="border-top-color:#4a89dc">
+<div class="feature-icon" style="color:#4a89dc"><i class="fas fa-headset"></i></div>
+<h3>24/7 Поддержка</h3>
+<p>Наша служба поддержки всегда на связи и поможет решить любой вопрос.</p>
+</article>
+<article class="feature-card" style="border-top-color:#8cc152">
+<div class="feature-icon" style="color:#8cc152"><i class="fas fa-clock"></i></div>
+<h3>Бесплатное ожидание</h3>
+<p>60 минут ожидания в аэропорту и 15 минут в городе — бесплатно.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="seo-tips-section">
+<div class="container">
+<h2 class="section-title" style="color:#1e293b">Полезные советы для трансферов</h2>
+<div class="tips-grid">
+<details class="tip-card" style="border-top-color:#1d4ed8">
+<summary>
+<div class="tip-icon" style="color:#1d4ed8"><i class="fas fa-car-alt"></i></div>
+<h3>Выбор правильного авто</h3>
+<p class="tip-card-text-short">Как выбрать класс авто (Эконом, Комфорт, Минивэн) для оптимальной цены.</p>
+</summary>
+<div class="tip-content"><strong>Лайфхак:</strong> Для одиночной поездки берите Эконом/Комфорт. Если у вас 3+ чемодана, всегда выбирайте Минивэн или Комфорт-седан (с пометкой "большой багажник"), чтобы не столкнуться с проблемой нехватки места.</div>
+</details>
+<details class="tip-card" style="border-top-color:#e9573f">
+<summary>
+<div class="tip-icon" style="color:#e9573f"><i class="fas fa-calendar-check"></i></div>
+<h3>Бронируйте заранее</h3>
+<p class="tip-card-text-short">Почему лучше заказывать трансфер за 24 часа, а не "ловить" такси на месте.</p>
+</summary>
+<div class="tip-content"><strong>Лайфхак:</strong> Бронирование за 24 часа гарантирует наличие нужного класса авто (особенно минивэнов) и лучшую фиксированную цену. При заказе "на месте" цена будет выше и нефиксированной.</div>
+</details>
+<details class="tip-card" style="border-top-color:#f59e0b">
+<summary>
+<div class="tip-icon" style="color:#f59e0b"><i class="fas fa-hourglass-half"></i></div>
+<h3>Время ожидания</h3>
+<p class="tip-card-text-short">Правила бесплатного ожидания водителя в аэропорту и на вокзале.</p>
+</summary>
+<div class="tip-content"><strong>Лайфхак:</strong> В аэропорту стандартно дают 60 минут бесплатного ожидания после посадки рейса (водитель следит за табло). В городе и на вокзалах это обычно 15 минут. Если знаете о возможной задержке, предупредите поддержку заранее.</div>
+</details>
+<details class="tip-card" style="border-top-color:#8cc152">
+<summary>
+<div class="tip-icon" style="color:#8cc152"><i class="fas fa-money-bill-transfer"></i></div>
+<h3>Скрытые расходы</h3>
+<p class="tip-card-text-short">Как избежать дополнительных сборов за багаж, платные дороги и остановки.</p>
+</summary>
+<div class="tip-content"><strong>Лайфхак:</strong> Убедитесь, что в форме заказа трансфера указан весь ваш багаж. Платные дороги и бензин всегда включены в фиксированную цену. Если водитель просит доплату за это, это нарушение правил партнера.</div>
+</details>
+<details class="tip-card" style="border-top-color:#a033d5">
+<summary>
+<div class="tip-icon" style="color:#a033d5"><i class="fas fa-location-dot"></i></div>
+<h3>Место встречи</h3>
+<p class="tip-card-text-short">Точные инструкции по поиску водителя в разных аэропортах.</p>
+</summary>
+<div class="tip-content"><strong>Лайфхак:</strong> Водитель всегда ждет у выхода из зоны прилета с табличкой, где написано Ваше имя. Никогда не ищите его на стоянке или у выхода из аэропорта — это небезопасно и не соответствует стандартам.</div>
+</details>
+<details class="tip-card" style="border-top-color:#1abc9c">
+<summary>
+<div class="tip-icon" style="color:#1abc9c"><i class="fas fa-circle-xmark"></i></div>
+<h3>Отмена бронирования</h3>
+<p class="tip-card-text-short">Условия и сроки для бесплатной отмены трансфера.</p>
+</summary>
+<div class="tip-content"><strong>Лайфхак:</strong> Большинство партнеров Airflow позволяют бесплатно отменить трансфер за 24 часа до поездки. Уточните точные условия отмены в подтверждении бронирования, чтобы избежать штрафов.</div>
+</details>
+</div>
+</div>
+</section>
+<section class="testimonials-section">
+<div class="container">
+<h2 class="section-title">Что говорят наши клиенты о трансферах</h2>
+<div class="testimonials-container">
+<div class="swiper testimonials-slider">
+<div class="swiper-wrapper">
+<div class="swiper-slide">
+<article class="testimonial-card">
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+<p class="testimonial-text">«Заказывал трансфер из Шереметьево. Водитель ждал с табличкой, помог с багажом. Очень комфортная поездка по фиксированной цене. Спасибо!»</p>
+<div class="testimonial-author">
+<div class="author-avatar">ДК</div>
+<div class="author-info">
+<h4>Дмитрий К.</h4>
+<p>Клиент (Трансфер)</p>
+</div>
+</div>
+</article>
+</div>
+<div class="swiper-slide">
+<article class="testimonial-card">
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p class="testimonial-text">«Раньше всегда ловила такси в аэропорту, но это нервы. С Kiwitaxi через Airflow все прошло идеально. Детское кресло установили, как просили.»</p>
+<div class="testimonial-author">
+<div class="author-avatar">МС</div>
+<div class="author-info">
+<h4>Мария С.</h4>
+<p>Мама-путешественница</p>
+</div>
+</div>
+</article>
+</div>
+<div class="swiper-slide">
+<article class="testimonial-card">
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p class="testimonial-text">«Отличный сервис. Пользуюсь для поездок между городами в России. Цены лучше, чем у местных такси, и машина всегда вовремя.»</p>
+<div class="testimonial-author">
+<div class="author-avatar">ОВ</div>
+<div class="author-info">
+<h4>Ольга В.</h4>
+<p>Постоянный клиент</p>
+</div>
+</div>
+</article>
+</div>
+<div class="swiper-slide">
+<article class="testimonial-card">
+<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p class="testimonial-text">«Рейс задержали на 2 часа. Водитель дождался без дополнительной платы. Это реально выручило! Очень надежный сервис.»</p>
+<div class="testimonial-author">
+<div class="author-avatar">АГ</div>
+<div class="author-info">
+<h4>Артем Г.</h4>
+<p>Клиент (Трансфер)</p>
+</div>
+</div>
+</article>
+</div>
+</div>
+<div class="swiper-pagination"></div>
+<div class="swiper-button-prev"></div>
+<div class="swiper-button-next"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="footer-container">
+<div class="footer-content">
+<div class="footer-section">
+<h3>✨ О нас</h3>
+<ul>
+<li><a href="about.html">→ О проекте Airflow</a></li>
+<li><a href="help.html">→ Помощь и контакты</a></li>
+<li><a href="privacy.html">→ Политика конфиденциальности</a></li>
+<li><a href="terms.html">→ Условия использования</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Продукты</h3>
+<ul>
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a href="transfers.html">🚕 Трансферы</a></li>
+<li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Дополнительно</h3>
+<ul>
+<li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
+<li><a href="vip-lounge.html">💎 VIP залы</a></li>
+<li><a href="parking.html">🅿️ Парковка</a></li>
+<li><a href="insurance.html">🛡️ Страховка</a></li>
+<li><a href="simcard.html">📱 SIM карты</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Контакты</h3>
+<p style="color:white;margin-bottom:5px">Помощь</p>
+<p>✉ help@kiwitaxi.ru</p>
+<p style="color:white;margin-top:15px;margin-bottom:5px">☎ 8 800 200-32-92</p>
+<p>📱 +7 499 404-12-22</p>
+<p>Airflowtravel & Kiwitaxi.</p>
+</div>
+</div>
+<div class="footer-bottom">&copy; 2025 Airflow Travel. Все права защищены.</div>
+</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{const mobileMenu=document.getElementById('mobile-menu');const menuButton=document.getElementById('mobile-menu-button');const menuOverlay=document.getElementById('mobile-menu-overlay');const menuClose=document.getElementById('mobile-menu-close');let isMenuOpen=false;function toggleMenu(){isMenuOpen=!isMenuOpen;if(isMenuOpen){mobileMenu.classList.add('active');menuOverlay.classList.add('active');menuOverlay.style.display='block';document.body.style.overflow='hidden'}else{mobileMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';setTimeout(()=>{if(!isMenuOpen){menuOverlay.style.display='none'}},300)}}function closeMenu(){isMenuOpen=false;mobileMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';setTimeout(()=>{menuOverlay.style.display='none'},300)}if(menuButton)menuButton.addEventListener('click',toggleMenu);if(menuClose)menuClose.addEventListener('click',closeMenu);if(menuOverlay)menuOverlay.addEventListener('click',closeMenu);new Swiper('.testimonials-slider',{loop:true,slidesPerView:1,spaceBetween:30,observer:true,observeParents:true,autoplay:{delay:5000,disableOnInteraction:false},pagination:{el:'.swiper-pagination',clickable:true},navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'},breakpoints:{768:{slidesPerView:2,spaceBetween:30},1024:{slidesPerView:3,spaceBetween:30}},autoHeight:true,on:{init:function(){document.body.style.overflowX='hidden';this.update()},resize:function(){this.update()}}})});
+</script>
 </body>
 </html>
