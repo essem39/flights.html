@@ -237,28 +237,6 @@
             text-decoration: none;
         }
 
-        @media (max-width: 1175px) {
-            .nav-container {
-                padding: 0 16px;
-            }
-            .nav-menu {
-                display: none;
-            }
-            .mobile-menu-button {
-                display: block;
-            }
-            .mobile-menu-overlay,
-            .mobile-menu {
-                display: block;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-container {
-                padding: 0 12px;
-            }
-        }
-
         .section-title {
             text-align: center;
             font-size: 2.5rem;
@@ -419,6 +397,15 @@
         .cta-button:hover {
             background-color: #059669;
         }
+
+        .chess-section{padding:80px 20px;background:#ffffff}
+        .chess-section:nth-of-type(even){background:#f8fafc}
+        .chess-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .chess-container.reverse{direction:rtl}
+        .chess-container.reverse>*{direction:ltr}
+        .chess-image{width:100%;height:auto;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.1)}
+        .chess-content h2{font-size:2.2rem;color:#1e293b;margin-bottom:20px;font-weight:700}
+        .chess-content p{font-size:1.05rem;color:#475569;line-height:1.8;margin-bottom:15px}
 
         .product-icons-section {
             padding: 60px 20px;
@@ -733,6 +720,28 @@
             color: #94a3b8;
         }
         
+        @media (max-width: 1175px) {
+            .nav-container {
+                padding: 0 16px;
+            }
+            .nav-menu {
+                display: none;
+            }
+            .mobile-menu-button {
+                display: block;
+            }
+            .mobile-menu-overlay,
+            .mobile-menu {
+                display: block;
+            }
+        }
+
+        @media (max-width: 968px){
+            .chess-container{grid-template-columns:1fr;gap:40px}
+            .chess-container.reverse{direction:ltr}
+            .chess-image{max-width:600px;margin:0 auto}
+        }
+
         @media (max-width: 768px) {
             .hero-section {
                 padding: 15px 15px 60px;
@@ -751,6 +760,10 @@
                 padding: 20px 25px;
             }
 
+            .chess-section{padding:60px 20px}
+            .chess-content h2{font-size:1.8rem}
+            .chess-content p{font-size:0.95rem}
+
             .footer-content {
                 flex-direction: column;
                 gap: 0;
@@ -766,6 +779,10 @@
         }
 
         @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 12px;
+            }
+
             .hero-section {
                 padding: 10px 15px 60px;
             }
@@ -782,6 +799,10 @@
             .hero-title-wrapper {
                 padding: 15px 20px;
             }
+
+            .chess-section{padding:50px 15px}
+            .chess-content h2{font-size:1.5rem}
+            .chess-content p{font-size:0.9rem}
         }
     </style>
 </head>
@@ -889,6 +910,50 @@
                     </div>
                     
                     <div id="widget-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="chess-section">
+            <div class="container chess-container">
+                <img src="images/Свобода маршрута.png" alt="Аренда авто для путешествий" class="chess-image" loading="lazy">
+                <div class="chess-content">
+                    <h2>Аренда авто = свобода маршрута</h2>
+                    <p>Проснулись и решили поехать в соседний город? С арендованным авто просто садитесь и едете. Не нужно ждать автобус по расписанию или переплачивать за такси на дальние расстояния.</p>
+                    <p>Особенно выгодно при поездках с семьёй или компанией — делите стоимость аренды на всех, и получается дешевле общественного транспорта.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="chess-section">
+            <div class="container chess-container reverse">
+                <img src="images/Локальные прокатчики.png" alt="Местные компании по прокату авто" class="chess-image" loading="lazy">
+                <div class="chess-content">
+                    <h2>Локальные прокатчики дешевле на 30-50%</h2>
+                    <p>Hertz и Avis берут за бренд. Местные компании предлагают те же машины за меньшие деньги. Например, в Грузии аренда седана у локальной компании — $15-20/день, у международной — $35-40/день.</p>
+                    <p>Наш сервис сравнивает и те, и другие — выбирайте выгодное предложение с хорошими отзывами.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="chess-section">
+            <div class="container chess-container">
+                <img src="images/franshiza.png" alt="Страховка и франшиза при аренде авто" class="chess-image" loading="lazy">
+                <div class="chess-content">
+                    <h2>Франшиза: что это и как не попасть</h2>
+                    <p>Франшиза — сумма, которую вы платите при любом повреждении авто. Царапина 5 см? Заплатите €500-1000 из кармана, если не взяли полную страховку.</p>
+                    <p>Берите Full Coverage (полная страховка без франшизы) — стоит +€5-10/день, но спасает от крупных расходов при мелких царапинах.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="chess-section">
+            <div class="container chess-container reverse">
+                <img src="images/Осмотр авто.png" alt="Проверка автомобиля перед арендой" class="chess-image" loading="lazy">
+                <div class="chess-content">
+                    <h2>Фотографируйте авто до и после</h2>
+                    <p>При получении машины снимите на видео весь кузов, салон, уровень топлива, счётчик пробега. Это ваша защита от списания чужих повреждений.</p>
+                    <p>При сдаче сделайте то же самое. Без этого прокатчик может приписать вам царапины, которые были до вас.</p>
                 </div>
             </div>
         </section>
