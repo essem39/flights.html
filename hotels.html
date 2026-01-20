@@ -17,6 +17,16 @@ property="og:description"/>
 <meta property="og:url" content="https://airflowtravel.net/hotels.html">
 <meta property="og:site_name" content="AirflowTravel">    
 <title>Бронирование отелей по низким ценам </title>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EZNB63CSYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EZNB63CSYD');
+</script>
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
 <link href="https://us-tiangong-data.oss-accelerate.aliyuncs.com/doc/gemini_css/table.css?OSSAccessKeyId=LTAI5tGmBYBVtG6Cxb4BaviJ&amp;Expires=4914044665&amp;Signature=X%2F%2BipJztge3UJ3Ojq5wcxRk%2F7zk%3D" rel="stylesheet"/>
@@ -24,7 +34,7 @@ property="og:description"/>
 <link href="https://us-tiangong-data.oss-accelerate.aliyuncs.com/doc/new_color_css/blue_v2.css?OSSAccessKeyId=LTAI5tGmBYBVtG6Cxb4BaviJ&amp;Expires=33299356499&amp;Signature=YGVaTE9YLO97otxLx%2FGBU8pQEr4%3D" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="https://us-tiangong-data.oss-accelerate.aliyuncs.com/doc/gemini_css/macarons_v3.js?OSSAccessKeyId=LTAI5tGmBYBVtG6Cxb4BaviJ&amp;Expires=4914188348&amp;Signature=MwRQXZxEbIvEbAqpPwRW%2B%2BSSug0%3D"></script>
-<style>/* CSS остается прежним - не буду его копировать полностью */
+<style>
 * {
     box-sizing: border-box;
     margin: 0;
@@ -43,7 +53,13 @@ html, body {
     margin: 0 auto;
     padding: 0 20px;
 }
-/* Все остальные стили CSS идентичны оригиналу - пропускаю для краткости */
+
+/* АНИМАЦИЯ ВРАЩЕНИЯ 360° */
+@keyframes spin360 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .main-navigation {
     background: #1e293b;
     padding: 0;
@@ -59,7 +75,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 100px;
     height: 100%;
 }
 .nav-logo {
@@ -77,18 +93,69 @@ html, body {
     margin: 0;
     padding: 0;
     gap: 25px;
+    align-items: center;
+}
+.nav-menu > li {
+    position: relative;
 }
 .nav-menu a {
-    color: #cbd5e1;
+    color: #94a3b8;
     text-decoration: none;
     font-size: 15px;
     font-weight: 500;
     padding: 18px 0;
     transition: color 0.3s ease;
+    display: block;
 }
 .nav-menu a:hover, .nav-menu a.active {
     color: white;
     text-decoration: none;
+}
+.dropdown {
+    position: relative;
+}
+.dropdown-toggle {
+    cursor: pointer;
+    color: #94a3b8;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 18px 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.dropdown-toggle:hover {
+    color: white;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #1e293b;
+    min-width: 280px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    margin-top: 5px;
+    padding: 10px 0;
+}
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.dropdown-menu a {
+    padding: 12px 20px;
+    color: #94a3b8;
+    display: block;
+    transition: all 0.3s;
+}
+.dropdown-menu a:hover {
+    background: #334155;
+    color: white;
 }
 .mobile-menu-button {
     display: none;
@@ -107,7 +174,7 @@ html, body {
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 10000;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -122,7 +189,7 @@ html, body {
     width: 260px;
     height: 100vh;
     background: #1e293b;
-    z-index: 1001;
+    z-index: 10001;
     padding: 60px 15px 15px;
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
     transition: right 0.3s ease;
@@ -148,7 +215,7 @@ html, body {
     margin: 0;
 }
 .mobile-menu-links a {
-    color: #cbd5e1;
+    color: #94a3b8;
     text-decoration: none;
     font-size: 16px;
     display: block;
@@ -229,6 +296,81 @@ html, body {
     padding: 60px 20px;
     background: white;
     text-align: center;
+}
+.promo-section {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFF3CC 100%);
+}
+.promo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.promo-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid #FFC107;
+    position: relative;
+    overflow: hidden;
+}
+.promo-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #FFC107 0%, #FF9800 100%);
+}
+.promo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+.promo-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+.promo-card h3 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+.promo-card p {
+    color: #64748b;
+    margin-bottom: 25px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+.promo-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+    color: #1e293b;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+.promo-button:hover {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+    box-shadow: 0 6px 16px rgba(255, 152, 0, 0.4);
+    transform: translateY(-2px);
+}
+.promo-disclaimer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-top: 20px;
+    font-style: italic;
 }
 .product-icons-grid {
     display: flex;
@@ -453,11 +595,11 @@ html, body {
     justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 40px;
-    gap: 30px 20px;
+    gap: 30px;
 }
 .footer-section {
-    width: calc(25% - 15px);
-    min-width: 250px;
+    width: calc(25% - 20px);
+    min-width: 200px;
     margin-bottom: 20px;
 }
 .footer-section h3 {
@@ -472,41 +614,23 @@ html, body {
     padding-left: 0;
 }
 .footer-section li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 .footer-section a {
     color: #94a3b8;
     transition: 0.3s;
     font-size: 0.95rem;
     text-decoration: none;
-    display: block;
-    padding: 4px 0;
 }
 .footer-section a:hover {
     color: white;
     text-decoration: underline;
-}
-.footer-section p {
-    margin: 8px 0;
-    line-height: 1.6;
-}
-@media (max-width: 1100px) {
-    .footer-section {
-        width: calc(50% - 15px);
-        min-width: 0;
-    }
-}
-@media (max-width: 550px) {
-    .footer-section {
-        width: 100%;
-    }
 }
 .footer-bottom {
     border-top: 1px solid #334155;
     padding-top: 20px;
     text-align: center;
     color: #94a3b8;
-    margin-top: 20px;
 }
 #hotel-widget-wrapper {
     border-radius: 8px;
@@ -521,44 +645,64 @@ html, body {
 </style>
 </head>
 <body>
-<!-- Навигация идентична оригиналу -->
 <nav class="main-navigation">
 <div class="nav-container">
-<a class="nav-logo" href="index.html">
-              🏨  Airflow
-            </a>
+<a href="index.html" class="nav-logo">
+🏨 Airflow
+</a>
 <ul class="nav-menu">
-<li><a class="active" href="index.html">Главная</a></li>
+<li><a href="index.html">Главная</a></li>
 <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="hotels.html" class="active">🏨 Отели</a></li>
 <li><a href="cars.html">🚗 Аренда авто</a></li>
 <li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="trains-buses.html">🚌 Поезда и автобусы</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+<li class="dropdown">
+<span class="dropdown-toggle">
+Ещё <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+</span>
+<div class="dropdown-menu">
+<a href="attractions.html">🎭 Музеи и достопримечательности</a>
+<a href="trains-buses.html">🚂 Поезда и автобусы</a>
+<a href="vip-lounge.html">💎 VIP залы</a>
+<a href="parking.html">🅿️ Парковка</a>
+<a href="insurance.html">🛡️ Страховка</a>
+<a href="simcard.html">📱 SIM карты</a>
+<a href="about.html">ℹ️ О нас</a>
+<a href="help.html">❓ Помощь</a>
+</div>
+</li>
 </ul>
-<button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button">
+<button class="mobile-menu-button" id="mobile-menu-button" aria-label="Меню">
 <i class="fas fa-bars"></i>
 </button>
 </div>
 </nav>
 <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
-<nav class="mobile-menu" id="mobile-menu">
-<button aria-label="Закрыть" class="mobile-menu-close" id="mobile-menu-close">×</button>
+<nav id="mobile-menu" class="mobile-menu">
+<button class="mobile-menu-close" id="mobile-menu-close" aria-label="Закрыть">×</button>
 <ul class="mobile-menu-links">
-<li><a class="active" href="index.html">Главная</a></li>
+<li><a href="index.html">Главная</a></li>
 <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="hotels.html" class="active">🏨 Отели</a></li>
 <li><a href="cars.html">🚗 Аренда авто</a></li>
 <li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="trains-buses.html">🚌 Поезда и автобусы</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+<li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
+<li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
+<li><a href="vip-lounge.html">💎 VIP залы</a></li>
+<li><a href="parking.html">🅿️ Парковка</a></li>
+<li><a href="insurance.html">🛡️ Страховка</a></li>
+<li><a href="simcard.html">📱 SIM карты</a></li>
 <li><a href="about.html">ℹ️ О нас</a></li>
 <li><a href="help.html">❓ Помощь</a></li>
 </ul>
 </nav>
 
-<!-- Hero и весь контент идентичен оригиналу - не буду дублировать -->
 <section class="hero-section">
 <div class="container">
 <div class="hero-content">
+<img src="images/HOTELTRAVEL.png" alt="Hotel Bird Logo" style="max-width: 120px; height: auto; margin: 0 auto 20px auto; display: block; animation: spin360 1s ease-in-out;">
 <h1 id="section-1"> Бронирование отелей и гостиниц</h1>
 <div id="hotel-widget-wrapper">
 <script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&powered_by=false&border_radius=5&plain=false&color_background=%23E6BE0B30&color_border=%23F1F2F8ff&color_button=%23BB0E35ff&promo_id=8003&campaign_id=26" charset="utf-8"></script>
@@ -570,7 +714,37 @@ html, body {
 </div>
 </section>
 
-<!-- Все остальные секции идентичны - пропускаю для краткости -->
+<section class="promo-section">
+<div class="container">
+<h2 class="section-title" style="color: #1e293b; margin-bottom: 50px;">🔥 Специальные предложения</h2>
+<div class="promo-grid">
+
+<div class="promo-card">
+<div class="promo-icon">🎁</div>
+<h3>Все акции</h3>
+<p>Собрали все горящие предложения и специальные акции в одном месте. Успейте забронировать!</p>
+<a href="https://level.tpo.li/08tKIK7s?erid=2VtzqwcMjbo" class="promo-button" target="_blank" rel="nofollow">Смотреть акции</a>
+</div>
+
+<div class="promo-card">
+<div class="promo-icon">📅</div>
+<h3>Календарь низких цен</h3>
+<p>Планируйте поездку заранее! Узнайте самые выгодные даты для путешествий по лучшим ценам.</p>
+<a href="https://level.tpo.li/PReVQi7t?erid=2VtzqwcMjbo" class="promo-button" target="_blank" rel="nofollow">Открыть календарь</a>
+</div>
+
+<div class="promo-card">
+<div class="promo-icon">🌴</div>
+<h3>Тропики</h3>
+<p>Мечтаете об экзотике? Специальные туры в тропические страны по выгодным ценам!</p>
+<a href="https://level.tpo.li/xPEq0mpl?erid=2VtzqwcMjbo" class="promo-button" target="_blank" rel="nofollow">Смотреть туры</a>
+</div>
+
+</div>
+<p class="promo-disclaimer">Реклама. ООО «Левел Тревел». ИНН 7716697924</p>
+</div>
+</section>
+
 <section class="product-icons-section">
 <div class="container">
 <h2 class="section-title" id="products-services" style="margin-bottom: 30px; color: #4c1d95;">Наши продукты и сервисы</h2>
@@ -771,58 +945,54 @@ html, body {
 </div>
 </section>
 
-<!-- ИСПРАВЛЕННЫЙ ФУТЕР -->
 <footer class="footer">
-    <div class="footer-container">
-        <div class="footer-content">
-            
-            <div class="footer-section">
-                <h3><i class="fas fa-info-circle"></i> О нас</h3>
-                <ul>
-                    <li><a href="about.html">О проекте Airflow Travel</a></li>
-                    <li><a href="help.html">Помощь и контакты</a></li>
-                    <li><a href="terms.html">Условия использования</a></li>
-                    <li><a href="privacy.html">Политика конфиденциальности</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3><i class="fas fa-box-open"></i> Продукты</h3>
-                <ul>
-                    <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-                    <li><a href="hotels.html">🏨 Отели</a></li>
-                    <li><a href="cars.html">🚗 Аренда авто</a></li>
-                    <li><a href="trains-buses.html">🚌 Поезда и автобусы</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3><i class="fas fa-question-circle"></i> Вопросы по путешествию</h3>
-                <p style="color: white; margin-bottom: 5px;">Общие вопросы:</p>
-                <p>hello@level.travel</p>
-                <p style="color: white; margin-top: 10px; margin-bottom: 5px;">Клиентский сервис:</p>
-                <p>manager@level.travel</p>
-                <p style="color: white; margin-top: 10px; margin-bottom: 5px;">Визовый отдел:</p>
-                <p>visa@level.travel</p>
-            </div>
-
-            <div class="footer-section">
-                <h3><i class="fas fa-phone"></i> Общие контакты</h3>
-                <p style="color: white; margin-bottom: 5px;">📞 Тех. поддержка:</p>
-                <p>+7 (926) 333-55-99</p>
-                <p style="color: white; margin-top: 10px; margin-bottom: 5px;">📧 Реклама/Сотрудничество:</p>
-                <p>partner@airflowtravel.net</p>
-            </div>
-            
-        </div>
-        
-        <div class="footer-bottom">
-            &copy; 2025 Airflow Travel. Все права защищены.
-        </div>
-    </div>
+<div class="footer-container">
+<div class="footer-content">
+<div class="footer-section">
+<h3>✨ О нас</h3>
+<ul>
+<li><a href="about.html">→ О проекте Airflow</a></li>
+<li><a href="help.html">→ Помощь и контакты</a></li>
+<li><a href="privacy.html">→ Политика конфиденциальности</a></li>
+<li><a href="terms.html">→ Условия использования</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Продукты</h3>
+<ul>
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a href="transfers.html">🚕 Трансферы</a></li>
+<li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Дополнительно</h3>
+<ul>
+<li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
+<li><a href="vip-lounge.html">💎 VIP залы</a></li>
+<li><a href="parking.html">🅿️ Парковка</a></li>
+<li><a href="insurance.html">🛡️ Страховка</a></li>
+<li><a href="simcard.html">📱 SIM карты</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Партнеры</h3>
+<p style="color: white; margin-bottom: 5px;">Служба поддержки 🚑</p>
+<p>✉ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff979a939390bf939a899a93d18b8d9e899a93">[email&#160;protected]</a></p>
+<p>Часы работы с 9 - 18 🕕</p>
+<p>Airflowtravel-Level.travel 🏨</p>
+</div>
+</div>
+<div class="footer-bottom">
+&copy; 2025 Airflow Travel. Все права защищены.
+</div>
+</div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const menuButton = document.getElementById('mobile-menu-button');
