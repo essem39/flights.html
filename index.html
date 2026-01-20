@@ -12,6 +12,16 @@ property="og:description"/>
 <meta content="ru" property="og:locale"/>
 <meta content="website" property="og:type"/>
 <title>Авиабилеты и туризм: Airflowpilot - Всё для вашего путешествия</title>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EZNB63CSYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EZNB63CSYD');
+</script>
+
 <meta name="google-site-verification" content="sIHOAu2gzOVjiKA05KjLZ8Tk1eFoUZyY_eUL6fcd88s" />
 <meta name="yandex-verification" content="4d4fde9de836512b" /> 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
@@ -124,6 +134,11 @@ property="og:description"/>
         margin: 0;
         padding: 0;
         gap: 25px;
+        align-items: center;
+    }
+
+    .nav-menu > li {
+        position: relative;
     }
 
     .nav-menu a {
@@ -133,11 +148,65 @@ property="og:description"/>
         font-weight: 500;
         padding: 18px 0;
         transition: color 0.3s ease;
+        display: block;
     }
 
     .nav-menu a:hover, .nav-menu a.active {
         color: white;
         text-decoration: none;
+    }
+
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown-toggle {
+        cursor: pointer;
+        color: #94a3b8;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 18px 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .dropdown-toggle:hover {
+        color: white;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #1e293b;
+        min-width: 280px;
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        margin-top: 5px;
+        padding: 10px 0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+        padding: 12px 20px;
+        color: #94a3b8;
+        display: block;
+        transition: all 0.3s;
+    }
+
+    .dropdown-menu a:hover {
+        background: #334155;
+        color: white;
     }
 
     /* Мобильное меню */
@@ -156,7 +225,7 @@ property="og:description"/>
         top: 0;
         left: 0; right: 0; bottom: 0;
         background: rgba(0, 0, 0, 0.5);
-        z-index: 999;
+        z-index: 10000;
         opacity: 0;
         transition: opacity 0.3s ease;
     }
@@ -168,7 +237,7 @@ property="og:description"/>
         width: 260px;
         height: 100vh;
         background: #1e293b;
-        z-index: 1001;
+        z-index: 10001;
         padding: 60px 15px 15px;
         box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
         transition: right 0.3s ease;
@@ -811,7 +880,22 @@ property="og:description"/>
 <li><a href="hotels.html">🏨 Отели</a></li>
 <li><a href="cars.html">🚗 Аренда авто</a></li>
 <li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="trains-buses.html">🚌 Автобусы</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+<li class="dropdown">
+    <span class="dropdown-toggle">
+        Ещё <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+    </span>
+    <div class="dropdown-menu">
+        <a href="attractions.html">🎭 Музеи и достопримечательности</a>
+        <a href="trains-buses.html">🚂 Поезда и автобусы</a>
+        <a href="vip-lounge.html">💎 VIP залы</a>
+        <a href="parking.html">🅿️ Парковка</a>
+        <a href="insurance.html">🛡️ Страховка</a>
+        <a href="simcard.html">📱 SIM карты</a>
+        <a href="about.html">ℹ️ О нас</a>
+        <a href="help.html">❓ Помощь</a>
+    </div>
+</li>
 </ul>
 <button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button">
 <i class="fas fa-bars"></i>
@@ -827,7 +911,13 @@ property="og:description"/>
 <li><a href="hotels.html">🏨 Отели</a></li>
 <li><a href="cars.html">🚗 Аренда авто</a></li>
 <li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="trains-buses.html">🚌 Автобусы</a></li>
+<li><a href="flight-compensation.html">⚖️ Компенсация</a></li>
+<li><a href="attractions.html">🎭 Музеи и достопримечательности</a></li>
+<li><a href="trains-buses.html">🚂 Поезда и автобусы</a></li>
+<li><a href="vip-lounge.html">💎 VIP залы</a></li>
+<li><a href="parking.html">🅿️ Парковка</a></li>
+<li><a href="insurance.html">🛡️ Страховка</a></li>
+<li><a href="simcard.html">📱 SIM карты</a></li>
 <li><a href="about.html">ℹ️ О нас</a></li>
 <li><a href="help.html">❓ Помощь</a></li>
 </ul>
