@@ -477,124 +477,63 @@ property="og:description"/>
         margin: 0 auto 20px auto;
     }
     
-    /* СТИЛИ НОВОЙ СЕКЦИИ ПРОДУКТОВ (2) */
-    .product-icons-section {
-        padding: 60px 20px;
-        background: #f8fafc;
-        text-align: center;
-    }
-    
-    
-    .product-icons-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 25px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-    
-    @media (min-width: 1024px) {
-        .product-icons-grid {
-            grid-template-columns: repeat(5, 1fr);
-        }
+    /* БЕГУЩАЯ СТРОКА АВИАКОМПАНИЙ НАВЕРХУ */
+    .airlines-ticker-section {
+        padding: 0;
+        background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
     }
 
-    .product-card {
-        text-decoration: none;
-        color: #1e293b;
+    .airlines-ticker-wrapper-top {
         background: white;
-        padding: 20px 15px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        /* Базовый синий цвет для Авиабилетов */
-        border-top: 4px solid #1d4ed8; 
-        transition: transform 0.3s, box-shadow 0.3s;
-        height: 100%;
+        overflow: hidden;
+        padding: 25px 0;
+        border-top: 1px solid #e0f2fe;
+        border-bottom: 1px solid #e0f2fe;
+    }
+
+    .airlines-ticker-content {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    /* СТИЛИ, ПЕРЕОПРЕДЕЛЯЮЩИЕ БАЗОВЫЙ СИНИЙ */
-
-    /* 2. Отели - Голубой/Морская волна */
-    .product-card.hotel-color {
-        border-top-color: #06b6d4; 
-    }
-    .product-card.hotel-color .product-icon {
-        color: #06b6d4;
-    }
-    .product-card.hotel-color:hover {
-        border-color: #06b6d4; 
+        animation: scroll-airlines 120s linear infinite;
+        white-space: nowrap;
     }
 
-    /* 3. Аренда авто - Желтый */
-    .product-card.car-color {
-        border-top-color: #f59e0b; 
-    }
-    .product-card.car-color .product-icon {
-        color: #f59e0b;
-    }
-    .product-card.car-color:hover {
-        border-color: #f59e0b;
+    @keyframes scroll-airlines {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
     }
 
-    /* 4. Трансферы - Зеленый */
-    .product-card.transfer-color {
-        border-top-color: #10b981; 
-    }
-    .product-card.transfer-color .product-icon {
-        color: #10b981;
-    }
-    .product-card.transfer-color:hover {
-        border-color: #10b981;
-    }
-
-    /* 5. Ж/д билеты - Серый/Сланец */
-    .product-card.train-color {
-        border-top-color: #64748b; 
-    }
-    .product-card.train-color .product-icon {
-        color: #64748b;
-    }
-    .product-card.train-color:hover {
-        border-color: #64748b;
-    }
-    /* КОНЕЦ ПЕРЕОПРЕДЕЛЕНИЯ ЦВЕТОВ */
-
-
-    .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        /* Если не переопределено выше, вернется к синему */
-        border-color: #1d4ed8; 
-    }
-    
-    .product-icon {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-        /* Базовый синий цвет для Авиабилетов */
-        color: #1d4ed8; 
-        transition: color 0.3s ease;
-    }
-    
-    .product-card:hover .product-icon {
-        /* При наведении, цвет иконки следует цвету границы */
-        color: inherit; /* Использует цвет, заданный в классах выше */
-    }
-    
-    .product-title {
-        font-size: 1.1rem;
-        font-weight: 700;
-        margin-bottom: 8px;
+    .airline-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 30px;
         color: #1e293b;
+        font-size: 15px;
+        font-weight: 500;
     }
-    
-    .product-card p {
-        font-size: 0.85rem;
-        color: #64748b;
-        margin: 0;
+
+    .airline-logo {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        border-radius: 4px;
     }
-    
+
+    .airline-name {
+        white-space: nowrap;
+    }
+
+    .airline-icon {
+        font-size: 20px;
+        color: #1d4ed8;
+    }
+
+    .airline-separator {
+        color: #cbd5e1;
+        padding: 0 20px;
+        font-size: 18px;
+    }
+
     /* СТИЛИ КАРТОЧЕК ПРЕИМУЩЕСТВ (3) */
     .car-features-section, .travel-info-section { /* Имя секции изменено на travel-info-section */
         padding: 80px 20px;
@@ -976,42 +915,10 @@ property="og:description"/>
 </div>
 </section>
 
-<section class="product-icons-section">
-<div class="container">
-<h2 class="section-title" style="margin-bottom: 40px; color: #1d4ed8;">Наши продукты и сервисы</h2>
-<div class="product-icons-grid">
-    
-    <a href="https://search.airflowtravel.net" class="product-card">
-        <div class="product-icon"><i class="fas fa-plane"></i></div>
-        <div class="product-title">Авиабилеты</div>
-        <p>Сравните цены от 728 авиакомпаний по всему миру.</p>
-    </a>
-
-    <a href="hotels.html" class="product-card hotel-color">
-        <div class="product-icon"><i class="fas fa-hotel"></i></div>
-        <div class="product-title">Отели</div>
-        <p>Бронируйте жилье со скидкой до 40% без предоплаты.</p>
-    </a>
-    
-    <a href="cars.html" class="product-card car-color">
-        <div class="product-icon"><i class="fas fa-car-alt"></i></div>
-        <div class="product-title">Аренда авто</div>
-        <p>Выгодный прокат в 175 странах от ведущих компаний.</p>
-    </a>
-    
-    <a href="transfers.html" class="product-card transfer-color">
-        <div class="product-icon"><i class="fas fa-taxi"></i></div>
-        <div class="product-title">Трансферы</div>
-        <p>Индивидуальный трансфер из/в аэропорт по фиксированной цене.</p>
-    </a>
-    
-    <a href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ" class="product-card train-color">
-        <div class="product-icon"><i class="fas fa-train"></i></div>
-        <div class="product-title">Ж/д билеты</div>
-        <p>Актуальное расписание и покупка билетов по России и СНГ.</p>
-    </a>
-
-</div>
+<!-- Бегущая строка авиакомпаний -->
+<section class="airlines-ticker-section">
+<div class="airlines-ticker-wrapper-top">
+<div class="airlines-ticker-content" id="airlines-ticker"></div>
 </div>
 </section>
 
@@ -1481,6 +1388,73 @@ property="og:description"/>
 
     initTicker();
     // === END TICKER SCRIPT ===
+
+    // === AIRLINES TICKER SCRIPT ===
+    const airlinesTicker = document.getElementById('airlines-ticker');
+    const airlines = [
+        { name: 'Аэрофлот', code: 'SU' },
+        { name: 'S7 Airlines', code: 'S7' },
+        { name: 'Turkish Airlines', code: 'TK' },
+        { name: 'Emirates', code: 'EK' },
+        { name: 'Lufthansa', code: 'LH' },
+        { name: 'Qatar Airways', code: 'QR' },
+        { name: 'British Airways', code: 'BA' },
+        { name: 'Air France', code: 'AF' },
+        { name: 'KLM', code: 'KL' },
+        { name: 'Etihad Airways', code: 'EY' },
+        { name: 'Finnair', code: 'AY' },
+        { name: 'Aegean Airlines', code: 'A3' },
+        { name: 'ITA Airways', code: 'AZ' },
+        { name: 'Wizz Air', code: 'W6' },
+        { name: 'EasyJet', code: 'U2' },
+        { name: 'Pegasus Airlines', code: 'PC' },
+        { name: 'Flydubai', code: 'FZ' },
+        { name: 'Air Arabia', code: 'G9' },
+        { name: 'LOT Polish Airlines', code: 'LO' },
+        { name: 'Austrian Airlines', code: 'OS' },
+        { name: 'Swiss', code: 'LX' },
+        { name: 'Brussels Airlines', code: 'SN' },
+        { name: 'TAP Portugal', code: 'TP' },
+        { name: 'Iberia', code: 'IB' },
+        { name: 'Vueling', code: 'VY' },
+        { name: 'Air Europa', code: 'UX' },
+        { name: 'SAS', code: 'SK' },
+        { name: 'Transavia', code: 'HV' },
+        { name: 'SunExpress', code: 'XQ' },
+        { name: 'Middle East Airlines', code: 'ME' },
+        { name: 'Ural Airlines', code: 'U6' },
+        { name: 'Pobeda', code: 'DP' },
+        { name: 'Red Wings', code: 'WZ' },
+        { name: 'Nordwind Airlines', code: 'N4' },
+        { name: 'Utair', code: 'UT' },
+        { name: 'Azimuth', code: 'A4' },
+        { name: 'Belavia', code: 'B2' },
+        { name: 'Air Astana', code: 'KC' },
+        { name: 'FlyOne Armenia', code: 'F3' },
+        { name: 'HiSky', code: 'H4' }
+    ];
+
+    function buildAirlinesTicker() {
+        let airlinesHTML = '';
+        airlines.forEach((airline, index) => {
+            airlinesHTML += `<div class="airline-item">
+                <img src="https://images.kiwi.com/airlines/64/${airline.code}.png" 
+                     alt="${airline.name}" 
+                     class="airline-logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                <span class="airline-icon" style="display:none;">✈️</span>
+                <span class="airline-name">${airline.name}</span>
+            </div>`;
+            if (index < airlines.length - 1) {
+                airlinesHTML += `<span class="airline-separator">•</span>`;
+            }
+        });
+        // Дублируем для бесшовной прокрутки
+        airlinesTicker.innerHTML = airlinesHTML + '<span class="airline-separator">•</span>' + airlinesHTML;
+    }
+
+    buildAirlinesTicker();
+    // === END AIRLINES TICKER ===
 
     // === НАВИГАЦИЯ И SWIPER ===
     const mobileMenu = document.getElementById('mobile-menu');
