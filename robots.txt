@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Запрещаем индексацию служебных файлов
+Disallow: /cgi-bin/
+Disallow: /*.php$
+Disallow: /admin/
+Disallow: /tmp/
+
+# Sitemap
+Sitemap: https://airflowtravel.net/sitemap.xml
+Sitemap: https://search.airflowtravel.net/sitemap.xml
