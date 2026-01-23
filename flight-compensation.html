@@ -6,11 +6,11 @@
 <meta content="ie=edge" http-equiv="X-X-Compatible"/>
 <meta content="Получите компенсацию до 600€ за отмененный или задержанный рейс. Проверка рейса и подача заявки онлайн." name="description"/>
 <link href="bus_icon-icons.com_76529.ico" rel="icon" type="image/x-icon"/>
-<meta content="Airflowpilot - Компенсация за задержку или отмену рейса" property="og:title"/>
+<meta content="Airflowtravel - Компенсация за задержку или отмену рейса" property="og:title"/>
 <meta content="Проверьте возможность получения компенсации до 600€ по европейскому закону EC 261." property="og:description"/>
 <meta content="ru" property="og:locale"/>
 <meta content="website" property="og:type"/>
-<title>Компенсация за задержку или отмену рейса до 600€ | Airflowpilot</title>
+<title>Компенсация за задержку или отмену рейса до 600€ | Airflowtravel</title>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet"/>
@@ -61,6 +61,17 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100%; font-family: -app
 .hero-widget-card { padding: 20px 15px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); max-width: 1200px; margin: 0 auto; transition: all 0.3s ease; }
 .hero-widget-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); background: rgba(255, 255, 255, 0.2); }
 
+.hero-banner-image { 
+width: 100%; 
+max-width: 1200px; 
+height: auto; 
+max-height: 280px; 
+object-fit: cover; 
+border-radius: 12px; 
+margin-bottom: 25px; 
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
 .hero-widget-card h1 { 
 font-size: clamp(1.2rem, 2.5vw, 2rem); 
 margin-bottom: 20px; 
@@ -86,9 +97,20 @@ gap: 10px;
 .widget-summary-text p { font-size: 0.9rem; color: rgba(255, 255, 255, 0.9); margin: 0; }
 .hero-widget-content { border-top: 1px solid rgba(255, 255, 255, 0.3); padding-top: 15px; margin-top: 15px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px); border-radius: 8px; padding: 10px 5px; overflow-x: hidden; max-width: 100%; min-height: auto; }
 
+.seo-section-image {
+width: 100%;
+height: auto;
+object-fit: cover;
+border-radius: 12px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
 @media (max-width: 768px) {
+.hero-banner-image {
+max-height: 180px;
+margin-bottom: 20px;
+}
 .hero-widget-card h1 { font-size: 1rem; flex-direction: column; }
-.hero-widget-card h1 img { width: 180px !important; height: 90px !important; }
 .widget-summary-content { flex-direction: column; text-align: center; gap: 10px; }
 .widget-summary-text { text-align: center; }
 .widget-summary-text h2 { font-size: 1rem; }
@@ -98,6 +120,9 @@ gap: 10px;
 .hero-section { padding: 60px 5px 40px; }
 .hero-widget-card { padding: 15px 10px; }
 .section-title { font-size: 1.8rem; }
+.seo-section-image {
+height: 200px;
+}
 }
 
 .seo-info-section { padding: 60px 20px; background: white; }
@@ -226,7 +251,7 @@ gap: 10px;
 <div class="container">
 <div class="hero-content">
 <div class="hero-widget-card">
-<img src="images/compessari.png" alt="Компенсация за рейсы" style="width: 100%; max-width: 1200px; height: auto; max-height: 420px; object-fit: cover; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+<img src="images/compessari.png" alt="Компенсация за рейсы" class="hero-banner-image">
 <h1>Компенсация за задержку или отмену рейса</h1>
 <details id="heroWidgetDetails">
 <summary>
@@ -251,7 +276,7 @@ gap: 10px;
 <div class="seo-info-container">
 <div style="display: grid; grid-template-columns: 380px 1fr; gap: 40px; align-items: start; margin-bottom: 40px;">
 <div>
-<img src="images/banner.png" alt="Компенсация за задержку или отмену рейса" style="width: 100%; height: 250px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+<img src="images/banner.png" alt="Компенсация за задержку или отмену рейса" class="seo-section-image">
 </div>
 <div class="seo-text-content">
 <h2>Компенсация за задержку или отмену рейса по закону EC 261/2004</h2>
@@ -531,7 +556,8 @@ gap: 10px;
 <h3>Служба поддержки Compensair</h3>
 <div class="footer-contacts" style="background: none; padding: 0; margin: 0;">
 <a href="/cdn-cgi/l/email-protection#067263676b4665696b76636875676f742865696b" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-<i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="f98d9c9894b99a9694899c978a98908bd79a9694">[email&#160;protected]</span>
+<i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="f98d9c9894b99a9694899c978a98908bd79a9694">[team@compensair.com
+]</span>
 </a>
 <a href="https://wa.me/447537141140" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px;">
 <i class="fab fa-whatsapp"></i> WhatsApp: +44 753 714 1140
@@ -656,5 +682,3 @@ closeMenu();
 </script>
 </body>
 </html>
-
-Поменял местами. Теперь вверху профессиональное фото с девушкой, внизу иконки.
