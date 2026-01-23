@@ -21,7 +21,81 @@ property="og:description"/>
   gtag('js', new Date());
   gtag('config', 'G-EZNB63CSYD');
 </script>
-
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Airflowpilot",
+      "url": "https://airflowtravel.net",
+      "logo": "https://airflowtravel.net/airflowpilot-logo.png",
+      "description": "Сервис бронирования авиабилетов, отелей, аренды авто и других туристических услуг",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "1000",
+        "bestRating": "5"
+      },
+      "sameAs": [
+        "https://facebook.com/airflowtravel",
+        "https://instagram.com/airflowtravel",
+        "https://t.me/airflowtravel"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "name": "Airflowtravel",
+      "url": "https://airflowtravel.net",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://search.airflowtravel.net?query={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Service",
+      "serviceType": "Туристические услуги",
+      "provider": {
+        "@type": "Organization",
+        "name": "Airflowtravel"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Туристические услуги",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Авиабилеты"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Бронирование отелей"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Аренда автомобилей"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+</script>
 <meta name="google-site-verification" content="sIHOAu2gzOVjiKA05KjLZ8Tk1eFoUZyY_eUL6fcd88s" />
 <meta name="yandex-verification" content="4d4fde9de836512b" /> 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
