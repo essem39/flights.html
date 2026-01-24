@@ -577,6 +577,13 @@
         100% { transform: translateX(-50%); }
     }
 
+    /* УСКОРЕНИЕ БЕГУЩЕЙ СТРОКИ НА МОБИЛЬНЫХ */
+    @media (max-width: 768px) {
+        .airlines-ticker-content {
+            animation: scroll-airlines 20s linear infinite;
+        }
+    }
+
     .airline-item {
         display: inline-flex;
         align-items: center;
