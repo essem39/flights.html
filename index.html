@@ -361,6 +361,13 @@
         color: #1e293b;
     }
     
+    
+/* СТИЛИ ВИДЖЕТА ПОИСКА - ТОЧНО КАК HERO-СЕКЦИЯ */
+.search-widget-section {
+     background: linear-gradient(135deg, #163e9c 13%, #0c9c71 100%); /* ТОЧНО КАК АКВАРИУМ */
+    padding: 20px 20px;
+}
+    
     .hero-section {
         /* Обновленный градиент: от темно-синего до насыщенного морского зеленого (АКВАРИУМ) */
         background: linear-gradient(135deg, #163e9c 0%, #0c9c71 100%); 
@@ -550,70 +557,6 @@
         color: #475569;
         max-width: 90%;
         margin: 0 auto 20px auto;
-    }
-    
-    /* БЕГУЩАЯ СТРОКА АВИАКОМПАНИЙ НАВЕРХУ */
-    .airlines-ticker-section {
-        padding: 0;
-        background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
-    }
-
-    .airlines-ticker-wrapper-top {
-        background: white;
-        overflow: hidden;
-        padding: 25px 0;
-        border-top: 1px solid #e0f2fe;
-        border-bottom: 1px solid #e0f2fe;
-    }
-
-    .airlines-ticker-content {
-        display: flex;
-        animation: scroll-airlines 120s linear infinite;
-        white-space: nowrap;
-    }
-
-    @keyframes scroll-airlines {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
-
-    /* УСКОРЕНИЕ БЕГУЩЕЙ СТРОКИ НА МОБИЛЬНЫХ */
-    @media (max-width: 768px) {
-        .airlines-ticker-content {
-            animation: scroll-airlines 20s linear infinite;
-        }
-    }
-
-    .airline-item {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 0 30px;
-        color: #1e293b;
-        font-size: 15px;
-        font-weight: 500;
-    }
-
-    .airline-logo {
-        width: 32px;
-        height: 32px;
-        object-fit: contain;
-        border-radius: 4px;
-    }
-
-    .airline-name {
-        white-space: nowrap;
-    }
-
-    .airline-icon {
-        font-size: 20px;
-        color: #1d4ed8;
-    }
-
-    .airline-separator {
-        color: #cbd5e1;
-        padding: 0 20px;
-        font-size: 18px;
     }
 
     /* СТИЛИ КАРТОЧЕК ПРЕИМУЩЕСТВ (3) */
@@ -933,10 +876,6 @@
     }
     /* === END SEO SECTION === */
 </style>
-
-  <script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ueEN0pw7X43L3HFlAeWeu";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-</script>
 </head>
 <body>
 <nav class="main-navigation">
@@ -995,6 +934,14 @@
 </ul>
 </nav>
 <main>
+
+<!-- ВИДЖЕТ ПОИСКА - ТЕМНЫЙ ФОН -->
+<section class="search-widget-section">
+<div class="container">
+<div id="tpwl-search"></div>
+</div>
+</section>
+
 <section class="hero-section">
 <div class="container">
 <div class="hero-content">
@@ -1045,13 +992,6 @@
     </div>
     <div id="travel-count"></div>
     </div>
-</div>
-</section>
-
-<!-- Бегущая строка авиакомпаний -->
-<section class="airlines-ticker-section">
-<div class="airlines-ticker-wrapper-top">
-<div class="airlines-ticker-content" id="airlines-ticker"></div>
 </div>
 </section>
 
@@ -1570,73 +1510,6 @@
     initTicker();
     // === END TICKER SCRIPT ===
 
-    // === AIRLINES TICKER SCRIPT ===
-    const airlinesTicker = document.getElementById('airlines-ticker');
-    const airlines = [
-        { name: 'Аэрофлот', code: 'SU' },
-        { name: 'S7 Airlines', code: 'S7' },
-        { name: 'Turkish Airlines', code: 'TK' },
-        { name: 'Emirates', code: 'EK' },
-        { name: 'Lufthansa', code: 'LH' },
-        { name: 'Qatar Airways', code: 'QR' },
-        { name: 'British Airways', code: 'BA' },
-        { name: 'Air France', code: 'AF' },
-        { name: 'KLM', code: 'KL' },
-        { name: 'Etihad Airways', code: 'EY' },
-        { name: 'Finnair', code: 'AY' },
-        { name: 'Aegean Airlines', code: 'A3' },
-        { name: 'ITA Airways', code: 'AZ' },
-        { name: 'Wizz Air', code: 'W6' },
-        { name: 'EasyJet', code: 'U2' },
-        { name: 'Pegasus Airlines', code: 'PC' },
-        { name: 'Flydubai', code: 'FZ' },
-        { name: 'Air Arabia', code: 'G9' },
-        { name: 'LOT Polish Airlines', code: 'LO' },
-        { name: 'Austrian Airlines', code: 'OS' },
-        { name: 'Swiss', code: 'LX' },
-        { name: 'Brussels Airlines', code: 'SN' },
-        { name: 'TAP Portugal', code: 'TP' },
-        { name: 'Iberia', code: 'IB' },
-        { name: 'Vueling', code: 'VY' },
-        { name: 'Air Europa', code: 'UX' },
-        { name: 'SAS', code: 'SK' },
-        { name: 'Transavia', code: 'HV' },
-        { name: 'SunExpress', code: 'XQ' },
-        { name: 'Middle East Airlines', code: 'ME' },
-        { name: 'Ural Airlines', code: 'U6' },
-        { name: 'Pobeda', code: 'DP' },
-        { name: 'Red Wings', code: 'WZ' },
-        { name: 'Nordwind Airlines', code: 'N4' },
-        { name: 'Utair', code: 'UT' },
-        { name: 'Azimuth', code: 'A4' },
-        { name: 'Belavia', code: 'B2' },
-        { name: 'Air Astana', code: 'KC' },
-        { name: 'FlyOne Armenia', code: 'F3' },
-        { name: 'HiSky', code: 'H4' }
-    ];
-
-    function buildAirlinesTicker() {
-        let airlinesHTML = '';
-        airlines.forEach((airline, index) => {
-            airlinesHTML += `<div class="airline-item">
-                <img src="https://images.kiwi.com/airlines/64/${airline.code}.png" 
-                     alt="${airline.name}" 
-                     class="airline-logo"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-                <span class="airline-icon" style="display:none;">✈️</span>
-                <span class="airline-name">${airline.name}</span>
-            </div>`;
-            if (index < airlines.length - 1) {
-                airlinesHTML += `<span class="airline-separator">•</span>`;
-            }
-        });
-        // Дублируем для бесшовной прокрутки
-        airlinesTicker.innerHTML = airlinesHTML + '<span class="airline-separator">•</span>' + airlinesHTML;
-    }
-
-    buildAirlinesTicker();
-    // === END AIRLINES TICKER ===
-
     // === НАВИГАЦИЯ И SWIPER ===
     const mobileMenu = document.getElementById('mobile-menu');
     const menuButton = document.getElementById('mobile-menu-button');
@@ -1716,5 +1589,26 @@
         });
     });
 </script>
+
+<!-- TRAVELPAYOUTS SEARCH WIDGET -->
+<script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
+  (function () {
+        var script = document.createElement("script");
+        script.async = 1;
+        script.type = "module";
+        script.src = "https://tpwgt.com/wl_web/main.js?wl_id=1368";
+        document.head.appendChild(script);
+        window.TPWL_CONFIGURATION = {
+          ...window.TPWL_CONFIGURATION,
+          resultsURL: "https://search.airflowtravel.net"
+        };
+      })();
+</script>
+
+<!-- CHATBASE - ПЕРЕНЕСЁН В КОНЕЦ BODY -->
+<script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ueEN0pw7X43L3HFlAeWeu";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+
 </body>
 </html>
